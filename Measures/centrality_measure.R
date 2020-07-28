@@ -34,9 +34,7 @@ natGov = data.frame(gov = 'Govt National', provs)
 provGov = data.frame(gov = paste0('Govt Prov', 1:16), provs)
 edges = rbind(natGov, provGov)
 
-edges
-
-nodes
+ 
 ## create illustrative examples for cases where...
 
 # the only policy that exists is at the national level which applies to all provinces; there are no provincial level policies
@@ -58,7 +56,12 @@ edges$link5 = c(rep(0, 16), rep(1, 16))
 # there is no policy
 edges$link6 = c(rep(0, 32))
 
- 
+
+edges$link1_wt = ifelse(edges$link1 == 1, sample(seq(.1, 1, length = 10), length(which(edges$link1 == 1,)) , replace = TRUE), 0)
+
+
+# https://rdrr.io/cran/CINNA/src/R/CINNA.R
+
 network1 = graph_from_data_frame(edges[which(edges$link1 ==1),], nodes, directed = TRUE)      
 network2 = graph_from_data_frame(edges[which(edges$link2 ==1),], nodes, directed = TRUE)     
 network3 = graph_from_data_frame(edges[which(edges$link3 ==1),], nodes, directed = TRUE)     
@@ -68,6 +71,63 @@ network5 = graph_from_data_frame(edges[which(edges$link5 ==1),], nodes, directed
 network6 = graph_from_data_frame(edges[which(edges$link6 ==1),], nodes, directed = TRUE)     
 
 
+plot(network1)
+plot(network2)
+plot(network5)
+authority_score(network1)
+hub_score(network1, weights = edges$link1_wt[1:16])
+
+edges[which(edges$link1 ==1),]
+
+
+hub_score(network5)
+hub_score(network1)$vector[1]
+hub_score(network2)$vector[1]
+hub_score(network3)$vector[1]
+hub_score(network4)$vector[1]
+hub_score(network5)$vector[1]
+hub_score(network5)
+edges[which(edges$link1 ==1),1:3]
+network1
+data("zachary")
+eigen_centrality(network1, directed = TRUE, weights = edges$link1_wt[1:16])
+?centr_degree
+
+eigen_centrality(network5)
+?eigen_centrality
+proper_centralities(network1)
+calculate_centralities(network1, include = 'Degree Centrality')
+calculate_centralities(zachary) 
+plot(network6)
+a = network1 %>% set_edge_attr( "weight", value = edges$link1_wt[1:16])
+
+plot(a, edge.width = E(a)$weight)
+
+ centr_eigen(network1)
+## Run the programme
+degree_w(network)
+
+# }
+
+ # https://cran.r-project.org/web/packages/CINNA/vignettes/CINNA.html
+# https://www.sci.unich.it/~francesc/teaching/network/kleinberg.html
+
+ifelse(edges$link1 == 1, sample(seq(.1, 1, length = 10), length(which(edges$link1 == 1)) , replace = TRUE), 0) %>% length()
+
+edges
+alpha.centrality(network1, weights =edges$link1_wt[1:16] )
+?barycenter
+g <- make_ring(10) %>%
+  set_edge_attr("weight", value = 1:10) %>%
+  set_edge_attr("color", value = "red")
+g
+plot(g, edge.width = E(g)$weight)
+centr_degree(g)
+?authority_score
+
+
+edges
+?centr_degree
 plot(network1)
 plot(network2)
 plot(network3)
@@ -84,6 +144,9 @@ plot(network6)
   # centr_degree(network5, mode = 'all')$centralization/centr_degree(network1, mode = 'all')$centralization ; this would be relatively 'decentralized' state of policymaking
 
 centr_degree(network1, mode = 'all')
+network1
+centr_degree(network1, mode = 'all')
+
 centr_degree(network2, mode = 'all')
 centr_degree(network3, mode = 'all')
 centr_degree(network4, mode = 'all')
