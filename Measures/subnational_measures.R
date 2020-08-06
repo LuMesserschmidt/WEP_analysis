@@ -1,8 +1,8 @@
 
-############################################
-#Measuring subnational policy fragmentation#
-#             by JOAN                      #
-############################################
+##########################################################
+#Theoretical measures of subnational policy fragmentation#
+#             by JOAN                                    #
+##########################################################
 
 ###############
 ##Subnational##
@@ -197,5 +197,119 @@ sd(timing$state_policy150)
 
 mean(timing$national_tolerance)
 sd(timing$national_tolerance)
+
+
+##########################################################
+# CoronaNet measures of subnational policy fragmentation #
+#             by JOAN                                    #
+##########################################################
+
+#Load subnational data
+
+current_path <- getActiveDocumentContext()$path 
+setwd(dirname(current_path))
+dat = read.csv("RKI_COVID19.csv")
+
+#germanydata = fromJSON("https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.geojson")
+#datatesterr = germanydata$name
+
+#germany_data_tester1 <- germanydata %>%
+#  group_by(Meldedatum, Bundesland, IdBundesland ) %>%
+#  select(IdBundesland, Bundesland, Meldedatum, AnzahlFall) %>%
+#  summarise(cases = sum(AnzahlFall)) %>%
+#  slice(1) %>%
+#  ungroup
+
+dat <- dat[, c('IdBundesland', 'Bundesland', 'Meldedatum', 'AnzahlFall')]
+
+germany_data_tester1 <- dat %>%
+  group_by(IdBundesland, Bundesland, Meldedatum) %>%
+  mutate(cases = sum(AnzahlFall)) %>%
+  select(Bundesland, Meldedatum, AnzahlFall) %>%
+  slice(1) %>%
+  ungroup
+
+#write.csv(germany_data_tester1, "germanydata.csv")
+
+current_path <- getActiveDocumentContext()$path 
+setwd(dirname(current_path))
+
+italy_dat <- read.csv("https://github.com/pcm-dpc/COVID-19/raw/master/dati-regioni/dpc-covid19-ita-regioni.csv",
+                      sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
+
+
+italy_data_tester = data.frame(
+  date = italy_dat$data,
+  country = italy_dat$stato,
+  region = italy_dat$denominazione_regione,
+  cases = italy_dat$totale_positivi,
+  deceased = italy_dat$deceduti
+)
+
+#write.csv(italy_data_tester, "italydata.csv")
+
+france_dat <- read.csv("https://www.data.gouv.fr/fr/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4",
+                       sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
+
+regionfrance = france_dat[france_dat$granularite == "region",]
+
+francedata = ddply(regionfrance, .(date, maille_nom), summarise, 
+                   cases = sum(cas_confirmes),
+                   deaths = sum(deces))
+
+#write.csv(francedata, "francedata.csv")
+
+
+switzerland_dat <- read.csv("https://github.com/openZH/covid_19/raw/master/COVID19_Fallzahlen_CH_total_v2.csv",
+                            sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
+
+switzerlanddata = data.frame(
+  date = switzerland_dat$date,
+  canton = switzerland_dat$abbreviation_canton_and_fl,
+  cases = switzerland_dat$ncumul_conf,
+  deaths = switzerland_dat$ncumul_deceased
+)
+
+#write.csv(switzerlanddata, "switzerlanddata.csv")
+
+
+##Load Luca's subnational data
+
+subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/combined_cases.csv', sep=",")
+
+#Load CoronaNet (latest version)
+
+corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
+                   sep = ",", stringsAsFactors = FALSE)[-c(1:2),]#round 1-main survey
+
+corona_sel <- corona[which(corona$country == "Germany" |
+                                  corona$country == "Switzerland" |
+                                  corona$country == "Italy" |
+                                  corona$country == "France"),]
+
+#Create a base dataset
+
+province <- unique(subnational_data[-which(subnational_data$region == 'sum_cases'),]$region)
+type <- unique(corona$type)
+date <- seq(as.Date("2020/1/1"), as.Date(format(Sys.Date(), format="%Y-%m-%d")), "days")
+
+base <- expand.grid(province = province,
+                    date = date,
+                    type = type
+)
+base$country <- c(rep("Germany", 16), rep("France", 18), rep("Italy", 21), rep("Switzerland", 27))
+base <- base[, c('country', 'province', 'date', 'type')]
+
+#
+  
+corona_sel[1:10, c('init_country_level')]
+
+
+
+
+
+
+
+
 
 
