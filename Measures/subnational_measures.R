@@ -279,16 +279,36 @@ subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Pr
 
 #Load CoronaNet (latest version)
 
-corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
-                   sep = ",", stringsAsFactors = FALSE)[-c(1:2),]#round 1-main survey
+##Province names to match CoronaNET: unique(corona[which(corona$country == "Switzerland"),]$province)
 
-corona_sel <- corona[which(corona$country == "Germany" |
-                                  corona$country == "Switzerland" |
-                                  corona$country == "Italy" |
-                                  corona$country == "France"),]
+subnational_data[which(subnational_data$region == 'BE'),]$region <- 'Bern'
+subnational_data$region[which(subnational_data$region == 'ZH')] <- 'Zurich'
+subnational_data$region[which(subnational_data$region == 'LU')] <- 'Lucerne'
+subnational_data$region[which(subnational_data$region == 'UR')] <- 'Uri'
+subnational_data$region[which(subnational_data$region == 'SZ')] <- 'Schwyz'
+subnational_data$region[which(subnational_data$region == 'OW')] <- 'Obwalden'
+subnational_data$region[which(subnational_data$region == 'NW')] <- 'Nidwalden'
+subnational_data$region[which(subnational_data$region == 'GL')] <- 'Glarus'
+subnational_data$region[which(subnational_data$region == 'ZG')] <- 'Zug'
+subnational_data$region[which(subnational_data$region == 'FR')] <- 'Fribourg'
+subnational_data$region[which(subnational_data$region == 'SO')] <- 'Solothurn'
+subnational_data$region[which(subnational_data$region == 'BS')] <- 'Basel-Stadt'
+subnational_data$region[which(subnational_data$region == 'BL')] <- 'Basel-Landschaft'
+subnational_data$region[which(subnational_data$region == 'SH')] <- 'Schaffhausen'
+subnational_data$region[which(subnational_data$region == 'AR')] <- 'Appenzell Ausserrhoden'
+subnational_data$region[which(subnational_data$region == 'AI')] <- 'Appenzell Innerrhoden'
+subnational_data$region[which(subnational_data$region == 'SG')] <- 'Saint Gallen'
+subnational_data$region[which(subnational_data$region == 'GR')] <- 'Grisons'
+subnational_data$region[which(subnational_data$region == 'AG')] <- 'Aargau'
+subnational_data$region[which(subnational_data$region == 'TG')] <- 'Thurgau'
+subnational_data$region[which(subnational_data$region == 'TI')] <- 'Ticino'
+subnational_data$region[which(subnational_data$region == 'VD')] <- 'Vaud'
+subnational_data$region[which(subnational_data$region == 'VS')] <- 'Valais'
+subnational_data$region[which(subnational_data$region == 'NE')] <- 'Neuchatel'
+subnational_data$region[which(subnational_data$region == 'GE')] <- 'Geneva'
+subnational_data$region[which(subnational_data$region == 'JU')] <- 'Jura'
 
 #Create a base dataset
-
 province <- unique(subnational_data[-which(subnational_data$region == 'sum_cases'),]$region)
 type <- unique(corona$type)
 date <- seq(as.Date("2020/1/1"), as.Date(format(Sys.Date(), format="%Y-%m-%d")), "days")
@@ -300,16 +320,139 @@ base <- expand.grid(province = province,
 base$country <- c(rep("Germany", 16), rep("France", 18), rep("Italy", 21), rep("Switzerland", 27))
 base <- base[, c('country', 'province', 'date', 'type')]
 
-#
-  
-corona_sel[1:10, c('init_country_level')]
+corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
+                   sep = ",", stringsAsFactors = FALSE)[-c(1:2),]#round 1-main survey
 
+corona_sel <- corona[which(corona$target_country == "Germany" |
+                             corona$target_country == "Switzerland" |
+                             corona$target_country == "Italy" |
+                             corona$target_country == "France"),]
 
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-06-02"),] 
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-05-11"),] 
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "Provincial"),]
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "National" & corona_sel$date_start == "2020-03-05"),]
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "National" & corona_sel$date_announced == "2020-03-09"),]
+corona_sel[which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "National" & corona_sel$date_start == "2020-03-10"),]$date_end <- "2020-05-04"
 
+corona_sel <- corona_sel %>%
+  group_by(target_country, type) %>%
+  filter(!init_country_level == "Municipal") %>%
+  select(target_country, init_country_level, target_province, target_city, type, type_sub_cat, date_start, date_end, update_type)
 
+corona_sel <- corona_sel[which(is.na(corona_sel$target_city)),]
+corona_sel <- rbind(data.frame(corona_sel), 'lombardia' = c('Italy', 'National', 'Lombardia', NA, 'Lockdown', NA, '2020-03-08', '2020-03-09', 'new_entry'))
 
+corona_sel = corona_sel %>% 
+  mutate(gov = ifelse(init_country_level == "National" & is.na(target_province) & is.na(target_city), target_country, target_province)) %>% 
+  select(-target_province)
 
+corona_sel_active <- corona_sel[, c('gov', 'date_start', 'type')]
+colnames(corona_sel_active) <- c('country', 'date', 'type')
+corona_sel_active$active1 <- 1
 
+base2 <- merge(base, corona_sel_active, by = c('country', 'date', 'type'), all.x = TRUE)
 
+base2$active1 <- ifelse(is.na(base2$active1), 0, base2$active1)
 
+colnames(corona_sel_active) <- c('province', 'date', 'type', 'active')
+
+base3 <- merge(base2, corona_sel_active, by = c('province', 'date', 'type'), all.x = TRUE)
+
+base3 = base3 %>% mutate(policy_active = ifelse(active1 == 1, 1, ifelse(active == 1, 1, 0))) %>% select(-active1, -active) 
+base3$policy_active <- ifelse(is.na(base3$policy_active), 0, base3$policy_active)
+
+corona_sel_inactive <- corona_sel[, c('gov', 'date_end', 'type')]
+colnames(corona_sel_inactive) <- c('country', 'date', 'type')
+corona_sel_inactive$inactive <- -1
+
+base4 <- merge(base3, corona_sel_inactive, by = c('country', 'date', 'type'), all.x = TRUE)
+
+colnames(corona_sel_inactive) <- c('province', 'date', 'type', 'inactive')
+
+base5 <- merge(base4, corona_sel_inactive, by = c('province', 'date', 'type'), all.x = TRUE)
+base5$inactive.x <- ifelse(is.na(base5$inactive.x), 0, base5$inactive.x)
+base5$inactive.y <- ifelse(is.na(base5$inactive.y), 0, base5$inactive.y)
+
+base5 = base5 %>% mutate(policy_inactive = ifelse(inactive.x == -1, -1, ifelse(inactive.y == -1, -1, 0))) %>% select(-inactive.x, -inactive.y) 
+
+base5$policy_activity <- ifelse(is.na(base5$policy_active) &
+                                  is.na(base5$policy_inactive), 0, ifelse(base5$policy_active == 1, 1,
+                                                                          ifelse(base5$policy_inactive == -1, -1, 0)))
+
+base6 <- base5 %>% 
+  group_by(country, province, type, date) %>% 
+  select(-policy_active, -policy_inactive) %>% 
+  slice(1) %>%
+  ungroup
+
+colnames(subnational_data) <- c('date', 'province', 'cases', 'country')
+
+base_cases <- merge(base6, subnational_data, by = c('country', 'province', 'date'), all.x = TRUE)
+
+base_cases$cases <- ifelse(base_cases$date == "2020-01-01", 0, base_cases$cases) 
+base_cases <- base_cases %>% fill(cases)
+
+base_smallcases <- base_cases %>%
+  filter(base_cases$policy_activity == 1) %>% 
+  group_by(country, province, type) %>%
+  slice(1) %>%
+  ungroup
+
+#I start dividing the dataset by policy type
+
+#Lockdown
+
+base_lockdown <- base6[which(base6$type == 'Lockdown'),]
+
+base_lockdown2 <- base_lockdown %>%
+  group_by(country, province, type) %>%
+  mutate(policy_active = cumsum(policy_activity)) %>%
+  select(-policy_activity)
+
+base_lockdown2$policy_active2 <- ifelse(base_lockdown2$policy_active > 0, 1, 0)
+
+hetero_lockdown <- base_lockdown2 %>%
+  group_by(country, date) %>%
+  mutate(hetero = -1*(abs((sum(policy_active2)/length(policy_active2)-0.5)*2))+1) %>% 
+  select(-province, -policy_active, -policy_active2) %>%
+  slice(1) %>%
+  ungroup
+
+ggplot(hetero_lockdown, aes(x = date, y = hetero)) + 
+  geom_line(aes(color = country), size = 1) +
+  scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
+  theme_minimal()
+
+#Policy adaptation
+
+base_smallcases[base_smallcases$type == "Lockdown",]
+
+ggplot(base_smallcases[base_smallcases$country == "France" & base_smallcases$type == "Lockdown",], 
+       aes(x= date, y= cases, colour="green", label=province))+
+  xlim(as.Date("2020-03-07"), as.Date("2020-03-26")) +
+  geom_point() +geom_text(aes(label=province),hjust=0, vjust=0) +
+  theme_minimal() + 
+  theme(legend.position = "none")
+
+ggplot(base_smallcases[base_smallcases$country == "Italy" & base_smallcases$type == "Lockdown",], 
+       aes(x= date, y= cases, colour="green", label=province)) +
+  xlim(as.Date("2020-03-07"), as.Date("2020-03-16")) +
+  geom_point() + geom_text(aes(label=province),hjust=0, vjust=0) +
+  theme_minimal() + 
+  theme(legend.position = "none")
+
+ggplot(base_smallcases[base_smallcases$country == "Germany" & base_smallcases$type == "Lockdown",], 
+       aes(x= date, y= cases, colour="green", label=province)) +
+  xlim(as.Date("2020-03-07"), as.Date("2020-07-16")) +
+  geom_point() + geom_text(aes(label=province),hjust=0, vjust=0) +
+  theme_minimal() + 
+  theme(legend.position = "none")
+
+ggplot(base_smallcases[base_smallcases$country == "Switzerland" & base_smallcases$type == "Lockdown",], 
+       aes(x= date, y= cases, colour="green", label=province)) +
+  xlim(as.Date("2020-03-07"), as.Date("2020-07-16")) +
+  geom_point() + geom_text(aes(label=province),hjust=0, vjust=0) +
+  theme_minimal() + 
+  theme(legend.position = "none")
 
