@@ -6,7 +6,7 @@ library(readr)
 library(tidyverse)
 library(scales)
 
-combined_cases <- read_csv("data/merged_v7.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
+combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
 combined_cases<-combined_cases %>% group_by(region) %>% 
@@ -37,16 +37,11 @@ cases$ratio_new <- (cases$new_cases/cases$sumn)
 cases$ratio_cum2 <- (cases$cases/cases$sumd)^2
 cases$ratio_new2 <- (cases$new_cases/cases$sumn)^2
 
+
+
 cases<-cases[!is.na(cases$region),]
 
-is.nan.data.frame <- function(x)
-  do.call(cbind, lapply(x, is.nan))
-
-cases[is.nan(cases)] <- NA
-
-
 write_csv(cases,"data/Cases/cases.csv")
-
 
 hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum2,na.rm=T),
                                                     hhi_new=sum(ratio_new2,na.rm=T)

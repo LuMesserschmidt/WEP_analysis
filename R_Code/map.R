@@ -13,7 +13,7 @@ nuts1 <- shape$NUTS_ID %>% .[str_detect(.,"DE|FR")] %>% str_remove_all("FRY")
 nuts2 <- it_shape$NUTS_ID %>% .[str_detect(.,"IT")]
 nuts3 <- ch_shape$NUTS_ID %>% .[str_detect(.,"CH")]
 
-#corona <- read_csv("data/merged_v7.csv") %>% select("region") %>% distinct()
+#corona <- read_csv("data/merged_final.csv") %>% select("region") %>% distinct()
 #merged_v6 <- read_csv("data/merged_v5.csv") #%>% select("date","NUTS_code") %>% distinct()
 
 corona <- read_csv("data/Cases/cases.csv") 
@@ -50,7 +50,7 @@ gg <-
   ggplot(merged_shape %>% 
            filter(!is.na(ratio_cum))) + 
   geom_sf(aes(fill = ratio_cum),size = 0.3) + 
-  facet_grid(country~date) + 
+  #facet_grid(country~date) + 
   #coord_sf(xlim = c(-5,20),ylim = c(40,55)) + 
   theme_minimal() + 
   theme(axis.text.x = element_blank(),
@@ -66,9 +66,10 @@ gg <-
            filter(!is.na(ratio_cum))) + 
   geom_sf(aes(alpha = ratio_cum,
               fill = country),size = 0.1) + 
-  scale_fill_manual(values = c("green","red","blue","orange"))+
-  scale_alpha_continuous() + 
+  #scale_fill_manual(values = c("green","red","blue","orange"))+
+  #scale_alpha_continuous() + 
   facet_grid(~date) + 
+  scale_fill_continuous(colors = viridis_pal(option="B")(8), limits=c(0, 0.8),na.value = "grey")+
   #coord_sf(xlim = c(-5,20),ylim = c(40,55)) + 
   theme_minimal() + 
   theme(axis.text.x = element_blank(),
