@@ -26,15 +26,12 @@ corona <- read_csv("data/Cases/cases.csv")
 
 
 df <- corona %>%
-  select("date","cases","new_cases","ratio_cum","ratio_new","code") %>% 
+  select("date","cases","new_cases","ratio_cum","ratio_new","code", "cases_pop") %>% 
   mutate(country = str_sub(code,1,2))%>%
-  filter(
-       #  date=="2020-03-01" |
-         date=="2020-03-15" |
-       #  date=="2020-04-01" |
-         date=="2020-05-15" 
-       #  date=="2020-05-01" |
-       #  date=="2020-05-15" 
+  filter(date=="2020-03-15" |
+         date=="2020-04-15" |
+         date=="2020-05-15" |
+         date=="2020-06-01"       
     )%>%
  # distinct()%>%
   #drop_na(.,NUTS_code)%>%
@@ -46,6 +43,52 @@ merged_shape <-
             df,
             by = c("NUTS_ID" = "code"))
 
+
+library(viridis)
+
+gg <- 
+  ggplot(merged_shape %>% 
+           filter(!is.na(ratio_cum))) + 
+  geom_sf(aes(alpha = ratio_cum,
+              fill = country),size = 0.1) + 
+  scale_fill_manual(values = c("green","red","blue","orange"))+
+  scale_alpha_continuous(range=c(0,1.5)) + 
+  facet_wrap(~date,ncol=2) + 
+  #scale_fill_continuous(colors = viridis_pal(option="B")(8), limits=c(0, 0.8),na.value = "grey")+
+  #coord_sf(xlim = c(-5,20),ylim = c(40,55)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.position = "right") + 
+  ggsave(filename = "results/map_ratio.pdf",
+         height = 7)
+
+browseURL("results/map_ratio.pdf")
+
+
+gg <- 
+  ggplot(merged_shape %>% 
+           filter(!is.na(cases_pop))) + 
+  geom_sf(aes(alpha = cases_pop,
+              fill = country),size = 0.1) + 
+  scale_fill_manual(values = c("green","red","blue","orange"))+
+  scale_alpha_continuous(range=c(0,1.5)) + 
+  facet_wrap(~date,ncol=2) + 
+  #scale_fill_continuous(colors = viridis_pal(option="B")(8), limits=c(0, 0.8),na.value = "grey")+
+  #coord_sf(xlim = c(-5,20),ylim = c(40,55)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.position = "right") + 
+  ggsave(filename = "results/map.pdf",
+         height = 7)
+
+browseURL("results/map.pdf")
+
+library(ggforce)
+
+
+'
 gg <- 
   ggplot(merged_shape %>% 
            filter(!is.na(ratio_cum))) + 
@@ -59,26 +102,4 @@ gg <-
 
 browseURL("results/luca1.pdf")
 
-library(viridis)
-
-gg <- 
-  ggplot(merged_shape %>% 
-           filter(!is.na(ratio_cum))) + 
-  geom_sf(aes(alpha = ratio_cum,
-              fill = country),size = 0.1) + 
-  #scale_fill_manual(values = c("green","red","blue","orange"))+
-  #scale_alpha_continuous() + 
-  facet_grid(~date) + 
-  scale_fill_continuous(colors = viridis_pal(option="B")(8), limits=c(0, 0.8),na.value = "grey")+
-  #coord_sf(xlim = c(-5,20),ylim = c(40,55)) + 
-  theme_minimal() + 
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        legend.position = "right") + 
-  ggsave(filename = "results/luca2.pdf",
-         height = 7)
-
-browseURL("results/luca2.pdf")
-
-library(ggforce)
-
+'
