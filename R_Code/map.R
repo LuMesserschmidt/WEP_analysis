@@ -13,21 +13,21 @@ nuts1 <- shape$NUTS_ID %>% .[str_detect(.,"DE|FR")] %>% str_remove_all("FRY")
 nuts2 <- it_shape$NUTS_ID %>% .[str_detect(.,"IT")]
 nuts3 <- ch_shape$NUTS_ID %>% .[str_detect(.,"CH")]
 
-corona <- read_csv("data/merged_v5.csv") %>% select("region") %>% distinct()
-merged_v6 <- read_csv("data/merged_v5.csv") #%>% select("date","NUTS_code") %>% distinct()
+#corona <- read_csv("data/merged_v7.csv") %>% select("region") %>% distinct()
+#merged_v6 <- read_csv("data/merged_v5.csv") #%>% select("date","NUTS_code") %>% distinct()
 
 corona <- read_csv("data/Cases/cases.csv") 
 
 
-corona<- left_join(merged_v5,cases,by=c("region","date"))
+#corona<- left_join(merged_v5,cases,by=c("region","date"))
 
-table
-table(corona$date,corona$region)
+#table
+#table(corona$date,corona$region)
 
 
 df <- corona %>%
-  select("date","cases","new_cases","ratio_cum","ratio_new","NUTS_code") %>% 
-  mutate(country = str_sub(NUTS_code,1,2))%>%
+  select("date","cases","new_cases","ratio_cum","ratio_new","code") %>% 
+  mutate(country = str_sub(code,1,2))%>%
   filter(
        #  date=="2020-03-01" |
          date=="2020-03-15" |
@@ -38,13 +38,13 @@ df <- corona %>%
     )%>%
  # distinct()%>%
   #drop_na(.,NUTS_code)%>%
-  filter(!NUTS_code%in% c("FRY1","FRY2","FRY3","FRY4","FRY5"))
+  filter(!code%in% c("FRY1","FRY2","FRY3","FRY4","FRY5"))
 
              
 merged_shape <- 
   left_join(bind_rows(shape,ch_shape,it_shape),
             df,
-            by = c("NUTS_ID" = "NUTS_code"))
+            by = c("NUTS_ID" = "code"))
 
 gg <- 
   ggplot(merged_shape %>% 
