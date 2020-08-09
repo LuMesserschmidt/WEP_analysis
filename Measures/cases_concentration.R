@@ -6,7 +6,7 @@ library(readr)
 library(tidyverse)
 library(scales)
 
-combined_cases <- read_csv("data/merged_v7.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
+combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
 combined_cases<-combined_cases %>% group_by(region) %>% 
