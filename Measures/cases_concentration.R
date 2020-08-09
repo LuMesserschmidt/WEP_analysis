@@ -6,7 +6,7 @@ library(readr)
 library(tidyverse)
 library(scales)
 
-combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
+combined_cases <- read_csv("data/merged_v7.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
 combined_cases<-combined_cases %>% group_by(region) %>% 
@@ -19,13 +19,21 @@ combined_cases<-combined_cases %>% group_by(region) %>%
 
 sum_cum<- combined_cases %>% group_by(country,date)%>% summarise(sumd=sum(cases, na.rm=T))%>% ungroup()
 sum_new<- combined_cases %>% group_by(country,date)%>% summarise(sumn=sum(new_cases, na.rm=T))%>% ungroup()
+sum_pop<- combined_cases %>% group_by(country,date)%>% summarise(sum_pop=sum(eurostat_total_population_2019, na.rm=T))%>% ungroup()
 
 # Removing negative values for new cases (might be due to re-estimation)
 sum_new<-sum_new[!sum_new$sumn<0,]
 combined_cases<-combined_cases[!combined_cases$new_cases<0,]
 
 cases1<-left_join(combined_cases,sum_cum,by=c("date","country"))
-cases<-left_join(cases1,sum_new,by=c("date","country"))
+cases1<-left_join(cases1,sum_new,by=c("date","country"))
+cases<-left_join(cases1,sum_pop,by=c("date","country"))
+cases$cases_pop<-cases$cases/cases$eurostat_total_population_2019
+cases$sumd_pop<-cases$sumd/cases$sum_pop
+
+#Ratio by Population
+cases$ratio_pop_cum <- (cases$cases_pop/cases$sumd_pop)
+
 
 # Ratio 
 
