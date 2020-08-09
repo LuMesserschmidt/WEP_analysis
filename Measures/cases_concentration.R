@@ -38,6 +38,13 @@ cases$ratio_cum2 <- (cases$cases/cases$sumd)^2
 cases$ratio_new2 <- (cases$new_cases/cases$sumn)^2
 
 cases<-cases[!is.na(cases$region),]
+
+is.nan.data.frame <- function(x)
+  do.call(cbind, lapply(x, is.nan))
+
+cases[is.nan(cases)] <- NA
+
+
 write_csv(cases,"data/Cases/cases.csv")
 
 
