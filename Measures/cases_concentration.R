@@ -6,13 +6,16 @@ library(readr)
 library(tidyverse)
 library(scales)
 
-combined_cases <- read_csv("data/merged_v5.csv") 
+combined_cases <- read_csv("data/merged_v7.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
 combined_cases<-combined_cases %>% group_by(region) %>% 
   mutate(
     new_cases = cases - lag(cases)
-  )
+  )%>%
+  filter(region!="National")%>%
+  drop_na(region)
+
 
 sum_cum<- combined_cases %>% group_by(country,date)%>% summarise(sumd=sum(cases, na.rm=T))%>% ungroup()
 sum_new<- combined_cases %>% group_by(country,date)%>% summarise(sumn=sum(new_cases, na.rm=T))%>% ungroup()
@@ -29,19 +32,14 @@ cases<-left_join(cases1,sum_new,by=c("date","country"))
 cases$ratio_cum <- (cases$cases/cases$sumd)
 cases$ratio_new <- (cases$new_cases/cases$sumn)
 
-cases<-cases[!is.na(cases$ratio_cum),]
-cases<-cases[!is.na(cases$ratio_new),]
 
 # Quadratic Ratio
 cases$ratio_cum2 <- (cases$cases/cases$sumd)^2
 cases$ratio_new2 <- (cases$new_cases/cases$sumn)^2
 
-cases<-cases[!is.na(cases$ratio_cum2),]
-cases<-cases[!is.na(cases$ratio_new2),]
-
-test<-cases%>% select (1,2,3,4,140:147)
-
+cases<-cases[!is.na(cases$region),]
 write_csv(cases,"data/Cases/cases.csv")
+
 
 hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum2,na.rm=T),
                                                     hhi_new=sum(ratio_new2,na.rm=T)

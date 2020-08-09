@@ -30,7 +30,7 @@ df <- corona %>%
   mutate(country = str_sub(NUTS_code,1,2))%>%
   filter(
        #  date=="2020-03-01" |
-       #  date=="2020-03-15" |
+         date=="2020-03-15" |
        #  date=="2020-04-01" |
          date=="2020-05-15" 
        #  date=="2020-05-01" |

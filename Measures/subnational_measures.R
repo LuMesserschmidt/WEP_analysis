@@ -320,8 +320,11 @@ base <- expand.grid(province = province,
 base$country <- c(rep("Germany", 16), rep("France", 18), rep("Italy", 21), rep("Switzerland", 27))
 base <- base[, c('country', 'province', 'date', 'type')]
 
-corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
-                   sep = ",", stringsAsFactors = FALSE)[-c(1:2),]#round 1-main survey
+#corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
+#                   sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
+
+corona <- read.csv("coronanet_internal.csv",
+                   sep = ",", stringsAsFactors = FALSE)
 
 corona_sel <- corona[which(corona$target_country == "Germany" |
                              corona$target_country == "Switzerland" |
@@ -335,6 +338,11 @@ corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_se
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "National" & corona_sel$date_announced == "2020-03-09"),]
 corona_sel[which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "National" & corona_sel$date_start == "2020-03-10"),]$date_end <- "2020-05-04"
 
+corona_sel <- corona_sel[-which(corona_sel$date_start > corona_sel$date_end),]
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'Germany' & corona_sel$type == 'Closure and Regulation of Schools' & 
+                                  is.na(corona_sel$type_sub_cat)),]
+#corona_sel <- corona_sel[-which(duplicated(corona_sel)),]
+
 corona_sel <- corona_sel %>%
   group_by(target_country, type) %>%
   filter(!init_country_level == "Municipal") %>%
@@ -342,6 +350,7 @@ corona_sel <- corona_sel %>%
 
 corona_sel <- corona_sel[which(is.na(corona_sel$target_city)),]
 corona_sel <- rbind(data.frame(corona_sel), 'lombardia' = c('Italy', 'National', 'Lombardia', NA, 'Lockdown', NA, '2020-03-08', '2020-03-09', 'new_entry'))
+
 
 corona_sel = corona_sel %>% 
   mutate(gov = ifelse(init_country_level == "National" & is.na(target_province) & is.na(target_city), target_country, target_province)) %>% 
@@ -424,6 +433,31 @@ ggplot(hetero_lockdown, aes(x = date, y = hetero)) +
   scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
   theme_minimal()
 
+
+#School closures
+
+base_school <- base6[which(base6$type == 'Closure and Regulation of Schools'),]
+
+base_school2 <- base_school %>%
+  group_by(country, province, type) %>%
+  mutate(policy_active = cumsum(policy_activity)) %>%
+  select(-policy_activity)
+
+base_school2$policy_active2 <- ifelse(base_school2$policy_active > 0, 1, 0)
+
+hetero_school <- base_school2 %>%
+  group_by(country, date) %>%
+  mutate(hetero = -1*(abs((sum(policy_active2)/length(policy_active2)-0.5)*2))+1) %>% 
+  select(-province, -policy_active, -policy_active2) %>%
+  slice(1) %>%
+  ungroup
+
+ggplot(hetero_school, aes(x = date, y = hetero)) + 
+  geom_line(aes(color = country), size = 1) +
+  scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
+  theme_minimal()
+
+
 #Policy adaptation
 
 base_smallcases[base_smallcases$type == "Lockdown",]
@@ -444,14 +478,14 @@ ggplot(base_smallcases[base_smallcases$country == "Italy" & base_smallcases$type
 
 ggplot(base_smallcases[base_smallcases$country == "Germany" & base_smallcases$type == "Lockdown",], 
        aes(x= date, y= cases, colour="green", label=province)) +
-  xlim(as.Date("2020-03-07"), as.Date("2020-07-16")) +
+  xlim(as.Date("2020-03-07"), as.Date("2020-04-16")) +
   geom_point() + geom_text(aes(label=province),hjust=0, vjust=0) +
   theme_minimal() + 
   theme(legend.position = "none")
 
 ggplot(base_smallcases[base_smallcases$country == "Switzerland" & base_smallcases$type == "Lockdown",], 
        aes(x= date, y= cases, colour="green", label=province)) +
-  xlim(as.Date("2020-03-07"), as.Date("2020-07-16")) +
+  xlim(as.Date("2020-03-07"), as.Date("2020-04-16")) +
   geom_point() + geom_text(aes(label=province),hjust=0, vjust=0) +
   theme_minimal() + 
   theme(legend.position = "none")
