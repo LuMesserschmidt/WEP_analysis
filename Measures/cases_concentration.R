@@ -1,11 +1,12 @@
 
 rm(list=ls())
+
 library(hhi)
 library(readr)
 library(tidyverse)
 library(scales)
 
-combined_cases <- read_csv("data/Cases/combined_cases.csv")
+combined_cases <- read_csv("data/merged_v5.csv") 
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
 combined_cases<-combined_cases %>% group_by(region) %>% 
@@ -23,14 +24,27 @@ combined_cases<-combined_cases[!combined_cases$new_cases<0,]
 cases1<-left_join(combined_cases,sum_cum,by=c("date","country"))
 cases<-left_join(cases1,sum_new,by=c("date","country"))
 
-cases$ratio_cum <- (cases$cases/cases$sumd)^2
-cases$ratio_new <- (cases$new_cases/cases$sumn)^2
+# Ratio 
+
+cases$ratio_cum <- (cases$cases/cases$sumd)
+cases$ratio_new <- (cases$new_cases/cases$sumn)
 
 cases<-cases[!is.na(cases$ratio_cum),]
 cases<-cases[!is.na(cases$ratio_new),]
 
-hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum,na.rm=T),
-                                                    hhi_new=sum(ratio_new,na.rm=T)
+# Quadratic Ratio
+cases$ratio_cum2 <- (cases$cases/cases$sumd)^2
+cases$ratio_new2 <- (cases$new_cases/cases$sumn)^2
+
+cases<-cases[!is.na(cases$ratio_cum2),]
+cases<-cases[!is.na(cases$ratio_new2),]
+
+test<-cases%>% select (1,2,3,4,140:147)
+
+write_csv(cases,"data/Cases/cases.csv")
+
+hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum2,na.rm=T),
+                                                    hhi_new=sum(ratio_new2,na.rm=T)
                                                     )
 write.csv(hhi,"Measures/hhi.csv")
 # Vizualization
@@ -76,11 +90,3 @@ ggsave(filename="Results/plot_hhi_new.jpeg",
 
 
 #Old
-
-'ger<- cases %>% filter(country=="Germany") 
-test<-as.data.frame(test)
-hhi(test,"ratio")
-
-
-
-cases<- cases %>% as.data.frame()'
