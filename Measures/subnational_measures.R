@@ -275,7 +275,9 @@ switzerlanddata = data.frame(
 
 ##Load Luca's subnational data
 
-subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/combined_cases.csv', sep=",")
+#subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/combined_cases.csv', sep=",")
+
+subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/cases.csv', sep=",")
 
 #Load CoronaNet (latest version)
 
@@ -309,7 +311,7 @@ subnational_data$region[which(subnational_data$region == 'GE')] <- 'Geneva'
 subnational_data$region[which(subnational_data$region == 'JU')] <- 'Jura'
 
 #Create a base dataset
-province <- unique(subnational_data[-which(subnational_data$region == 'sum_cases'),]$region)
+province <- unique(subnational_data$region)
 type <- unique(corona$type)
 date <- seq(as.Date("2020/1/1"), as.Date(format(Sys.Date(), format="%Y-%m-%d")), "days")
 
@@ -317,7 +319,7 @@ base <- expand.grid(province = province,
                     date = date,
                     type = type
 )
-base$country <- c(rep("Germany", 16), rep("France", 18), rep("Italy", 21), rep("Switzerland", 27))
+base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 26))
 base <- base[, c('country', 'province', 'date', 'type')]
 
 #corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
@@ -349,7 +351,7 @@ corona_sel <- corona_sel %>%
   select(target_country, init_country_level, target_province, target_city, type, type_sub_cat, date_start, date_end, update_type)
 
 corona_sel <- corona_sel[which(is.na(corona_sel$target_city)),]
-corona_sel <- rbind(data.frame(corona_sel), 'lombardia' = c('Italy', 'National', 'Lombardia', NA, 'Lockdown', NA, '2020-03-08', '2020-03-09', 'new_entry'))
+corona_sel <- rbind(data.frame(corona_sel), 'Lombardy' = c('Italy', 'National', 'Lombardy', NA, 'Lockdown', NA, '2020-03-08', '2020-03-10', 'new_entry'))
 
 
 corona_sel = corona_sel %>% 
@@ -383,11 +385,13 @@ base5 <- merge(base4, corona_sel_inactive, by = c('province', 'date', 'type'), a
 base5$inactive.x <- ifelse(is.na(base5$inactive.x), 0, base5$inactive.x)
 base5$inactive.y <- ifelse(is.na(base5$inactive.y), 0, base5$inactive.y)
 
-base5 = base5 %>% mutate(policy_inactive = ifelse(inactive.x == -1, -1, ifelse(inactive.y == -1, -1, 0))) %>% select(-inactive.x, -inactive.y) 
+base5 = base5 %>% group_by(country, province, type) %>% 
+                  mutate(policy_inactive = ifelse(inactive.x == -1, -1, ifelse(inactive.y == -1, -1, 0)),
+                         policy_inactive = cumsum(policy_inactive),
+                         policy_active = cumsum(policy_active)) %>% 
+  select(-inactive.x, -inactive.y) 
 
-base5$policy_activity <- ifelse(is.na(base5$policy_active) &
-                                  is.na(base5$policy_inactive), 0, ifelse(base5$policy_active == 1, 1,
-                                                                          ifelse(base5$policy_inactive == -1, -1, 0)))
+base5$policy_activity <- base5$policy_active + base5$policy_inactive
 
 base6 <- base5 %>% 
   group_by(country, province, type, date) %>% 
@@ -395,12 +399,24 @@ base6 <- base5 %>%
   slice(1) %>%
   ungroup
 
-colnames(subnational_data) <- c('date', 'province', 'cases', 'country')
+base7 <- base6 %>%
+  group_by(country, province, type) %>%
+  mutate(policy_active = cumsum(policy_activity)) %>%
+  select(-policy_activity)
+
+colnames(subnational_data)[1:5] <- c('date', 'province', 'cases', 'country', 'population')
+
+subnational_data <- rbind(subnational_data, subnational_data[which(subnational_data$date == "2020-01-02"),])
+subnational_data[which(subnational_data$date == "2020-01-02"),][1:80,c('date')] <- "2020-01-01"
 
 base_cases <- merge(base6, subnational_data, by = c('country', 'province', 'date'), all.x = TRUE)
 
 base_cases$cases <- ifelse(base_cases$date == "2020-01-01", 0, base_cases$cases) 
 base_cases <- base_cases %>% fill(cases)
+
+base_cases <- base_cases %>%
+  group_by(country, date, type) %>%
+  mutate(national_cases = sum(cases))
 
 base_smallcases <- base_cases %>%
   filter(base_cases$policy_activity == 1) %>% 
@@ -408,23 +424,19 @@ base_smallcases <- base_cases %>%
   slice(1) %>%
   ungroup
 
+
 #I start dividing the dataset by policy type
 
 #Lockdown
 
-base_lockdown <- base6[which(base6$type == 'Lockdown'),]
+base_lockdown <- base6[which(base7$type == 'Lockdown'),]
 
-base_lockdown2 <- base_lockdown %>%
-  group_by(country, province, type) %>%
-  mutate(policy_active = cumsum(policy_activity)) %>%
-  select(-policy_activity)
+base_lockdown$policy_active2 <- ifelse(base_lockdown$policy_activity > 0, 1, 0)
 
-base_lockdown2$policy_active2 <- ifelse(base_lockdown2$policy_active > 0, 1, 0)
-
-hetero_lockdown <- base_lockdown2 %>%
+hetero_lockdown <- base_lockdown %>%
   group_by(country, date) %>%
   mutate(hetero = -1*(abs((sum(policy_active2)/length(policy_active2)-0.5)*2))+1) %>% 
-  select(-province, -policy_active, -policy_active2) %>%
+  select(-province, -policy_activity) %>%
   slice(1) %>%
   ungroup
 
@@ -433,6 +445,38 @@ ggplot(hetero_lockdown, aes(x = date, y = hetero)) +
   scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
   theme_minimal()
 
+# Model specification (national level)
+
+hetero_data <- merge(hetero_lockdown,
+                     base_cases[,c('country', 'date', 'type', 'sum_pop', 'national_cases')],
+                     by = c('country', 'date', 'type'))
+
+hetero_data <- hetero_data %>%
+  group_by(country, date) %>%
+  slice(1) %>%
+  ungroup
+
+hhi_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/Measures/hhi.csv', sep=",")
+
+national_data <- merge(hetero_data, hhi_data[,-1], by = c('country', 'date'))
+
+national_data$hhi_cumulative <- as.numeric(national_data$hhi_cumulative)
+
+summary(lm(hetero ~ as.factor(country) + as.Date(date), data = national_data))
+
+summary(lm(hetero ~ as.Date(date)*as.factor(country) - 1, data = hetero_data))
+
+national_data$cases_pop <- (national_data$national_cases/national_data$sum_pop)*100000
+national_data$federal <- ifelse(national_data$country == 'Germany' | national_data$country == 'Switzerland', 1, 0)
+
+library(splines)
+summary(lm(hetero ~ cases_pop + as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
+summary(lm(hetero ~ cases_pop*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 3), data = national_data))
+summary(lm(hetero ~ cases_pop*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
+
+summary(lm(hetero ~ log(cases_pop+1) + as.factor(country) + hhi_cumulative + poly(as.Date(date), 2), data = national_data))
+summary(lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 2), data = national_data))
+summary(lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
 
 #School closures
 

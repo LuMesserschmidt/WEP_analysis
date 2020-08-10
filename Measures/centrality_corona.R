@@ -9,6 +9,9 @@
 # DONE: incorporate updates; update/end
 # DONE incorporate target_same variable
 
+#swiss health monitoring national miscoded, 
+# why still missing data after 7-7??
+
 
 # load packages
 library(qdapRegex)
@@ -32,56 +35,23 @@ mutate_cond <-
 setwd('~/Documents/coronaNet/corona_private/')
 
 # load data
-qualtrics = read_csv("./data/CoronaNet/coronanet_release.csv")
-
-# -------------------
-# clean  CoronaNet data
-# -------------------
-# subset data to 
-    # certain countries
-    # quarantines and lockdowns
-    # national and provincial level policies
-countries = c("Switzerland", "Germany", "France", "Italy") 
-sub_data = clean_data %>% dplyr:::filter(country %in% countries
-                                         & type %in% c("Lockdown", "Quarantine")) %>%
-                                filter(init_country_level %in% c("National", "Provincial")) %>%
-                                filter(target_country %in% countries)
-
-
-# incorporate data for end date for update --- end of policy
-sub_data = sub_data %>% group_by(policy_id) %>%
-    arrange(desc(date_end)) %>% 
-    mutate(date_end = ifelse(any(update_type %in% "End of Policy"), rep(date_end[1], n()), date_end),
-           date_end = lubridate:::as_date(date_end))
-
-# replace end date with max last end date for now if end date is missing
-  # and remove observations that come after that end date
-end_date = max(sub_data$date_end, na.rm = TRUE)
-sub_data = sub_data %>% dplyr:::mutate(date_end = dplyr:::if_else(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
-                        filter(date_start<=as.Date(end_date, "%Y-%m-%d"))
-
+qualtrics = read_csv("./data/CoronaNet/coronanet_internal.csv")
  
+
+# -------------------
+# reformat CoronaNet data
+# -------------------
 # reshape data from wide to long format for dates
- 
 sub_data = sub_data %>% dplyr:::select(record_id, policy_id, type, type_sub_cat, init_country_level, country, province,  target_country, target_geog_level, target_province, date_start, date_end, entry_type) %>% 
-          gather(date_type, date, -record_id, -policy_id, -type, -type_sub_cat,-init_country_level, -country, -province,-target_country, -target_geog_level, -target_province, -entry_type)
-
+  gather(date_type, date, -record_id, -policy_id, -type, -type_sub_cat,-init_country_level, -country, -province,-target_country, -target_geog_level, -target_province, -entry_type)
 
 # make new variable called gov which is the same as 'province' but takes on the name of country if it is a national level policy
 sub_data = sub_data %>% mutate(gov = ifelse(init_country_level == "National" & is.na(province), country, province)) %>% select(-province)
-
-# remove orphaned records for now
-(orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
-  all(unique(x) == 'update')}))) == TRUE))
-
-sub_data = sub_data %>% dplyr:::filter(policy_id %!in% orphans)
 
 # aggregate by type
 sub_data = sub_data %>% group_by(gov, type, date) %>%
   mutate(type_sub_cat = paste(unique(type_sub_cat), collapse = '; ')) %>% 
   distinct(gov, type, date, .keep_all = TRUE )
-table(test$type_sub_cat) 
-
 
 # -------------------
 # transform data from event data into long format
@@ -93,16 +63,12 @@ regions$`0` = regions$Country
 regions = regions %>% gather(reg_num, region, -Country)
 regions = regions %>% dplyr:::filter(!is.na(region))
 
-
 regions = regions %>% 
         group_by(Country) %>%
         expand(gov = region, target_province = region) %>%
         filter(c(gov %in% countries & gov != target_province )|c(gov==target_province  & gov %!in% countries))
 names(regions)[1] = 'country'
 dframe = expand_grid(date = seq(as.Date("2019-12-31"), as.Date(end_date), by = "day"), regions , type = c("Quantine", "Lockdown"))
-
-
- 
 
 # expand/fill in 'target_province' with name of all provinces if it is a national level policy
 sub_data = sub_data %>% mutate(target_province = 
