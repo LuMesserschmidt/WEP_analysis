@@ -474,9 +474,12 @@ summary(lm(hetero ~ cases_pop + as.factor(country) + hhi_cumulative + poly(as.Da
 summary(lm(hetero ~ cases_pop*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 3), data = national_data))
 summary(lm(hetero ~ cases_pop*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
 
-summary(lm(hetero ~ log(cases_pop+1) + as.factor(country) + hhi_cumulative + poly(as.Date(date), 2), data = national_data))
-summary(lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 2), data = national_data))
-summary(lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
+summary(h2a <- lm(hetero ~ log(cases_pop+1) + as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
+summary(h2b <-lm(hetero ~ log(cases_pop+1)*as.factor(country) + poly(as.Date(date), 3), data = national_data))
+summary(h2c <-lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 3), data = national_data))
+#summary(h2c <-lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
+
+stargazer(h2a, h2b, h2c, digits = 2)
 
 #School closures
 
