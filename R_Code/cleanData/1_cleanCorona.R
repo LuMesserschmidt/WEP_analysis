@@ -9,8 +9,17 @@ mutate_cond <-
 '%!in%' <- function(x, y)
   ! ('%in%'(x, y))
 
+# load packages
+library(qdapRegex)
+library(readr)
+library(magrittr)
+library(tidyr)
+library(data.table)
+library(dplyr)
+library(stringr)
+
 # set working directory
-setwd('~/Dropbox/West European Politics Corona Article/')
+# setwd('~/Dropbox/West European Politics Corona Article/')
 
 # load data
 qualtrics = read_csv("WEP_analysis/data/CoronaNet/coronanet_internal.csv")
