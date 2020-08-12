@@ -6,44 +6,46 @@ library(readr)
 library(tidyverse)
 library(scales)
 
-combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","country","eurostat_total_population_2019","code")
+names(combined_cases)
+combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","cases_national","country","eurostat_total_population_2019","code")
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
 combined_cases<-combined_cases %>% group_by(region) %>% 
   mutate(
-    new_cases = cases - lag(cases)
+    new_cases = cases - lag(cases),
+    new_cases_national = cases_national - lag(cases_national)
   )%>%
   filter(region!="National")%>%
   drop_na(region)
 
 
-sum_cum<- combined_cases %>% group_by(country,date)%>% summarise(sumd=sum(cases, na.rm=T))%>% ungroup()
-sum_new<- combined_cases %>% group_by(country,date)%>% summarise(sumn=sum(new_cases, na.rm=T))%>% ungroup()
 sum_pop<- combined_cases %>% group_by(country,date)%>% summarise(sum_pop=sum(eurostat_total_population_2019, na.rm=T))%>% ungroup()
 
 # Removing negative values for new cases (might be due to re-estimation)
-sum_new<-sum_new[!sum_new$sumn<0,]
-combined_cases<-combined_cases[!combined_cases$new_cases<0,]
 
-cases1<-left_join(combined_cases,sum_cum,by=c("date","country"))
-cases1<-left_join(cases1,sum_new,by=c("date","country"))
-cases<-left_join(cases1,sum_pop,by=c("date","country"))
-cases$cases_pop<-cases$cases/cases$eurostat_total_population_2019
-cases$sumd_pop<-cases$sumd/cases$sum_pop
+cases<-left_join(combined_cases,sum_pop,by=c("date","country"))
 
-#Ratio by Population
-cases$ratio_pop_cum <- (cases$cases_pop/cases$sumd_pop)
+#cases$cases_pop_sub = sub national cases / sub national population
+#cases$cases_pop_nat = national cases / national population
+
+cases$cases_pop_sub<-cases$cases/cases$eurostat_total_population_2019
+cases$cases_pop_nat<-cases$cases_national/cases$sum_pop
 
 
-# Ratio 
+#Ratio of sub national to national cases by population 
+# cases$ratio_pop_cum = subnational cumulative cases per population - national cumulative cases per population
+cases$ratio_pop_cum <- cases$cases_pop_sub - cases$cases_pop_nat
 
-cases$ratio_cum <- (cases$cases/cases$sumd)
-cases$ratio_new <- (cases$new_cases/cases$sumn)
+
+# Ratio to overall cases
+
+cases$ratio_cum <- (cases$cases/cases$cases_national)
+cases$ratio_new <- (cases$new_cases/cases$new_cases_national)
 
 
 # Quadratic Ratio
-cases$ratio_cum2 <- (cases$cases/cases$sumd)^2
-cases$ratio_new2 <- (cases$new_cases/cases$sumn)^2
+cases$ratio_cum2 <- (cases$cases/cases$cases_national)^2
+cases$ratio_new2 <- (cases$new_cases/cases$new_cases_national)^2
 
 
 
@@ -97,4 +99,4 @@ ggsave(filename="Results/plot_hhi_new.jpeg",
 
 
 
-#Old
+
