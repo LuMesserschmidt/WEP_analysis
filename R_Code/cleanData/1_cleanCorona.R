@@ -46,17 +46,41 @@ sub_data = sub_data %>% mutate(date_end = ifelse(is.na(date_end) & type == 'Heal
                                date_end = ifelse(is.na(date_end) & type %in% c( 'Public Awareness Campaigns', 'Anti-Disinformation Measures'), date_start + days(14), date_end))
 
  
+ 
+# fill in target country with 'all countries' if policy applies to all countries
+sub_data %>% mutate(target_country = ifelse(target_geog_level == 'All countries', 'All countries', target_country))
+  
+  
+ 
+ 
 # fill in target country with country if not an external border restriction  
 sub_data = sub_data %>% mutate(target_country = ifelse(is.na(target_country) &
-                                                         type %!in% c('External Border Restrictions'), country, target_country))
+                                                         type !='External Border Restrictions', country, target_country))
+ 
+
+# fill in target_country by hand if type is external border restriction and target_country is na
+
+sub_data = sub_data %>% mutate(target_country = case_when(
+  policy_id == 8387693 ~ 'All countries',
+  policy_id == 9415937 ~ 'Schengen Area',
+  TRUE ~target_country
+))
+
+
+ 
+
+table(sub_data$target_geog_level)
+table(sub_data$target_country) %>% sum()
+table(sub_data$target_province)
+sub_data %>% filter(target_geog_level == 'All countries') %>% select(policy_id, description) %>% data.frame()
 
 
 # Filter policies to only national or provincial level policies
 sub_data = sub_data %>%
   filter(init_country_level %in% c("National", "Provincial")) %>%
-  filter(target_country %in% countries)
+  filter(target_country %in% countries) 
 
- 
+
 # replace end date with max last end date for now if end date is missing
 # and remove observations that come after that end date
 # end_date = max(sub_data$date_end, na.rm = TRUE)
@@ -91,5 +115,30 @@ sub_data = sub_data %>% mutate(target_province =
 
 
 
+
+# collapse by policy_id
+sub_data = sub_data %>% group_by(policy_id) %>%
+              mutate(date_start = min(date_start),
+                     date_end = max(date_end)) %>%
+              distinct(date_start, 
+                       date_end, 
+                       country, 
+                       init_country_level, 
+                       province, 
+                       type, 
+                       type_sub_cat, 
+                       type_mass_gathering, 
+                       type_who_gen, 
+                       school_status, 
+                       target_country, 
+                       target_province, 
+                       target_geog_level, 
+                      # target_who_what,
+                      # target_direction,
+                      # compliance,
+                      # enforcer
+                       ) %>% ungroup()
+
+ 
 saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
  
