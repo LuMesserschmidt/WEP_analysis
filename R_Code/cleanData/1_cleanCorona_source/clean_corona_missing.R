@@ -175,7 +175,7 @@ missing = missing %>% mutate(
                    TRUE ~ type))
 
 
-
+ 
 # recode countries
 german_regions = paste0(paste(gsub("\\-", "\\|", regions %>% filter(Country == 'Germany') %>% select(region) %>% pull), collapse = '|'), '|German|germ')
 swiss_regions = paste(c(unique(gsub("Landschaft|City|\\-", "", regions %>% filter(Country == 'Switzerland') %>% select(region) %>% pull)), 'Swiss|Switz|swiss|switz'), collapse = '|')
@@ -237,12 +237,58 @@ missing %>% mutate(date_start =
                    case_when(record_id == "R_1Kvv86YjNYcJlJYNA" ~ as.Date("2020-04-02", "%Y-%m-%d"),
                              record_id == "R_2w1rhYRI144xEq5NA" ~ as.Date("2020-02-27", "%Y-%m-%d"),
                              record_id == "R_3M3Qlql4Cpt6awpNA" ~ as.Date("2020-03-31", "%Y-%m-%d"),
-                             
+                             record_id == "R_24qK2v7MbfHZ6cUNA" ~ as.Date("2020-03-04", "%Y-%m-%d"),
+                             record_id == "R_1oHJ7fZ6XaaR7fiCl" ~ as.Date("2020-03-14", "%Y-%m-%d"),
+                             record_id == "R_3EtyKkLbkyvTiS8NA" ~ as.Date("2020-02-28", "%Y-%m-%d"),
+                             record_id == "R_uq6Du6oLcE0LWTLNA" ~ as.Date("2020-03-13", "%Y-%m-%d"),
+                             record_id == "R_3hbxW6LjGx6laEONA" ~ as.Date("2020-04-03", "%Y-%m-%d"),
+                             record_id == "R_3hbxW6LjGx6laEONA" ~ as.Date("2020-03-27", "%Y-%m-%d"),
+                             record_id == "R_BKY8BIvpVWWfI0pNA" ~ as.Date("2020-03-23", "%Y-%m-%d"),
+                             record_id == "R_rqkGzcEfVVDpGuZNA" ~ as.Date("2020-03-15", "%Y-%m-%d"),
+                             record_id == "R_2pY9tsQ6M9zcbo3NA" ~ as.Date("2020-01-28", "%Y-%m-%d"),
+                             record_id == "R_6QNEPgKb6EMjSOlNA" ~ as.Date("2020-03-18", "%Y-%m-%d"),
+                             record_id == "R_9RFRToH4G257vj3NA" ~ as.Date("2020-02-23", "%Y-%m-%d"),
+                             record_id == "R_2tM6ncrVSTXJyJUNA" ~ as.Date("2020-03-12", "%Y-%m-%d"),
+                             record_id == "R_2WUVmwiE1MCFzA2NA" ~ as.Date("2020-03-27", "%Y-%m-%d"),
+                             record_id == "R_3PzsEBUGZZ9wxwONA" ~ as.Date("2020-03-21", "%Y-%m-%d"),
+                             record_id == "R_1oFpnTi8hjgOXquNA" ~ as.Date("2020-01-27", "%Y-%m-%d"),
+                             record_id == "R_3paMSCSzi3S9dtwNA" ~ as.Date("2020-02-11", "%Y-%m-%d"),
+                             record_id == "R_3HY9mgVlloJlNAWNA" ~ as.Date("2020-03-24", "%Y-%m-%d"),
+                             record_id == "R_3J2eepbZKhPsSNbNA" ~ as.Date("2020-03-04", "%Y-%m-%d"),
+                             record_id == "R_3n2vqYHr61L8PITNA" ~ as.Date("2020-03-18", "%Y-%m-%d"),
+                             record_id == "R_2656zf74PwvFoBiNA" ~ as.Date("2020-03-27", "%Y-%m-%d"),
+                             record_id == "R_1cSQFWb3Abd80lmNA" ~ as.Date("2020-03-12", "%Y-%m-%d"),
+                             record_id == "R_2wHzdmNyz6ECIsVNA" ~ as.Date("2020-03-18", "%Y-%m-%d"),
+                             record_id == "R_2BaDK9YI4YDKntQNA" ~ as.Date("2020-03-18", "%Y-%m-%d"),
+                             record_id == "R_33vFHYT8Axuz2zyNA" ~ as.Date("2020-03-18", "%Y-%m-%d"),
+                             record_id == "R_2v79nXep664J52QNA" ~ as.Date("2020-03-30", "%Y-%m-%d"),
+                             record_id == "R_3CVQ6HA8O2Vp9WsNA" ~ as.Date("2020-03-14", "%Y-%m-%d"),
+                             record_id == "R_2SdarZJ9DbFc4JBNA" ~ as.Date("2020-03-21", "%Y-%m-%d"),
+                             record_id == "R_eJt6gg1bjVOvOutNA" ~ as.Date("2020-03-17", "%Y-%m-%d"),
+                             record_id == "R_3KPknxzcxN1vSyxNA" ~ as.Date("2020-03-10", "%Y-%m-%d"),
+                             record_id == "R_2Bh5IknsciL6hj2Bf" ~ as.Date("2020-03-30", "%Y-%m-%d"),
+                             record_id == "R_RUjbvTbfNm37kWtNA" ~ as.Date("2020-03-30", "%Y-%m-%d"),
+                             record_id == "R_2c7Q1oEYzBtk0qYNA" ~ as.Date("2020-04-30", "%Y-%m-%d"),
+                             record_id == "R_XKQ8o4MsgRFPI1HNA" ~ as.Date("2020-03-22", "%Y-%m-%d"),
+                             record_id == "R_248ZzY1Ri6mfNrINA" ~ as.Date("2020-03-30", "%Y-%m-%d"),
+                             record_id == "R_2XdsxTFDK27jeJXNA" ~ as.Date("2020-03-18", "%Y-%m-%d"),
+                             record_id == "R_2E3S60pHl0RmtUtNA" ~ as.Date("2020-03-20", "%Y-%m-%d")
                              ),
+                   date_end = case_when(
+                     record_id == "R_1oHJ7fZ6XaaR7fiCl" ~ as.Date("2020-04-30", "%Y-%m-%d"),
+                     record_id == "R_3PzsEBUGZZ9wxwONA" ~ as.Date("2020-05-04", "%Y-%m-%d"),
+                     record_id == "R_3n2vqYHr61L8PITNA" ~ as.Date("2020-05-04", "%Y-%m-%d"),
+                     record_id == "R_2wHzdmNyz6ECIsVNA" ~ as.Date("2020-06-15", "%Y-%m-%d"),
+                     record_id == "R_2BbqDbgGBH85RhCNA" ~ as.Date("2020-03-27", "%Y-%m-%d"),
+                     record_id == "R_2Bh5IknsciL6hj2Bf" ~ as.Date("2020-05-04", "%Y-%m-%d"),
+                     record_id == "R_248ZzY1Ri6mfNrINA" ~ as.Date("2020-04-20", "%Y-%m-%d"),
+                     record_id == "R_2XdsxTFDK27jeJXNA" ~ as.Date("2020-04-19", "%Y-%m-%d"),
+                   ),
+                   date_announced = case_when(
+                     record_id == "R_1cSQFWb3Abd80lmNA" ~ as.Date("2020-03-11", "%Y-%m-%d"),
+                     record_id == "R_248ZzY1Ri6mfNrINA" ~ as.Date("2020-03-30", "%Y-%m-%d")
+                   )
                             )
 
-missing %>% filter(is.na(date_start)) %>% select(description, record_id) %>% slice(3) %>% data.frame()
-
-
-
+# dummy variable for if this entry was originally 'missing' or not
 missing = missing %>% mutate(missingDum = 1)

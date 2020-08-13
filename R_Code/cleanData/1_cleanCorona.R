@@ -17,7 +17,7 @@ library(tidyr)
 library(data.table)
 library(dplyr)
 library(stringr)
-
+library(lubridate)
 # set working directory
 # setwd('~/Dropbox/West European Politics Corona Article/')
 
@@ -42,6 +42,12 @@ sub_data = rbind(sub_data %>% mutate(missingDum = 0), missing)
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona.R')
 
 
+# if the policy type is 'health resources', make the date end one day after the date start
+# if the policy type is 'public awareness campaigns' or 'anti disinformaito campains', make the date end 14 days after the date start
+sub_data = sub_data %>% mutate(date_end = ifelse(is.na(date_end) & type == 'Health Resources', date_start + days(1), date_end),
+                               date_end = ifelse(is.na(date_end) & type %in% c( 'Public Awareness Campaigns', 'Anti-Disinformation Measures'), date_start + days(14), date_end))
+
+ 
 # fill in target country with country if not an external border restriction  
 sub_data = sub_data %>% mutate(target_country = ifelse(is.na(target_country) &
                                                          type %!in% c('External Border Restrictions'), country, target_country))
@@ -57,16 +63,17 @@ sub_data = sub_data %>%
 # and remove observations that come after that end date
 # end_date = max(sub_data$date_end, na.rm = TRUE)
 end_date = "2020-07-15"
-sub_data = sub_data %>% dplyr:::mutate(date_end = dplyr:::if_else(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
+sub_data = sub_data %>% dplyr:::mutate(date_end = ifelse(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
   filter(date_start<=as.Date(end_date, "%Y-%m-%d"))
 
+ 
 # remove orphaned records for now --- investigate
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
   all(unique(x) == 'update')}))) == TRUE))
 
 sub_data = sub_data %>% dplyr:::filter(policy_id %!in% orphans)
 
-
+ 
 # fill in appropriate province names
 regions = read_csv("data/regions/country_region_clean.csv")
 regions = regions %>% dplyr::: filter(Country %in% countries) %>% dplyr:::select(-ISO2)
