@@ -25,7 +25,6 @@ sub_data = sub_data %>% mutate_cond(policy_id == 8816665 ,
                                     type_sub_cat = 'Vaccines')
 
 
-
 # Germany Lower Saxony 'other' miscoded, should be 'internal border restrictions'
 sub_data = sub_data %>% mutate_cond(policy_id == 9020379 ,
                                     type = 'Internal Border Restrictions')

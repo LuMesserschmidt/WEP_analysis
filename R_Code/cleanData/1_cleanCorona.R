@@ -30,9 +30,7 @@ qualtrics = read_csv("WEP_analysis/data/CoronaNet/coronanet_internal.csv")
 countries = c("Switzerland", "Germany", "France", "Italy") 
 
 # Filter policies to WEP countries
-sub_data = qualtrics %>% dplyr:::filter(country %in% countries) #%>%
-  #filter(init_country_level %in% c("National", "Provincial")) #%>%
-  #filter(target_country %in% countries)
+sub_data = qualtrics %>% dplyr:::filter(country %in% countries) 
 
 # retrieve and add 'missing' policies
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona_missing.R')
@@ -66,16 +64,12 @@ end_date = "2020-07-15"
 sub_data = sub_data %>% dplyr:::mutate(date_end = ifelse(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
   filter(date_start<=as.Date(end_date, "%Y-%m-%d"))
 
- 
 # remove orphaned records for now --- investigate
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
   all(unique(x) == 'update')}))) == TRUE))
 
-sub_data = sub_data %>% dplyr:::filter(policy_id %!in% orphans)
-
- 
 # fill in appropriate province names
-regions = read_csv("data/regions/country_region_clean.csv")
+regions = read_csv("WEP_analysis/data/CoronaNet/country_region_clean.csv")
 regions = regions %>% dplyr::: filter(Country %in% countries) %>% dplyr:::select(-ISO2)
 regions$`0` = regions$Country
 regions = regions %>% gather(reg_num, region, -Country)
@@ -96,5 +90,6 @@ sub_data = sub_data %>% mutate(target_province =
                                                       ifelse(country == 'Italy' & init_country_level == "National" & is.na(target_province), paste(regions[which(regions$country == 'Italy'), 'target_province']  %>% distinct%>% pull(), collapse = ',') , target_province)))))
 
 
- 
+
+saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
  
