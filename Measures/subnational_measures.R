@@ -275,6 +275,9 @@ switzerlanddata = data.frame(
 
 ##Load Luca's subnational data
 
+current_path <- getActiveDocumentContext()$path 
+setwd(dirname(current_path))
+
 #subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/combined_cases.csv', sep=",")
 
 subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/cases.csv', sep=",")
@@ -319,7 +322,7 @@ base <- expand.grid(province = province,
                     date = date,
                     type = type
 )
-base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 26))
+base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 27))
 base <- base[, c('country', 'province', 'date', 'type')]
 
 #corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
@@ -344,6 +347,8 @@ corona_sel <- corona_sel[-which(corona_sel$date_start > corona_sel$date_end),]
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'Germany' & corona_sel$type == 'Closure and Regulation of Schools' & 
                                   is.na(corona_sel$type_sub_cat)),]
 #corona_sel <- corona_sel[-which(duplicated(corona_sel)),]
+
+detach("package:plyr", unload = TRUE)
 
 corona_sel <- corona_sel %>%
   group_by(target_country, type) %>%
@@ -407,9 +412,10 @@ base7 <- base6 %>%
 colnames(subnational_data)[1:5] <- c('date', 'province', 'cases', 'country', 'population')
 
 subnational_data <- rbind(subnational_data, subnational_data[which(subnational_data$date == "2020-01-02"),])
-subnational_data[which(subnational_data$date == "2020-01-02"),][1:80,c('date')] <- "2020-01-01"
+subnational_data[which(subnational_data$date == "2020-01-02"),][1:81,c('date')] <- "2020-01-01"
 
-base_cases <- merge(base6, subnational_data, by = c('country', 'province', 'date'), all.x = TRUE)
+library(reshape)
+base_cases <- merge(base6, subnational_data, by = c('country', 'province', 'date'))
 
 base_cases$cases <- ifelse(base_cases$date == "2020-01-01", 0, base_cases$cases) 
 base_cases <- base_cases %>% fill(cases)
@@ -457,6 +463,9 @@ hetero_data <- hetero_data %>%
   ungroup
 
 hhi_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/Measures/hhi.csv', sep=",")
+library(readr)
+merged <- read_csv("~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/merged_final.csv", guess_max = 10000)
+
 
 national_data <- merge(hetero_data, hhi_data[,-1], by = c('country', 'date'))
 
@@ -464,20 +473,13 @@ national_data$hhi_cumulative <- as.numeric(national_data$hhi_cumulative)
 
 summary(lm(hetero ~ as.factor(country) + as.Date(date), data = national_data))
 
-summary(lm(hetero ~ as.Date(date)*as.factor(country) - 1, data = hetero_data))
-
 national_data$cases_pop <- (national_data$national_cases/national_data$sum_pop)*100000
 national_data$federal <- ifelse(national_data$country == 'Germany' | national_data$country == 'Switzerland', 1, 0)
+national_data$past_cases7 <- with(national_data, ave(national_cases, c(country), FUN=function(x) rollsum(x, k=7, fill=NA, align="right")))
 
 library(splines)
-summary(lm(hetero ~ cases_pop + as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
-summary(lm(hetero ~ cases_pop*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 3), data = national_data))
-summary(lm(hetero ~ cases_pop*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
-
-summary(h2a <- lm(hetero ~ log(cases_pop+1) + as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
-summary(h2b <-lm(hetero ~ log(cases_pop+1)*as.factor(country) + poly(as.Date(date), 3), data = national_data))
-summary(h2c <-lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + poly(as.Date(date), 3), data = national_data))
-#summary(h2c <-lm(hetero ~ log(cases_pop+1)*as.factor(country) + hhi_cumulative*as.factor(country) + bs(as.Date(date), df = 3), data = national_data))
+summary(h2a <- lm(hetero ~ as.factor(country) + hhi_cumulative , data = national_data))
+summary(h2b <- lm(hetero ~ as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
 
 stargazer(h2a, h2b, h2c, digits = 2)
 
