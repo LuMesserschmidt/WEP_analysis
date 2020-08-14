@@ -17,10 +17,10 @@ subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Pr
 
 #Load CoronaNet (latest version)
 
-corona <- read.csv("coronanet_internal.csv",
-                   sep = ",", stringsAsFactors = FALSE)
-corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
-                                      sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
+#corona <- read.csv("coronanet_internal.csv",
+   #                sep = ",", stringsAsFactors = FALSE)
+#corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
+  #                                    sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
 
 corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS')
 corona$date_end <- as.Date(corona$date_end, "1970-01-01")
@@ -102,8 +102,29 @@ corona_sel <- corona_sel[-which(corona_sel$date_start > corona_sel$date_end),]
 #                                  is.na(corona_sel$type_sub_cat)),]
 #corona_sel <- corona_sel[-which(duplicated(corona_sel)),]
 
+corona_sel <- corona_sel[-which(corona_sel$target_country == "Switzerland" & corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$date_start > "2020-03-13" & corona_sel$date_end < "2020-06-08"),]
+
 corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$target_province == "Umbria"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$target_province == "Liguria"),]$date_end <- 
+corona_sel[which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$target_province == "Liguria"),]$date_end <- rep(as.Date("2020-03-04"), 4)
+
+corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Secondary Schools allowed to open with conditions"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Secondary Schools allowed to open with no conditions"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with no conditions"),]
+corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with conditions"),]
+corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Primary Schools allowed to open with no conditions"),]
+corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Primary Schools allowed to open with conditions"),]
+corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with conditions"),]
+corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with no conditions"),]
+
+corona_sel[which(corona_sel$target_country == "France" & corona_sel$type == 'Closure and Regulation of Schools' &
+                   corona_sel$target_province == "Corsica"),]$date_end <- rep(corona_sel[which(corona_sel$target_country == "France" & corona_sel$type == 'Closure and Regulation of Schools' &
+                                                                                                 corona_sel$init_country_level == "National"),]$date_end[1],
+                                                                              length(corona_sel[which(corona_sel$target_country == "France" & corona_sel$type == 'Closure and Regulation of Schools' &
+                                                                                                        corona_sel$target_province == "Corsica"),]$date_end))
+
+
+###restrictions above 500 as the cut-off point
+
 
 detach("package:plyr", unload = TRUE)
 
@@ -128,7 +149,6 @@ corona_sel$gov <- ifelse(corona_sel$gov == "Baden-Wuerttemberg,Bavaria,Berlin,Br
 corona_sel$gov <- ifelse(corona_sel$gov == "Auvergne-Rhone-Alpes,Bourgogne-Franche-Comte,Brittany,Centre,Corsica,French Guiana,Grand Est,Guadeloupe,Hauts-de-France,Ile-de-France,Martinique,Mayotte,Normandy,Nouvelle-Aquitaine,Occitanie,Pays de la Loire,Provence-Alpes-Cote d'Azur,Reunion", "France", corona_sel$gov)
 corona_sel$gov <- ifelse(corona_sel$gov == "Aargau,Appenzell Ausserrhoden,Appenzell Innerrhoden,Basel-City,Basel-Landschaft,Bern,Fribourg,Geneva,Glarus,Grisons,Jura,Lucerne,Neuchatel,Nidwalden,Obwalden,Saint Gallen,Schaffhausen,Schwyz,Solothurn,Thurgau,Ticino,Uri,Valais,Vaud,Zug,Zurich", "Switzerland", corona_sel$gov)
 
-
 corona_sel_active <- corona_sel[, c('gov', 'date_start', 'type')]
 colnames(corona_sel_active) <- c('country', 'date', 'type')
 corona_sel_active$active1 <- 1
@@ -144,7 +164,13 @@ colnames(corona_sel_active) <- c('province', 'date', 'type', 'active')
 base3 <- merge(base2, corona_sel_active, by = c('province', 'date', 'type'), all.x = TRUE)
 
 detach("package:plyr", unload = TRUE)
-base3 = base3 %>% mutate(policy_active = ifelse(active1 == 1, 1, ifelse(active == 1, 1, 0))) %>% select(-active1, -active) 
+base3 = base3 %>% 
+  group_by(country, date, type, province) %>%
+  mutate(policy_active = ifelse(active1 == 1, 1, ifelse(active == 1, 1, 0))) %>% 
+  select(-active1, -active) %>% 
+  slice(1) %>%
+  ungroup
+
 base3$policy_active <- ifelse(is.na(base3$policy_active), 0, base3$policy_active)
 
 corona_sel_inactive <- corona_sel[, c('gov', 'date_end', 'type')]
@@ -162,8 +188,11 @@ base5$inactive.y <- ifelse(is.na(base5$inactive.y), 0, base5$inactive.y)
 
 detach("package:plyr", unload = TRUE)
 base5 = base5 %>%
+  group_by(country, date, type, province) %>%
   mutate(policy_inactive = ifelse(inactive.x == -1, -1, ifelse(inactive.y == -1, -1, 0))) %>% 
-  select(-inactive.x, -inactive.y)
+  select(-inactive.x, -inactive.y) %>% 
+  slice(1) %>%
+  ungroup
 
 base5 = base5 %>% group_by(country, province, type) %>%
   mutate(policy_inactive = cumsum(policy_inactive),
@@ -232,11 +261,7 @@ ggplot(hetero_lockdown, aes(x = date, y = hetero)) +
 
 # Model specification (national level)
 
-hetero_data <- merge(hetero_lockdown,
-                     base_cases2[,c('country', 'date', 'type', 'sum_pop', 'cases_national', 'past_average_national_new_cases')],
-                     by = c('country', 'date', 'type'))
-
-hetero_data <- hetero_data %>%
+hetero_lockdown <- hetero_lockdown %>%
   group_by(country, date) %>%
   slice(1) %>%
   ungroup
@@ -245,22 +270,16 @@ hhi_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/
 library(readr)
 #merged <- read_csv("~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/merged_final.csv", guess_max = 10000)
 
-national_data <- merge(hetero_data, hhi_data[,-1], by = c('country', 'date'))
+national_data_lockdown <- merge(hetero_lockdown, hhi_data[,-1], by = c('country', 'date'))
 
-national_data$hhi_cumulative <- as.numeric(national_data$hhi_cumulative)
-national_data$hhi_new <- as.numeric(national_data$hhi_new)
+national_data_lockdown$hhi_cumulative <- as.numeric(national_data_lockdown$hhi_cumulative)
+national_data_lockdown$hhi_new <- as.numeric(national_data_lockdown$hhi_new)
 
-summary(lm(hetero ~ as.factor(country) + as.Date(date), data = national_data))
+summary(h2.a <- lm(hetero ~ as.factor(country) + poly(as.Date(date), 3), data = national_data_lockdown))
+summary(h2.b <- lm(hetero ~ as.factor(country) + hhi_new + I(past_average_national_new_cases/sum_pop) + poly(as.Date(date), 3),
+                   data = national_data_lockdown))
 
-national_data$cases_pop <- (national_data$national_cases/national_data$sum_pop)*100000
-national_data$federal <- ifelse(national_data$country == 'Germany' | national_data$country == 'Switzerland', 1, 0)
-national_data$past_cases7 <- with(national_data, ave(national_cases, c(country), FUN=function(x) rollsum(x, k=7, fill=NA, align="right")))
-
-library(splines)
-summary(h2a <- lm(hetero ~ as.factor(country) + hhi_cumulative + hhi_new , data = national_data))
-summary(h2b <- lm(hetero ~ as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
-
-stargazer(h2a, h2b, h2c, digits = 2)
+stargazer(h2.a, h2.b, digits = 2)
 
 #School closures
 
@@ -285,6 +304,22 @@ ggplot(hetero_school, aes(x = date, y = hetero)) +
   scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
   theme_minimal()
 
+national_data_school <- merge(hetero_school, hhi_data[,-1], by = c('country', 'date'))
+
+national_data_school$hhi_cumulative <- as.numeric(national_data_school$hhi_cumulative)
+national_data_school$hhi_new <- as.numeric(national_data_school$hhi_new)
+
+summary(h2.c <- lm(hetero ~ as.factor(country) + poly(as.Date(date), 3), data = national_data_school))
+summary(h2.d <- lm(hetero ~ as.factor(country) + hhi_new + I(past_average_national_new_cases/sum_pop) + poly(as.Date(date), 3),
+                   data = national_data_school))
+
+stargazer(h2.c, h2.d, digits = 2)
+
+
+
+
+
+#####
 
 #Policy adaptation
 
