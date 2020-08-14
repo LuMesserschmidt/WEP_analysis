@@ -90,7 +90,9 @@ sub_data = sub_data %>% dplyr:::mutate(date_end = ifelse(is.na(date_end), as.Dat
 
 # remove orphaned records for now --- investigate
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
-  all(unique(x) == 'update')}))) == TRUE))
+  all(unique(x) == 'update')}))) == TRUE)) 
+
+orphans %>% dput()
 
 # fill in appropriate province names
 regions = read_csv("WEP_analysis/data/CoronaNet/country_region_clean.csv")

@@ -32,10 +32,10 @@ mutate_cond <-
   }
 
 # set working directory
-setwd('~/Documents/coronaNet/corona_private/')
+#setwd('~/Documents/coronaNet/corona_private/')
 
 # load data
-qualtrics = read_csv("./data/CoronaNet/coronanet_internal.csv")
+qualtrics = read_csv("/data/CoronaNet/coronanet_internal.csv")
  
 
 # -------------------
@@ -44,6 +44,9 @@ qualtrics = read_csv("./data/CoronaNet/coronanet_internal.csv")
 # reshape data from wide to long format for dates
 sub_data = sub_data %>% dplyr:::select(record_id, policy_id, type, type_sub_cat, init_country_level, country, province,  target_country, target_geog_level, target_province, date_start, date_end, entry_type) %>% 
   gather(date_type, date, -record_id, -policy_id, -type, -type_sub_cat,-init_country_level, -country, -province,-target_country, -target_geog_level, -target_province, -entry_type)
+
+
+
 
 # make new variable called gov which is the same as 'province' but takes on the name of country if it is a national level policy
 sub_data = sub_data %>% mutate(gov = ifelse(init_country_level == "National" & is.na(province), country, province)) %>% select(-province)

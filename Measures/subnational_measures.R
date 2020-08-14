@@ -322,7 +322,7 @@ base <- expand.grid(province = province,
                     date = date,
                     type = type
 )
-base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 27))
+base$country <- c(rep("France", 19), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 27))
 base <- base[, c('country', 'province', 'date', 'type')]
 
 #corona <- read.csv("https://raw.githubusercontent.com/saudiwin/corona_tscs/master/data/CoronaNet/coronanet_release.csv",
@@ -409,33 +409,33 @@ base7 <- base6 %>%
   mutate(policy_active = cumsum(policy_activity)) %>%
   select(-policy_activity)
 
-colnames(subnational_data)[1:5] <- c('date', 'province', 'cases', 'country', 'population')
+colnames(subnational_data)[1:6] <- c('date', 'province', 'cases', 'cases_national', 'country', 'population')
 
-subnational_data <- rbind(subnational_data, subnational_data[which(subnational_data$date == "2020-01-02"),])
-subnational_data[which(subnational_data$date == "2020-01-02"),][1:81,c('date')] <- "2020-01-01"
+#subnational_data <- rbind(subnational_data, subnational_data[which(subnational_data$date == "2020-01-02"),])
+#subnational_data[which(subnational_data$date == "2020-01-02"),][1:81,c('date')] <- "2020-01-01"
 
 library(reshape)
-base_cases <- merge(base6, subnational_data, by = c('country', 'province', 'date'))
+subnational_data$date <- as.Date(subnational_data$date)
+base7$date <- as.Date(base7$date)
+base7 <- as.data.frame(base7)
+base_cases <- merge(base7, subnational_data, by = c('country', 'province', 'date'), x.all = TRUE)
 
 base_cases$cases <- ifelse(base_cases$date == "2020-01-01", 0, base_cases$cases) 
 base_cases <- base_cases %>% fill(cases)
+base_cases$past_average_new_cases <- ifelse(is.na(base_cases$past_average_new_cases), 0, base_cases$past_average_new_cases)
 
-base_cases <- base_cases %>%
+base_cases2 <- base_cases %>%
   group_by(country, date, type) %>%
+  mutate(past_average_national = sum(past_average_new_cases)) %>%
   mutate(national_cases = sum(cases))
-
-base_smallcases <- base_cases %>%
-  filter(base_cases$policy_activity == 1) %>% 
-  group_by(country, province, type) %>%
-  slice(1) %>%
-  ungroup
+  
 
 
 #I start dividing the dataset by policy type
 
 #Lockdown
 
-base_lockdown <- base6[which(base7$type == 'Lockdown'),]
+base_lockdown <- base_cases[which(base_cases$type == 'Lockdown'),]
 
 base_lockdown$policy_active2 <- ifelse(base_lockdown$policy_activity > 0, 1, 0)
 
@@ -464,12 +464,14 @@ hetero_data <- hetero_data %>%
 
 hhi_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/Measures/hhi.csv', sep=",")
 library(readr)
-merged <- read_csv("~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/merged_final.csv", guess_max = 10000)
-
+#merged <- read_csv("~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/merged_final.csv", guess_max = 10000)
 
 national_data <- merge(hetero_data, hhi_data[,-1], by = c('country', 'date'))
 
+subnational_data$new_cases_national
+
 national_data$hhi_cumulative <- as.numeric(national_data$hhi_cumulative)
+national_data$hhi_new <- as.numeric(national_data$hhi_new)
 
 summary(lm(hetero ~ as.factor(country) + as.Date(date), data = national_data))
 
@@ -478,7 +480,7 @@ national_data$federal <- ifelse(national_data$country == 'Germany' | national_da
 national_data$past_cases7 <- with(national_data, ave(national_cases, c(country), FUN=function(x) rollsum(x, k=7, fill=NA, align="right")))
 
 library(splines)
-summary(h2a <- lm(hetero ~ as.factor(country) + hhi_cumulative , data = national_data))
+summary(h2a <- lm(hetero ~ as.factor(country) + hhi_cumulative + hhi_new , data = national_data))
 summary(h2b <- lm(hetero ~ as.factor(country) + hhi_cumulative + poly(as.Date(date), 3), data = national_data))
 
 stargazer(h2a, h2b, h2c, digits = 2)
