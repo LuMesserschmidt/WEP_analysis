@@ -35,12 +35,10 @@ mutate_cond <-
   }
 
  
+sub_data %>% filter(policy_id %in% c(9294153, 1644132)) %>% data.frame()
 
 # load data
 sub_data = readRDS("WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
-
-sub_data %>% filter(policy_id %in% c(9294153, 1644132)) %>% data.frame()
-
 
 # -------------------
 # reformat CoronaNet data
@@ -78,11 +76,6 @@ sub_data= sub_data %>% group_by(gov, target_province, type, date) %>%
 #   ungroup()
 
 
-# if there is more than one update per policy type, remove the dates for the intermediate updates
-
-
-
-
 
 # -------------------
 # transform data from event data into long format
@@ -107,10 +100,45 @@ dframe = expand_grid(date = seq(as.Date("2019-12-31", "%Y-%m-%d"), as.Date(end_d
 # sub_data = sub_data %>% filter(type == 'Social Distancing')
 # dframe = expand_grid(date = seq(as.Date("2019-12-31"), as.Date(end_date), by = "day"), regions , type = c("Social Distancing"))
 
- 
 
 # merge data
 data_long = merge(dframe, sub_data, by = c( "date",  'country', "gov", "target_province", "type"), all.x = TRUE)
+
+# https://stackoverflow.com/questions/35362575/equivalent-to-cumsum-for-string-in-r
+data_long = data_long %>% 
+  group_by(country, gov, target_province, type) %>%
+  arrange(country, gov, target_province, type, date) %>%
+  mutate(record_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(record_id), "", record_id)), accumulate = TRUE)))),
+         policy_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(policy_id), "", policy_id)), accumulate = TRUE))))) %>%
+  ungroup()
+
+
+# remove duplicate record_id and policy_ids
+data_long = data_long %>% group_by(country, gov, target_province, type) %>% 
+  mutate(policy_id = paste(unique(unlist(lapply(str_split(policy_id, ';'), function(x) unique(x)))), collapse = ';'),
+         record_id = paste(unique(unlist(lapply(str_split(record_id, ';'), function(x) unique(x)))), collapse = ';'))
+
+# fill in type and type_sub_cat and init_country_level
+data_long = data_long %>% 
+  group_by(country, gov, target_province, type) %>%
+  fill( type,  init_country_level, entry_type, target_country, target_geog_level, .direction = 'down')%>%
+  ungroup()
+
+# create measure of policy incidence by country, region and type
+data_long = data_long %>% 
+  dplyr:::mutate(policy_dum_1 =  case_when(is.na(date_type) ~ 0, 
+                                           date_type == 'date_start' ~ 1,
+                                           date_type == 'date_end' ~ -1,
+                                           TRUE ~ 0),
+                 policy_dum_2 = case_when(is.na(date_type)~0,
+                                          date_type == 'date_start' ~ policy_dum,
+                                          date_type == 'date_end' ~ policy_dum -1,
+                                          TRUE ~ 0)) %>%
+  group_by(country, gov, target_province, type ) %>%
+  mutate(policy_count = cumsum(policy_dum)) %>%
+  mutate(policy_dum = ifelse(policy_count>0, 1, 0)) %>%
+  ungroup()  
+
 unique(data_long$policy_count) 
 sub_data[which(duplicated(sub_data[, c( "date",  'country', "gov", "target_province", "type")])),c( "date",  'country', "gov", "target_province", "type")]
 
@@ -173,43 +201,12 @@ foo %>% data.frame()
 table(test$policy_id_2)
 
 # write a cumsum fill for record id and policy id
-# https://stackoverflow.com/questions/35362575/equivalent-to-cumsum-for-string-in-r
-data_long = data_long %>% 
-  group_by(country, gov, target_province, type) %>%
-          arrange(country, gov, target_province, type, date) %>%
-  mutate(record_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(record_id), "", record_id)), accumulate = TRUE)))),
-         policy_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(policy_id), "", policy_id)), accumulate = TRUE))))) %>%
-  ungroup()
 
-
-# remove duplicate record_id and policy_ids
-data_long = data_long %>% group_by(country, gov, target_province, type) %>% 
-  mutate(policy_id = paste(unique(unlist(lapply(str_split(policy_id, ';'), function(x) unique(x)))), collapse = ';'),
-         record_id = paste(unique(unlist(lapply(str_split(record_id, ';'), function(x) unique(x)))), collapse = ';'))
-
-# fill in type and type_sub_cat and init_country_level
-data_long = data_long %>% 
-  group_by(country, gov, target_province, type) %>%
-  fill( type,  init_country_level, entry_type, target_country, target_geog_level, .direction = 'down')%>%
-  ungroup()
 
  table(data_long$policy_dum)
  table(data_long$policy_count)
 data_long %>% filter(policy_count == 1) %>% head() %>% data.frame()
- # create measure of policy incidence by country, region and type
-data_long = data_long %>% 
-  dplyr:::mutate(policy_dum_1 =  case_when(is.na(date_type) ~ 0, 
-                                              date_type == 'date_start' ~ 1,
-                                              date_type == 'date_end' ~ -1,
-                                              TRUE ~ 0),
-                 policy_dum_2 = case_when(is.na(date_type)~0,
-                                          date_type == 'date_start' ~ policy_dum,
-                                          date_type == 'date_end' ~ policy_dum -1,
-                                          TRUE ~ 0)) %>%
-  group_by(country, gov, target_province, type ) %>%
-  mutate(policy_count = cumsum(policy_dum)) %>%
-  mutate(policy_dum = ifelse(policy_count>0, 1, 0)) %>%
-  ungroup()  
+
 
 data_long %>% filter(policy_count < 0) %>% select(date, country, gov, target_province, policy_id) %>% data.frame()
 table(data_long$policy_count)

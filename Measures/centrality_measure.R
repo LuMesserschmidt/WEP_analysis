@@ -69,19 +69,104 @@ network4 = graph_from_data_frame(edges[which(edges$link4 ==1),], nodes, directed
 network5 = graph_from_data_frame(edges[which(edges$link5 ==1),], nodes, directed = TRUE)     
 
 network6 = graph_from_data_frame(edges[which(edges$link6 ==1),], nodes, directed = TRUE)     
+ 
 
+ 
 g1 = ggraph(network1, layout = 'kk') +
-geom_edge_link() + 
-  geom_node_point(aes(color = ))+
-  geom_node_text(aes(label = name), repel=TRUE)
-
-g2 = ggraph(network2, layout = 'kk') +
-  geom_edge_link() + 
-  geom_node_point(aes(color = ))+
-  geom_node_text(aes(label = name), repel=TRUE)
+geom_edge_link(arrow = arrow(angle = 30, length = unit(0.15, "inches"),
+                             ends = "last", type = "closed")) + 
+  geom_node_point(colour = 'blue', size = 2)+
+  geom_node_text(aes(label = name), repel=TRUE, size = 6)+
+  theme_graph(background = 'white')
 
 
+ 
+test = as_tbl_graph(network1) %>% 
+        activate(nodes) %>%
+          mutate(gov = 
+                   case_when(grepl('Govt', name) ~ "Government", T ~ "Province"), 
+                 gov= as.character(gov))
+        #activate(edges)
+ 
+ggraph(test, layout = 'kk')+
+  geom_edge_link(arrow = arrow(angle = 30, length = unit(0.15, "inches"),
+                               ends = "last", type = "closed")) + 
+  geom_node_point(aes(colour = gov),  size = 2)+
+  geom_node_text(aes(label = name), repel=TRUE, size = 4)+
+  theme_graph(background = 'white')
 
+rstat_nodes
+
+
+
+library(tidyverse)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(graphlayouts)
+library(scales)
+
+
+# example data
+rstat_nodes <-
+  data.frame(name = c("Hadley", "David", "Romain", "Julia"))
+rstat_edges <- data.frame(from = c(1, 1, 1, 2, 3, 3, 4, 4, 4),
+                          to = c(2, 3, 4, 1, 1, 2, 1, 2, 3))
+
+gr <- tbl_graph(nodes = rstat_nodes, edges = rstat_edges)
+
+gr %>% 
+  activate(nodes) %>% # use dplyr on nodes
+  mutate(David = 
+           case_when(name == 'David' ~ 2, T ~ 0), 
+         David = as.character(David))# %>% 
+  activate(edges) %>% # same on edge list
+  mutate(David = case_when(from == 2 ~ 1, T ~ 0), 
+         David = as.character(David)) 
+
+gr %>% 
+  activate(nodes) %>% # use dplyr on nodes
+  mutate(David = 
+           case_when(name == 'David' ~ 2, T ~ 0), 
+         David = as.character(David)) %>% 
+  activate(edges) %>% # same on edge list
+  mutate(David = case_when(from == 2 ~ 1, T ~ 0), 
+         David = as.character(David)) %>% 
+  ggraph(., layout = 'auto')+
+  geom_edge_link(aes(color = David), 
+                 width = 1)+
+  geom_node_point(aes(color = David), 
+                  size = 5)+
+  geom_node_text(aes(label = name), 
+                 nudge_x = .05, 
+                 nudge_y = .05)
+
+gr
+
+ggsave("WEP_analysis/Graphics/network1.pdf", g1)
+ 
+
+g2 = ggraph(network2, layout = "gem") +
+  geom_edge_link(arrow = arrow(angle = 30, length = unit(0.15, "inches"),
+                               ends = "last", type = "closed")) + 
+  geom_node_point(colour = 'blue', size = 2)+
+  geom_node_text(aes(label = name),size = 6, repel=TRUE)+
+  theme_graph(background = 'white')
+ggsave("WEP_analysis/Graphics/network2.pdf", g2)
+ 
+
+g5 = ggraph(network5, layout ="graphopt") +
+  geom_edge_link(arrow = arrow(angle = 30, length = unit(0.15, "inches"),
+                               ends = "last", type = "closed")) + 
+  geom_node_point(colour = 'blue', size = 2)+
+  geom_node_text(aes(label = name), size = 6, repel=TRUE)+
+  theme_graph(background = 'white')
+
+g5
+ggsave("WEP_analysis/Graphics/network5.pdf", g5)
+ 
+?ggraph
+igraph_layout_star()
 ?ggraph
 plot(network1)
 plot(network2)
@@ -91,8 +176,9 @@ hub_score(network1, weights = edges$link1_wt[1:16])
 
 edges[which(edges$link1 ==1),]
 
-
+centr_degree(network2)
 hub_score(network5)
+?hub_score
 hub_score(network1)$vector[1]
 hub_score(network2)$vector[1]
 hub_score(network3)$vector[1]

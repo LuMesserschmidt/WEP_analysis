@@ -27,9 +27,11 @@ corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Rese
 
 ##Province names to match CoronaNET: unique(corona[which(corona$country == "Switzerland"),]$province)
 
-#subnational_data[which(subnational_data$region == 'BE'),]$region <- 'Bern'
-#subnational_data$region[which(subnational_data$region == 'ZH')] <- 'Zurich'
-#subnational_data$region[which(subnational_data$region == 'LU')] <- 'Lucerne'
+subnational_data[which(subnational_data$region == 'Guyane'),]$region <- 'French Guiana'
+subnational_data[which(subnational_data$region == "La Réunion"),]$region <- 'Reunion'
+subnational_data[which(subnational_data$region == "Provence-Alpes-Côte d'Azur"),]$region <- "Provence-Alpes-Cote d'Azur"
+subnational_data[which(subnational_data$region == "Centre-Val de Loire"),]$region <- "Centre"
+subnational_data[which(subnational_data$region == "Bourgogne-Franche-Comté"),]$region <- "Bourgogne-Franche-Comte"
 #subnational_data$region[which(subnational_data$region == 'UR')] <- 'Uri'
 #subnational_data$region[which(subnational_data$region == 'SZ')] <- 'Schwyz'
 #subnational_data$region[which(subnational_data$region == 'OW')] <- 'Obwalden'
@@ -55,7 +57,6 @@ corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Rese
 #subnational_data$region[which(subnational_data$region == 'JU')] <- 'Jura'
 
 subnational_data <- subnational_data[-which(subnational_data$region == "National"),]
-subnational_data <- subnational_data[-which(subnational_data$region == "Latium"),]
 
 #Create a base dataset
 province <- unique(subnational_data$region)
@@ -64,7 +65,7 @@ date <- seq(as.Date("2020/1/1"), as.Date(format(Sys.Date(), format="%Y-%m-%d")),
 
 base <- expand.grid(province = province,
                     date = date,
-                    type = type
+                    type = sub_type_cat
 )
 base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 26))
 base <- base[, c('country', 'province', 'date', 'type')]
@@ -77,15 +78,23 @@ corona_sel <- corona[which(corona$target_country == "Germany" |
                              corona$target_country == "Italy" |
                              corona$target_country == "France"),]
 
+corona_sel[which(corona_sel$target_province == 'Latium'),]$target_province <- rep("Lazio", length(corona_sel[which(corona_sel$target_province == 'Latium'),]$target_province))
+corona_sel[which(corona_sel$target_province == "Schleswig"),]$target_province <- rep("Schleswig-Holstein", length(corona_sel[which(corona_sel$target_province == "Schleswig"),]$target_province))
+
+sort(unique(corona_sel$target_province))
+
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-06-02"),] 
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-05-11"),] 
-corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "Provincial"),]
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$date_start >= "2020-03-27" & corona_sel$date_end <= "2020-05-11"),] 
+corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & is.na(corona_sel$type_sub_cat)),] 
+
+#corona_sel <- corona_sel[-which(corona_sel$target_country == 'France' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "Provincial"),]
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$init_country_level == "National" & corona_sel$date_start == "2020-03-05"),]
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-05-18"),]
 corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-03-10" & is.na(corona_sel$type_sub_cat)),]
 
 corona_sel[which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & 
-                   corona_sel$init_country_level == "National" & corona_sel$date_start == "2020-03-10"),]$date_end <- as.Date("2020-05-04")
+                   corona_sel$init_country_level == "National" & corona_sel$date_start == "2020-03-10"),]$date_end <- rep(as.Date("2020-05-04"), 20)
 
 corona_sel <- corona_sel[-which(corona_sel$country == 'Germany' & corona_sel$type == 'Lockdown' &
                    corona_sel$init_country_level == "Provincial" & corona_sel$date_start == "2020-06-23"&
@@ -105,12 +114,12 @@ corona_sel <- corona_sel[-which(corona_sel$date_start > corona_sel$date_end),]
 corona_sel <- corona_sel[-which(corona_sel$target_country == "Switzerland" & corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$date_start > "2020-03-13" & corona_sel$date_end < "2020-06-08"),]
 
 corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$target_province == "Umbria"),]
-corona_sel[which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$target_province == "Liguria"),]$date_end <- rep(as.Date("2020-03-04"), 4)
+corona_sel[which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$target_province == "Liguria"),]$date_end <- rep(as.Date("2020-03-04"), 9)
 
 corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Secondary Schools allowed to open with conditions"),]
 #corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Secondary Schools allowed to open with no conditions"),]
 #corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with no conditions"),]
-corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with conditions"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with conditions"),]
 corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Primary Schools allowed to open with no conditions"),]
 corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Primary Schools allowed to open with conditions"),]
 corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with conditions"),]
@@ -123,41 +132,42 @@ corona_sel[which(corona_sel$target_country == "France" & corona_sel$type == 'Clo
                                                                                                         corona_sel$target_province == "Corsica"),]$date_end))
 
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
-                   corona_sel$type_sub_cat == "Cancellation of a recreational or commercial event"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+#                   corona_sel$type_sub_cat == "Cancellation of a recreational or commercial event"),]
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
-                                 corona_sel$type_sub_cat == "Postponement of a recreational or commercial event"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+#                                 corona_sel$type_sub_cat == "Postponement of a recreational or commercial event"),]
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
-                                  corona_sel$type_sub_cat == "Annually recurring event allowed to occur with certain conditions"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+#                                  corona_sel$type_sub_cat == "Annually recurring event allowed to occur with certain conditions"),]
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
-                                  corona_sel$type_sub_cat == "Cancellation of an annually recurring event"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+#                                  corona_sel$type_sub_cat == "Cancellation of an annually recurring event"),]
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
-                                  corona_sel$type_sub_cat == "Postponement of an annually recurring event"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+#                                  corona_sel$type_sub_cat == "Postponement of an annually recurring event"),]
 
 ###restrictions above 500 as the cut-off point
 
 corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "1000"),]
 corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "1,000 max"),]
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "5000"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "5000"),]
 corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "below 1000"),]
 corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & is.na(corona_sel$type_mass_gathering)),]
 
 #Limit restrict. to mass gatherings to no special population targeted
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_who_gen == "People in nursing homes/long term care facilities,People with certain health conditions (please note which health conditions in the text entry)"),]
+
+#corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_who_gen == "People in nursing homes/long term care facilities,People with certain health conditions (please note which health conditions in the text entry)"),]
 corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_who_gen == "Other population not specifed above"),]
 
-#Limit rsocial distancing to policies related to mask wearing
+#Limit social distancing to policies related to mask wearing
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on  private vehicles in public circulation"),]
-corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Keeping a distance of at least 6 feet or 1.5 meters apart"),]
-corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions ridership of other forms of public transportation (please include details in the text entry)"),]
-corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of subways and trams"),]
-corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of trains"),]
-corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of buses"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on  private vehicles in public circulation"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Keeping a distance of at least 6 feet or 1.5 meters apart"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions ridership of other forms of public transportation (please include details in the text entry)"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of subways and trams"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of trains"),]
+#corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of buses"),]
 
 #restrict social distancing to no special occupation
 corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_who_gen == "People in nursing homes/long term care facilities,Essential workers (please note their occuption in the text entry where applicable)"),]
@@ -171,17 +181,16 @@ detach("package:plyr", unload = TRUE)
 corona_sel <- corona_sel %>%
   group_by(target_country, type) %>%
   filter(!init_country_level == "Municipal") %>%
-  select(target_country, init_country_level, target_province, type, type_sub_cat, date_start, date_end
-         , target_city
+  select(target_country, init_country_level, target_province, type, type_sub_cat, date_start, date_end, target_city
          )
 
-#corona_sel <- corona_sel[which(is.na(corona_sel$target_city)),]
-corona_sel <- rbind(data.frame(corona_sel), 'Lombardy' = c('Italy', 'National', 'Lombardy', 'Lockdown', 'Lockdown applies to all people', '2020-03-08', '2020-03-10'))
+corona_sel <- corona_sel[which(is.na(corona_sel$target_city)),]
+corona_sel <- corona_sel[-which(is.na(corona_sel$target_province)),]
+corona_sel <- rbind(data.frame(corona_sel), 'Lombardy' = c('Italy', 'National', 'Lombardy', 'Lockdown', 'Lockdown applies to all people', '2020-03-08', '2020-03-10', NA))
 
 corona_sel = corona_sel %>% 
   mutate(gov = ifelse(init_country_level == "National" & is.na(target_province) 
-                      #& is.na(target_city)
-                      , target_country, target_province)) %>% 
+                      & is.na(target_city), target_country, target_province)) %>% 
   select(-target_province)
 
 corona_sel$gov <- ifelse(corona_sel$gov == "Abruzzo,Aosta Valley,Apulia,Basilicate,Calabria,Campania,Emilia-Romagna,Friuli Venezia Giulia,Latium,Liguria,Lombardy,Molise,Piedmont,Sardinia,Sicily,The Marches,Trentino-Alto Adige,Tuscany,Umbria,Veneto", "Italy", corona_sel$gov)
@@ -243,7 +252,7 @@ base5$policy_activity <- base5$policy_active + base5$policy_inactive
 base6 <- base5 %>% 
   select(-policy_active, -policy_inactive)
 
-colnames(subnational_data)[1:6] <- c('date', 'province', 'cases', 'cases_national', 'country', 'population')
+colnames(subnational_data)[c(1:4, 14)] <- c('date', 'country', 'province', 'cases_national', 'population')
 
 #subnational_data <- rbind(subnational_data, subnational_data[which(subnational_data$date == "2020-01-02"),])
 #subnational_data[which(subnational_data$date == "2020-01-02"),][1:81,c('date')] <- "2020-01-01"
@@ -256,8 +265,6 @@ base6 <- as.data.frame(base6)
 library('plyr')
 base_cases <- merge(base6, subnational_data, by = c('country', 'province', 'date'), x.all = TRUE)
 
-base_cases$cases <- ifelse(base_cases$date == "2020-01-01", 0, base_cases$cases) 
-#base_cases <- base_cases %>% fill(cases)
 base_cases$past_average_new_cases <- ifelse(is.na(base_cases$past_average_new_cases), 0, base_cases$past_average_new_cases)
 
 base_cases <- base_cases %>%
@@ -323,23 +330,23 @@ stargazer(h2.a, h2.b, digits = 2)
 
 #School closures
 
-base_school <- base_cases2[which(base_cases2$type == 'Closure and Regulation of Schools'),]
+base_school_preschool <- base_cases2[which(base_cases2$type_sub_cat == 'Preschool or childcare facilities (generally for children ages 5 and below)'),]
 
-base_school2 <- base_school %>%
+base_school_preschool2 <- base_school_preschool %>%
   group_by(country, province, type) %>%
   mutate(policy_active = cumsum(policy_activity)) %>%
   select(-policy_activity)
 
-base_school2$policy_active2 <- ifelse(base_school2$policy_active > 0, 1, 0)
+base_school_preschool2$policy_active2 <- ifelse(base_school_preschool2$policy_active > 0, 1, 0)
 
-hetero_school <- base_school2 %>%
+hetero_preschool <- base_school_preschool2 %>%
   group_by(country, date) %>%
   mutate(hetero = -1*(abs((sum(policy_active2)/length(policy_active2)-0.5)*2))+1) %>% 
   select(-province, -policy_active, -policy_active2) %>%
   slice(1) %>%
   ungroup
 
-ggplot(hetero_school, aes(x = date, y = hetero)) + 
+ggplot(hetero_preschool, aes(x = date, y = hetero)) + 
   geom_line(aes(color = country), size = 1) +
   scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
   theme_minimal()
