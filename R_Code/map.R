@@ -26,7 +26,7 @@ corona <- read_csv("data/Cases/cases.csv")
 
 
 df <- corona %>%
-  select("date","cases","new_cases","ratio_cum","ratio_new","code", "cases_pop") %>% 
+  select("date","cases","new_cases","ratio_cum","ratio_new","code", "cases_pop_sub") %>% 
   mutate(country = str_sub(code,1,2))%>%
   filter(date=="2020-03-15" |
          date=="2020-04-15" |
@@ -68,8 +68,8 @@ browseURL("results/map_ratio.pdf")
 
 gg <- 
   ggplot(merged_shape %>% 
-           filter(!is.na(cases_pop))) + 
-  geom_sf(aes(alpha = cases_pop,
+           filter(!is.na(cases_pop_sub))) + 
+  geom_sf(aes(alpha = cases_pop_sub,
               fill = country),size = 0.1) + 
   scale_fill_manual(values = c("green","red","blue","orange"))+
   scale_alpha_continuous(range=c(0,1.5)) + 
