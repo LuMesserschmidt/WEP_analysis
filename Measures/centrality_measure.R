@@ -15,7 +15,7 @@
 # Load libraries
 # ------------------------
 library(igraph)
-
+library(ggraph)
 
 # ------------------------
 # create archetypal/illustrative network graph
@@ -59,7 +59,7 @@ edges$link6 = c(rep(0, 32))
 
 edges$link1_wt = ifelse(edges$link1 == 1, sample(seq(.1, 1, length = 10), length(which(edges$link1 == 1,)) , replace = TRUE), 0)
 
-
+edges
 # https://rdrr.io/cran/CINNA/src/R/CINNA.R
 
 network1 = graph_from_data_frame(edges[which(edges$link1 ==1),], nodes, directed = TRUE)      
@@ -70,7 +70,19 @@ network5 = graph_from_data_frame(edges[which(edges$link5 ==1),], nodes, directed
 
 network6 = graph_from_data_frame(edges[which(edges$link6 ==1),], nodes, directed = TRUE)     
 
+g1 = ggraph(network1, layout = 'kk') +
+geom_edge_link() + 
+  geom_node_point(aes(color = ))+
+  geom_node_text(aes(label = name), repel=TRUE)
 
+g2 = ggraph(network2, layout = 'kk') +
+  geom_edge_link() + 
+  geom_node_point(aes(color = ))+
+  geom_node_text(aes(label = name), repel=TRUE)
+
+
+
+?ggraph
 plot(network1)
 plot(network2)
 plot(network5)

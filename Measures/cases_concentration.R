@@ -5,8 +5,8 @@ library(hhi)
 library(readr)
 library(tidyverse)
 library(scales)
-
-combined_cases <- read_csv("data/merged_final.csv", guess_max = 10000)%>% select("date","region","cases","cases_national","country","eurostat_total_population_2019","code",145:158) 
+names(combined_cases)
+combined_cases <- read_csv("data/merged_final.csv", guess_max = 10000)%>% select(1:24) 
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 
 # Transform infinite numbers to NaN

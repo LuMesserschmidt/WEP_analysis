@@ -82,7 +82,16 @@ sub_data = sub_data %>% mutate_cond(policy_id == 8916151,
 
 
 
-# clean 'missing' types
+## clean wrong dates
+sub_data = sub_data %>% mutate_cond(record_id == 'R_1rwDJbQOLkzV69MAj',
+                            date_start = as.Date("2020-03-13", "%Y-%m-%d")) %>%
+              mutate_cond(record_id == 'R_BSvrVDwm7M5IF8JAj',
+                          date_start = as.Date("2020-02-29", "%Y-%m-%d"),
+                          date_announced = as.Date("2020-02-28", "%Y-%m-%d"))
+                          
+  
+
+## clean 'missing' types
 
 # germany missing type, should be schools
 sub_data = sub_data %>% mutate_cond(policy_id == 1640670 & type == 'MISSING',

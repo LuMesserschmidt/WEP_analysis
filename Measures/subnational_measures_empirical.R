@@ -23,36 +23,36 @@ subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Pr
   #                                    sep = ",", stringsAsFactors = FALSE)[-c(1:2),]
 
 corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS')
-corona$date_end <- as.Date(corona$date_end, "1970-01-01")
+#corona$date_end <- as.Date(corona$date_end, "1970-01-01")
 
 ##Province names to match CoronaNET: unique(corona[which(corona$country == "Switzerland"),]$province)
 
-subnational_data[which(subnational_data$region == 'BE'),]$region <- 'Bern'
-subnational_data$region[which(subnational_data$region == 'ZH')] <- 'Zurich'
-subnational_data$region[which(subnational_data$region == 'LU')] <- 'Lucerne'
-subnational_data$region[which(subnational_data$region == 'UR')] <- 'Uri'
-subnational_data$region[which(subnational_data$region == 'SZ')] <- 'Schwyz'
-subnational_data$region[which(subnational_data$region == 'OW')] <- 'Obwalden'
-subnational_data$region[which(subnational_data$region == 'NW')] <- 'Nidwalden'
-subnational_data$region[which(subnational_data$region == 'GL')] <- 'Glarus'
-subnational_data$region[which(subnational_data$region == 'ZG')] <- 'Zug'
-subnational_data$region[which(subnational_data$region == 'FR')] <- 'Fribourg'
-subnational_data$region[which(subnational_data$region == 'SO')] <- 'Solothurn'
-subnational_data$region[which(subnational_data$region == 'BS')] <- 'Basel-Stadt'
-subnational_data$region[which(subnational_data$region == 'BL')] <- 'Basel-Landschaft'
-subnational_data$region[which(subnational_data$region == 'SH')] <- 'Schaffhausen'
-subnational_data$region[which(subnational_data$region == 'AR')] <- 'Appenzell Ausserrhoden'
-subnational_data$region[which(subnational_data$region == 'AI')] <- 'Appenzell Innerrhoden'
-subnational_data$region[which(subnational_data$region == 'SG')] <- 'Saint Gallen'
-subnational_data$region[which(subnational_data$region == 'GR')] <- 'Grisons'
-subnational_data$region[which(subnational_data$region == 'AG')] <- 'Aargau'
-subnational_data$region[which(subnational_data$region == 'TG')] <- 'Thurgau'
-subnational_data$region[which(subnational_data$region == 'TI')] <- 'Ticino'
-subnational_data$region[which(subnational_data$region == 'VD')] <- 'Vaud'
-subnational_data$region[which(subnational_data$region == 'VS')] <- 'Valais'
-subnational_data$region[which(subnational_data$region == 'NE')] <- 'Neuchatel'
-subnational_data$region[which(subnational_data$region == 'GE')] <- 'Geneva'
-subnational_data$region[which(subnational_data$region == 'JU')] <- 'Jura'
+#subnational_data[which(subnational_data$region == 'BE'),]$region <- 'Bern'
+#subnational_data$region[which(subnational_data$region == 'ZH')] <- 'Zurich'
+#subnational_data$region[which(subnational_data$region == 'LU')] <- 'Lucerne'
+#subnational_data$region[which(subnational_data$region == 'UR')] <- 'Uri'
+#subnational_data$region[which(subnational_data$region == 'SZ')] <- 'Schwyz'
+#subnational_data$region[which(subnational_data$region == 'OW')] <- 'Obwalden'
+#subnational_data$region[which(subnational_data$region == 'NW')] <- 'Nidwalden'
+#subnational_data$region[which(subnational_data$region == 'GL')] <- 'Glarus'
+#subnational_data$region[which(subnational_data$region == 'ZG')] <- 'Zug'
+#subnational_data$region[which(subnational_data$region == 'FR')] <- 'Fribourg'
+#subnational_data$region[which(subnational_data$region == 'SO')] <- 'Solothurn'
+#subnational_data$region[which(subnational_data$region == 'BS')] <- 'Basel-Stadt'
+#subnational_data$region[which(subnational_data$region == 'BL')] <- 'Basel-Landschaft'
+#subnational_data$region[which(subnational_data$region == 'SH')] <- 'Schaffhausen'
+#subnational_data$region[which(subnational_data$region == 'AR')] <- 'Appenzell Ausserrhoden'
+#subnational_data$region[which(subnational_data$region == 'AI')] <- 'Appenzell Innerrhoden'
+#subnational_data$region[which(subnational_data$region == 'SG')] <- 'Saint Gallen'
+#subnational_data$region[which(subnational_data$region == 'GR')] <- 'Grisons'
+#subnational_data$region[which(subnational_data$region == 'AG')] <- 'Aargau'
+#subnational_data$region[which(subnational_data$region == 'TG')] <- 'Thurgau'
+#subnational_data$region[which(subnational_data$region == 'TI')] <- 'Ticino'
+#subnational_data$region[which(subnational_data$region == 'VD')] <- 'Vaud'
+#subnational_data$region[which(subnational_data$region == 'VS')] <- 'Valais'
+#subnational_data$region[which(subnational_data$region == 'NE')] <- 'Neuchatel'
+#subnational_data$region[which(subnational_data$region == 'GE')] <- 'Geneva'
+#subnational_data$region[which(subnational_data$region == 'JU')] <- 'Jura'
 
 subnational_data <- subnational_data[-which(subnational_data$region == "National"),]
 subnational_data <- subnational_data[-which(subnational_data$region == "Latium"),]
@@ -123,8 +123,48 @@ corona_sel[which(corona_sel$target_country == "France" & corona_sel$type == 'Clo
                                                                                                         corona_sel$target_province == "Corsica"),]$date_end))
 
 
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+                   corona_sel$type_sub_cat == "Cancellation of a recreational or commercial event"),]
+
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+                                 corona_sel$type_sub_cat == "Postponement of a recreational or commercial event"),]
+
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+                                  corona_sel$type_sub_cat == "Annually recurring event allowed to occur with certain conditions"),]
+
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+                                  corona_sel$type_sub_cat == "Cancellation of an annually recurring event"),]
+
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" &
+                                  corona_sel$type_sub_cat == "Postponement of an annually recurring event"),]
+
 ###restrictions above 500 as the cut-off point
 
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "1000"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "1,000 max"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "5000"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_mass_gathering == "below 1000"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & is.na(corona_sel$type_mass_gathering)),]
+
+#Limit restrict. to mass gatherings to no special population targeted
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_who_gen == "People in nursing homes/long term care facilities,People with certain health conditions (please note which health conditions in the text entry)"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & corona_sel$type_who_gen == "Other population not specifed above"),]
+
+#Limit rsocial distancing to policies related to mask wearing
+
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on  private vehicles in public circulation"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Keeping a distance of at least 6 feet or 1.5 meters apart"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions ridership of other forms of public transportation (please include details in the text entry)"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of subways and trams"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of trains"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_sub_cat == "Restrictions on ridership of buses"),]
+
+#restrict social distancing to no special occupation
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_who_gen == "People in nursing homes/long term care facilities,Essential workers (please note their occuption in the text entry where applicable)"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & is.na(corona_sel$type_who_gen)),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_who_gen == "People of a certain age (please note age range in the text entry),People with certain health conditions (please note which health conditions in the text entry)"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_who_gen == "Non-essential workers (please note their occupation in the text entry where applicable)"),]
+corona_sel <- corona_sel[-which(corona_sel$type == "Social Distancing" & corona_sel$type_who_gen == "Prisoners"),]
 
 detach("package:plyr", unload = TRUE)
 
@@ -132,7 +172,7 @@ corona_sel <- corona_sel %>%
   group_by(target_country, type) %>%
   filter(!init_country_level == "Municipal") %>%
   select(target_country, init_country_level, target_province, type, type_sub_cat, date_start, date_end
-         #, target_city
+         , target_city
          )
 
 #corona_sel <- corona_sel[which(is.na(corona_sel$target_city)),]
