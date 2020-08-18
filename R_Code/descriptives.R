@@ -38,7 +38,8 @@ library(knitr)
 df_cases <- read_csv("data/Cases/cases.csv", guess_max = 10000)
 df_main <- read_csv("data/merged_final.csv", guess_max = 10000)
 df_hhi <- read_csv("Measures/hhi.csv", guess_max = 10000)
-df_PAX <- readRDS("~/Documents/github/corona_tscs/data/get_est.rds")
+df_PAX <- readRDS("~/Documents/github/corona_private/data/get_est.rds")
+df_fed <- read_csv("Measures/fed.csv", guess_max = 10000)
 df_selected<-df_main %>%
   filter(type%in%c("Closure and Regulation of Schools","Lockdown","Restrictions of Mass Gatherings")
   )
@@ -177,9 +178,8 @@ gg6
 # - PAX----
 
 
-get_est_sum <- df_PAX %>%
+get_est_sum <- get_est %>%
   ungroup %>%
-  filter(country!="Chad") %>%
   mutate(estimate=(estimate-min(estimate))/(max(estimate)-min(estimate))*100,
          date_announced=ymd(as.character(date_announced))) %>%
   group_by(country,date_announced) %>%
@@ -187,22 +187,21 @@ get_est_sum <- df_PAX %>%
             high_est=quantile(estimate,.95),
             low_est=quantile(estimate,.05)) %>%
   group_by(date_announced) %>%
-  mutate(`Country Rank`=rank(-med_est))
+  mutate(`Country Rank`=rank(med_est))
 
 
 gg7.1<- get_est_sum %>% 
   ggplot(aes(y=med_est,x=date_announced)) +
   geom_line(data=df, aes(group=country), color="lightgrey", size=0.25,show.legend=FALSE) +
   geom_line(data=df[df$country%in% c("Germany","France","Italy","Switzerland"),], aes(color=country),size=0.7,show.legend=T)+
-  scale_color_manual(name="Country",values=c('#00CC33','#E69F00','#CC0000',"#006699","#FF99FF","#99CCFF","#990099","yellow2"))+
+  scale_color_manual(name="Country",values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   theme_bw() +
   xlab("") +
   ylab("Policy Activity Index")+
   ggtitle("Policy Activity Index")
 
 
-
-
+gg7.1
 
 # - Table of Policies----
 
@@ -266,9 +265,27 @@ stargazer(df_main_summary, type="latex", float=F,covariate.labels = c("Centralit
 
 # Bivariate----
 # - Cases vs Federal/Unitary Scores----
+
+cases_national <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+
+cases_national <- cases_national %>%
+  filter(is.na(`Province/State`)) %>%
+  select(-`Province/State`, -Lat, -Long) %>%
+  data.table::melt(id.vars=c("Country/Region")) %>%
+  rename(country = `Country/Region`, date = variable, cases = value) %>%
+  mutate(date = as.Date(as.character(date), format = "%m/%d/%y"))%>%
+  filter(date=="2020-07-15")%>%
+  filter(!is.na(cases))
+cases_national$region <- "National"
+
+dat<- left_join(cases_national,df_fed,by=c("country"="Jurisdiction Name"))
+dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
+
+p<- ggplot(dat,aes(x=fed, y=log(cases), color=fed)) +
+  geom_boxplot()
+
+p
 # - Correlation Matrix (by date): Centrality, PAX, Heterogeneity, Adoption, Authority Index, Federalism ----
-# Correlation Matrix (TABLE A3: Correlation Table of Variables)----
-## Matrix 1: Correlation with other Labour Rights Measurements
 library(corrplot)
 ##Subset 
 y<- c("Centrality",
@@ -285,7 +302,7 @@ df_main_cor <- df_main[,cbind(y)]
 df_main_cor$"Concentration"<-df_main_cor$hhi
 df_main_cor$"Measure_H1_H2"<-df_main_cor$measure_H1_H2
 df_main_cor$"Measure_H3"<-df_main_cor$measure_H3
-df_main_cor1<- df_main_cor[,-c(6:8)]
+df_main_cor<- df_main_cor[,-c(6:8)]
 
 ## Correlation Function (calculates p-values). Source: http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 corstars <-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper", "lower"),
@@ -335,6 +352,6 @@ A<-corstars(df_main_cor)
 library(xtable)
 xtable(A)
 
-M <- cor(df_main_cor1,use="pairwise.complete.obs")
+M <- cor(df_main_cor,use="pairwise.complete.obs")
 
 C<-head(round(M,2))
