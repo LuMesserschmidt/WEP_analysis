@@ -1,7 +1,4 @@
 
-# TO DO: # 7472784, 248287 Germany Schlwesig-Holstien 'other' miscoded, should be 2 policies: restriction of government services, social distancing, and restrictions on businesses
-
-qualtrics %>% filter(policy_id %in% c(7472784, 248287)) %>% data.frame()
 # Bavaria: quarantine/curfew miscoded, should be lockdown
 sub_data = sub_data %>% mutate_cond(policy_id == 7776503,
                                     description = gsub("Curfew|Quarantine","Lockdown", description),

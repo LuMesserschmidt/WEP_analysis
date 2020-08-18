@@ -1,4 +1,20 @@
 # clean coronanet data for WEP countries
+
+## things to do
+#  DONE: clean province names
+
+# resolve orphans
+# incorporate updates strengthening/relaxing
+# DONE: clean whether the target is outside of the country or not
+# DONE: incorporate updates; update/end
+# DONE incorporate target_same variable
+
+# filter types
+# double check that there are no false negatives when you reduce by sub-type
+
+#swiss health monitoring national miscoded, 
+# why still missing data after 7-7??
+
 mutate_cond <-
   function(.data, condition, ..., envir = parent.frame()) {
     condition <- eval(substitute(condition), .data, envir)
@@ -24,10 +40,14 @@ setwd('~/Dropbox/West European Politics Corona Article/')
 # load data
 qualtrics = read_csv("WEP_analysis/data/CoronaNet/coronanet_internal.csv")
 
+
+# define parameters
+countries = c("Switzerland", "Germany", "France", "Italy") 
+policies = c('Lockdown', 'Closure and Regulation of Schools', 'Restrictions of Mass Gatherings')
+
 # -------------------
 # clean  CoronaNet data
 # -------------------
-countries = c("Switzerland", "Germany", "France", "Italy") 
 
 # Filter policies to WEP countries
 sub_data = qualtrics %>% dplyr:::filter(country %in% countries) 
@@ -40,42 +60,18 @@ sub_data = rbind(sub_data %>% mutate(missingDum = 0), missing)
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona.R')
 
 
-# if the policy type is 'health resources', make the date end one day after the date start
-# if the policy type is 'public awareness campaigns' or 'anti disinformaito campains', make the date end 14 days after the date start
-sub_data = sub_data %>% mutate(date_end = dplyr:::if_else(is.na(date_end) & type == 'Health Resources', date_start + days(1), date_end),
-                               date_end = dplyr:::if_else(is.na(date_end) & type %in% c( 'Public Awareness Campaigns', 'Anti-Disinformation Measures'), date_start + days(14), date_end))
-
- 
 # fill in target country with country if not an external border restriction  
 sub_data = sub_data %>% mutate(target_country = ifelse(is.na(target_country) &
                                                          type !='External Border Restrictions', country, target_country))
  
 
 # fill in target_country by hand if type is external border restriction and target_country is na
-
 sub_data = sub_data %>% mutate(target_country = case_when(
   policy_id == 8387693 ~ 'All countries',
   policy_id == 9415937 ~ 'Schengen Area',
   TRUE ~target_country
 ))
 
-
-# keep orphaned records for now --- investigate later
-(orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
-  all(unique(x) == 'update')}))) == TRUE) %>% unique()) 
-
-sub_data = sub_data %>% mutate(orphanDum = ifelse(policy_id %in% orphans, 1, 0))
-# sub_data = sub_data %>% filter(policy_id %!in% orphans)
-
-
-# replace end date with max last end date for now if end date is missing
-# and remove observations that come after that end date
-# end_date = max(sub_data$date_end, na.rm = TRUE)
-end_date = "2020-07-15"
-sub_data = sub_data %>% dplyr:::mutate(date_end = if_else(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
-                       # dplyr:::mutate(date_end = if_else(date_end > as.Date(end_date, "%Y-%m-%d"), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
-                                      filter(date_start<=as.Date(end_date, "%Y-%m-%d"))
- 
 # Filter policies to only national or provincial level policies
 sub_data = sub_data %>%
   filter(init_country_level %in% c("National", "Provincial")) %>%
@@ -83,7 +79,6 @@ sub_data = sub_data %>%
 
 
 # select only desired policies
-policies = c('Lockdown', 'Closure and Regulation of Schools', 'Restrictions of Mass Gatherings')
 sub_data = sub_data %>% filter(type %in% policies| 
                                  grepl('Wearing Mask|Mask Wearing', type_sub_cat))
 
@@ -93,15 +88,45 @@ sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event a
                                                      'Cancellation of a recreational or commercial event',
                                                      'Cancellation of an annually recurring event',
                                                      'Events at private residencies restricted (e.g. parties held at home)',
-                                                     'Higher education institutions (i.e. degree granting institutions)',
                                                      'Postponement of a recreational or commercial event',
                                                      'Postponement of an annually recurring event',
-                                                     'Prison population reduced (e.g. early release of prisoners)'))
+                                                     'Prison population reduced (e.g. early release of prisoners)',
+                                                     'Higher education institutions (i.e. degree granting institutions)'))
 
+
+
+# remove policies that are targeted toward particular populations
+sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
+                           is.na(type_who_gen))
+
+ 
 
 ## remove policy
 # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
 sub_data = sub_data %>% filter(record_id %!in% "R_3kzcET6o5pQyvP0NA")
+
+
+# keep orphaned records for now --- investigate later
+(orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
+  all(unique(x) == 'update')}))) == TRUE) %>% unique()) 
+ 
+sub_data = sub_data %>% mutate(orphanDum = ifelse(policy_id %in% orphans, 1, 0))
+
+
+# replace end date with max last end date for now if end date is missing
+# and remove observations that come after that end date
+# end_date = max(sub_data$date_end, na.rm = TRUE)
+end_date = "2020-07-15"
+sub_data = sub_data %>% dplyr:::mutate(date_end = if_else(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
+  # dplyr:::mutate(date_end = if_else(date_end > as.Date(end_date, "%Y-%m-%d"), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
+  filter(date_start<=as.Date(end_date, "%Y-%m-%d"))
+
+
+# if the policy type is 'health resources', make the date end one day after the date start
+# if the policy type is 'public awareness campaigns' or 'anti disinformaito campains', make the date end 14 days after the date start
+sub_data = sub_data %>% mutate(date_end = dplyr:::if_else(is.na(date_end) & type == 'Health Resources', date_start + days(1), date_end),
+                               date_end = dplyr:::if_else(is.na(date_end) & type %in% c( 'Public Awareness Campaigns', 'Anti-Disinformation Measures'), date_start + days(14), date_end))
+
 
 # fill in appropriate province names
 regions = read_csv("WEP_analysis/data/CoronaNet/country_region_clean.csv")
@@ -123,11 +148,6 @@ sub_data= sub_data %>%mutate(target_province = ifelse(country %in% 'Switzerland'
                                                ifelse(country %in%  'France' & init_country_level %in%  "National" & is.na(target_province), paste(regions[which(regions$country == 'France'), 'target_province']  %>% distinct%>% pull(), collapse = ';') , 
                                                        ifelse(country %in%  'Italy' & init_country_level %in%  "National" & is.na(target_province), paste(regions[which(regions$country == 'Italy'), 'target_province']  %>% distinct%>% pull(), collapse = ';') , target_province)))))
 
- 
-                        
-
-
- 
 # correct province names
 sub_data = sub_data %>% mutate(target_province = ifelse(record_id %in% c("R_3L4g6LrQ8bdQvtvNA"), 'Lower Saxony', target_province  ))
 
@@ -147,37 +167,89 @@ sub_data = sub_data %>%
                          #"Basilicata" = "Basilicate"
                        ))  
  
-
 # remove 'end of policy' policies
 sub_data = sub_data %>% filter(update_type %!in% 'End of Policy')
- 
 
-# # collapse by policy_id
-# test = sub_data %>% group_by(policy_id) %>%
-#               mutate(date_start = min(date_start),
-#                      date_end = max(date_end)) %>%
-#               distinct(policy_id,
-#                       date_start, 
-#                        date_end, 
-#                        country, 
-#                        init_country_level, 
-#                        province, 
-#                        type, 
-#                        type_sub_cat, 
-#                        type_mass_gathering, 
-#                        type_who_gen, 
-#                        school_status, 
-#                        target_country, 
-#                        target_province, 
-#                        target_city,
-#                        target_geog_level, 
-#                        update_level,
-#                       # target_who_what,
-#                       # target_direction,
-#                       # compliance,
-#                       # enforcer
-#                        ) %>% ungroup()
 
- 
+# save raw data 
 saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
  
+# -------------------
+# reshape CoronaNet data from raw data to long format 
+# -------------------
+
+# load data
+sub_data = readRDS("WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
+
+## reshape coronanet data to long format by  date-gov-target_province-type
+
+# make new variable called gov which is the same as 'province' but takes on the name of country if it is a national level policy
+sub_data = sub_data %>% mutate(gov = ifelse(init_country_level == "National" & is.na(province), country, province)) %>% select(-province)
+
+# aggregate sub_data by type such that you collapse over type_sub_cat
+sub_data = sub_data %>% group_by(policy_id) %>%
+  arrange(date_start, entry_type) %>%
+  mutate(type_sub_cat = paste(unique(type_sub_cat), collapse = '; '),
+         date_start = min(date_start, na.rm = TRUE),
+         date_end = max(date_end, na.rm = TRUE)) %>% 
+  distinct(gov, init_country_level, target_province, type, .keep_all = TRUE) %>%
+  ungroup()
+
+# reshape data from wide to long format for dates
+sub_data = sub_data %>% dplyr:::select(policy_id, record_id, entry_type, update_type,  update_level, type, type_sub_cat, school_status, init_country_level, country, gov,  target_country, target_geog_level, target_province, date_start, date_end)%>% 
+  gather(date_type, date, -policy_id,-record_id, -entry_type, -update_type, -update_level,  -type, -type_sub_cat, -school_status,-init_country_level, -country, -gov, -target_country, -target_geog_level, -target_province)
+
+# collapse such that there is a unique observation for each gov, target_province, type and date combination
+# the number of policies (policy_count) are  saved in the policy_id
+# and the record of the policy_id/record_id are aggregated
+sub_data= sub_data %>% group_by(gov, target_province, type, date) %>%
+  mutate(policy_count = length(unique(policy_id)) ,
+         policy_id = paste(unique(policy_id), collapse = ';'),
+         record_id = paste(unique(record_id), collapse = ';')
+  ) %>% 
+  distinct(gov, target_province, type, date, .keep_all = TRUE ) %>%
+  ungroup()
+
+
+### make data frame for full long format by date-gov-target_province-type
+end_date = "2020-07-15"
+dframe = expand_grid(date = seq(as.Date("2019-12-31", "%Y-%m-%d"), as.Date(end_date, "%Y-%m-%d"), by = "day"), regions , type = c("Social Distancing", policies))
+
+# merge data
+data_long = merge(dframe, sub_data, by = c( "date",  'country', "gov", "target_province", "type"), all.x = TRUE)
+
+
+# fill in  for record_id, policy_id 
+# https://stackoverflow.com/questions/35362575/equivalent-to-cumsum-for-string-in-r
+data_long = data_long %>% 
+  group_by(country, gov, target_province, type) %>%
+  arrange(country, gov, target_province, type, date) %>%
+  mutate(record_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(record_id), "", record_id)), accumulate = TRUE)))),
+         policy_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(policy_id), "", policy_id)), accumulate = TRUE))))) %>%
+  ungroup()
+
+# remove duplicate record_id and policy_ids
+data_long = data_long %>% group_by(country, gov, target_province, type) %>% 
+  mutate(policy_id = gsub("^;", "", paste(unique(unlist(lapply(str_split(policy_id, ';'), function(x) unique(x)))), collapse = ';')),
+         record_id = gsub("^;", "", paste(unique(unlist(lapply(str_split(record_id, ';'), function(x) unique(x)))), collapse = ';')))
+
+# fill in type and type_sub_cat and init_country_level
+data_long = data_long %>% 
+  group_by(country, gov, target_province, type) %>%
+  fill( type,  init_country_level, entry_type, target_country, target_geog_level, .direction = 'down')%>%
+  ungroup()
+
+# create measure of policy incidence (policy_count) and binary variable of whether a policy exists (policy_dum) by gov, target_province, date and type
+data_long = data_long %>% 
+  dplyr:::mutate(policy_dum = case_when(is.na(date_type)~0,
+                                        date_type == 'date_start' & entry_type=='new_entry'  ~ as.numeric(policy_count),
+                                        date_type == 'date_end' & entry_type=='new_entry' ~ as.numeric(policy_count) -1,
+                                        TRUE ~ 0)) %>%
+  group_by(country, gov, target_province, type ) %>%
+  mutate(policy_count = cumsum(policy_dum)) %>%
+  mutate(policy_dum = ifelse(policy_count>0, 1, 0)) %>%
+  ungroup()  
+
+
+# save reshaped data 
+saveRDS(data_long, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean_long.RDS")
