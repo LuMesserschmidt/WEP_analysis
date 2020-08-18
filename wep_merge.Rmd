@@ -1,0 +1,100 @@
+---
+title: "wep_merge"
+output: html_document
+---
+
+```{r}
+coronanet <- readRDS("data/CoronaNet/coronanet_internal_sub_clean.RDS") %>%
+  filter(country %in% c("France", "Germany", "Italy", "Switzerland"))
+```
+
+Regional data:
+
+```{r}
+merged_regional <- merged_regional %>% 
+  group_by(country, region) %>% 
+  mutate(
+    new_cases = cases - lag(cases),
+    new_cases_national = cases_national - lag(cases_national)
+  )%>%
+  drop_na(region)
+
+# compute columns as described in cases_concentration.R
+
+merged_regional <- merged_regional %>%
+  select(date, country, region, cases, new_cases, new_cases_national) %>%
+  unique() %>%
+  group_by(country, region) %>%
+  mutate(rolling_average = rollapply(cases, 7, mean, fill=NA)) %>%
+  mutate(past_average = rollapply(cases, 7, mean, align="right", fill=NA)) %>%
+  mutate(rolling_average_new_cases = rollapply(new_cases, 7, mean, fill=NA)) %>%
+  mutate(past_average_new_cases = rollapply(new_cases, 7, mean, align="right", fill=NA)) %>%
+  mutate(past_average_new_cases_national = rollapply(new_cases_national, 7, mean, align="right", fill=NA)) %>%
+  left_join(merged_regional %>% select(-region,-cases,-new_cases,-new_cases_national), by=c("date"="date","country"="country"))
+
+merged_regional$measure_H1_H2<- merged_regional$past_average_new_cases_national/merged_regional$sum_pop
+merged_regional$measure_H3<- (merged_regional$past_average_new_cases/merged_regional$eurostat_total_population_2019) - (merged_regional$measure_H1_H2)
+
+merged_regional <- merged %>%
+  filter(region != "National") %>%
+  unique() %>%
+  left_join(coronanet %>% filter(init_country_level != "National"),
+            by=c("date"="date_start", "country"="country", "region"="province"))
+
+eurostat_regional <- read_csv("data/eurostat_data_v2.csv") %>%
+  select(-eurostat_total_population_2019)
+
+merged_with_eurostat <- merged_regional %>%
+  left_join(eurostat_regional, by=c("region"="region", "code"="code")) %>%
+  unique()
+```
+
+National data:
+
+```{r}
+merged_national$eurostat_total_population_2019 <- sapply(1:nrow(merged_national), function(i) {if (merged_national$country[i] == "Germany") {83019213} else if (merged_national$country[i] == "France") {67012883} else if (merged_national$country[i] == "Italy") {59287270} else {8544527}})
+merged_national$sum_pop <- sapply(1:nrow(merged_national), function(i) {if (merged_national$country[i] == "Germany") {83019213} else if (merged_national$country[i] == "France") {67012883} else if (merged_national$country[i] == "Italy") {59287270} else {8544527}})
+
+merged_national <- merged_national %>% 
+  group_by(country, region) %>% 
+  mutate(
+    new_cases = cases - lag(cases),
+    new_cases_national = cases_national - lag(cases_national)
+  )%>%
+  drop_na(region)
+
+# compute columns as described in cases_concentration.R
+
+merged_national <- merged_national %>%
+  select(date, country, region, cases, new_cases, new_cases_national) %>%
+  unique() %>%
+  group_by(country, region) %>%
+  mutate(rolling_average = rollapply(cases, 7, mean, fill=NA)) %>%
+  mutate(past_average = rollapply(cases, 7, mean, align="right", fill=NA)) %>%
+  mutate(rolling_average_new_cases = rollapply(new_cases, 7, mean, fill=NA)) %>%
+  mutate(past_average_new_cases = rollapply(new_cases, 7, mean, align="right", fill=NA)) %>%
+  mutate(past_average_new_cases_national = rollapply(new_cases_national, 7, mean, align="right", fill=NA)) %>%
+  left_join(merged_national %>% select(-region,-cases,-new_cases,-new_cases_national), by=c("date"="date","country"="country"))
+
+merged_national$measure_H1_H2<- merged_national$past_average_new_cases_national/merged_national$sum_pop
+merged_national$measure_H3<- (merged_national$past_average_new_cases/merged_national$eurostat_total_population_2019) - (merged_national$measure_H1_H2)
+
+merged_with_corona_national <- merged_national %>%
+  left_join(coronanet %>% filter(init_country_level == "National"), by=c("date"="date_start", "country"="country")) %>%
+  select(-province)
+
+eurostat_national <- read_csv("data/eurostat_data_national.csv")
+
+merged_with_eurostat_national <- merged_with_corona_national %>%
+  left_join(eurostat_national %>% select(-eurostat_total_population_2019, -code, -"Electricity, gas, steam and air conditioning supply_Share of employment in manufacturing total - percentage", -"Mining and quarrying_Share of employment in manufacturing total - percentage", -"Water supply; sewerage, waste management and remediation activities_Share of employment in manufacturing total - percentage"), by=c("country"="region"))
+```
+
+Merge regional and national data:
+
+```{r}
+merged_total_final <- rbind(mr, merged_with_eurostat_national) %>%
+  arrange(date, country, region) %>%
+  unique()
+```
+
+
