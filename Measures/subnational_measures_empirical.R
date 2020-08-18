@@ -65,7 +65,7 @@ date <- seq(as.Date("2020/1/1"), as.Date(format(Sys.Date(), format="%Y-%m-%d")),
 
 base <- expand.grid(province = province,
                     date = date,
-                    type = sub_type_cat
+                    type = type
 )
 base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 26))
 base <- base[, c('country', 'province', 'date', 'type')]
@@ -328,6 +328,8 @@ summary(h2.b <- lm(hetero ~ as.factor(country) + hhi_new + I(past_average_nation
 
 stargazer(h2.a, h2.b, digits = 2)
 
+#################
+#################
 #School closures
 
 base_school_preschool <- base_cases2[which(base_cases2$type_sub_cat == 'Preschool or childcare facilities (generally for children ages 5 and below)'),]

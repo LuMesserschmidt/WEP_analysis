@@ -16,27 +16,38 @@
 #For a binary policy i, the maximum level of unevenness happens when 50% of the states implement policy i, and the other half do not
 #while very simple, a simple formula could get this:
 
-data = data.frame(prov =c("state a","state b","state c","state d","state e","state f","state g","state h", "state i"),
-                          policy_A = c(0,0,0,0,0,0,0,0,0),
-                          policy_B = c(1,0,0,0,0,0,0,0,0),
-                          policy_C = c(1,1,0,0,0,0,0,0,0),
-                          policy_D = c(1,1,1,0,0,0,0,0,0),
-                          policy_E = c(1,1,1,1,0,0,0,0,0),
-                          policy_F = c(1,1,1,1,1,0,0,0,0),
-                          policy_G = c(1,1,1,1,1,1,0,0,0),
-                          policy_H = c(1,1,1,1,1,1,1,0,0),
-                          policy_I = c(1,1,1,1,1,1,1,1,0),
-                          policy_J = c(1,1,1,1,1,1,1,1,1))
+data = data.frame(prov =c("state a","state b","state c","state d","state e","state f"),
+                          policy_A = c(0,0,0,0,0,0),
+                          policy_B = c(1,0,0,0,0,0),
+                          policy_C = c(1,1,0,0,0,0),
+                          policy_D = c(1,1,1,0,0,0),
+                          policy_E = c(1,1,1,1,0,0),
+                          policy_F = c(1,1,1,1,1,0),
+                          policy_F = c(1,1,1,1,1,1))
 
 prop.policies <- NULL
 fragmentation_policies <- NULL
 for (i in 2:ncol(data)){
   prop.policies[i-1] <- sum(data[,i])/length(data[,i])
-  fragmentation_policies[i-1] <- -1*(abs((prop.policies[i-1]-0.5)*2))+1
+  fragmentation_policies[i-1] <- -2*abs(prop.policies[i-1]-0.5)+1
 }
 
 plot(prop.policies, fragmentation_policies)
 mean(fragmentation_policies) #mean policy heterogeneity within a country
+
+
+data_plot <- as.data.frame(cbind(prop.policies, fragmentation_policies))
+
+example_plot <- ggplot(data_plot, aes(x = prop.policies, y = fragmentation_policies)) + 
+  geom_point(size = 3) + theme(axis.text.x = element_text(color = "black", size = 14, hjust = .5, vjust = .5, face = "plain"),
+        axis.text.y = element_text(color = "black", size = 14, hjust = 1, vjust = 0, face = "plain"),  
+        axis.title.x = element_text(color = "black", size = 14, hjust = .5, vjust = 0, face = "plain"),
+        axis.title.y = element_text(color = "black", size = 14, hjust = .5, vjust = .5, face = "plain")) +
+  scale_x_continuous(name="Proportion of subnational units adopting a policy type") +
+  scale_y_continuous(name="Heterogeneity index") + theme_bw(base_size = 16) +
+  geom_line()
+
+
 
 # maximum heterogeneity --> 50% of the states implement policy i
 # minimum heterogeneity --> 0% or 100% of the states implement policy i

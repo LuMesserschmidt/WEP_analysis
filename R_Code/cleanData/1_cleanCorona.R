@@ -64,7 +64,7 @@ sub_data = sub_data %>% mutate(target_country = case_when(
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
   all(unique(x) == 'update')}))) == TRUE) %>% unique()) 
 
-
+sub_data = sub_data %>% mutate(orphanDum = ifelse(policy_id %in% orphans, 1, 0))
 # sub_data = sub_data %>% filter(policy_id %!in% orphans)
 
 
