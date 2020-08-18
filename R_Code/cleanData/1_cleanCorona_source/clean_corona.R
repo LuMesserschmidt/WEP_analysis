@@ -1,4 +1,7 @@
 
+# TO DO: # 7472784, 248287 Germany Schlwesig-Holstien 'other' miscoded, should be 2 policies: restriction of government services, social distancing, and restrictions on businesses
+
+qualtrics %>% filter(policy_id %in% c(7472784, 248287)) %>% data.frame()
 # Bavaria: quarantine/curfew miscoded, should be lockdown
 sub_data = sub_data %>% mutate_cond(policy_id == 7776503,
                                     description = gsub("Curfew|Quarantine","Lockdown", description),
@@ -12,7 +15,6 @@ sub_data = sub_data %>% mutate_cond(policy_id == 11030 ,
                                     type = 'Social Distancing',
                                     type_sub_cat = "Restrictions on  private vehicles in public circulation")
 
-# 7472784, 248287 Germany Schlwesig-Holstien 'other' miscoded, should be 2 policies: restriction of government services, social distancing, and restrictions on businesses
 
 # Germany, Rheinland-Pflaz 'other' miscoded, should be restrictions of mass gatherings
 sub_data = sub_data %>% mutate_cond(policy_id == 5567772 ,
@@ -83,13 +85,34 @@ sub_data = sub_data %>% mutate_cond(policy_id == 8916151,
 
 
 ## clean wrong dates
-sub_data = sub_data %>% mutate_cond(record_id == 'R_1rwDJbQOLkzV69MAj',
+sub_data = sub_data %>% 
+              mutate_cond(record_id == 'R_1rwDJbQOLkzV69MAj',
                             date_start = as.Date("2020-03-13", "%Y-%m-%d")) %>%
               mutate_cond(record_id == 'R_BSvrVDwm7M5IF8JAj',
                           date_start = as.Date("2020-02-29", "%Y-%m-%d"),
-                          date_announced = as.Date("2020-02-28", "%Y-%m-%d"))
-                          
-  
+                          date_announced = as.Date("2020-02-28", "%Y-%m-%d"))%>%
+              mutate_cond(record_id == 'R_eEYKavm4cHzaEKJNA',
+                                    date_start = as.Date("2020-03-14", "%Y-%m-%d"),
+                                    date_end = as.Date("2020-04-30", "%Y-%m-%d"))%>%
+              mutate_cond(record_id %in% c( 'R_2aIXQCrRqvYXDtpCu',
+                                            'R_2aIXQCrRqvYXDtpDp',
+                                            'R_2aIXQCrRqvYXDtpBf'),
+                            date_start = as.Date("2020-03-17", "%Y-%m-%d"),
+                              date_end = NA)  %>%
+              mutate_cond(record_id %in% c( 'R_1r9CqgxJiBgq3GBCu',
+                                            'R_1r9CqgxJiBgq3GBDp',
+                                            'R_1r9CqgxJiBgq3GBBf'),
+                              date_start = as.Date("2020-03-20", "%Y-%m-%d"))   
+                 
+
+ # Italy miscoded as social distancing, should be lockdown                         
+sub_data = sub_data %>% mutate_cond(record_id == 'R_3PGCfLQhawRZbthNA',
+                                    type = 'Lockdown') 
+
+# Switzerland miscoded as social distancing, should be lockdown
+sub_data = sub_data %>% mutate_cond(policy_id == '2154117',
+                                    type = 'Lockdown',
+                                    type_sub_cat = 'People in nursing homes/long term care facilities')
 
 ## clean 'missing' types
 
