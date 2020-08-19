@@ -198,6 +198,8 @@ corona_sel$gov <- ifelse(corona_sel$gov == "Baden-Wuerttemberg,Bavaria,Berlin,Br
 corona_sel$gov <- ifelse(corona_sel$gov == "Auvergne-Rhone-Alpes,Bourgogne-Franche-Comte,Brittany,Centre,Corsica,French Guiana,Grand Est,Guadeloupe,Hauts-de-France,Ile-de-France,Martinique,Mayotte,Normandy,Nouvelle-Aquitaine,Occitanie,Pays de la Loire,Provence-Alpes-Cote d'Azur,Reunion", "France", corona_sel$gov)
 corona_sel$gov <- ifelse(corona_sel$gov == "Aargau,Appenzell Ausserrhoden,Appenzell Innerrhoden,Basel-City,Basel-Landschaft,Bern,Fribourg,Geneva,Glarus,Grisons,Jura,Lucerne,Neuchatel,Nidwalden,Obwalden,Saint Gallen,Schaffhausen,Schwyz,Solothurn,Thurgau,Ticino,Uri,Valais,Vaud,Zug,Zurich", "Switzerland", corona_sel$gov)
 
+### end of coronanet recodings
+
 corona_sel_active <- corona_sel[, c('gov', 'date_start', 'type')]
 colnames(corona_sel_active) <- c('country', 'date', 'type')
 corona_sel_active$active1 <- 1
@@ -286,7 +288,7 @@ grouping_col <- grouping_col %>%
 
 base_cases2 <- merge(base_cases, grouping_col, x.all = TRUE)
 
-#I start dividing the dataset by policy type
+#I divide the dataset by policy type
 
 #Lockdown
 
@@ -330,6 +332,52 @@ stargazer(h2.a, h2.b, digits = 2)
 
 #################
 #################
+#Restrictions of mass gatherings
+
+base_mass <- base_cases2[which(base_cases2$type == 'Restrictions of Mass Gatherings'),]
+
+base_mass$policy_active <- ifelse(base_mass$policy_activity > 0, 1, 0)
+
+hetero_mass <- base_mass %>%
+  group_by(country, date) %>%
+  mutate(hetero = -1*(abs((sum(policy_active)/length(policy_active)-0.5)*2))+1) %>% 
+  select(-province, -policy_activity) %>%
+  slice(1) %>%
+  ungroup
+
+ggplot(hetero_mass, aes(x = date, y = hetero)) + 
+  geom_line(aes(color = country), size = 1) +
+  scale_color_manual(values = c("#00AFBB", "#E7B800", "red", "green")) +
+  theme_minimal()
+
+
+# Model specification (national level)
+
+hetero_mass <- hetero_mass %>%
+  group_by(country, date) %>%
+  slice(1) %>%
+  ungroup
+
+
+#merged <- read_csv("~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/merged_final.csv", guess_max = 10000)
+
+national_data_mass <- merge(hetero_mass, hhi_data[,-1], by = c('country', 'date'))
+
+national_data_mass$hhi_cumulative <- as.numeric(national_data_lockdown$hhi_cumulative)
+national_data_mass$hhi_new <- as.numeric(national_data_lockdown$hhi_new)
+
+summary(m2.a <- lm(hetero ~ as.factor(country) + poly(as.Date(date), 3), data = national_data_lockdown))
+summary(m2.b <- lm(hetero ~ as.factor(country) + hhi_new + I(past_average_national_new_cases/sum_pop) + poly(as.Date(date), 3),
+                   data = national_data_lockdown))
+
+stargazer(m2.a, m2.b, digits = 2)
+
+###############
+###############
+#Policy subtypes
+###############
+###############
+
 #School closures
 
 base_school_preschool <- base_cases2[which(base_cases2$type_sub_cat == 'Preschool or childcare facilities (generally for children ages 5 and below)'),]

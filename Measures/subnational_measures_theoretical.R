@@ -40,13 +40,21 @@ data_plot <- as.data.frame(cbind(prop.policies, fragmentation_policies))
 
 example_plot <- ggplot(data_plot, aes(x = prop.policies, y = fragmentation_policies)) + 
   geom_point(size = 3) + theme(axis.text.x = element_text(color = "black", size = 14, hjust = .5, vjust = .5, face = "plain"),
-        axis.text.y = element_text(color = "black", size = 14, hjust = 1, vjust = 0, face = "plain"),  
-        axis.title.x = element_text(color = "black", size = 14, hjust = .5, vjust = 0, face = "plain"),
-        axis.title.y = element_text(color = "black", size = 14, hjust = .5, vjust = .5, face = "plain")) +
+                               axis.text.y = element_text(color = "black", size = 14, hjust = 1, vjust = 0, face = "plain"),  
+                               axis.title.x = element_text(color = "black", size = 14, hjust = .5, vjust = 0, face = "plain"),
+                               axis.title.y = element_text(color = "black", size = 14, hjust = .5, vjust = .5, face = "plain")) +
   scale_x_continuous(name="Proportion of subnational units adopting a policy type") +
   scale_y_continuous(name="Heterogeneity index") + theme_bw(base_size = 16) +
   geom_line()
 
+png(filename="Example_plot_heterogeneity.png", 
+    units="in", 
+    width=9, 
+    height=6, 
+    pointsize=15, 
+    res=1000)
+example_plot
+dev.off()
 
 
 # maximum heterogeneity --> 50% of the states implement policy i
