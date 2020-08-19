@@ -281,10 +281,21 @@ cases_national$region <- "National"
 dat<- left_join(cases_national,df_fed,by=c("country"="Jurisdiction Name"))
 dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
 
-p<- ggplot(dat,aes(x=fed, y=log(cases), color=fed)) +
+gg11.1<- dat%>% filter(!is.na(fed)) %>% ggplot(aes(x=fed, y=log(cases), color=fed)) +
   geom_boxplot()
 
-p
+
+
+a<-ggplot(dat, aes(x = log(cases)))+
+  geom_smooth(aes(y = RAI, colour = "Regional Authority Index"))+
+  geom_smooth(aes(y = Self, colour = "Self-Rule"))+
+  ggtitle("Regional Authority Indices")+
+  ylab("Score")+
+  xlab("Cases (log)")+
+  theme_bw()
+gg11.2<- a+labs(color='Indices')
+
+
 # - Correlation Matrix (by date): Centrality, PAX, Heterogeneity, Adoption, Authority Index, Federalism ----
 library(corrplot)
 ##Subset 
