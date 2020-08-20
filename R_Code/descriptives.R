@@ -41,16 +41,16 @@ df_hhi <- read_csv("Measures/hhi.csv", guess_max = 10000)
 df_PAX <- readRDS("~/Documents/github/corona_private/data/get_est.rds")
 df_fed <- read_csv("Measures/fed.csv", guess_max = 10000)
 df_selected<-df_main %>%
-  filter(type%in%c("Closure and Regulation of Schools","Lockdown","Restrictions of Mass Gatherings")
+  filter(type%in%c("Closure and Regulation of Schools","Lockdown","Restrictions of Mass Gatherings","Social Distancing")
   )
 
 # Descriptive----
 # - Cases Plot----
 
-gg1.1<- ggplot(df_cases, aes(x=date, y=cases, color=country,group=region)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") + facet_wrap(~region)+ ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()
-gg1.2<- ggplot(df_cases %>% filter(region == "National") %>% select(date, country, region, cases, past_average_new_cases_national) %>% unique(), aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()
+gg1.1<- ggplot(df_cases, aes(x=date, y=cases_national, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") +ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()
+gg1.2<- ggplot(df_cases, aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()
 
-gg1.1
+gg1.2
 #Combine 
 gg3<- ggplot(df_cases %>% filter(region == "National") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date,color=country))+ geom_line(aes(y =cases_national))
 gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40),linetype="dashed")+scale_color_manual(values=c('red','blue',"green","orange"))
@@ -263,6 +263,27 @@ stargazer(df_main_summary, type="latex", float=F,covariate.labels = c("Centralit
                                                                       "measure_H3"),
           title = "Summary Statistics", style = "commadefault",decimal.mark=".",out="Results/summary_statistics_model.tex")
 
+# Distribution H measures
+
+plot_h12<- cases %>%ggplot( aes(x=date, y=measure_H1_H2, color=country)) +
+  geom_line(size=0.15)+
+  geom_point(size=0.2) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  ylab("Measure H1 H2") +
+  xlab("")
+
+plot_h3<- cases %>%ggplot( aes(x=date, y=measure_H3, color=country)) +
+  geom_line(size=0.15)+
+  geom_point(size=0.2) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  ylab("Measure H3") +
+  xlab("")
+
+plot_h3
 # Bivariate----
 # - Cases vs Federal/Unitary Scores----
 
