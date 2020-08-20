@@ -131,22 +131,74 @@ for (i in seq_along(days)) {
 
 write_csv(cases_combined, "data/Cases/combined_cases.csv")
 
-# ANELIA TO DO----
-View(search_eurostat("NUTS 3", type = "all"))
-
-
+# Eurostat data (TODO ANELIA)
 geodict <- read_delim("data/EUROSTAT_NUTS2_controls/geo.dic", "\t", col_names = c("code", "region"))
-agrdict <- read_csv("C:/Users/Anelia/Desktop/projects/coronanet/WEP/WEP_analysis/data/itm_newa.csv") %>%
+agrdict <- read_csv("data/EUROSTAT_NUTS2_controls/itm_newa.csv") %>%
   select(Label, Notation)
-nacer2dict <- read_csv("C:/Users/Anelia/Desktop/projects/coronanet/WEP/WEP_analysis/data/nace_r2.csv") %>%
+nacer2dict <- read_csv("data/EUROSTAT_NUTS2_controls/nace_r2.csv") %>%
   select(Label, Notation)
-indicsbdict <- read_csv("C:/Users/Anelia/Desktop/projects/coronanet/WEP/WEP_analysis/data/indic_sb.csv") %>%
+indicsbdict <- read_csv("data/EUROSTAT_NUTS2_controls/indic_sb.csv") %>%
   select(Label, Notation)
 
+# restrict data to subnational Germany, France, Italy
+reg <- function(x) { grepl("^DE[1-9A-G]$", x) | grepl("^FR[1-9A-M]$|^FRY[1-5]$", x) | grepl("^IT[A-Z][1-9]$", x)}
+# restrict data to national Germany, Switzerland, France, Italy
+regex_national <- function(x) { grepl("^DE$", x) | grepl("^CH$", x) | grepl("^FR$", x) | grepl("^IT$", x)}
 
+# fill in population data
+# Germany, France, Italy (NUTS2)
+population_total_GFI <- get_eurostat("demo_r_d2jan", time_format = "num") %>%
+  filter(reg(geo)) %>%
+  filter(time == max(time)) %>%
+  filter(age == "TOTAL") %>%
+  left_join(geodict, by=c("geo" = "code")) %>%
+  dcast(geo + region ~ sex, fun.aggregate = median, value.var = "values") %>%
+  select(geo, region, "T") %>%
+  setnames(c("geo", "region", "eurostat_total_population_2019"))
+# Switzerland (NUTS3)
+population_total_swiss <- get_eurostat("demo_r_pjangrp3", time_format = "num") %>%
+  filter(grepl("CH[0-9][0-9][0-9]", geo)) %>%
+  filter(age == "TOTAL" & sex == "T" & time == "2019") %>%
+  select(geo, eurostat_total_population_2019 = values) %>%
+  left_join(geodict, by=c("geo" = "code"))
+population_total <- rbind(population_total_GFI, population_total_swiss)
 
-#reg <- function(x) { grepl("^DE[1-9A-G]$", x) | grepl("^CH0[1-7]$", x) | grepl("^FR[1-9A-M]$|^FRY[1-5]$", x) | grepl("^IT[A-Z][1-9]$", x)}
-reg <- function(x) { grepl("^DE$", x) | grepl("^CH$", x) | grepl("^FR$", x) | grepl("^IT$", x)}
+# merge population data with cases data
+# fix names
+population_total$region <- gsub("Baden-Württemberg", "Baden-Wuerttemberg", population_total$region)
+population_total$region <- gsub("Bayern", "Bavaria", population_total$region)
+population_total$region <- gsub("Hessen", "Hesse", population_total$region)
+population_total$region <- gsub("Niedersachsen", "Lower Saxony", population_total$region)
+population_total$region <- gsub("Nordrhein-Westfalen", "North Rhine-Westphalia", population_total$region)
+population_total$region <- gsub("Sachsen", "Saxony", population_total$region)
+population_total$region <- gsub("Thüringen", "Thuringia", population_total$region)
+population_total$region <- gsub("Île de France", "Île-de-France", population_total$region)
+population_total$region <- gsub("Centre - Val de Loire", "Centre-Val de Loire", population_total$region)
+population_total$region <- gsub("Bourgogne - Franche-Comté", "Bourgogne-Franche-Comté", population_total$region)
+population_total$region <- gsub("Nord-Pas-de-Calais - Picardie", "Hauts-de-France", population_total$region)
+population_total$region <- gsub("Alsace - Champagne-Ardenne - Lorraine", "Grand Est", population_total$region)
+population_total$region <- gsub("Pays-de-la-Loire", "Pays de la Loire", population_total$region)
+population_total$region <- gsub("Aquitaine - Limousin - Poitou-Charentes", "Nouvelle-Aquitaine", population_total$region)
+population_total$region <- gsub("Languedoc-Roussillon - Midi-Pyrénées", "Occitanie", population_total$region)
+population_total$region <- gsub("Auvergne - Rhône-Alpes", "Auvergne-Rhône-Alpes", population_total$region)
+population_total$region <- gsub("Valle d'Aosta/Vallée d'Aoste", "Valle d'Aosta", population_total$region)
+population_total$region <- gsub("Genève", "Geneva", population_total$region)
+population_total$region <- gsub("Freiburg", "Fribourg", population_total$region)
+population_total$region <- gsub("Neuchâtel", "Neuchatel", population_total$region)
+population_total$region <- gsub("St. Gallen", "Saint Gallen", population_total$region)
+population_total$region <- gsub("Graubünden", "Grisons", population_total$region)
+population_total$region <- gsub("Luzern", "Lucerne", population_total$region)
+population_total$region <- gsub("Basel-Stadt", "Basel-City", population_total$region)
+population_total$region <- gsub("Zürich", "Zurich", population_total$region)
+population_total <- rbind(population_total, data.frame(geo=NA, region="Trentino-Alto Adige", eurostat_total_population_2019=531178 + 541098)) %>%
+  filter(!region %in% c("Provincia Autonoma di Bolzano/Bozen", "Provincia Autonoma di Trento"))
+
+# merge data
+cases_combined <- cases_combined %>%
+  left_join(population_total, by=c("region"="region"))
+
+# ----- BEGIN TODO ANELIA -----
+# other Eurostat data
 activity_rates <- get_eurostat("lfst_r_lfp2actrtn", time_format = "num") %>%
   filter(reg(geo)) %>%
   filter(time == max(time)) %>%
@@ -282,13 +334,6 @@ unemployment_sex <- get_eurostat("lfst_r_lfu3pers", time_format = "num") %>%
   select(region, "F", "M", "T") %>%
   setnames(c("region", "eurostat_female_unemployment_thousand_2019", "eurostat_male_unemployment_thousand_2019", "eurostat_total_unemployment_thousand_2019"))
 
-
-
-get_eurostat("demo_r_d3dens", time_format = "num") %>%
-  filter(grepl("CH0[0-9][0-9]", geo))
-
-
-
 eurostat_data <- activity_rates %>%
   left_join(agriculture, by="region") %>%
   left_join(poverty_risk, by="region") %>%
@@ -307,12 +352,7 @@ eurostat_data <- activity_rates %>%
   left_join(severe_deprivation, by="region") %>%
   left_join(unemployment_sex, by="region")
 
-
-
 write_csv(eurostat_data, "data/eurostat_data_national.csv")
-
-
-
 
 activity_rates %>%
   dcast(geo + region ~ isced11 + age + sex, fun.aggregate = median, value.var = "values")
@@ -354,9 +394,6 @@ unemployment_gender %>%
   select(-unit) %>%
   dcast(geo + region ~ age + sex, fun.aggregate = median, value.var = "values")
 
-
-
-
 #activity_rates <- activity_rates %>%
 #  select(-citizen, -unit, -time)
 activity_rates2 <- activity_rates %>%
@@ -387,18 +424,11 @@ sex <- activity_rates2 %>%
   select(-val) %>%
   arrange(geo, region, values)
 
-
-
 education %>%
   inner_join(sex, by=c("geo" = "geo", "region" = "region", "values" = "values")) %>%
   inner_join(age, by=c("geo" = "geo", "region" = "region", "values" = "values"))
 
-
-
-
 merged <- read_csv("C:/Users/Anelia/Desktop/projects/coronanet/WEP/WEP_analysis/data/merged_v2.csv")
-
-
 
 eurostat  <- eurostat %>%
   filter(!code %in% c("CH040", "CH070", "DE30", "DE300", "DE_CAP", "DE40",
@@ -407,50 +437,20 @@ eurostat  <- eurostat %>%
                       "FRL0", "FRM0", "FRY10", "FRY20", "FRY30", "FRY40", "FRY50",
                       "ITC20"))
 
-
-
 eurostat$region <- gsub("Provincia Autonoma di Trento", "Trentino-Alto Adige", eurostat$region)
-
-
-
 
 eurostat %>%
   group_by(region) %>%
   tally()
 
-
-
 cases_combined %>%
   group_by(region) %>%
   tally()
-
-
 
 cases_combined %>%
   right_join(coronanet %>% filter(init_country_level != "National"), by=c("country" = "country", "region" = "province", "date" = "date_announced")) %>%
   left_join(eurostat, by=c("region" = "region")) #%>%
 #write_csv("C:/Users/Anelia/Desktop/projects/coronanet/WEP/WEP_analysis/data/merged_v1.csv")
-
-
-
-swiss <- get_eurostat("demo_r_pjangrp3", time_format = "num") %>%
-  filter(grepl("CH[0-9][0-9][0-9]", geo)) %>%
-  filter(age == "TOTAL" & sex == "T" & time == "2019") %>%
-  select(geo, eurostat_population_2019 = values) %>%
-  left_join(geodict, by=c("geo" = "code"))
-
-
-
-swiss$region <- gsub("St. Gallen", "Saint Gallen", swiss$region)
-
-
-
-
-swiss %>%
-  arrange(region)
-
-
-
 
 cases_combined %>%
   filter(country == "Switzerland") %>%
@@ -555,7 +555,7 @@ for (i in seq_along(days)) {
     }
   }
 '
-#----
+#---- END TODO ANELIA
 
 cases_combined<- read_csv("data/Cases/combined_cases.csv")
 

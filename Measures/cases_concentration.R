@@ -6,8 +6,10 @@ library(readr)
 library(tidyverse)
 library(scales)
 
-names(combined_cases)
+
 combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","cases_national","country","eurostat_total_population_2019","code")
+
+
 
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
@@ -50,6 +52,20 @@ cases$ratio_new2 <- (cases$new_cases/cases$new_cases_national)^2
 
 
 
+library(zoo)
+cases <- cases %>%
+  unique() %>%
+  group_by(country, region) %>%
+  mutate(rolling_average = rollapply(cases, 7, mean, fill=NA)) %>%
+  mutate(past_average = rollapply(cases, 7, mean, align="right", fill=NA)) %>%
+  mutate(rolling_average_new_cases = rollapply(new_cases, 7, mean, fill=NA)) %>%
+  mutate(past_average_new_cases = rollapply(new_cases, 7, mean, align="right", fill=NA)) %>%
+  mutate(past_average_new_cases_national = rollapply(new_cases_national, 7, mean, align="right", fill=NA)) 
+
+cases$measure_H1_H2<- cases$past_average_new_cases_national/cases$sum_pop
+cases$measure_H3<- (cases$past_average_new_cases/cases$eurostat_total_population_2019) - (cases$measure_H1_H2)
+
+
 cases<-cases[!is.na(cases$region),]
 
 write_csv(cases,"data/Cases/cases.csv")
@@ -58,6 +74,7 @@ hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum
                                                     hhi_new=sum(ratio_new2,na.rm=T)
                                                     )
 write.csv(hhi,"Measures/hhi.csv")
+
 # Vizualization
 
 plot_hhi_cum<- hhi %>%ggplot( aes(x=date, y=hhi_cumulative, color=country)) +
@@ -79,6 +96,7 @@ plot_hhi_new<- hhi %>%ggplot( aes(x=date, y=hhi_new, color=country)) +
   ylab("Relative Herfindahl Concentration (new cases)") +
   xlab("")
 
+plot_hhi_new
 
 ggsave(filename="Results/plot_hhi_cum.jpeg",
        plot=plot_hhi_cum,
