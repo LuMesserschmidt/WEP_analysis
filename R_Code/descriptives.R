@@ -47,12 +47,12 @@ df_selected<-df_main %>%
 # Descriptive----
 # - Cases Plot----
 
-gg1.1<- ggplot(df_cases %>% filter(region == "National") %>% select(date, country, region, cases, cases_national) %>% unique(), aes(x=date, y=cases, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") + ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()
-gg1.2<- ggplot(df_main %>% filter(region == "National") %>% select(date, country, region, cases, past_average_new_cases_national) %>% unique(), aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()
+gg1.1<- ggplot(df_cases, aes(x=date, y=cases, color=country,group=region)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") + facet_wrap(~region)+ ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()
+gg1.2<- ggplot(df_cases %>% filter(region == "National") %>% select(date, country, region, cases, past_average_new_cases_national) %>% unique(), aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()
 
-gg1.2
+gg1.1
 #Combine 
-gg3<- ggplot(df_main %>% filter(region == "National") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date,color=country))+ geom_line(aes(y =cases_national))
+gg3<- ggplot(df_cases %>% filter(region == "National") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date,color=country))+ geom_line(aes(y =cases_national))
 gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40),linetype="dashed")+scale_color_manual(values=c('red','blue',"green","orange"))
 gg1.3 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+theme_bw()
 
@@ -60,19 +60,19 @@ gg1.3
 
 # For each country individual
 
-gg3<- ggplot(df_main %>% filter(region == "National", country=="Switzerland") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
+gg3<- ggplot(df_cases %>% filter(region == "National", country=="Switzerland") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
 gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
 gg1.4 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Switzerland")+theme_bw()
 
-gg3<- ggplot(df_main %>% filter(region == "National", country=="France") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
+gg3<- ggplot(df_cases %>% filter(region == "National", country=="France") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
 gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
 gg1.5 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases France")+theme_bw()
 
-gg3<- ggplot(df_main %>% filter(region == "National", country=="Italy") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
+gg3<- ggplot(df_cases %>% filter(region == "National", country=="Italy") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
 gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
 gg1.6 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Italy")+theme_bw()
 
-gg3<- ggplot(df_main %>% filter(region == "National", country=="Germany") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
+gg3<- ggplot(df_cases %>% filter(region == "National", country=="Germany") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
 gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
 gg1.7 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Germany")+theme_bw()
 

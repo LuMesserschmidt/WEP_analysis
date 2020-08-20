@@ -5,14 +5,28 @@ library(hhi)
 library(readr)
 library(tidyverse)
 library(scales)
+library(zoo)
 
-
-combined_cases <- read_csv("data/merged_final.csv") %>% select("date","region","cases","cases_national","country","eurostat_total_population_2019","code")
-
+combined_cases <- read_csv("data/Cases/combined_cases.csv") 
 
 
 combined_cases <- combined_cases[!duplicated(combined_cases),]
 combined_cases <- combined_cases %>% filter(region!="sum_cases") 
+
+# Fixing Canton issue and France issue (around July)
+
+combined_cases$cases[combined_cases$country=="Switzerland" & combined_cases$date<="2020-02-25"]<-0
+combined_cases$cases[combined_cases$country=="Switzerland" & combined_cases$cases==0 & combined_cases$date>="2020-02-25"]<-NA
+combined_cases$cases[combined_cases$country=="France" & combined_cases$date>="2020-06-26" & combined_cases$date<="2020-07-01"]<-NA
+#combined_cases$cases[combined_cases$country=="France" & combined_cases$date=="2020-03-26"]<-NA
+#combined_cases$cases[combined_cases$country=="France" & combined_cases$date=="2020-03-08"]<-NA
+
+
+combined_cases <- combined_cases %>% 
+  group_by(country, region) %>% 
+  mutate(cases = ceiling(na.approx(cases, maxgap = Inf, rule = 2,na.rm=FALSE)))
+
+
 combined_cases<-combined_cases %>% group_by(region) %>% 
   mutate(
     new_cases = cases - lag(cases),
@@ -20,6 +34,41 @@ combined_cases<-combined_cases %>% group_by(region) %>%
   )%>%
   filter(region!="National")%>%
   drop_na(region)
+
+#Fix case reporting problems for cantons (2 times interpolation required) 
+
+combined_cases$cases[combined_cases$new_cases<0]<-NA
+
+a <- combined_cases %>% 
+  group_by(country, region) %>% 
+  mutate(cases_2 = ceiling(na.approx(cases, maxgap = Inf, rule = 2,na.rm=FALSE)))%>%
+  select(-cases,-new_cases,-new_cases_national)
+
+#Rerun with new interpolated new cases
+combined_cases<-a %>% group_by(region) %>% 
+  mutate(
+    new_cases = cases_2 - lag(cases_2),
+    new_cases_national = cases_national - lag(cases_national)
+  )%>%
+  filter(region!="National")%>%
+  drop_na(region)
+combined_cases$cases_2[combined_cases$new_cases<0]<-NA
+a <- combined_cases %>% 
+  group_by(country, region) %>% 
+  mutate(cases = ceiling(na.approx(cases_2, maxgap = Inf, rule = 2,na.rm=FALSE)))%>%
+  select(-cases_2,-new_cases,-new_cases_national)
+
+
+#re-calculate national values based on interpolated regional values
+cases_nat <- a %>% dplyr::group_by(date, country) %>% dplyr::summarize(cases_national =sum(cases,na.rm = T))
+a<-a%>%select(-cases_national) %>% left_join(.,cases_nat, by=c("country","date"))
+
+combined_cases<- a %>% dplyr:: group_by(region) %>% 
+  dplyr::mutate(
+    new_cases = cases - lag(cases),
+    new_cases_national = cases_national - lag(cases_national))
+
+
 
 
 sum_pop<- combined_cases %>% group_by(country,date)%>% summarise(sum_pop=sum(eurostat_total_population_2019, na.rm=T))%>% ungroup()
@@ -96,7 +145,7 @@ plot_hhi_new<- hhi %>%ggplot( aes(x=date, y=hhi_new, color=country)) +
   ylab("Relative Herfindahl Concentration (new cases)") +
   xlab("")
 
-plot_hhi_new
+
 
 ggsave(filename="Results/plot_hhi_cum.jpeg",
        plot=plot_hhi_cum,

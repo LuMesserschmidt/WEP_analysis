@@ -99,11 +99,59 @@ sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event a
 sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
                            is.na(type_who_gen))
 
- 
+# select only restrictions of mass gatherings above a certain threshold 
+test = sub_data %>% filter(type_mass_gathering %!in% c(
+                                  "Max of 10 people at sports training/competition",
+                                  "Max of 25 people at sports training/competition",
+                                  "max. 5",
+                                  "Maximum five people or two households, in private/family areas, up to 50 people, if this is for imperative reasons.",
+                                  "Maximum of 10",
+                                  "No more than two households may now gather in public.",
+                                  "20",
+                                  "75",
+                                  "inside: 50, outside: 100",
+                                  "5",
+                                  "2",
+                                  "10",
+                                  "8",
+                                  "gatherings in public: max 30 people")) %>%
+  mutate(
+        type_mass_gathering = recode(type_mass_gathering,
+                                     "1,000 max" = "1000")
+) %>% mutate_cond(
+  record_id %in% c("R_BRNlMFEnGMb6v1TNA"),
+  type_mass_gathering = '100') %>% 
+  mutate_cond(
+    record_id %in% c("R_2DV3bzyAiv9dWo1NA"),
+    type_mass_gathering = '150'
+  ) %>% 
+  mutate_cond(
+    record_id %in% c("R_238I6RvAk7kxLiXNA"),
+    type_mass_gathering = '200') %>%
+  mutate_cond(
+    record_id %in% c("R_3rPojgRhfH9fjfMNA", "R_1QKEi57lkPGHNY7Ci", "R_2aaTB59xbpmsOS5Ci"),
+    type_mass_gathering = NA
+  ) %>% 
+  mutate_cond(
+    record_id %in% c("R_OfFlR1wLXeMsH0BNA"),
+    type_mass_gathering = "350"
+  )
+  
+  
+  
+table(test$type, test$country)
+table(sub_data$type, sub_data$country)
+table(test$type_mass_gathering)
 
-## remove policy
-# February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
-sub_data = sub_data %>% filter(record_id %!in% "R_3kzcET6o5pQyvP0NA")
+test %>% filter(grepl('Max 75 people', type_mass_gathering))%>% data.frame()
+test %>% filter(policy_id %in% 3156419)%>% data.frame()
+%>% select(, policy_id, record_id, description, type_mass_gathering) 
+# need to create new sub types for indoors vs outdoors : R_OfFlR1wLXeMsH0BNA
+
+## remove irrelevant policies
+  # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
+  # In Switzerland based on Art. 6 und 7c CO-VID-19-Verordnung 2 (mass gathering at events and gatherings in public) from the 2nd of April on the new COVID law allows the police of Aargau to monitor public spaces in Aargau through cameras and use imaging devices of third parties without the permission of the federal commissioner for data protection and public issues.
+sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA", "R_1lxIGQvx9vZZYM8NA"))
 
 
 # keep orphaned records for now --- investigate later

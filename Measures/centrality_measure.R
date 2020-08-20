@@ -70,8 +70,12 @@ network5 = graph_from_data_frame(edges[which(edges$link5 ==1),], nodes, directed
 
 network6 = graph_from_data_frame(edges[which(edges$link6 ==1),], nodes, directed = TRUE)     
  
+plot(network2)
 
- 
+hub_score(network1)
+hub_score(network3)
+
+
 g1 = ggraph(network1, layout = 'kk') +
 geom_edge_link(arrow = arrow(angle = 30, length = unit(0.15, "inches"),
                              ends = "last", type = "closed")) + 
