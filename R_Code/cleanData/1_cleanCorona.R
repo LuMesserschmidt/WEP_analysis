@@ -40,7 +40,7 @@ setwd('~/Dropbox/West European Politics Corona Article/')
 # load data
 qualtrics = read_csv("WEP_analysis/data/CoronaNet/coronanet_internal.csv")
 
-
+qualtrics %>% filter(grepl("2170661", policy_id)) %>% data.frame()
 # define parameters
 countries = c("Switzerland", "Germany", "France", "Italy") 
 policies = c('Lockdown', 'Closure and Regulation of Schools', 'Restrictions of Mass Gatherings')
@@ -78,11 +78,41 @@ sub_data = sub_data %>%
   filter(target_country %in% countries) 
 
 
+## remove irrelevant policies
+
+sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA",  # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
+                                                 "R_1lxIGQvx9vZZYM8NA", # In Switzerland based on Art. 6 und 7c CO-VID-19-Verordnung 2 (mass gathering at events and gatherings in public) from the 2nd of April on the new COVID law allows the police of Aargau to monitor public spaces in Aargau through cameras and use imaging devices of third parties without the permission of the federal commissioner for data protection and public issues.
+                                                 "R_1LSBNoVwpZakIfZNA",# currently miscoded --- add back in when its fixed
+                                                 'R_sb9IyocQDRID7b3NA',# currently miscoded --- add back in when its fixed
+                                                 'R_1eCZx9LHWfawhbdNA',# currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
+                                                 'R_qLC2DxYYk0CEQ25NA', # currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
+                                                 'R_3ku0aYbVr9CHtEVNA',# currently miscoded  The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
+                                               'R_2tM6ncrVSTXJyJUNA',# curently micoded, should be a city level policy 
+                                               'R_1CHDPKjV4cVUREBNA',# miscoded, shouldn't be restrictions of mass gatherings
+                                               'R_sHdwM3uydrZkLvzNA',# The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
+                                               'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
+                                               'R_pLy55nCKN6rp7gdNA',# On February 25, the Swiss canton of St. Gallen announced that there are no restrictions on mass gatherings and no events will be canceled. Organizers should provide the canton with lists of participants and contact details; especially international participants
+                                               'R_1q9AXImZ4raUmOCNA',# On 3rd of March the canton of Zurich in Switzerland recommends to cancel events that include people from Italy, China, South Korea and Iran.
+                                               'R_3mlDLgfh7yZRBlaNA', # On the 28th of May, the Berlin Senate announced that from the 30th of May onwards, public demonstrations in the open would be allowed again, without any limitation to the number of participants, provided that the minimum distance of 1.5 meters and other hygiene rules are observed.
+                                               ' R_1MX0RRHcaCgiTXaNA',# From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced an obligation for sports events to take place behind closed doors.
+                                               'R_blUCYuaQoqSHAl3NA',  # Switzerland, Geneva--"The cantonal police, with the support of the Civil Protection (PCi), proceeded this morning, Saturday March 28, to a cordon of the lakeside surroundings in order to prohibit the parking of private vehicles.
+                                                'R_1JUu6XJWWJSvPJ3NA', # From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced the closing of public baths except for closed-door competitions.
+                                                'R_3G8uMNTTO2IBD7SNA', # In the German state of Rheinland-Pfalz, different households will now be allowed to take residence with each other in public spaces as of May 13
+                                                'R_vBNxXQwwxlUCukNNA', # The Canton of Zug allows ice hockey games in the Bossard Arena to continue without spectators on February 28th 2020
+                                                'R_1MX0RRHcaCgiTXaNA',# From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced an obligation for sports events to take place behind closed doors.
+                                               'R_xlQQ2Wj92uVqOjfNA', # The Italian government is banning all sporting matches and public events until next month in several regions of Northern Italy (restrictions of mass gatherings).\n\nThe new measures, approved last night, extends the urgent steps the government is taking for the containment of the coronavirus outbreak outside the exclusion zone. \n\nThe decree bans all events and sport matches in public and private locations from Febuary 26 until March 1.
+                                                'R_1mJaJpu5i50Y5myNA', # In Italy Ligury region suspends check-in and guest entrance to university dormitories from March 1 till the midnight of March 8
+                                               'R_reT4y2kUxvffllLNA')) # In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
+
 # select only desired policies
 sub_data = sub_data %>% filter(type %in% policies| 
                                  grepl('Wearing Mask|Mask Wearing', type_sub_cat))
 
+# remove policies that are targeted toward particular populations
+sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
+                                 is.na(type_who_gen))
 
+# remove smaller restrictions on mass gatherings
 sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event allowed to occur with certain conditions',
                                                      'Attendance at religious services restricted (e.g. mosque/church closings)',
                                                      'Cancellation of a recreational or commercial event',
@@ -93,67 +123,16 @@ sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event a
                                                      'Prison population reduced (e.g. early release of prisoners)',
                                                      'Higher education institutions (i.e. degree granting institutions)'))
 
+# select gatherings that restrict gatherings of 500 or more people
+sub_data = sub_data %>%
+  mutate(type_mass_gathering = as.numeric(str_trim(type_mass_gathering)))
 
-
-# remove policies that are targeted toward particular populations
-sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
-                           is.na(type_who_gen))
-
-# select only restrictions of mass gatherings above a certain threshold 
-test = sub_data %>% filter(type_mass_gathering %!in% c(
-                                  "Max of 10 people at sports training/competition",
-                                  "Max of 25 people at sports training/competition",
-                                  "max. 5",
-                                  "Maximum five people or two households, in private/family areas, up to 50 people, if this is for imperative reasons.",
-                                  "Maximum of 10",
-                                  "No more than two households may now gather in public.",
-                                  "20",
-                                  "75",
-                                  "inside: 50, outside: 100",
-                                  "5",
-                                  "2",
-                                  "10",
-                                  "8",
-                                  "gatherings in public: max 30 people")) %>%
-  mutate(
-        type_mass_gathering = recode(type_mass_gathering,
-                                     "1,000 max" = "1000")
-) %>% mutate_cond(
-  record_id %in% c("R_BRNlMFEnGMb6v1TNA"),
-  type_mass_gathering = '100') %>% 
-  mutate_cond(
-    record_id %in% c("R_2DV3bzyAiv9dWo1NA"),
-    type_mass_gathering = '150'
-  ) %>% 
-  mutate_cond(
-    record_id %in% c("R_238I6RvAk7kxLiXNA"),
-    type_mass_gathering = '200') %>%
-  mutate_cond(
-    record_id %in% c("R_3rPojgRhfH9fjfMNA", "R_1QKEi57lkPGHNY7Ci", "R_2aaTB59xbpmsOS5Ci"),
-    type_mass_gathering = NA
-  ) %>% 
-  mutate_cond(
-    record_id %in% c("R_OfFlR1wLXeMsH0BNA"),
-    type_mass_gathering = "350"
-  )
-  
-  
-  
-table(test$type, test$country)
-table(sub_data$type, sub_data$country)
-table(test$type_mass_gathering)
-
-test %>% filter(grepl('Max 75 people', type_mass_gathering))%>% data.frame()
-test %>% filter(policy_id %in% 3156419)%>% data.frame()
-%>% select(, policy_id, record_id, description, type_mass_gathering) 
-# need to create new sub types for indoors vs outdoors : R_OfFlR1wLXeMsH0BNA
-
-## remove irrelevant policies
-  # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
-  # In Switzerland based on Art. 6 und 7c CO-VID-19-Verordnung 2 (mass gathering at events and gatherings in public) from the 2nd of April on the new COVID law allows the police of Aargau to monitor public spaces in Aargau through cameras and use imaging devices of third parties without the permission of the federal commissioner for data protection and public issues.
-sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA", "R_1lxIGQvx9vZZYM8NA"))
-
-
+sub_data = sub_data %>% filter( type %in% c('Social Distancing',
+                                     'Lockdown', 'Closure and Regulation of Schools')|
+                           type_mass_gathering > 500|is.na(type_mass_gathering))
+ 
+ 
+ 
 # keep orphaned records for now --- investigate later
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
   all(unique(x) == 'update')}))) == TRUE) %>% unique()) 

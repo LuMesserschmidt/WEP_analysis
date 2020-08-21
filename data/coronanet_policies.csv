@@ -1,0 +1,1553 @@
+target_country,init_country_level,type,type_sub_cat,date_start,date_end,target_city,gov
+Switzerland,Provincial,Health Resources,Unspecified Health Materials,2020-03-17,2021-03-16,NA,Appenzell Ausserrhoden
+Switzerland,Provincial,Health Resources,Unspecified Health Staff,2020-03-17,2021-03-16,NA,Appenzell Ausserrhoden
+Germany,National,Health Monitoring,NA,2020-02-01,2021-02-01,NA,Germany
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-04-02,2020-12-31,NA,Aargau
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-05-14,2020-12-31,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-03-23,2020-12-31,NA,Basel-City
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-05-25,2020-12-31,NA,Neuchatel
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-06-03,2020-12-31,NA,Obwalden
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-07-09,2020-12-31,NA,Basel-City
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-09,2020-12-31,NA,Basel-City
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-06-05,2020-10-31,NA,Canton Grisons
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-06-17,2020-10-31,NA,Bremen
+Germany,National,Health Resources,Medicine/Drugs,2020-04-08,2020-09-30,NA,Germany
+Germany,National,Health Resources,Hospitals,2020-04-08,2020-09-30,NA,Germany
+Germany,National,Health Resources,Other Health Infrastructure,2020-04-08,2020-09-30,NA,Germany
+Switzerland,National,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-05-17,2020-09-27,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-05-13,2020-09-26,NA,Appenzell Ausserrhoden
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-07-13,2020-08-31,NA,Zug
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-13,2020-08-31,NA,Zug
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-07-01,2020-08-31,NA,Hamburg
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-05-04,2020-08-31,NA,Schleswig-Holstein
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-05-04,2020-08-31,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Beaches,2020-06-26,2020-08-31,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Tourist Sites,2020-06-26,2020-08-31,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-06-26,2020-08-31,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-07-09,2020-08-31,NA,Solothurn
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-09,2020-08-31,NA,Solothurn
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-07-09,2020-08-31,NA,Solothurn
+Switzerland,Provincial,Health Resources,Masks,2020-05-29,2020-08-31,NA,Ticino
+Switzerland,Provincial,Health Resources,Hand Sanitizer,2020-05-29,2020-08-31,NA,Ticino
+Switzerland,Provincial,Health Resources,Other Health Materials,2020-05-29,2020-08-31,NA,Ticino
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-27,2020-08-31,NA,Hamburg
+Germany,Provincial,Social Distancing,NA,2020-03-22,2020-08-31,NA,Hamburg
+Italy,Provincial,Social Distancing,Other Mask Wearing Policy,2020-05-04,2020-08-31,NA,Lombardy
+Italy,Provincial,Internal Border Restrictions,NA,2020-05-04,2020-08-31,NA,Lombardy
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-09,2020-08-31,NA,Basel-Landschaft
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-07-09,2020-08-31,NA,Basel-Landschaft
+Germany,Provincial,Restrictions of Mass Gatherings,Attendance at religious services restricted (e.g. mosque/church closings),2020-05-26,2020-08-31,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-07,2020-08-31,NA,Basel-Landschaft
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-07-07,2020-08-31,NA,Basel-Landschaft
+Switzerland,Provincial,Restrictions of Mass Gatherings,Events at private residencies restricted (e.g. parties held at home),2020-07-13,2020-08-31,NA,Zug
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-04-17,2020-08-31,NA,Lower Saxony
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-18,2020-08-31,NA,Lower Saxony
+Switzerland,Provincial,Restrictions of Mass Gatherings,Events at private residencies restricted (e.g. parties held at home),2020-07-09,2020-08-31,NA,Solothurn
+Switzerland,Provincial,Restrictions of Mass Gatherings,Other mass gatherings not specified above restricted,2020-07-09,2020-08-31,NA,Solothurn
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-05-08,2020-08-31,NA,Saarland
+Switzerland,Provincial,Internal Border Restrictions,NA,2020-06-02,2020-08-30,NA,Geneva
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-16,2020-08-26,NA,Lower Saxony
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-06-10,2020-08-16,NA,Hesse
+Germany,Provincial,Social Distancing,NA,2020-06-29,2020-08-30,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-06-29,2020-08-30,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-29,2020-08-30,NA,Schleswig-Holstein
+Germany,Provincial,Other Policy Not Listed Above,NA,2020-06-29,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-06-29,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-25,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,External Border Restrictions,NA,2020-03-13,2020-08-05,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-08-01,NA,Berlin
+Germany,Provincial,Social Distancing,NA,2020-06-27,2020-08-01,NA,Berlin
+Switzerland,Provincial,Lockdown,NA,2020-06-06,2020-07-31,NA,Appenzell Innerrhoden
+Germany,Provincial,Internal Border Restrictions,NA,2020-04-03,2020-07-31,NA,Hamburg
+Germany,Provincial,Health Resources,Other Heath Staff,2020-04-22,2020-07-31,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-18,2020-07-22,NA,Baden-Wuerttemberg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-07-03,2020-08-09,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-03,2020-08-09,NA,Ticino
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-07-03,2020-08-09,NA,Ticino
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-20,2020-07-17,NA,Saxony
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-20,2020-07-17,NA,Saxony
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-20,2020-07-17,NA,Saxony
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-07-17,NA,Saxony
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-07-17,NA,Saxony
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Government Services,Unspecified public facilities,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Social Distancing,NA,2020-03-23,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Private health offices,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Pharmacies,2020-06-06,2020-07-17,NA,Saxony
+Germany,Provincial,Restrictions of Mass Gatherings,Attendance at religious services restricted (e.g. mosque/church closings),2020-03-20,2020-07-17,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-06-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Quarantine,Other Quarantine,2020-06-13,2020-08-30,NA,Thuringia
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-06-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-06-13,2020-07-15,NA,Thuringia
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-06-08,2020-07-11,NA,Geneva
+Germany,Provincial,Internal Border Restrictions,NA,2020-06-26,2020-07-10,NA,"Gütersloh, Warendorf"
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-07-08,2020-07-08,NA,Zurich
+Switzerland,National,Social Distancing,Wearing Masks inside public or commercial building,2020-04-22,2020-07-06,NA,Switzerland
+Switzerland,National,Social Distancing,Other Mask Wearing Policy,2020-04-22,2020-07-06,NA,Switzerland
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-05-11,2020-07-06,NA,Fribourg
+Switzerland,National,Restrictions of Mass Gatherings,NA,2020-03-20,2020-07-05,NA,Switzerland
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-04-20,2020-07-03,NA,Thurgau
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-20,2020-07-03,NA,Thurgau
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-20,2020-07-03,NA,Thurgau
+Switzerland,National,Social Distancing,NA,2020-04-02,2020-07-02,NA,Switzerland
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-23,2020-07-01,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-23,2020-07-01,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-23,2020-07-01,NA,North Rhine-Westphalia
+Switzerland,Provincial,Lockdown,NA,2020-05-11,2020-07-01,NA,Saint Gallen
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-04-17,2020-06-30,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-27,2020-08-31,NA,Hamburg
+Switzerland,Provincial,Health Resources,Hospitals,2020-04-02,2020-06-30,NA,Aargau
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-04-02,2020-06-30,NA,Aargau
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-03-19,2020-06-30,NA,Ticino
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-13,2020-06-30,NA,Hamburg
+Switzerland,Provincial,Declaration of Emergency,NA,2020-05-20,2020-06-30,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-04-01,2020-06-30,NA,Nidwalden
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-05-18,2020-06-30,NA,Hamburg
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-13,2020-06-30,NA,Fribourg
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-05-27,2020-06-30,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-19,2020-06-29,NA,Basel-Landschaft
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-06-08,2020-08-30,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-08,2020-08-30,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-08,2020-06-28,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-08,2020-06-28,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-06-08,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-15,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-10,2020-06-27,NA,Saxony
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-22,2020-06-24,NA,Glarus
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-11,2020-06-22,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-05-11,2020-06-22,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-11,2020-06-22,NA,Lower Saxony
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-12,2020-06-22,NA,Bern
+Switzerland,Provincial,Restrictions of Mass Gatherings,Other mass gatherings not specified above restricted,2020-04-22,2020-06-21,NA,Neuchatel
+Switzerland,National,Restrictions of Mass Gatherings,NA,2020-06-20,2020-06-20,NA,Switzerland
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-13,2020-06-19,NA,Fribourg
+Switzerland,Provincial,Lockdown,NA,2020-03-14,2020-06-19,NA,Saint Gallen
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-11,2020-06-15,NA,Bern
+Germany,Provincial,Hygiene,Other Areas Hygiene Measures Applied,2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Social Distancing,Restrictions ridership of other forms of public transportation (please include details in the text entry),2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-05-09,2020-06-15,NA,Brandenburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-20,2020-06-15,NA,Grisons
+Germany,Provincial,Hygiene,NA,2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-05-17,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Hygiene,Hygiene measures for commercial areas,2020-05-09,2020-06-15,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-05-08,2020-06-14,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-08,2020-06-14,NA,Saarland
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-05-08,2020-06-14,NA,Saarland
+Germany,Provincial,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-05-08,2020-06-14,NA,Saarland
+Germany,Provincial,Lockdown,NA,2020-06-05,2020-08-30,NA,Thuringia
+Switzerland,National,Restriction and Regulation of Businesses,Retail Businesses,2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Shopping Centers,2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-05-11,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-05-11,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-11,2020-06-08,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-04-21,2020-06-08,NA,Glarus
+Switzerland,Provincial,Quarantine,NA,2020-04-27,2020-06-08,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-05-06,2020-06-08,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-05-06,2020-06-08,NA,Bern
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-05-11,2020-06-08,NA,Ticino
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-11,2020-06-08,NA,Ticino
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-04-30,2020-06-08,NA,Grisons
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-04-30,2020-06-08,NA,Grisons
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-30,2020-06-08,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-03-12,2020-06-08,NA,Ticino
+Switzerland,Provincial,Lockdown,NA,2020-05-20,2020-06-08,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-04-27,2020-06-08,NA,Grisons
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-04-30,2020-06-07,NA,Bern
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-18,2020-06-07,NA,Schleswig-Holstein
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-05-01,2020-06-07,NA,Neuchatel
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-18,2020-08-30,NA,Schleswig-Holstein
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-20,2020-06-07,NA,Solothurn
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-18,2020-06-28,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-18,2020-06-28,NA,Schleswig-Holstein
+Germany,Provincial,Other Policy Not Listed Above,NA,2020-05-18,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-18,2020-08-09,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-17,2020-06-06,NA,Saxony
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-11,2020-06-05,NA,Switzerland
+Germany,Provincial,Restrictions of Mass Gatherings,Attendance at religious services restricted (e.g. mosque/church closings),2020-03-14,2020-07-17,NA,Saxony
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-05-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-05-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Quarantine,Other Quarantine,2020-05-13,2020-08-30,NA,Thuringia
+Switzerland,Provincial,Lockdown,NA,2020-04-20,2020-06-05,NA,Solothurn
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-13,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-18,2020-06-05,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-18,2020-06-05,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-18,2020-06-05,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-26,2020-06-05,NA,Hesse
+Germany,National,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-05-06,2020-06-05,NA,Germany
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-05-13,2020-06-05,NA,Thuringia
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-05-13,2020-06-05,NA,Thuringia
+Germany,Provincial,Social Distancing,NA,2020-05-13,2020-06-05,NA,Thuringia
+France,Provincial,Internal Border Restrictions,NA,2020-05-11,2020-06-02,NA,Corsica
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-17,2020-06-02,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-03-25,2020-05-31,NA,Neuchatel
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-06,2020-08-31,NA,Hamburg
+France,National,Health Resources,Masks,2020-03-03,2020-05-31,NA,France
+Germany,Provincial,Health Resources,Other Heath Staff,2020-04-01,2020-05-31,NA,Bavaria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-04-01,2020-05-31,NA,Nidwalden
+Germany,Provincial,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-05-05,2020-05-31,NA,Hamburg
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-05-05,2020-05-31,NA,Hamburg
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-03-23,2020-05-31,NA,Lucerne
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-05-06,2020-05-31,NA,Hamburg
+Italy,Provincial,Health Testing,NA,2020-05-18,2020-05-31,NA,Lombardy
+Switzerland,Provincial,Social Distancing,NA,2020-03-19,2020-05-31,NA,Saint Gallen
+Switzerland,National,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-03-21,2020-05-31,NA,Switzerland
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-17,2020-05-31,NA,Hamburg
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-29,2020-05-31,NA,Uri
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-04-01,2020-05-31,NA,Grisons
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-03-25,2020-05-31,NA,Lucerne
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-05-06,2020-06-30,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-05-13,2020-06-30,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-15,2020-05-27,NA,Fribourg
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Pharmacies,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Publishing activities,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Financial service activities except insurance and pension funding,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Warehousing and support activities for transportation,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-04,2020-05-27,NA,Saxony-Anhalt
+Switzerland,Provincial,Declaration of Emergency,NA,2020-05-05,2020-05-26,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-20,2020-05-25,NA,Ticino
+Switzerland,National,Other Policy Not Listed Above,NA,2020-03-16,2020-05-25,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-17,2020-05-25,NA,Ticino
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-05-04,2020-05-24,NA,Neuchatel
+Switzerland,Provincial,Internal Border Restrictions,NA,2020-04-08,2020-05-21,NA,Appenzell Innerrhoden
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-05-20,NA,Zug
+Switzerland,Provincial,Quarantine,NA,2020-05-01,2020-05-20,NA,Zug
+Germany,Provincial,Lockdown,NA,2020-05-03,2020-05-20,NA,Bremen
+France,National,Declaration of Emergency,NA,2020-03-24,2020-07-24,NA,France
+Germany,Provincial,Lockdown,NA,2020-03-31,2020-05-18,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Internal Border Restrictions,NA,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Pharmacies,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,External Border Restrictions,Other External Border Restriction,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Italy,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-06,2020-05-17,NA,Abruzzo
+Italy,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-06,2020-05-17,NA,Abruzzo
+Italy,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-06,2020-05-17,NA,Abruzzo
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Italy,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-05,2020-05-17,NA,Lombardy
+Italy,Provincial,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-04-05,2020-05-17,NA,Lombardy
+Switzerland,Provincial,Social Distancing,Restrictions on  private vehicles in public circulation,2020-05-16,2020-05-17,NA,Geneva
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Other Policy Not Listed Above,NA,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Italy,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-05-04,2020-05-17,NA,Italy
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-05-04,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Health Resources,Hospitals,2020-03-20,2020-05-15,NA,Bavaria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-04-01,2020-05-13,NA,Bern
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-13,2020-05-13,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-03-16,2020-05-12,NA,Fribourg
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-05-11,NA,Lucerne
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-05-11,NA,Lucerne
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-05-11,NA,Lucerne
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-05-11,NA,Lucerne
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-05-11,NA,North Rhine-Westphalia
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-05-11,NA,North Rhine-Westphalia
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-05-11,NA,North Rhine-Westphalia
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-05-11,NA,North Rhine-Westphalia
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-04-17,2020-07-03,NA,Thurgau
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-17,2020-07-03,NA,Thurgau
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-17,2020-07-03,NA,Thurgau
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-16,2020-05-11,NA,Fribourg
+France,Provincial,Quarantine,Other Quarantine,2020-03-12,2020-05-11,NA,Corsica
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-05-11,NA,Zug
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-05-11,NA,Zug
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-05-11,NA,Zug
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-05-11,NA,Zug
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-03-17,2020-05-11,NA,Fribourg
+France,Provincial,External Border Restrictions,Other External Border Restriction,2020-04-04,2020-05-11,NA,Corsica
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-05-11,NA,Saint Gallen
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-06-22,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-06-22,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-06-22,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-06-22,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-06-22,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-18,2020-05-11,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-18,2020-05-11,NA,Lower Saxony
+France,National,Restriction and Regulation of Businesses,All or unspecified essential businesses,2020-04-13,2020-05-11,NA,France
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-16,2020-05-11,NA,-
+Switzerland,Provincial,Social Distancing,Other Mask Wearing Policy,2020-03-14,2020-07-31,NA,Appenzell Innerrhoden
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-27,2020-05-10,NA,Uri
+Switzerland,Provincial,Social Distancing,Restrictions on  private vehicles in public circulation,2020-05-09,2020-05-17,NA,Geneva
+Switzerland,National,Restriction and Regulation of Businesses,Retail Businesses,2020-04-27,2020-05-10,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Restaurants,2020-04-27,2020-05-10,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Bars,2020-04-27,2020-05-10,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Shopping Centers,2020-04-27,2020-05-10,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-27,2020-05-10,NA,Switzerland
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-05-10,NA,Lucerne
+Switzerland,Provincial,Restriction and Regulation of Government Services,Tourist Sites,2020-04-20,2020-05-10,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-04-27,2020-05-10,NA,Uri
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified essential businesses,2020-04-30,2020-05-10,NA,Bavaria
+Switzerland,Provincial,Lockdown,NA,2020-04-11,2020-05-08,NA,Schwyz
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-03-13,2020-05-08,NA,Bern
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-20,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-20,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-05-06,NA,Schleswig-Holstein
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-05-06,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-04-20,2020-05-06,NA,Hamburg
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-04-20,2020-05-31,NA,Hamburg
+Germany,Provincial,Internal Border Restrictions,NA,2020-04-19,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-04-18,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-18,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-18,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-18,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-18,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Lockdown,NA,2020-03-21,2020-05-06,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-16,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-16,2020-05-06,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-04-20,2020-06-30,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-04-16,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-16,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-04-23,2020-05-04,NA,Saxony-Anhalt
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-04-23,2020-05-04,NA,Saxony-Anhalt
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-23,2020-05-04,NA,Saxony-Anhalt
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-24,2020-05-04,NA,Ticino
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Pharmacies,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Other Policy Not Listed Above,NA,2020-04-20,2020-05-03,NA,Schleswig-Holstein
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-14,2020-05-03,NA,Campania (Itay)
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-27,2020-05-03,NA,North Rhine-Westphalia
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-27,2020-05-03,NA,North Rhine-Westphalia
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-27,2020-05-03,NA,North Rhine-Westphalia
+Germany,Provincial,External Border Restrictions,Other External Border Restriction,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Transportation (land; water and air),2020-03-21,2020-05-03,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-04-20,2020-05-03,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-20,2020-05-03,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Lockdown,NA,2020-04-17,2020-05-20,NA,Bremen
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-14,2020-05-03,NA,Emilia Romagna (Italy)
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-14,2020-05-03,NA,Veneto (Italy)
+Germany,National,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-15,2020-06-05,NA,Germany
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Pharmacies,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Publishing activities,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Financial service activities except insurance and pension funding,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Warehousing and support activities for transportation,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-20,2020-05-27,NA,Saxony-Anhalt
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-20,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified essential businesses,2020-04-20,2020-05-10,NA,Bavaria
+Italy,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-12,2020-05-01,NA,The Marches
+Italy,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-12,2020-05-01,NA,The Marches
+Italy,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-12,2020-05-01,NA,The Marches
+Italy,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-12,2020-05-01,NA,The Marches
+Italy,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-12,2020-05-01,NA,The Marches
+Italy,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-25,2020-05-01,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-25,2020-05-01,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-25,2020-05-01,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-25,2020-05-01,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-25,2020-05-01,NA,Umbria
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-03-13,2020-05-01,NA,Appenzell Innerrhoden
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-04-30,NA,Vaud
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-04-30,NA,Vaud
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-04-30,NA,Vaud
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-13,2020-04-30,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-03-15,2020-06-07,NA,Neuchatel
+Switzerland,Provincial,Lockdown,NA,2020-03-14,2020-06-08,NA,Grisons
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-13,2020-07-31,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-04-30,NA,Vaud
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-04-30,NA,Vaud
+Switzerland,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-04-30,NA,Vaud
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-04-30,NA,Vaud
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-04-30,NA,Vaud
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-14,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-16,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-16,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-16,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-16,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Information service activities,2020-03-16,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-13,2020-04-30,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-13,2020-04-30,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-13,2020-04-30,NA,Valais
+Switzerland,Provincial,Internal Border Restrictions,NA,2020-03-16,2020-04-30,NA,Basel-Landschaft
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-04-30,NA,Schwyz
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-15,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-15,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-15,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-15,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-16,2020-04-30,NA,Basel-Landschaft
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-05-09,NA,Fribourg
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-03-16,2020-05-31,NA,Hamburg
+Switzerland,Provincial,Lockdown,NA,2020-03-13,2020-04-30,NA,Zurich
+Italy,National,External Border Restrictions,NA,2020-03-13,2020-06-08,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-16,2020-05-11,NA,Basel-Landschaft
+Switzerland,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-03-15,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-13,2020-05-31,NA,Uri
+Switzerland,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-03-16,2020-04-30,NA,Basel-Landschaft
+Germany,Provincial,Health Monitoring,NA,2020-03-31,2020-04-30,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-03-15,2020-04-30,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-15,2020-04-30,NA,Neuchatel
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-04-14,2020-04-30,NA,Berlin
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-14,2020-04-30,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-14,2020-04-30,NA,Grisons
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-14,2020-05-04,NA,Hamburg
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-17,2020-05-10,NA,Uri
+Switzerland,National,Health Resources,Other Health Materials,2020-03-17,2020-04-27,NA,Switzerland
+Switzerland,National,Health Resources,Hospitals,2020-03-17,2020-04-27,NA,Switzerland
+Switzerland,National,Health Resources,Unspecified Health Staff,2020-03-17,2020-04-27,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-04-17,2020-05-10,NA,Uri
+Switzerland,National,Restriction and Regulation of Government Services,NA,2020-04-16,2020-04-27,NA,Switzerland
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-04-26,NA,Obwalden
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-04-26,NA,Obwalden
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-04-26,NA,Obwalden
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-04-26,NA,Obwalden
+Switzerland,National,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-03-23,2020-04-26,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Retail Businesses,2020-04-08,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Restaurants,2020-04-08,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Shopping Centers,2020-04-08,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-08,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-08,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-06-08,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-06-08,NA,Switzerland
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-16,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-16,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-16,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-16,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-16,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-16,2020-04-26,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-16,2020-08-01,NA,Berlin
+Germany,Provincial,Social Distancing,NA,2020-04-16,2020-04-26,NA,Berlin
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-20,2020-04-26,NA,Zurich
+Switzerland,Provincial,Social Distancing,NA,2020-04-08,2020-04-26,NA,Thurgau
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-04-26,NA,Saarland
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-04-26,NA,Saarland
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-04-26,NA,Saarland
+Switzerland,Provincial,Social Distancing,Restrictions on ridership of subways and trams,2020-03-30,2020-04-26,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-20,2020-04-23,NA,Grisons
+Germany,Provincial,Health Resources,Ventilators,2020-03-18,2020-04-20,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-17,2020-04-20,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-20,2020-04-20,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-20,2020-04-20,NA,Saxony-Anhalt
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-04-20,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-20,2020-04-20,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-13,2020-04-20,NA,Hamburg
+France,National,Social Distancing,Restrictions on  private vehicles in public circulation,2020-03-19,2020-04-20,NA,France
+Germany,Provincial,Lockdown,NA,2020-03-20,2020-07-17,NA,Saxony
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-14,2020-04-19,NA,Saxony-Anhalt
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-14,2020-04-19,NA,Saxony-Anhalt
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-14,2020-04-19,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-18,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-23,2020-04-19,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-23,2020-04-19,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-23,2020-04-19,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-23,2020-04-19,NA,Schleswig-Holstein
+Germany,Provincial,Social Distancing,NA,2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Internal Border Restrictions,NA,2020-04-03,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-18,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-18,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-18,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-18,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-18,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-04,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-04,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-05-04,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-04,2020-08-16,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-04,2020-08-16,NA,Hesse
+Germany,Provincial,Quarantine,Other Quarantine,2020-03-13,2020-04-19,NA,North Rhine-Westphalia
+Switzerland,National,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-06-08,NA,Switzerland
+Switzerland,National,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-06-08,NA,Switzerland
+Germany,Provincial,Social Distancing,NA,2020-03-13,2020-05-10,NA,Hesse
+Germany,Provincial,Other Policy Not Listed Above,NA,2020-03-18,2020-05-03,NA,Schleswig-Holstein
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-04-19,NA,Hesse
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-20,2020-04-19,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-20,2020-04-19,NA,Bern
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-24,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Social Distancing,NA,2020-03-14,2020-04-19,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-18,2020-04-19,NA,Schleswig-Holstein
+Germany,Provincial,Lockdown,NA,2020-03-23,2020-04-19,NA,Berlin
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-05-25,NA,Solothurn
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public courts,2020-03-21,2020-04-19,NA,Glarus
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-18,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-18,2020-04-19,NA,Thuringia
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-17,2020-04-19,NA,Thuringia
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-17,2020-04-19,NA,Thuringia
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-17,2020-04-19,NA,Thuringia
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-17,2020-04-19,NA,Thuringia
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-13,2020-04-19,NA,North Rhine-Westphalia
+Germany,National,Restrictions of Mass Gatherings,Attendance at religious services restricted (e.g. mosque/church closings),2020-03-22,2020-04-19,NA,Germany
+Germany,National,Restrictions of Mass Gatherings,Events at private residencies restricted (e.g. parties held at home),2020-03-22,2020-04-19,NA,Germany
+Germany,Provincial,Lockdown,NA,2020-03-13,2020-04-19,NA,Hesse
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-20,2020-04-19,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-03-20,2020-04-19,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-20,2020-04-19,NA,Ticino
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-09,2020-06-30,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Lockdown,NA,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-03-16,2020-05-06,NA,Hamburg
+Switzerland,Provincial,Lockdown,NA,2020-03-16,2020-06-05,NA,Solothurn
+Germany,Provincial,External Border Restrictions,Other External Border Restriction,2020-03-18,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-08,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-08,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-04-08,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-08,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-08,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-08,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Information service activities,2020-04-08,2020-04-19,NA,Thuringia
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-17,2020-05-10,NA,Uri
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-14,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-14,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-14,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-22,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-22,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-22,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-03,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-03,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-03,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-03,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-03,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-03,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-22,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-22,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-22,2020-04-26,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-18,2020-05-03,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-18,2020-05-03,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-15,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Health Resources,Other Health Infrastructure,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Social Distancing,NA,2020-04-04,2020-04-19,NA,Lower Saxony
+Switzerland,National,Declaration of Emergency,NA,2020-03-16,2020-04-19,NA,Switzerland
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-18,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-17,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-17,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-17,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-17,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-08-01,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-04,2020-04-19,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-04,2020-04-19,NA,Lower Saxony
+Germany,Provincial,Lockdown,NA,2020-03-14,2020-04-26,NA,Berlin
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-16,2020-04-19,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-04-19,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-16,2020-04-19,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-16,2020-04-19,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-16,2020-04-19,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-16,2020-04-19,NA,Glarus
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-13,2020-05-03,NA,Berlin
+Germany,Provincial,Lockdown,NA,2020-03-23,2020-04-19,NA,Saxony
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-03-21,2020-04-19,NA,Aargau
+Germany,Provincial,Social Distancing,NA,2020-03-18,2020-04-19,NA,Saxony-Anhalt
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-17,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Financial service activities except insurance and pension funding,2020-03-17,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-17,2020-04-19,NA,Geneva
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-31,2020-04-19,NA,Brandenburg
+Switzerland,Provincial,Restriction and Regulation of Businesses,NA,2020-03-17,2020-05-11,NA,Uri
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-19,2020-04-19,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-19,2020-04-19,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-19,2020-04-19,NA,Hamburg
+Germany,Provincial,Social Distancing,NA,2020-03-23,2020-04-19,NA,Brandenburg
+Switzerland,Provincial,Social Distancing,Restrictions on  private vehicles in public circulation,2020-04-18,2020-05-17,NA,Geneva
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-13,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-18,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-27,2020-04-19,NA,Thuringia
+Germany,Provincial,Social Distancing,NA,2020-03-27,2020-04-19,NA,Bavaria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-18,2020-04-19,NA,Ticino
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-10,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Quarantine,Quarantine outside the home or government facility (i.e. quarantine in a hotel),2020-04-10,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-17,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-12,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-15,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-13,2020-07-05,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-17,2020-06-22,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-20,2020-04-19,NA,Saxony-Anhalt
+Germany,Provincial,Lockdown,NA,2020-03-23,2020-04-19,NA,Saxony-Anhalt
+Germany,National,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-22,2020-06-05,NA,Germany
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-18,2020-04-19,NA,Brandenburg
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-18,2020-04-19,NA,Brandenburg
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-18,2020-04-19,NA,Brandenburg
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-18,2020-04-19,NA,Brandenburg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-18,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-25,2020-04-19,NA,Geneva
+Germany,Provincial,Social Distancing,NA,2020-03-15,2020-04-19,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Health Resources,Ventilators,2020-03-18,2020-04-19,NA,Hesse
+Germany,Provincial,Health Resources,Unspecified Health Materials,2020-03-18,2020-04-19,NA,Hesse
+Germany,Provincial,Health Resources,Unspecified Health Infrastructure,2020-03-18,2020-04-19,NA,Hesse
+Germany,Provincial,Health Resources,Doctors,2020-03-18,2020-04-19,NA,Hesse
+Germany,Provincial,Health Resources,Nurses,2020-03-18,2020-04-19,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-03-18,2020-04-19,NA,Bavaria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Tourist Sites,2020-04-10,2020-05-10,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-17,2020-05-10,NA,Uri
+Germany,Provincial,Social Distancing,NA,2020-03-22,2020-08-01,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-04-19,NA,Hesse
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-04-19,NA,Hesse
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-09,2020-04-19,NA,Berlin
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-04-19,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-03-24,2020-04-19,NA,Schleswig-Holstein
+Switzerland,National,Restriction and Regulation of Government Services,NA,2020-03-16,2020-04-27,NA,Switzerland
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-03,2020-05-17,NA,Schleswig-Holstein
+Germany,Provincial,Health Resources,Other Health Infrastructure,2020-04-08,2020-05-25,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified essential businesses,2020-04-03,2020-05-10,NA,Bavaria
+Germany,Provincial,Social Distancing,NA,2020-03-17,2020-04-18,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-20,2020-04-19,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-04-18,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-04-18,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-04-18,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-04-18,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-17,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-17,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-27,2020-08-31,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-13,2020-04-16,NA,Hesse
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-17,2020-06-30,NA,Hamburg
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-17,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-17,2020-05-06,NA,Hamburg
+France,National,Internal Border Restrictions,NA,2020-03-23,2020-04-15,NA,France
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-03-16,2020-04-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-16,2020-04-15,NA,Fribourg
+France,National,Health Resources,Other Health Materials,2020-03-25,2020-05-11,NA,France
+France,National,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-04-15,NA,France
+France,National,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-04-15,NA,France
+France,National,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-04-15,NA,France
+France,National,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-04-15,NA,France
+France,Provincial,Internal Border Restrictions,NA,2020-04-09,2020-04-15,NA,Corsica
+France,National,Restriction and Regulation of Businesses,All or unspecified essential businesses,2020-03-14,2020-05-11,NA,France
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-04-14,NA,Bremen
+Italy,Provincial,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-04-02,2020-04-13,NA,Trentino-Alto Adige
+Italy,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-12,2020-04-13,NA,Tuscany
+Italy,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-12,2020-04-13,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-12,2020-04-13,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-12,2020-04-13,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-12,2020-04-13,NA,Umbria
+Italy,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-12,2020-04-13,NA,Umbria
+Switzerland,Provincial,Social Distancing,Restrictions on  private vehicles in public circulation,2020-04-10,2020-05-17,NA,Geneva
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-03,2020-04-13,NA,Abruzzo (Italy)
+Italy,Provincial,Quarantine,Government Quarantine (i.e. quarantine at a government hotel or facility),2020-04-03,2020-04-13,NA,Abruzzo (Italy)
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-13,2020-04-13,NA,Campania (Italy)
+Germany,Provincial,Social Distancing,NA,2020-03-25,2020-06-05,NA,Thuringia
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-04-06,NA,Hesse
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-04-06,NA,Hesse
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-04-03,2020-04-05,NA,Geneva
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-23,2020-04-19,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-22,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-22,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-22,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-22,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-22,2020-05-06,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-22,2020-05-06,NA,Hamburg
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-18,2020-04-04,NA,Glarus
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-06-08,NA,Schaffhausen
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-06-08,NA,Schaffhausen
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-06-08,NA,Schaffhausen
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-04-04,NA,Bern
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-04-04,NA,Bern
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-04-04,NA,Bern
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-04-04,NA,Bern
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-04-04,NA,Appenzell Ausserrhoden
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-04-04,NA,Appenzell Ausserrhoden
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-04-04,NA,Appenzell Ausserrhoden
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-04-04,NA,Appenzell Ausserrhoden
+Italy,National,Internal Border Restrictions,NA,2020-03-08,2020-04-03,NA,Lombardy; Modena; Parma; Piacenza; Reggio Emilia; Rimini; Pesaro and Urbino; Alessandria; Asti; Novara; Verbano Cusio Ossola; Vercelli; Padua; Treviso; Venice
+Italy,National,Restriction and Regulation of Businesses,Retail Businesses,2020-03-08,2020-04-03,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Restaurants,2020-03-08,2020-04-03,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Shopping Centers,2020-03-08,2020-04-03,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-08,2020-04-03,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-08,2020-04-03,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-08,2020-04-03,NA,Italy
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-15,2020-04-03,NA,Basilicata (Italy)
+Germany,Provincial,Lockdown,NA,2020-04-20,2020-05-06,NA,Bavaria
+Germany,Provincial,Lockdown,NA,2020-03-31,2020-05-09,NA,Bavaria
+Italy,Provincial,Internal Border Restrictions,NA,2020-03-21,2020-04-03,NA,Liguria
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified essential businesses,2020-03-31,2020-05-10,NA,Bavaria
+France,National,Lockdown,Lockdown applies to all people,2020-03-17,2020-05-11,NA,France
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-01,2020-05-26,NA,Nidwalden
+France,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-18,2020-03-31,NA,France
+France,National,Curfew,NA,2020-03-17,2020-05-11,NA,France
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-16,2020-04-26,NA,Zurich
+Italy,Provincial,External Border Restrictions,Other External Border Restriction,2020-02-28,2020-03-31,NA,Piedmont; Veneto; Lombardy
+Germany,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-03-20,2020-03-30,NA,Bavaria
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-03-30,NA,Thurgau
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-03-30,NA,Thurgau
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-03-30,NA,Thurgau
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-14,2020-04-17,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-12,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-12,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-21,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-21,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-16,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-03-16,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-16,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-16,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-16,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Financial service activities except insurance and pension funding,2020-03-16,2020-04-19,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-16,2020-04-19,NA,Geneva
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-04-19,NA,Hamburg
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-04-19,NA,Hamburg
+Switzerland,Provincial,Internal Border Restrictions,NA,2020-03-23,2020-03-29,NA,Ticino
+France,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-12,2020-03-16,NA,Corsica
+France,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-12,2020-03-16,NA,Corsica
+France,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-12,2020-03-16,NA,Corsica
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-12,2020-10-31,NA,Bremen
+Italy,Provincial,Restriction and Regulation of Businesses,Transportation (land; water and air),2020-03-13,2020-03-25,NA,Liguria
+Italy,Provincial,Social Distancing,Restrictions on ridership of subways and trams,2020-03-13,2020-03-25,NA,Liguria
+Italy,Provincial,Social Distancing,Restrictions on ridership of trains,2020-03-13,2020-03-25,NA,Liguria
+Italy,Provincial,Social Distancing,Restrictions on ridership of buses,2020-03-13,2020-03-25,NA,Liguria
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-19,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-19,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-19,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-19,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-19,2020-03-29,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-19,2020-03-29,NA,Ticino
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-20,2020-03-20,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-14,2020-03-17,NA,Grisons
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-14,2020-03-17,NA,Grisons
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-03,2020-08-01,NA,Berlin
+Italy,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-06,2020-03-15,NA,Campania
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-03-04,2020-03-15,NA,Neuchatel
+Switzerland,Provincial,Hygiene,Other Areas Hygiene Measures Applied,2020-03-03,2020-03-15,NA,Nidwalden
+Switzerland,National,Declaration of Emergency,NA,2020-02-28,2020-03-15,NA,Switzerland
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-02-28,2020-03-15,NA,Schwyz
+Switzerland,Provincial,Restrictions of Mass Gatherings,Events at private residencies restricted (e.g. parties held at home),2020-03-09,2020-08-31,NA,Zug
+Switzerland,Provincial,Restrictions of Mass Gatherings,Events at private residencies restricted (e.g. parties held at home),2020-03-03,2020-08-31,NA,Zug
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-02-28,2020-03-15,NA,Basel-Landschaft
+Switzerland,Provincial,Restrictions of Mass Gatherings,Other mass gatherings not specified above restricted,2020-02-29,2020-03-15,NA,Bern
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-03-05,2020-03-13,NA,Saint Gallen
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-03-05,2020-05-01,NA,Appenzell Innerrhoden
+Italy,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-02-24,2020-03-04,NA,Liguria
+Italy,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-02-24,2020-03-04,NA,Liguria
+Italy,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-02-24,2020-03-04,NA,Liguria
+Italy,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-02-24,2020-03-04,NA,Liguria
+Italy,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-02-24,2020-03-01,NA,Liguria
+Italy,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-02-24,2020-03-01,NA,Liguria
+Italy,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-02-24,2020-03-01,NA,Liguria
+Italy,Provincial,Restriction and Regulation of Government Services,Public courts,2020-02-24,2020-03-01,NA,Liguria
+Italy,Provincial,Internal Border Restrictions,NA,2020-02-24,2020-03-01,NA,Liguria
+Italy,National,Social Distancing,NA,2020-03-21,2020-07-15,NA,Italy
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-05-07,2020-07-15,NA,Fribourg
+Germany,Provincial,Restrictions of Mass Gatherings,Attendance at religious services restricted (e.g. mosque/church closings),2020-05-30,2020-07-15,NA,Berlin
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-07-01,2020-08-21,NA,Appenzell Ausserrhoden
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-16,2020-07-15,NA,Vaud
+France,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-14,2020-07-15,NA,Corsica
+Switzerland,National,Health Resources,Masks,2020-04-24,2020-04-25,NA,Switzerland
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-10,2020-07-15,NA,Rheinland-Pfalz
+France,National,Internal Border Restrictions,NA,2020-05-11,2020-07-15,NA,France
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-16,2020-06-19,NA,Valais
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-09,2020-07-15,NA,Grisons
+Switzerland,Provincial,Health Resources,Masks,2020-04-22,2020-04-23,NA,Obwalden
+Switzerland,Provincial,Health Resources,Personal Protective Equipment,2020-04-22,2020-04-23,NA,Obwalden
+Italy,National,Internal Border Restrictions,NA,2020-03-10,2020-06-03,NA,Italy
+Germany,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-16,2020-07-15,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-16,2020-07-15,NA,Hamburg
+Germany,Provincial,Hygiene,NA,2020-05-06,2020-07-15,NA,Bremen
+Italy,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-08,2020-07-15,NA,Modena; Parma; Piacenza; Reggio Emilia; Rimini; Pesaro and Urbino; Alessandria; Asti; Novara; Verbano Cusio Ossola; Vercelli; Padua; Treviso; Venedig
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-01,2020-07-15,NA,Bern
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-03-04,2020-07-15,NA,Zurich
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-25,2020-06-15,NA,Mecklenburg-Vorpommern
+Germany,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-10,2020-07-15,NA,Germany
+Germany,Provincial,Public Awareness Measures,Both Disseminating and Gathering information related to COVID-19,2020-05-12,2020-07-15,NA,Berlin
+Switzerland,Provincial,Health Monitoring,NA,2020-05-04,2020-07-15,NA,Saint Gallen
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-27,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-04-27,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-04-27,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-04,2020-07-15,NA,North Rhine-Westphalia
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-04-25,2020-07-15,NA,Saarland
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-05-09,2020-07-15,NA,Bremen
+Germany,National,Health Monitoring,NA,2020-02-01,2020-07-15,NA,Germany
+Germany,National,Health Monitoring,NA,2020-02-15,2020-07-15,NA,Germany
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-30,2020-03-31,NA,Ticino
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-01,2020-07-15,NA,Bavaria
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-13,2020-06-19,NA,Grisons
+Germany,Provincial,Health Resources,Health Research Facilities,2020-03-30,2020-03-31,NA,North Rhine-Westphalia
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-05-11,2020-07-15,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-11,2020-07-15,NA,Valais
+Germany,Provincial,Health Resources,Temporary Medical Centers,2020-03-30,2020-03-31,NA,Bavaria
+Italy,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-04,2020-07-15,NA,Umbria
+Switzerland,National,Health Resources,Masks,2020-03-13,2020-03-14,NA,Switzerland
+Switzerland,National,Health Resources,Ventilators,2020-03-13,2020-03-14,NA,Switzerland
+Switzerland,National,Health Resources,Personal Protective Equipment,2020-03-13,2020-03-14,NA,Switzerland
+Switzerland,National,Health Resources,Hand Sanitizer,2020-03-13,2020-03-14,NA,Switzerland
+Switzerland,National,Health Resources,Test Kits,2020-03-13,2020-03-14,NA,Switzerland
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-20,2020-07-15,NA,Zürich
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-02,2020-07-15,NA,Aargau
+Germany,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-05-07,2020-07-15,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-07,2020-07-15,NA,Hamburg
+Switzerland,Provincial,Health Resources,Doctors,2020-03-26,2020-05-14,NA,Obwalden
+Switzerland,Provincial,Health Resources,Unspecified Health Staff,2020-03-26,2020-05-14,NA,Obwalden
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-20,2020-05-25,NA,Ticino
+France,National,Health Resources,Health Research Facilities,2020-03-25,2020-03-26,NA,France
+Germany,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-04-20,2020-04-21,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on publicly provided waste management services,2020-03-25,2020-07-15,NA,Ticino
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-14,2020-07-15,NA,Brandenburg
+Germany,Provincial,Health Resources,Masks,2020-03-21,2020-03-22,NA,Brandenburg
+Italy,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-28,2020-07-15,NA,All Travelers from one province to another are required to self-isolate for 14 days.
+Switzerland,Provincial,Restriction and Regulation of Businesses,Construction,2020-03-20,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-20,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-16,2020-07-15,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-04-02,2020-07-15,NA,Aargau
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-20,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-04-20,2020-07-15,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-02-15,2020-07-15,NA,Bern
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-04-02,2020-07-15,NA,Zurich
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-02-26,2020-07-15,NA,Geneva
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-14,2020-07-15,NA,Berlin
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-04-02,2020-07-15,NA,Fribourg
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-03-11,2020-07-15,NA,Switzerland
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-03-25,2020-07-15,NA,Switzerland
+Switzerland,National,Other Policy Not Listed Above,NA,2020-03-14,2020-07-15,NA,Switzerland
+Switzerland,National,Social Distancing,NA,2020-03-20,2020-07-15,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-24,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-24,2020-07-15,NA,Neuchatel
+Germany,Provincial,Health Testing,NA,2020-01-29,2020-07-15,NA,Bavaria
+Germany,Provincial,Health Testing,NA,2020-01-30,2020-07-15,NA,Bavaria
+Switzerland,Provincial,Health Monitoring,NA,2020-03-03,2020-07-15,NA,Zug
+Italy,Provincial,Restriction and Regulation of Businesses,NA,2020-05-16,2020-07-15,NA,Campania
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-13,2020-07-15,NA,Brandenburg
+Switzerland,Provincial,Health Testing,NA,2020-04-29,2020-07-15,NA,Neuchatel
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-06,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-05-29,2020-07-15,NA,Fribourg
+Germany,Provincial,Hygiene,NA,2020-05-30,2020-07-15,NA,Berlin
+Switzerland,National,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-03-18,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Pharmacies,2020-03-18,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Telecommunications,2020-03-18,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Other Essential Businesses,2020-03-18,2020-07-15,NA,Switzerland
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-20,2020-07-15,NA,Bremen
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-06-01,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-27,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-27,2020-07-15,NA,Lower Saxony
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-06-09,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Social Distancing,Other Mask Wearing Policy,2020-06-09,2020-07-15,NA,Neuchatel
+Germany,Provincial,Internal Border Restrictions,NA,2020-06-26,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Lockdown,NA,2020-05-20,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Lockdown,NA,2020-06-09,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Health Resources,Ventilators,2020-03-23,2020-03-24,NA,Neuchatel
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-03-23,2020-03-24,NA,Neuchatel
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-07-06,2020-07-15,NA,Mecklenburg-Vorpommern
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-11,2020-07-15,NA,Obwalden
+Switzerland,National,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-17,2020-07-15,NA,Switzerland
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-05-08,2020-07-15,NA,Glarus
+Switzerland,Provincial,Health Resources,Temporary Quarantine Centers,2020-02-26,2020-02-27,NA,Bern
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-17,2020-07-15,NA,Bremen
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-03-01,2020-07-15,NA,Bern
+Germany,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-03-16,2020-05-11,NA,Hamburg
+Switzerland,Provincial,Health Resources,Hospitals,2020-04-07,2020-04-08,NA,Schaffhausen
+Switzerland,Provincial,Health Resources,Temporary Quarantine Centers,2020-04-07,2020-04-08,NA,Schaffhausen
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-04-07,2020-04-08,NA,Schaffhausen
+Switzerland,Provincial,Health Resources,Health Research Facilities,2020-04-07,2020-04-08,NA,Schaffhausen
+Switzerland,Provincial,Health Resources,Unspecified Health Infrastructure,2020-04-07,2020-04-08,NA,Schaffhausen
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-04-07,2020-04-08,NA,Schaffhausen
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-28,2020-07-15,NA,Jura
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-27,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-06-24,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-02-27,2020-02-28,NA,Ticino
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-03-02,2020-03-03,NA,Ticino
+Switzerland,National,Restriction and Regulation of Businesses,Restaurants,2020-06-06,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Bars,2020-06-06,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-06-06,2020-07-15,NA,Switzerland
+France,National,Health Resources,Masks,2020-03-21,2020-03-22,NA,France
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-07-08,2020-07-15,NA,Zurich
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-13,2020-07-15,NA,Bern
+Switzerland,Provincial,Social Distancing,Restrictions ridership of other forms of public transportation (please include details in the text entry),2020-03-16,2020-07-15,NA,Geneva
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-13,2020-07-15,NA,Geneva
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-09,2020-07-15,NA,Hesse
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-16,2020-07-15,NA,Hesse
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-28,2020-06-19,NA,Bern
+Germany,Provincial,External Border Restrictions,Other External Border Restriction,2020-03-22,2020-04-10,NA,Schleswig-Holstein
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-11,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-05-04,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-19,2020-07-15,NA,Geneva
+Italy,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-18,2020-07-15,NA,Abruzzo
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-13,2020-07-15,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-02,2020-07-15,NA,Hamburg
+Germany,Provincial,Health Resources,Hospitals,2020-03-18,2020-03-19,NA,Baden-Wuerttemberg
+Germany,Provincial,Health Resources,Doctors,2020-03-18,2020-03-19,NA,Baden-Wuerttemberg
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-15,2020-05-31,NA,Basel-Landschaft
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-19,2020-07-15,NA,Grisons
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-19,2020-07-15,NA,Grisons
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-06-23,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-17,2020-07-15,NA,Saxony-Anhalt
+Switzerland,Provincial,Social Distancing,NA,2020-03-18,2020-07-15,NA,Zurich
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-02-28,2020-07-15,NA,Schaffhausen
+Italy,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-10,2020-07-15,NA,Italy
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-19,2020-03-20,NA,Basel-City
+Italy,Provincial,Restriction and Regulation of Government Services,NA,2020-03-16,2020-07-15,NA,Sicily
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-31,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-03-31,2020-07-15,NA,Fribourg
+Germany,Provincial,Declaration of Emergency,NA,2020-03-16,2020-07-15,NA,Bavaria
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-17,2020-05-18,NA,Nidwalden
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-03-06,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-16,2020-07-15,NA,Solothurn
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-03-23,2020-07-15,NA,North Rhine-Westphalia
+Switzerland,Provincial,Health Resources,Unspecified Health Staff,2020-03-27,2020-03-28,NA,Zurich
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-03-16,2020-05-04,NA,Ticino
+Germany,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-06-05,2020-07-15,NA,Saarland
+Germany,Provincial,Quarantine,Government Quarantine (i.e. quarantine at a government hotel or facility),2020-03-14,2020-07-15,NA,Hamburg
+Italy,National,Internal Border Restrictions,NA,2020-03-08,2020-07-15,NA,Modena; Parma; Piacenza; Reggio Emilia; Rimini; Pesaro; Urbino; Alessandria; Asti; Novara; Verbano Cusio Ossola; Vercelli; Padua; Treviso; Venedig;
+Germany,Provincial,Internal Border Restrictions,NA,2020-05-08,2020-07-15,NA,Saarland
+Italy,National,Restriction and Regulation of Businesses,Retail Businesses,2020-03-23,2020-07-15,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Restaurants,2020-03-23,2020-07-15,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Shopping Centers,2020-03-23,2020-07-15,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-23,2020-07-15,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-23,2020-07-15,NA,Italy
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-16,2020-05-11,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-03-16,2020-05-11,NA,Bern
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-17,2020-07-15,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-28,2020-07-15,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-28,2020-07-15,NA,Saarland
+Switzerland,Provincial,Lockdown,NA,2020-06-06,2020-07-15,NA,Solothurn
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-20,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-20,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-20,2020-07-15,NA,Rheinland-Pfalz
+Italy,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-11,2020-05-18,NA,Calabria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-05-17,2020-09-27,NA,Geneva
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-27,2020-08-30,NA,Thuringia
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-18,2020-05-26,NA,Neuchatel
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-06-02,2020-07-15,NA,Bern
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-14,2020-07-15,NA,Sicily
+Germany,National,"New Task Force, Bureau or Administrative Configuration",NA,2020-02-28,2020-07-15,NA,Germany
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-25,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-25,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Health Resources,Health Volunteers,2020-03-27,2020-03-28,NA,Kanton Aargau
+Italy,National,Restriction and Regulation of Businesses,Restaurants,2020-03-11,2020-07-15,NA,Italy
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-04-01,2020-07-15,NA,Grisons
+Germany,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-10,2020-07-15,NA,Bern
+Switzerland,Provincial,Health Monitoring,NA,2020-05-11,2020-07-15,NA,Aargau
+Switzerland,National,Health Monitoring,NA,2020-04-02,2020-07-15,NA,Switzerland
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-04-20,2020-07-15,NA,Saxony-Anhalt
+Switzerland,Provincial,Health Testing,NA,2020-06-08,2020-07-15,NA,Zurich
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-27,2020-07-15,NA,Brandenburg
+Italy,Provincial,Health Monitoring,NA,2020-07-04,2020-07-15,NA,Campania
+Germany,Provincial,Quarantine,Quarantine outside the home or government facility (i.e. quarantine in a hotel),2020-07-01,2020-07-15,NA,Baden-Wuerttemberg
+Switzerland,National,Health Resources,Unspecified Health Materials,2020-04-03,2020-04-04,NA,Switzerland
+France,National,Other Policy Not Listed Above,NA,2020-03-30,2020-07-15,NA,France
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-06-08,2020-07-15,NA,Appenzell Ausserrhoden
+Italy,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-02-21,2020-07-15,NA,Italy
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-11,2020-06-30,NA,Ticino
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-30,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-30,2020-07-15,NA,Neuchatel
+Germany,Provincial,Restrictions of Mass Gatherings,Attendance at religious services restricted (e.g. mosque/church closings),2020-04-03,2020-05-06,NA,Bremen
+Switzerland,Provincial,Social Distancing,NA,2020-04-14,2020-07-15,NA,Ticino
+Switzerland,Provincial,Lockdown,NA,2020-03-21,2020-07-15,NA,Ticino
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-27,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-27,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-27,2020-07-15,NA,Thuringia
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-03-09,2020-03-10,NA,Basel-City
+Germany,Provincial,External Border Restrictions,NA,2020-03-12,2020-07-15,NA,Mecklenburg-Vorpommern
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-03-24,2020-07-15,NA,Valais
+Switzerland,Provincial,Health Testing,NA,2020-03-09,2020-07-15,NA,Schaffhausen
+Germany,Provincial,Health Resources,Ventilators,2020-04-07,2020-04-08,NA,Rheinland-Pfalz
+Germany,Provincial,Health Resources,Unspecified Health Materials,2020-04-07,2020-04-08,NA,Rheinland-Pfalz
+Switzerland,Provincial,Public Awareness Measures,Both Disseminating and Gathering information related to COVID-19,2020-05-11,2020-07-15,NA,Bern
+Germany,Provincial,Social Distancing,Restrictions on ridership of trains,2020-04-09,2020-07-15,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Social Distancing,Restrictions on ridership of buses,2020-04-09,2020-07-15,NA,Mecklenburg-Vorpommern
+Switzerland,Provincial,Health Resources,Personal Protective Equipment,2020-04-17,2020-04-18,NA,Bern
+Germany,Provincial,Restriction and Regulation of Businesses,Warehousing and support activities for transportation,2020-03-31,2020-07-15,NA,North Rhine-Westphalia
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-03,2020-07-06,NA,Nidwalden
+Switzerland,Provincial,Health Resources,Masks,2020-05-11,2020-05-12,NA,Fribourg
+Switzerland,National,Other Policy Not Listed Above,NA,2020-03-28,2020-07-15,NA,Switzerland
+Germany,Provincial,Quarantine,Other Quarantine,2020-05-18,2020-07-15,NA,Hamburg
+Switzerland,Provincial,Health Resources,Health Volunteers,2020-03-19,2020-03-20,NA,Thurgau
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-16,2020-07-15,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-16,2020-07-15,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Essential Businesses,2020-04-16,2020-07-15,NA,Valais
+France,National,Social Distancing,NA,2020-04-12,2020-07-15,NA,France
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-05-01,2020-07-15,NA,Neuchatel
+Germany,National,External Border Restrictions,Health Screenings (e.g. temperature checks),2020-03-10,2020-07-15,NA,Bayern; Baden-Württemberg;
+Italy,Provincial,Health Monitoring,NA,2020-05-04,2020-07-15,NA,Abruzzo
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-13,2020-03-14,NA,Neuchatel
+Switzerland,Provincial,Health Resources,Doctors,2020-03-13,2020-03-14,NA,Neuchatel
+Switzerland,Provincial,Health Resources,Nurses,2020-03-13,2020-03-14,NA,Neuchatel
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-06-15,NA,Bremen
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-06-15,NA,Bremen
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-06-15,NA,Bremen
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-06-15,NA,Bremen
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-11,2020-07-15,NA,Lower Saxony
+France,National,Restriction and Regulation of Businesses,Restaurants,2020-05-11,2020-07-15,NA,France
+France,National,Restriction and Regulation of Businesses,Bars,2020-05-11,2020-07-15,NA,France
+France,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-11,2020-07-15,NA,France
+Italy,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-02-23,2020-07-15,NA,Veneto
+Italy,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-02-23,2020-07-15,NA,Veneto
+Italy,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-02-23,2020-07-15,NA,Veneto
+Italy,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-02-23,2020-07-15,NA,Veneto
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-08,2020-07-15,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Hygiene,Other Areas Hygiene Measures Applied,2020-05-30,2020-07-15,NA,Berlin
+Switzerland,Provincial,Health Testing,NA,2020-05-28,2020-07-15,NA,Geneva
+Switzerland,Provincial,Declaration of Emergency,NA,2020-06-16,2020-07-15,NA,Valais
+Switzerland,Provincial,Health Resources,Temporary Quarantine Centers,2020-07-01,2020-07-02,NA,Bern
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-07-01,2020-07-02,NA,Bern
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-04-03,2020-07-15,NA,Bern
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-03-20,2020-03-21,NA,Appenzell Ausserrhoden
+Switzerland,National,Declaration of Emergency,NA,2020-06-19,2020-07-15,NA,Switzerland
+Italy,National,"New Task Force, Bureau or Administrative Configuration",NA,2020-01-22,2020-07-15,NA,Italy
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-22,2020-07-15,NA,Brandenburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-22,2020-07-15,NA,Brandenburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-04-23,2020-07-15,NA,Fribourg
+Switzerland,National,Social Distancing,NA,2020-04-16,2020-07-15,NA,Switzerland
+Switzerland,Provincial,Health Testing,NA,2020-03-13,2020-07-15,NA,Grisons
+Germany,Provincial,Restrictions of Mass Gatherings,NA,2020-03-12,2020-04-19,NA,Brandenburg
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-27,2020-07-15,NA,Mecklenburg-Vorpommern
+Switzerland,Provincial,Social Distancing,Other Mask Wearing Policy,2020-03-09,2020-07-15,NA,Ticino
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-13,2020-05-08,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-03,2020-07-08,NA,Solothurn
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-07-03,2020-07-08,NA,Solothurn
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-02,2020-07-15,NA,Berlin
+Switzerland,Provincial,Internal Border Restrictions,NA,2020-03-18,2020-05-11,NA,Zurich
+Italy,Provincial,Hygiene,Other Areas Hygiene Measures Applied,2020-03-18,2020-07-15,NA,Liguria
+Switzerland,Provincial,Health Resources,Masks,2020-04-07,2020-04-08,NA,Fribourg
+Switzerland,Provincial,Health Resources,Personal Protective Equipment,2020-04-07,2020-04-08,NA,Fribourg
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-05-04,2020-07-15,NA,Mecklenburg-Vorpommern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-05-27,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-05-27,2020-07-15,NA,Fribourg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-04-04,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Health Resources,Other Health Materials,2020-03-24,2020-03-25,NA,Valais
+France,Provincial,Health Resources,Hospitals,2020-03-22,2020-03-23,NA,Departement Haut-Rhin
+Switzerland,Provincial,Health Monitoring,NA,2020-05-11,2020-07-15,NA,Zurich
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-07,2020-07-15,NA,Rheinland-Pfalz
+Italy,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-10,2020-07-15,NA,Calabria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-17,2020-05-11,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-03-17,2020-05-11,NA,Bern
+Germany,Provincial,Hygiene,NA,2020-04-03,2020-07-15,NA,Lower Saxony
+Germany,National,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-04-21,2020-07-15,NA,Germany
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-27,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-27,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-30,2020-07-15,NA,Berlin
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-06,2020-07-15,NA,Rheinland-Pfalz
+Italy,Provincial,Internal Border Restrictions,NA,2020-03-14,2020-07-15,NA,Sardinia
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-08,2020-07-15,NA,Alessandria; Asti;  Bergamo; Brescia;  Como; Cremona; Lecco; Lodi; Mantua; Milan; Modena; Manza e Brianza; Novara; Padua; Parma; Pavia; Pesaro e Urbino; Piacenza; Reggio Emilia; Rimini; Sondrio; Treviso; Varese; Venice; Verbano-Cusio-Ossola; Vercelli
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-04-02,2020-04-03,NA,Jura
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-04-02,2020-04-03,NA,Jura
+France,National,"New Task Force, Bureau or Administrative Configuration",NA,2020-04-03,2020-07-15,NA,France
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-20,2020-07-15,NA,Bern
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-04-07,2020-07-15,NA,Schaffhausen
+Germany,Provincial,Health Monitoring,NA,2020-05-19,2020-07-15,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-26,2020-07-15,NA,Hesse
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-18,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-18,2020-07-15,NA,Schleswig-Holstein
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-07-06,2020-07-15,NA,Nidwalden
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-07-10,2020-07-15,NA,Zurich
+Germany,National,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-06-27,2020-07-15,NA,Germany
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-03-13,2020-03-14,NA,Solothurn
+Switzerland,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-27,2020-07-15,NA,Aargau
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-27,2020-07-15,NA,Aargau
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-04-14,2020-07-15,NA,Fribourg
+Switzerland,National,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-06,2020-07-15,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-06-22,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Unspecified outdoor spaces,2020-06-22,2020-07-15,NA,Bern
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Cooperation among different jurisdictional entities (e.g. treaties or agreements among countries or provinces),2020-03-31,2020-07-15,NA,Canton Ticino; Canton Grisons
+Italy,National,Social Distancing,NA,2020-03-10,2020-07-15,NA,Italy
+Italy,National,Lockdown,Lockdown applies to all people,2020-03-10,2020-05-04,NA,Italy
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-16,2020-07-15,NA,Schleswig-Holstein
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-14,2020-05-11,NA,Basel-City
+Germany,Provincial,External Border Restrictions,Health Certificates,2020-05-08,2020-07-15,NA,Saarland
+Germany,Provincial,External Border Restrictions,Travel History Form (e.g. documents where traveler has recently been),2020-05-08,2020-07-15,NA,Saarland
+Germany,Provincial,Quarantine,NA,2020-07-08,2020-07-15,NA,Saarland
+Germany,Provincial,Quarantine,Quarantine only applies to people of certain ages. Please note the age restrictions in the text box.,2020-05-18,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Lockdown,NA,2020-05-18,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-07,2020-05-16,NA,Bavaria
+Switzerland,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-14,2020-07-15,NA,Bern
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-18,2020-07-15,NA,Mecklenburg-Vorpommern
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-16,2020-07-15,NA,Vaud
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-09,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-06-08,2020-07-15,NA,Valais
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-04,2020-07-15,NA,North Rhine-Westphalia
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-03-16,2020-07-15,NA,Zurich
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-23,2020-07-15,NA,Neuchatel
+Germany,Provincial,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-04-27,2020-07-15,NA,Bavaria
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-17,2020-07-15,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-05-11,2020-07-15,NA,Basel-City
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-11,2020-07-15,NA,Basel-City
+Italy,Provincial,Health Monitoring,NA,2020-03-09,2020-07-15,NA,"Lombardy Region; Provinces of Modena, Parma, Piacenza, Reggio nell’Emilia, Rimini, Pesaro-Urbino, Venezia, Padova, Treviso, Novara, Asti, Verbano-Cusio-Ossola, Vercelli e Alessandria"
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-02,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Health Monitoring,NA,2020-03-31,2020-07-15,NA,Zug
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-13,2020-07-15,NA,North Rhine-Westphalia
+Switzerland,Provincial,Health Resources,Masks,2020-04-08,2020-04-09,NA,Nidwalden
+Switzerland,Provincial,Health Resources,Personal Protective Equipment,2020-04-08,2020-04-09,NA,Nidwalden
+Switzerland,Provincial,Health Resources,Hand Sanitizer,2020-04-08,2020-04-09,NA,Nidwalden
+Switzerland,Provincial,Health Resources,Other Health Materials,2020-04-08,2020-04-09,NA,Nidwalden
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-02-24,2020-07-15,NA,"Lombardy, Veneto"
+Switzerland,Provincial,Health Monitoring,NA,2020-04-29,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-06-08,2020-07-15,NA,Fribourg
+Germany,National,Health Resources,Unspecified Health Materials,2020-07-03,2020-07-04,NA,Germany
+Switzerland,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-13,2020-05-11,NA,Nidwalden
+Switzerland,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-13,2020-05-11,NA,Nidwalden
+Switzerland,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-13,2020-05-11,NA,Nidwalden
+Switzerland,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-13,2020-05-11,NA,Nidwalden
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-04-02,2020-07-15,NA,Switzerland
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-04-17,2020-07-15,NA,Switzerland
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-03-13,2020-07-15,NA,Switzerland
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-05-11,2020-07-15,NA,Switzerland
+Switzerland,National,External Border Restrictions,Other External Border Restriction,2020-05-28,2020-07-15,NA,Switzerland
+Germany,Provincial,Health Resources,Masks,2020-07-08,2020-07-09,NA,Baden-Wuerttemberg
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-06,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Health Monitoring,NA,2020-04-01,2020-07-15,NA,Geneva
+France,National,"New Task Force, Bureau or Administrative Configuration",Other Administrative Configurations,2020-05-27,2020-07-15,NA,France
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-04-09,2020-04-10,NA,Thurgau
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-13,2020-07-15,NA,Thurgau
+Germany,National,Restriction and Regulation of Businesses,Warehousing and support activities for transportation,2020-04-09,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Other Essential Businesses,2020-04-09,2020-07-15,NA,Germany
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-30,2020-07-15,NA,Fribourg
+Italy,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-05,2020-07-15,NA,Italy
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-27,2020-07-15,NA,Berlin
+France,National,Restriction and Regulation of Businesses,Retail Businesses,2020-05-11,2020-07-15,NA,France
+Germany,Provincial,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-04-27,2020-05-31,NA,Hamburg
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-27,2020-05-31,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-03-25,2020-05-20,NA,Grisons
+Germany,Provincial,Health Monitoring,NA,2020-04-01,2020-07-15,NA,Hesse
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-23,2020-03-24,NA,Thurgau
+France,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-11,2020-07-15,NA,Corsica
+France,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-05-11,2020-07-15,NA,Corsica
+France,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-11,2020-07-15,NA,Corsica
+France,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-11,2020-07-15,NA,Corsica
+France,National,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-04-09,2020-07-15,NA,France
+Switzerland,National,"New Task Force, Bureau or Administrative Configuration",NA,2020-04-09,2020-07-15,NA,Switzerland
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-04-01,2020-07-15,NA,Ticino
+Germany,National,Restriction and Regulation of Businesses,All or unspecified non-essential businesses,2020-04-15,2020-07-15,NA,Germany
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-05-06,2020-07-15,NA,Bremen
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-05-06,2020-07-15,NA,Bremen
+Italy,National,Health Resources,Doctors,2020-03-17,2020-03-18,NA,Italy
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-27,2020-03-28,NA,Fribourg
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-27,2020-03-28,NA,Fribourg
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-03-27,2020-03-28,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-13,2020-07-15,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-12,2020-07-15,NA,Aargau
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-16,2020-05-31,NA,Obwalden
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-24,2020-07-15,NA,Thurgau
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-05-27,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-04-02,2020-07-15,NA,Schwyz
+Germany,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-27,2020-07-15,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Lockdown,NA,2020-03-21,2020-04-28,NA,Saarland
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-07-07,2020-07-15,NA,Appenzell Ausserrhoden
+Italy,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-30,2020-07-15,NA,Liguria
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-15,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-15,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-15,2020-07-15,NA,Bern
+Switzerland,Provincial,Social Distancing,Restrictions on ridership of subways and trams,2020-03-27,2020-07-15,NA,Glarus
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-07,2020-07-15,NA,The Marches
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-05-04,2020-07-15,NA,Neuchatel
+Germany,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-03-20,2020-06-08,NA,Appenzell Innerrhoden
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-23,2020-03-24,NA,Solothurn
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-03-23,2020-03-24,NA,Solothurn
+Germany,Provincial,Restriction and Regulation of Businesses,NA,2020-03-23,2020-07-15,NA,North Rhine-Westphalia
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-24,2020-07-15,NA,Solothurn
+Italy,Provincial,"New Task Force, Bureau or Administrative Configuration",Other Administrative Configurations,2020-02-24,2020-07-15,NA,Liguria
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-20,2020-07-15,NA,Brandenburg
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-20,2020-07-15,NA,Brandenburg
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-04-03,2020-07-15,NA,North Rhine-Westphalia
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-02-14,2020-07-15,NA,Bern
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-18,2020-07-15,NA,Thuringia
+Switzerland,Provincial,Lockdown,NA,2020-03-07,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Lockdown,NA,2020-03-10,2020-07-15,NA,Neuchatel
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-02-25,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Health Monitoring,NA,2020-04-02,2020-07-15,NA,Hesse
+Italy,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-08,2020-07-15,NA,"Lombardy or from provinces of Modena, Parma, Piacenza, Reggio nell’Emilia, Rimini, Pesaro-Urbino, Venezia, Padova, Treviso, Novara, Asti,Verbano-Cusio-Ossola, Vercelli e Alessandria"
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-27,2020-07-15,NA,Lucerne
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-02-28,2020-07-15,NA,Basel-City
+Switzerland,Provincial,Lockdown,NA,2020-03-04,2020-07-03,NA,Bern
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-03,2020-07-15,NA,Bremen
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-17,2020-06-15,NA,Bavaria
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-13,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Quarantine,Government Quarantine (i.e. quarantine at a government hotel or facility),2020-02-09,2020-07-15,NA,Berlin
+Italy,National,Health Testing,NA,2020-02-26,2020-07-15,NA,Italy
+Switzerland,Provincial,Social Distancing,NA,2020-03-09,2020-07-15,NA,Ticino
+Switzerland,Provincial,Lockdown,NA,2020-03-07,2020-07-15,NA,Ticino
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-02-28,2020-07-15,NA,Glarus
+Germany,Provincial,Health Monitoring,NA,2020-06-28,2020-07-15,NA,Saxony-Anhalt
+Switzerland,Provincial,Hygiene,Burial procedures,2020-03-31,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Hygiene,Other Areas Hygiene Measures Applied,2020-03-31,2020-07-15,NA,Fribourg
+France,National,Restriction and Regulation of Businesses,Restaurants,2020-06-02,2020-07-15,NA,France
+France,National,Restriction and Regulation of Businesses,Bars,2020-06-02,2020-07-15,NA,France
+France,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-02,2020-07-15,NA,France
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-05-08,2020-07-15,NA,Zurich
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-03-06,2020-03-16,NA,Fribourg
+Switzerland,Provincial,Health Monitoring,NA,2020-07-03,2020-07-15,NA,Aargau
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-06-02,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-03-23,2020-05-18,NA,Nidwalden
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-05-06,2020-07-15,NA,Bern
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-09,2020-07-15,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-12,2020-07-15,NA,Geneva
+Germany,Provincial,Health Resources,Temporary Quarantine Centers,2020-04-16,2020-04-17,NA,Rheinland-Pfalz
+Germany,Provincial,Health Resources,Other Health Infrastructure,2020-04-16,2020-04-17,NA,Rheinland-Pfalz
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-12,2020-07-15,NA,Baden-Wuerttemberg
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-20,2020-07-15,NA,Lucerne
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-16,2020-07-15,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-07-15,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-16,2020-07-15,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-16,2020-07-15,NA,Saarland
+Switzerland,Provincial,Health Resources,Nurses,2020-03-20,2020-06-05,NA,Canton Grisons
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-21,2020-07-15,NA,Thurgau
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-03-13,2020-10-31,NA,Canton Grisons
+Italy,Provincial,Restriction and Regulation of Government Services,NA,2020-03-14,2020-07-15,NA,Umbria
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-06-16,2020-07-15,NA,Berlin
+Germany,Provincial,Health Resources,Hospitals,2020-03-24,2020-06-01,NA,Hamburg
+Germany,Provincial,Health Resources,Doctors,2020-03-24,2020-06-01,NA,Hamburg
+Germany,Provincial,Health Resources,Nurses,2020-03-24,2020-06-01,NA,Hamburg
+Italy,National,Health Resources,Temporary Medical Centers,2020-03-16,2020-03-17,NA,Calabria
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-15,2020-07-15,NA,Schleswig-Holstein
+Italy,National,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-04,2020-07-15,NA,Italy
+Italy,National,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-04,2020-07-15,NA,Italy
+Italy,National,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-04,2020-07-15,NA,Italy
+Italy,National,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-04,2020-07-15,NA,Italy
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-05-14,2020-07-15,NA,Obwalden
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-17,2020-05-25,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-28,2020-07-15,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-04,2020-07-15,NA,Baden-Wuerttemberg
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-28,2020-07-15,NA,Schaffhausen
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-04-09,2020-07-15,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-23,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-23,2020-07-15,NA,Rheinland-Pfalz
+France,National,Health Testing,NA,2020-05-11,2020-07-15,NA,France
+France,National,Health Resources,Medicine/Drugs,2020-04-21,2020-04-22,NA,France
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-04-02,2020-04-03,NA,Zurich
+Switzerland,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-11,2020-07-15,NA,Lucerne
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-11,2020-07-15,NA,Lucerne
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public courts,2020-03-12,2020-04-19,NA,Ticino
+Switzerland,Provincial,Health Testing,NA,2020-05-07,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-05-11,2020-07-15,NA,Lucerne
+Italy,National,Internal Border Restrictions,NA,2020-04-14,2020-07-15,NA,Italy
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-14,2020-05-18,NA,Nidwalden
+Switzerland,Provincial,Health Testing,NA,2020-05-11,2020-07-15,NA,Bern
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-22,2020-06-05,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-22,2020-06-05,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-22,2020-06-05,NA,Saxony
+Germany,Provincial,Health Resources,Other Health Materials,2020-04-14,2020-04-15,NA,Baden-Wuerttemberg
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-02-21,2020-07-15,NA,Lombardy
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-20,2020-03-21,NA,Canton of Geneva
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-21,2020-07-15,NA,Neuchatel
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-27,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-04-27,2020-07-15,NA,Switzerland
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-03-25,2020-07-15,NA,Bern
+Italy,Provincial,Social Distancing,NA,2020-04-06,2020-07-15,NA,Tuscany
+Germany,Provincial,Health Monitoring,NA,2020-05-21,2020-07-15,NA,Bavaria
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-20,2020-07-15,NA,Geneva
+Germany,Provincial,Social Distancing,NA,2020-03-21,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Health Resources,Unspecified Health Materials,2020-04-10,2020-04-11,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-10,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-06-10,2020-07-15,NA,Rheinland-Pfalz
+Italy,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-04-11,2020-07-15,NA,Tuscany
+Switzerland,Provincial,Health Monitoring,NA,2020-03-31,2020-07-15,NA,Zurich
+Italy,Provincial,Health Resources,Masks,2020-03-15,2020-03-16,NA,Liguria
+Italy,Provincial,Health Resources,Personal Protective Equipment,2020-03-15,2020-03-16,NA,Liguria
+Italy,Provincial,Health Resources,Hand Sanitizer,2020-03-15,2020-03-16,NA,Liguria
+Switzerland,Provincial,Health Resources,Masks,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Health Resources,Personal Protective Equipment,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Health Resources,Hand Sanitizer,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Health Resources,Unspecified Health Infrastructure,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Health Resources,Doctors,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Health Resources,Nurses,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Health Resources,Unspecified Health Staff,2020-03-20,2020-03-21,NA,Fribourg
+Switzerland,Provincial,Lockdown,NA,2020-05-08,2020-07-15,NA,Basel-City
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-16,2020-07-15,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-05-16,2020-07-15,NA,Schleswig-Holstein
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-16,2020-06-18,NA,Zurich
+Switzerland,Provincial,Restriction and Regulation of Government Services,Beaches,2020-05-30,2020-07-15,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public outdoor spaces,2020-05-30,2020-07-15,NA,Geneva
+Switzerland,Provincial,Internal Border Restrictions,NA,2020-03-17,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-04,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-06-12,2020-07-15,NA,Bern
+Germany,Provincial,Lockdown,NA,2020-04-07,2020-04-28,NA,Baden-Wuerttemberg
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-17,2020-05-06,NA,Glarus
+Switzerland,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-04-02,2020-07-15,NA,Geneva
+Switzerland,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-04-02,2020-07-15,NA,Geneva
+Italy,Provincial,Health Monitoring,NA,2020-02-22,2020-07-15,NA,Tuscany
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-17,2020-07-15,NA,Baden-Wuerttemberg
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-16,2020-07-15,NA,Geneva
+Germany,National,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-04-07,2020-07-15,NA,Germany
+Switzerland,Provincial,Restriction and Regulation of Government Services,All non-essential government services regulated,2020-03-19,2020-06-08,NA,Obwalden
+Switzerland,Provincial,Health Resources,Other Heath Staff,2020-03-17,2020-06-01,NA,Neuchatel
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-06-23,2020-07-15,NA,Schleswig-Holstein
+Germany,Provincial,Restriction and Regulation of Businesses,Transportation (land; water and air),2020-06-10,2020-07-15,NA,Rheinland-Pfalz
+France,National,Health Testing,NA,2020-06-25,2020-07-15,NA,Ile-de-France
+Italy,Provincial,Health Resources,Doctors,2020-03-25,2020-03-26,NA,Liguria
+Italy,Provincial,Health Resources,Nurses,2020-03-25,2020-03-26,NA,Liguria
+Italy,Provincial,Health Resources,Unspecified Health Staff,2020-03-25,2020-03-26,NA,Liguria
+Switzerland,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-07-08,2020-07-15,NA,Vaud
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-26,2020-07-15,NA,Uri
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-03-16,2020-07-15,NA,Zurich
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-30,2020-07-15,NA,Bavaria;
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Existing government entity given new powers,2020-03-13,2020-06-05,NA,Grisons
+Italy,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-24,2020-07-15,NA,Liguria
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-03-19,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Health Resources,Unspecified Health Materials,2020-03-24,2020-03-25,NA,Valais
+Switzerland,Provincial,Health Resources,Unspecified Health Staff,2020-03-24,2020-03-25,NA,Valais
+Germany,Provincial,Internal Border Restrictions,NA,2020-03-12,2020-07-15,NA,Mecklenburg-Vorpommern
+Germany,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-06-15,2020-07-15,NA,Saarland
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Essential Businesses,2020-04-20,2020-07-15,NA,Valais
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-19,2020-04-27,NA,Saint Gallen
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-07-01,2020-07-15,NA,Hamburg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-04-15,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-05-14,2020-07-15,NA,Valais
+Germany,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-04-17,2020-07-15,NA,Hamburg
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-19,2020-07-15,NA,Solothurn
+Switzerland,Provincial,Lockdown,NA,2020-05-09,2020-07-15,NA,Fribourg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-20,2020-04-27,NA,Bavaria
+Switzerland,Provincial,Health Monitoring,NA,2020-03-13,2020-07-15,NA,Neuchatel
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-05-08,2020-07-15,NA,Baden-Wuerttemberg
+Italy,National,Declaration of Emergency,NA,2020-01-31,2020-07-15,NA,Italy
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-03-17,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-03-17,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-03-17,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-17,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-17,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-04-20,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-04-20,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-04-20,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-06-02,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-06-02,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-06-02,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-06-02,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-06-02,2020-07-15,NA,Baden-Wuerttemberg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-05-04,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Health Monitoring,NA,2020-02-27,2020-07-15,NA,Grisons
+Switzerland,Provincial,Health Monitoring,NA,2020-05-11,2020-07-15,NA,Grisons
+Germany,Provincial,External Border Restrictions,Other External Border Restriction,2020-06-15,2020-07-15,NA,Rheinland-Pfalz
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-28,2020-06-19,NA,Appenzell Innerrhoden
+France,Provincial,Restriction and Regulation of Government Services,Issuing of permits/certificates and/or processing of government documents,2020-05-11,2020-07-15,NA,Corsica
+France,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-05-11,2020-07-15,NA,Corsica
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-17,2020-06-19,NA,Schaffhausen
+Switzerland,National,Health Resources,Other Health Infrastructure,2020-03-17,2020-04-27,NA,Glarus
+Switzerland,Provincial,Health Monitoring,NA,2020-05-07,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-18,2020-07-15,NA,Geneva
+Switzerland,Provincial,Lockdown,NA,2020-03-17,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-02,2020-07-15,NA,Neuchatel
+Switzerland,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-13,2020-07-15,NA,Canton Grisons
+France,National,Internal Border Restrictions,NA,2020-06-01,2020-07-15,NA,France
+Italy,Provincial,Health Resources,Masks,2020-04-05,2020-04-06,NA,Lombardy
+France,National,Social Distancing,Wearing Masks in all public spaces/everywhere,2020-05-11,2020-07-15,NA,France
+France,National,Social Distancing,Wearing Masks inside public or commercial building,2020-05-11,2020-07-15,NA,France
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-13,2020-07-15,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-13,2020-07-15,NA,Hamburg
+Germany,Provincial,Hygiene,Hygiene measures for commercial areas,2020-05-11,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-06-30,2020-07-15,NA,Bavaria
+Germany,National,Health Resources,Hospitals,2020-04-27,2020-04-28,NA,Germany
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-18,2020-07-15,NA,Saarland
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-18,2020-07-15,NA,Saarland
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-05-18,2020-07-15,NA,Nidwalden
+Germany,National,Health Testing,NA,2020-02-01,2020-07-15,NA,Germany
+Germany,National,Health Testing,NA,2020-02-15,2020-07-15,NA,Germany
+Italy,Provincial,Restriction and Regulation of Government Services,NA,2020-03-20,2020-07-15,NA,Tuscany
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-16,2020-07-15,NA,Thurgau
+Switzerland,Provincial,Health Resources,Masks,2020-03-03,2020-03-04,NA,Canton Ticino
+Switzerland,Provincial,Health Resources,Unspecified Health Infrastructure,2020-03-03,2020-03-04,NA,Canton Ticino
+Switzerland,Provincial,Health Resources,Doctors,2020-03-03,2020-03-04,NA,Canton Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-17,2020-07-15,NA,Neuchatel
+Switzerland,Provincial,Restriction and Regulation of Businesses,Bars,2020-07-10,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-07-10,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-03-16,2020-07-15,NA,Jura
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-04-27,2020-07-15,NA,Jura
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-03-24,2020-03-25,NA,Solothurn
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-03-16,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-03-16,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-03-16,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-03-16,2020-07-15,NA,Lower Saxony
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public libraries,2020-05-11,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Public museums/galleries,2020-05-11,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-05-11,2020-07-15,NA,Fribourg
+Germany,Provincial,Health Resources,Doctors,2020-04-08,2020-04-09,NA,North Rhine-Westphalia
+Italy,National,Restriction and Regulation of Businesses,Restaurants,2020-03-08,2020-05-18,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-08,2020-05-18,NA,Italy
+Italy,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-08,2020-05-18,NA,Italy
+Switzerland,Provincial,Health Resources,Health Insurance,2020-04-02,2020-04-03,NA,Ticino
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-01,2020-03-02,NA,Zurich
+Switzerland,Provincial,Health Resources,Unspecified Health Infrastructure,2020-03-01,2020-03-02,NA,Zurich
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-01,2020-03-02,NA,Zurich
+Switzerland,Provincial,Health Resources,Unspecified Health Staff,2020-03-01,2020-03-02,NA,Zurich
+Germany,National,Quarantine,Government Quarantine (i.e. quarantine at a government hotel or facility),2020-02-01,2020-07-15,NA,Germany
+Germany,National,Quarantine,Government Quarantine (i.e. quarantine at a government hotel or facility),2020-02-21,2020-07-15,NA,Germany
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-20,2020-07-15,NA,Neuchatel
+Germany,Provincial,Social Distancing,NA,2020-03-30,2020-07-15,NA,Saarland
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-11,2020-05-14,NA,Obwalden
+Germany,Provincial,Health Resources,Masks,2020-04-15,2020-04-16,NA,Rheinland-Pfalz
+Germany,Provincial,Health Resources,Personal Protective Equipment,2020-04-15,2020-04-16,NA,Rheinland-Pfalz
+Germany,Provincial,Health Resources,Other Health Materials,2020-04-15,2020-04-16,NA,Rheinland-Pfalz
+Germany,Provincial,Internal Border Restrictions,NA,2020-07-10,2020-07-15,NA,Lower Saxony
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-06-30,2020-07-15,NA,Bern
+Switzerland,Provincial,Social Distancing,Other Mask Wearing Policy,2020-06-30,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-03-18,2020-05-11,NA,Thurgau
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-16,2020-07-15,NA,Aargau
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-25,2020-07-15,NA,Bern
+Switzerland,National,Restriction and Regulation of Businesses,Retail Businesses,2020-05-11,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Restaurants,2020-05-11,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Bars,2020-05-11,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Shopping Centers,2020-05-11,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-11,2020-07-15,NA,Switzerland
+Switzerland,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-11,2020-07-15,NA,Switzerland
+Germany,National,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-03-30,2020-07-15,NA,Germany
+Germany,National,Health Resources,Masks,2020-03-30,2020-03-31,NA,Germany
+Germany,National,Health Resources,Personal Protective Equipment,2020-03-30,2020-03-31,NA,Germany
+Germany,Provincial,Restriction and Regulation of Government Services,Other public facilities,2020-07-13,2020-07-15,NA,Mecklenburg-Vorpommern
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-09,2020-07-15,NA,Lazio (Italy)
+Switzerland,Provincial,Health Monitoring,NA,2020-05-14,2020-07-15,NA,Valais
+Germany,Provincial,Restriction and Regulation of Businesses,NA,2020-03-17,2020-07-15,NA,Lower Saxony
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-04-01,2020-07-15,NA,Fribourg
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-04-14,2020-07-15,NA,Baden-Wuerttemberg
+Germany,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-04-20,2020-07-15,NA,Saxony-Anhalt
+Germany,Provincial,Social Distancing,Wearing Masks inside public or commercial building,2020-04-20,2020-07-15,NA,Saxony-Anhalt
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-02-27,2020-07-15,NA,Schwyz
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-16,2020-03-17,NA,Ticino
+Switzerland,Provincial,Quarantine,Quarantine outside the home or government facility (i.e. quarantine in a hotel),2020-03-17,2020-06-05,NA,Schaffhausen
+Switzerland,Provincial,Quarantine,Other Quarantine,2020-03-17,2020-06-05,NA,Schaffhausen
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-04-02,2020-07-15,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-11,2020-07-15,NA,Lucerne
+Switzerland,Provincial,Declaration of Emergency,NA,2020-03-17,2020-06-06,NA,Jura
+Germany,National,Restriction and Regulation of Businesses,Other Essential Businesses,2020-03-16,2020-07-15,NA,Germany
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-04-09,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-09,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Lockdown,NA,2020-05-11,2020-07-15,NA,Aargau
+Germany,Provincial,Health Resources,Other Health Infrastructure,2020-06-01,2020-06-02,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-28,2020-07-15,NA,Saxony-Anhalt
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-13,2020-07-15,NA,Hamburg
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-13,2020-07-15,NA,Hamburg
+Germany,Provincial,Health Resources,Masks,2020-04-08,2020-04-09,NA,North Rhine-Westphalia
+Switzerland,Provincial,Lockdown,NA,2020-03-13,2020-05-11,NA,Glarus
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-13,2020-03-14,NA,Solothurn
+Italy,Provincial,Restriction and Regulation of Government Services,NA,2020-03-23,2020-07-15,NA,Sicily
+Germany,National,Restriction and Regulation of Businesses,Restaurants,2020-03-22,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-22,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Restaurants,2020-03-16,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Bars,2020-03-16,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-03-16,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Retail Businesses,2020-03-16,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Shopping Centers,2020-03-16,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-03-16,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-03-16,2020-07-15,NA,Germany
+Switzerland,Provincial,Social Distancing,NA,2020-04-08,2020-07-15,NA,Zug
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-05-20,2020-07-15,NA,Ticino
+Germany,Provincial,Health Resources,Other Health Materials,2020-03-17,2020-03-18,NA,Berlin
+Germany,Provincial,Health Resources,Hospitals,2020-03-17,2020-03-18,NA,Berlin
+Germany,Provincial,Health Resources,Other Heath Staff,2020-03-17,2020-03-18,NA,Berlin
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",New Task Force or Bureau (i.e. establishment of a temporary body),2020-04-14,2020-06-15,NA,Fribourg
+Switzerland,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-07-06,2020-07-15,NA,Bern
+Switzerland,Provincial,Quarantine,Government Quarantine (i.e. quarantine at a government hotel or facility),2020-07-06,2020-07-15,NA,Bern
+Switzerland,Provincial,Health Testing,NA,2020-03-27,2020-07-15,NA,Thurgau
+Switzerland,Provincial,Lockdown,NA,2020-03-15,2020-05-10,NA,Bern
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-03-21,2020-09-26,NA,Zurich
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-03-16,2020-07-15,NA,Lucerne
+Germany,Provincial,Social Distancing,Restrictions on ridership of subways and trams,2020-04-27,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Social Distancing,Restrictions on ridership of trains,2020-04-27,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Social Distancing,Restrictions on ridership of buses,2020-04-27,2020-07-15,NA,Lower Saxony
+Germany,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-04-03,2020-07-15,NA,Bremen
+Germany,Provincial,Closure and Regulation of Schools,Higher education institutions (i.e. degree granting institutions),2020-05-14,2020-07-15,NA,Saarland
+France,National,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-17,2020-07-15,NA,France
+Switzerland,Provincial,Health Resources,Hospitals,2020-03-23,2020-03-24,NA,Solothurn
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-03-23,2020-03-24,NA,Solothurn
+Switzerland,Provincial,Health Resources,Public Testing Facilities (e.g. drive-in testing for COVID-19),2020-03-14,2020-03-15,NA,Bern
+Switzerland,Provincial,Public Awareness Measures,Both Disseminating and Gathering information related to COVID-19,2020-02-29,2020-03-13,NA,Solothurn
+Switzerland,Provincial,Public Awareness Measures,Both Disseminating and Gathering information related to COVID-19,2020-03-04,2020-03-13,NA,Solothurn
+Switzerland,Provincial,Health Resources,Temporary Medical Centers,2020-04-06,2020-04-07,NA,Obwalden
+Switzerland,Provincial,Restriction and Regulation of Businesses,Private health offices,2020-03-20,2020-07-15,NA,Fribourg
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulated government working hours (e.g. work from home policies for government workers),2020-03-18,2020-07-15,NA,Ticino
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-03-18,2020-07-15,NA,Ticino
+Switzerland,Provincial,Other Policy Not Listed Above,NA,2020-03-16,2020-07-15,NA,Thurgau
+Switzerland,Provincial,Restriction and Regulation of Government Services,Regulations on government meetings (including e.g. suspension of parliament),2020-04-21,2020-07-15,NA,Grisons
+Switzerland,Provincial,Health Resources,Other Health Infrastructure,2020-03-25,2020-03-26,NA,Lucerne
+Switzerland,Provincial,Restriction and Regulation of Government Services,Election procedures (e.g. mail-in voting),2020-05-17,2020-07-15,NA,Nidwalden
+Switzerland,Provincial,Public Awareness Measures,Disseminating information related to COVID-19 to the public that is reliable and factually accurate,2020-06-12,2020-07-15,NA,Fribourg
+Italy,Provincial,Social Distancing,Other Mask Wearing Policy,2020-04-24,2020-07-15,NA,Sicily
+Germany,Provincial,Restriction and Regulation of Government Services,Regulated hours government services available (e.g. government services office open for certain hours only),2020-05-12,2020-07-15,NA,Saarland
+Switzerland,Provincial,Restrictions of Mass Gatherings,NA,2020-02-28,2020-03-16,NA,Zug
+Switzerland,Provincial,Health Resources,Masks,2020-06-23,2020-06-24,NA,Bern
+Germany,Provincial,Restriction and Regulation of Government Services,NA,2020-03-17,2020-07-15,NA,Lower Saxony
+Germany,National,Restriction and Regulation of Businesses,Retail Businesses,2020-05-06,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Bars,2020-05-06,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Shopping Centers,2020-05-06,2020-07-15,NA,Germany
+Germany,National,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-06,2020-07-15,NA,Germany
+Switzerland,National,"New Task Force, Bureau or Administrative Configuration",NA,2020-03-31,2020-07-15,NA,Switzerland
+Switzerland,Provincial,Social Distancing,Keeping a distance of at least 6 feet or 1.5 meters apart,2020-03-20,2020-07-15,NA,Lucerne
+Germany,Provincial,External Border Restrictions,Other External Border Restriction,2020-06-02,2020-07-15,NA,Rheinland-Pfalz
+Germany,Provincial,Restriction and Regulation of Businesses,Retail Businesses,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Restaurants,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Bars,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Shopping Centers,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Non-Essential Commercial Businesses,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Personal Grooming Businesses (e.g. hair salons),2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Supermarkets/grocery stores,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Private health offices,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Pharmacies,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Agriculture; forestry and fishing,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Publishing activities,2020-05-04,2020-06-05,NA,Thuringia
+Germany,Provincial,Restriction and Regulation of Businesses,Other Non-Essential Businesses,2020-05-04,2020-06-05,NA,Thuringia
+Italy,Provincial,Quarantine,Self-Quarantine (i.e. quarantine at home),2020-03-13,2020-07-15,NA,Abruzzo
+Germany,National,Other Policy Not Listed Above,NA,2020-04-01,2020-09-30,NA,Germany
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",Cooperation among different jurisdictional entities (e.g. treaties or agreements among countries or provinces),2020-04-08,2020-05-31,NA,Thuringia
+Switzerland,Provincial,Health Testing,NA,2020-03-25,2020-05-29,NA,Lucerne
+Germany,Provincial,Restriction and Regulation of Businesses,NA,2020-04-20,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Preschool or childcare facilities (generally for children ages 5 and below),2020-04-19,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Primary Schools (generally for children ages 10 and below),2020-04-19,2020-05-06,NA,Lower Saxony
+Germany,Provincial,Closure and Regulation of Schools,Secondary Schools (generally for children ages 10 to 18),2020-04-19,2020-05-06,NA,Lower Saxony
+Italy,Provincial,Restriction and Regulation of Businesses,NA,2020-03-10,2020-05-03,NA,City
+Germany,Provincial,Restriction and Regulation of Businesses,NA,2020-03-16,2020-04-19,NA,Schleswig
+Germany,Provincial,Closure and Regulation of Schools,NA,2020-03-18,2020-04-18,NA,Saxony
+Germany,Provincial,Restriction and Regulation of Businesses,NA,2020-04-18,2020-07-15,NA,Bremen
+Germany,Provincial,Closure and Regulation of Schools,NA,2020-04-27,2020-07-15,NA,Bremen
+France,National,External Border Restrictions,NA,2020-04-22,2020-07-15,NA,France
+Switzerland,Provincial,Restriction and Regulation of Government Services,NA,2020-04-05,2020-07-15,NA,Ticino
+Switzerland,Provincial,"New Task Force, Bureau or Administrative Configuration",Cooperation among different jurisdictional entities (e.g. treaties or agreements among countries or provinces),2020-02-26,2020-07-15,NA,Aargau
+Germany,Provincial,Closure and Regulation of Schools,NA,2020-03-16,2020-06-14,NA,Bavaria
+Germany,Provincial,"New Task Force, Bureau or Administrative Configuration",Cooperation among different jurisdictional entities (e.g. treaties or agreements among countries or provinces),2020-03-20,2020-07-15,NA,North Rhine
+Germany,National,Health Resources,NA,2020-03-16,2020-03-17,NA,Germany
+Germany,Provincial,Health Resources,NA,2020-03-13,2020-03-14,NA,Bavaria
+Italy,National,Lockdown,Lockdown applies to all people,2020-03-08,2020-03-10,NA,Lombardy
