@@ -84,9 +84,7 @@ policyCentralization = do.call(rbind, lapply(countries, function(c){
   }))
 
 
-policyCentralization %>% filter(country == 'Germany' & type == 'Restrictions of Mass Gatherings') %>%
-  dplyr:::select(centDegRaw, centDegTheory, centDegStd, date) %>%
-  data.frame()
+
 saveRDS(policyCentralization, file = "~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds") 
 
 # cor(policyCentralization %>% select(centDegStd, hubStd, hubWt, subGraphStd), use = 'complete.obs')

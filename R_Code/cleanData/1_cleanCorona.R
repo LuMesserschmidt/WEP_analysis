@@ -63,6 +63,7 @@ sub_data = rbind(sub_data %>% mutate(missingDum = 0), missing)
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona.R')
 
 
+
 # # fill in target country with country if not an external border restriction  
 # sub_data = sub_data %>% mutate(target_country = ifelse(is.na(target_country) &
 #                                                          type !='External Border Restrictions', country, target_country))
@@ -107,7 +108,8 @@ sub_data = sub_data %>%
 sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
                                  is.na(type_who_gen))
 
- 
+
+
 # select gatherings that restrict gatherings of 500 or more people
 sub_data = sub_data %>%
   mutate(type_mass_gathering = as.numeric(str_trim(type_mass_gathering)))
@@ -126,6 +128,8 @@ sub_data = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Pe
  
 sub_data = sub_data %>% mutate(orphanDum = ifelse(policy_id %in% orphans, 1, 0))
 
+
+ 
 
 
 # replace end date with max last end date for now if end date is missing
@@ -278,19 +282,43 @@ sub_data = sub_data %>%
                          #"Basilicata" = "Basilicate"
                        ))  
  
-# remove 'end of policy' policies
-sub_data = sub_data %>% filter(update_type %!in% 'End of Policy')
+
+
+# # remove 'end of policy' policies
+# sub_data = sub_data %>% filter(update_type %!in% 'End of Policy')
 
 
 # remove entires that have empty type_sub_cat for now; fix later; this is because these were added from the 'missing' data; so far though they are about schools
 sub_data = sub_data %>% filter(!is.na(type_sub_cat))
 
  
+
+
+
 # save raw data 
 saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
 
 
- 
+
+sub_data %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>%
+  arrange(date_start) %>%
+   dplyr:::select( date_start, date_end) %>%
+  distinct %>%
+  #dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end) %>%
+  data.frame()
+
+sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
+  arrange(init_country_level, province, date_start, entry_type)%>%
+  data.frame()
+
+policyCentralization %>% filter(country == 'Germany' & type == 'Lockdown') %>% 
+  dplyr:::select(date, centDegStd)
+
+policyCentralization %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings') %>%
+  dplyr:::select(centDegRaw, centDegTheory, centDegStd, date) %>%
+  data.frame()
+
+
 # -------------------
 # reshape CoronaNet data from raw data to long format 
 # -------------------
