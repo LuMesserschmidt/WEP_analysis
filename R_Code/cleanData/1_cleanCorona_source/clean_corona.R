@@ -1,4 +1,62 @@
 
+
+## Remove irrelevant entries
+
+# remove irrelevant mass gathering policies policies
+sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA",  # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
+                                                 "R_1lxIGQvx9vZZYM8NA", # In Switzerland based on Art. 6 und 7c CO-VID-19-Verordnung 2 (mass gathering at events and gatherings in public) from the 2nd of April on the new COVID law allows the police of Aargau to monitor public spaces in Aargau through cameras and use imaging devices of third parties without the permission of the federal commissioner for data protection and public issues.
+                                                 'R_1eCZx9LHWfawhbdNA',# currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
+                                                 'R_qLC2DxYYk0CEQ25NA', # currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
+                                                 'R_3ku0aYbVr9CHtEVNA',# currently miscoded  The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
+                                                 'R_2tM6ncrVSTXJyJUNA',# curently micoded, should be a city level policy 
+                                                 'R_1CHDPKjV4cVUREBNA',# miscoded, shouldn't be restrictions of mass gatherings
+                                                 'R_sHdwM3uydrZkLvzNA',# The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
+                                                 'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
+                                                 # 'R_pLy55nCKN6rp7gdNA',# On February 25, the Swiss canton of St. Gallen announced that there are no restrictions on mass gatherings and no events will be canceled. Organizers should provide the canton with lists of participants and contact details; especially international participants
+                                                 'R_1q9AXImZ4raUmOCNA',# On 3rd of March the canton of Zurich in Switzerland recommends to cancel events that include people from Italy, China, South Korea and Iran.
+                                                 'R_3mlDLgfh7yZRBlaNA', # On the 28th of May, the Berlin Senate announced that from the 30th of May onwards, public demonstrations in the open would be allowed again, without any limitation to the number of participants, provided that the minimum distance of 1.5 meters and other hygiene rules are observed.
+                                                 'R_1MX0RRHcaCgiTXaNA',# From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced an obligation for sports events to take place behind closed doors.
+                                                 'R_blUCYuaQoqSHAl3NA',  # Switzerland, Geneva--"The cantonal police, with the support of the Civil Protection (PCi), proceeded this morning, Saturday March 28, to a cordon of the lakeside surroundings in order to prohibit the parking of private vehicles.
+                                                 'R_1JUu6XJWWJSvPJ3NA', # From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced the closing of public baths except for closed-door competitions.
+                                                 'R_3G8uMNTTO2IBD7SNA', # In the German state of Rheinland-Pfalz, different households will now be allowed to take residence with each other in public spaces as of May 13
+                                                 'R_vBNxXQwwxlUCukNNA', # The Canton of Zug allows ice hockey games in the Bossard Arena to continue without spectators on February 28th 2020
+                                                 'R_xlQQ2Wj92uVqOjfNA', # The Italian government is banning all sporting matches and public events until next month in several regions of Northern Italy (restrictions of mass gatherings).\n\nThe new measures, approved last night, extends the urgent steps the government is taking for the containment of the coronavirus outbreak outside the exclusion zone. \n\nThe decree bans all events and sport matches in public and private locations from Febuary 26 until March 1.
+                                                 'R_1mJaJpu5i50Y5myNA', # In Italy Ligury region suspends check-in and guest entrance to university dormitories from March 1 till the midnight of March 8
+                                                 'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
+                                                 'R_1LSBNoVwpZakIfZNA')) # Sonja already recoded, can be deleted
+
+# remove 'lockdown' policies for FranceCorsica --- they are not lockdown policies, should be removed from the dataset
+sub_data = sub_data %>% filter(policy_id %!in% c(5328165,
+                                                 4995594,
+                                                 5380034))
+
+
+
+# italy, remove duplicate entry
+sub_data = sub_data %>% filter(policy_id %!in% c(9846529))
+
+# italy, remove nuisance entry for lockdown, this will need to be corrected at some point, but easier to just remove
+sub_data = sub_data %>% filter(policy_id %!in% c(4850883))
+
+
+# switzerland, remove duplicate national restrictions of mas gathering entry
+sub_data = sub_data %>% filter(policy_id %!in% c(3333413))
+
+# germany, sarrland remove duplicate lockdown entry
+sub_data = sub_data %>% filter(policy_id %!in% c(9495684))
+
+# germany, remove duplicate national restriction of mass gatherings entries
+sub_data = sub_data %>% filter(policy_id %!in% c(3143804))
+
+
+
+## Recode entries
+
+#  'lockdown' policy for France this shoudld be recoded as social distancing
+sub_data = sub_data %>% 
+  mutate_cond(policy_id %in% c(1974229),
+              type = 'Social Distancing')
+
 # Bavaria: quarantine/curfew miscoded, should be lockdown
 sub_data = sub_data %>% mutate_cond(policy_id == 7776503,
                                     description = gsub("Curfew|Quarantine","Lockdown", description),
@@ -7,73 +65,20 @@ sub_data = sub_data %>% mutate_cond(policy_id == 7776503,
                                     target_who_what = "All Residents (Citizen Residents +Foreign Residents)",
                                     domestic_policy = 1)
 
-# Germany, Schlwesig-Holstien 'other' miscoded, should be social distancing
-sub_data = sub_data %>% mutate_cond(policy_id == 11030 ,
-                                    type = 'Social Distancing',
-                                    type_sub_cat = "Restrictions on  private vehicles in public circulation")
-
 
 # Germany, Rheinland-Pflaz 'other' miscoded, should be restrictions of mass gatherings
 sub_data = sub_data %>% mutate_cond(policy_id == 5567772 ,
                                     type = 'Restrictions of Mass Gatherings')
 
 
-# Germany 'other' miscoded, should be health resources
-sub_data = sub_data %>% mutate_cond(policy_id == 8816665 ,
-                                    type = 'Health Resources',
-                                    type_sub_cat = 'Vaccines')
-
-
-# Germany Lower Saxony 'other' miscoded, should be 'internal border restrictions'
-sub_data = sub_data %>% mutate_cond(policy_id == 9020379 ,
-                                    type = 'Internal Border Restrictions')
-
-# France 'other' miscoded, should be 'social distancing'
-sub_data = sub_data %>% mutate_cond(policy_id == 9228473 ,
-                                    type = 'Social Distancing',
-                                    type_sub_cat = "Restrictions on  private vehicles in public circulation")
-
-# France 'other' miscoded, should be external border restrictions
-sub_data = sub_data %>% mutate_cond(policy_id == 9239915 ,
-                                    type = 'External Border Restrictions')
-
-
-# Switzerland, 'other' miscoded, should be social distancing
-sub_data = sub_data %>% mutate_cond(policy_id == 8797046 ,
-                                    type = 'Social Distancing',
-                                    type_sub_cat = "Restrictions on ridership of subways and trams")
-
-# Switzerland, Thurgau 'other' miscoded should be declaration of emergecny
-sub_data = sub_data %>% mutate_cond(policy_id == 5284665 ,
-                                    type = 'Declaration of Emergency')
-
 # Switzerland, Schaffhausen 'other' miscoded should be restriction of mass gatherings
 sub_data = sub_data %>% mutate_cond(policy_id == 5707766 ,
                                     type = 'Restrictions of Mass Gatherings')
-
-# Switzerland, Glaurus 'other' miscoded, should be social distancing
-sub_data = sub_data %>% mutate_cond(policy_id == 5801330 ,
-                                    type = 'Social Distancing',
-                                    type_sub_cat = "Restrictions on ridership of subways and trams")
-# 
-# # italy other miscoded, should be business restrictions  
-# sub_data = sub_data %>% mutate_cond(policy_id == 2173638,
-#                                     type = "Restriction and Regulation of Businesses")
 
 # italy other miscoded, should be mask policy sicily mask policy  
 sub_data = sub_data %>% mutate_cond(policy_id == 9861723,
                                     type = "Social Distancing",
                                     type_sub_cat = "Other Mask Wearing Policy" )
-
-
-# italy other miscoded, should be government services
-sub_data = sub_data %>% mutate_cond(policy_id %in% c(5034034, 2769956),
-                                    type = "Restriction and Regulation of Government Services" )
-
-# italy other miscoded, should be quarantine
-sub_data = sub_data %>% mutate_cond(policy_id %in% c(6084808),
-                                    type = "Quarantine" )
-
 
 
 
@@ -84,52 +89,119 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c( '5139191', '2759844'),
                                     date_end = as.Date('2020-03-10', '%Y-%m-%d'))
 
 
-# italy type miscoded, should be quarantine, not lockdown
-sub_data = sub_data %>% mutate_cond(policy_id == '3591526',
-                                    type = 'Quarantine')
-
-
-# Italy type_who_gen miscoded, should be everyone in the municipality not 'other population not specified above'
-
-sub_data = sub_data %>% mutate_cond(policy_id %in% c('1186194',
-                                                     '1445515'),
-                                    type_who_gen = "No special population targeted")
-
-
-
-
 # Switzerland miscoded as social distancing, should be lockdown
-sub_data = sub_data %>% mutate_cond(policy_id == '2154117',
+sub_data = sub_data %>% mutate_cond(policy_id == 2154117,
                                     type = 'Lockdown',
                                     type_sub_cat = 'People in nursing homes/long term care facilities')
 
+# swiss ticino miscoded as restrictions of mass gatherings, should be restrictions of businesses/gov
+sub_data = sub_data %>% mutate_cond(policy_id == 2295515,
+                                    type = "Restriction and Regulation of Businesses" )
 
-sub_data = sub_data %>% mutate_cond(policy_id %in% c('4304926'),
-                                    type_sub_cat = "Postponement of a recreational or commercial event") 
+
+
+# france init_country_level miscoded, should be provincial
+sub_data = sub_data %>% mutate_cond(policy_id == 5260883,
+                                    init_country_level = 'Provincial') 
+
+
+## clean 'missing' types
+
+# germany missing type, should be schools
+sub_data = sub_data %>% mutate_cond(policy_id == 1640670 & type == 'MISSING',
+                                    type = "Closure and Regulation of Schools",
+                                    type_sub_cat = "Preschool or childcare facilities (generally for children ages 5 and below),Primary Schools (generally for children ages 10 and below),Secondary Schools (generally for children ages 10 to 18)",
+                                    date_start = as.Date("2020-03-16", "%Y-%m-%d"),
+                                    date_announced = as.Date("2020-03-13", "%Y-%m-%d"))
+sub_data = sub_data %>% separate_rows(type_sub_cat, sep = ',')
+
+
+# italy missing type, should be health resources
+sub_data = sub_data %>% mutate_cond(policy_id == 6091782 & type == 'MISSING',
+                                    type = "Other Policy Not Listed Above",
+                                    type_sub_cat = "Preschool or childcare facilities (generally for children ages 5 and below),Primary Schools (generally for children ages 10 and below),Secondary Schools (generally for children ages 10 to 18)",
+                                    date_start = as.Date("2020-03-16", "%Y-%m-%d"),
+                                    date_announced = as.Date("2020-03-13", "%Y-%m-%d"))
+
+# germany missing type, should be social distancing/masks
+sub_data = sub_data %>% mutate_cond(policy_id == 8491763 & type == 'MISSING',
+                                    type = "Social Distancing",
+                                    type_sub_cat = "Wearing Masks inside public or commercial building,Other Mask Wearing Policy",
+                                    date_start = as.Date("2020-04-27", "%Y-%m-%d"),
+                                    date_announced = as.Date("2020-04-27", "%Y-%m-%d"))
+
+
+sub_data = sub_data %>% mutate_cond(policy_id == 1843419 & type == 'MISSING',
+                                    province = 'Bremen',
+                                    type =  'Closure and Regulation of Schools',
+                                    type_sub_cat = "Preschool or childcare facilities (generally for children ages 5 and below)")
+
+sub_data = sub_data %>% mutate_cond(policy_id == 9165956  & type == 'MISSING',
+                                    province = 'Geneva',
+                                    type =  'Closure and Regulation of Schools',
+                                    type_sub_cat = "Primary Schools (generally for children ages 10 and below)",
+                                    date_start = as.Date("2020-04-30", "%Y-%m-%d"))
+policies = c('Lockdown', 'Closure and Regulation of Schools', 'Restrictions of Mass Gatherings')
+
+
+# clean type_who_gen
+sub_data = sub_data %>% mutate_cond(
+  policy_id %in% c('2154117',
+                   '7818804',
+                   '9903168',
+                   '1352319'),
+                    type_who_gen = 'People in nursing homes/long term care facilities'
+) %>% mutate_cond(
+  policy_id %in% c('9292517'),
+                  type_who_gen = 'Other population not specifed above',
+)%>% mutate_cond(
+  policy_id %in% c('1186194', # Italy type_who_gen miscoded, should be everyone in the municipality not 'other population not specified above'
+                    '1445515',
+                   '741217',
+                   '4730905'),
+                    type_who_gen = "No special population targeted")
  
-
 ## clean wrong dates
 sub_data = sub_data %>% 
-  mutate_cond(record_id == 'R_1rwDJbQOLkzV69MAj',
-              date_start = as.Date("2020-03-13", "%Y-%m-%d")) %>%
-  mutate_cond(record_id == 'R_BSvrVDwm7M5IF8JAj',
-              date_start = as.Date("2020-02-29", "%Y-%m-%d"),
-              date_announced = as.Date("2020-02-28", "%Y-%m-%d"))%>%
+  # mutate_cond(record_id == 'R_1rwDJbQOLkzV69MAj',
+  #             date_start = as.Date("2020-03-13", "%Y-%m-%d")) %>%
+  # mutate_cond(record_id == 'R_BSvrVDwm7M5IF8JAj',
+  #             date_start = as.Date("2020-02-29", "%Y-%m-%d"),
+  #             date_announced = as.Date("2020-02-28", "%Y-%m-%d"))%>%
   mutate_cond(record_id == 'R_eEYKavm4cHzaEKJNA',
               date_start = as.Date("2020-03-14", "%Y-%m-%d"),
               date_end = as.Date("2020-04-30", "%Y-%m-%d"))%>%
-  mutate_cond(record_id %in% c( 'R_2aIXQCrRqvYXDtpCu',
-                                'R_2aIXQCrRqvYXDtpDp',
-                                'R_2aIXQCrRqvYXDtpBf'),
-              date_start = as.Date("2020-03-17", "%Y-%m-%d"),
-              date_end = NA)  %>%
-  mutate_cond(record_id %in% c( 'R_1r9CqgxJiBgq3GBCu',
-                                'R_1r9CqgxJiBgq3GBDp',
-                                'R_1r9CqgxJiBgq3GBBf'),
-              date_start = as.Date("2020-03-20", "%Y-%m-%d")) %>%
-  mutate_cond(record_id %in% c('R_10GFpwOB1ehsCd3Du'),
-              date_end = as.Date("2020-06-03", "%Y-%m-%d"))
+  # mutate_cond(record_id %in% c('R_10GFpwOB1ehsCd3Du'),
+  #             date_end = as.Date("2020-06-03", "%Y-%m-%d")) %>%
+  mutate_cond(policy_id %in% c(9590203),
+             date_end = as.Date("2020-08-31", "%Y-%m-%d")) %>% # https://www.admin.ch/gov/en/start/documentation/media-releases/media-releases-federal-council.msg-id-79268.html
+  mutate_cond(record_id %in% c('R_3hcPvfIHbqLvynNNA'),
+              date_start =as.Date("2020-02-24", "%Y-%m-%d") ) 
 
+# change compliance measures
+sub_data = sub_data%>%
+  mutate_cond(record_id %in% c("R_3KPknxzcxN1vSyxNA"),
+              compliance = "Voluntary/Recommended but No Penalties")
+
+ 
+
+# adjust mass restrictions category
+rid = c('R_ah2w0ZOyeSvMEj7NA',
+        'R_qOUYa35iAW11h5LNA',
+        'R_1HepS3Sb89rj1UPNA',
+        'R_3rHuIhkSsPzEOrYNA',
+        'R_28YRziizw7ZZOfjNA',
+        'R_2P8c6lkNycftS7tNA',
+        'R_1jCEucwkge7z3oTCj',
+        'R_1qe6CqFYOHk6RBANA',
+        'R_1HjmbY7oxNCMKBKNA',
+        'R_3rPojgRhfH9fjfMNA',
+        'R_1gegqGyoUUZdrcNNA',
+        'R_2pX2smox9mkUJ8ANA',
+        'R_3R2cCsYmeuhlnNnNA',
+        'R_1JK05QmhgbvBXgwNA')
+
+ sub_data %>% filter(policy_id == 9590203)
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '1774357',
@@ -143,7 +215,81 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '4126406',
                                                      '6249300',
                                                      '9846529',
-                                                     '4603012')|
+                                                     '4603012',
+                                                     '411172',
+                                                     '1981688',
+                                                     '2267407',
+                                                     '2679041',
+                                                     '3779518',
+                                                     '3135093',
+                                                     '4223201',
+                                                     '5126100',
+                                                     '5828989',
+                                                     '6155066',
+                                                     '6249300',
+                                                     '6310955',
+                                                     '6620376',
+                                                     '6766468',
+                                                     '7505960',
+                                                     '7463826',
+                                                     '7505960',
+                                                     '7749192',
+                                                     '7862501',
+                                                     '8280241',
+                                                     '8379520',
+                                                     '8379520',
+                                                     '8768058',
+                                                     '9008440',
+                                                     '9952814',
+                                                     '667813',
+                                                     '1229568',
+                                                     '1746787',
+                                                     '1938903',
+                                                     '1990503',
+                                                     '6221664',
+                                                     '7066318',
+                                                     '7752252',
+                                                     '8523470',
+                                                     '256638',
+                                                     '2378155',
+                                                     '3156419',
+                                                     '2769110',
+                                                     '5169904',
+                                                     '1824507',
+                                                     '3120762',
+                                                     '6650185',
+                                                     '7042359',
+                                                     '4472397',
+                                                     '3285136',
+                                                     '4456314',
+                                                     '8010781',
+                                                     '4730905',
+                                                     '4797956',
+                                                     '970254',
+                                                     '9010893',
+                                                     "5376164", 
+                                                     "6279485",
+                                                     "4655419",
+                                                     "7222692",
+                                                     "933706", 
+                                                     "6192024", 
+                                                     "6279485",
+                                                     "3143804",
+                                                     '6547663',
+                                                     '84950',
+                                                     '97903',
+                                                     '249869',
+                                                     '643690',
+                                                     '741217',
+                                                     '1245934',
+                                                     '1549982',
+                                                     '4425840',
+                                                     '5260883',
+                                                     '8218737',
+                                                     '9086049',
+                                                     '6547663',
+                                                     '8972618'
+                                                     )|
                                             record_id %in% c('R_ah2w0ZOyeSvMEj7NA',
                                                              'R_qOUYa35iAW11h5LNA',
                                                              'R_1HepS3Sb89rj1UPNA',
@@ -161,14 +307,41 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                     type_sub_cat = "All/Unspecified mass gatherings") 
 
 
-sub_data = sub_data %>% mutate_cond(policy_id %in% c('8908778', '9664505', '2000573', '8140826'),
+# change date for hamburg restriction of mass gathering
+sub_data = sub_data %>% mutate_cond(record_id == "R_ah2w0ZOyeSvMEj7NA",
+                         date_start = as.Date("2020-03-14", "%Y-%m-%d"),
+                         date_end = as.Date("2020-03-14", "%Y-%m-%d"),
+                         )
+ 
+sub_data = sub_data %>% mutate_cond(policy_id %in% c('4304926'),
+                                    type_sub_cat = "Postponement of a recreational or commercial event") 
+
+sub_data = sub_data %>% mutate_cond(policy_id %in% c('8908778', '9664505', '2000573', '8140826', '7343179'),
                                     type_sub_cat = "All/Unspecified mass gatherings",
                                     type_mass_gathering = '1000') 
+
+
+sub_data = sub_data %>% mutate_cond(policy_id %in% c('8066334'),
+                                    type_sub_cat = "All/Unspecified mass gatherings",
+                                    type_mass_gathering = '75') 
+
+sub_data = sub_data %>% mutate_cond(policy_id %in% c('757552'),
+                                    type_sub_cat = "All/Unspecified mass gatherings",
+                                    type_mass_gathering = '100') 
+
+
+sub_data = sub_data %>% mutate_cond(record_id %in% c('R_3POjmt0Ax7ShYryAg'),
+                                    type_sub_cat = "All/Unspecified mass gatherings",
+                                    type_mass_gathering = '1000',
+                                    type_who_gen = 'No special population targeted') 
+
+sub_data = sub_data %>% mutate_cond(policy_id %in% c('1382039'),
+                                    type_sub_cat = "All/Unspecified mass gatherings",
+                                    type_who_gen =  'No special population targeted' ) 
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('9239737'),
                                     type_sub_cat = "All/Unspecified mass gatherings",
                                     type_mass_gathering = '2') 
-
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049'),
                                     type_sub_cat = "All/Unspecified mass gatherings",
@@ -180,19 +353,18 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('3728913', '4415069'),
 sub_data = sub_data %>% mutate_cond(record_id %in% c('R_1mJaJpu5i50Y5myNA'),
                                     type = 'Other Policy Not Listed Above')
 
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(8248035),
+                                    type_sub_cat = 'Other mass gatherings not specified above restricted')
+
+
 sub_data = sub_data %>% mutate_cond(record_id %in% c('R_reT4y2kUxvffllLNA',
                                                      'R_1q9AXImZ4raUmOCNA',
                                                      'R_1MX0RRHcaCgiTXaNA'),
                                     type_sub_cat = 'Other mass gatherings not specified above restricted')
 
-sub_data = sub_data %>% mutate_cond(record_id %in% c('R_xlQQ2Wj92uVqOjfNAA',
-                                                     'R_3lDo64IEsUEi7ihNA',
+sub_data = sub_data %>% mutate_cond(record_id %in% c( 'R_3lDo64IEsUEi7ihNA',
                                                      'R_xlQQ2Wj92uVqOjfNA'),
                                     type_sub_cat= 'Cancellation of a recreational or commercial event')
-
-
-
-
 
 sub_data = sub_data %>% mutate(type_mass_gathering  = recode( type_mass_gathering,
                                                           "Max of 10 people at sports training/competition" = "10",
@@ -203,7 +375,14 @@ sub_data = sub_data %>% mutate(type_mass_gathering  = recode( type_mass_gatherin
                                                           "Maximum of 10" = "10",
                                                           "No more than two households may now gather in public." = "",
                                                           "inside: 50, outside: 100" = "100",
-                                                          "gatherings in public: max 30 people" = "30")) %>%
+                                                          "gatherings in public: max 30 people" = "30",
+                                                          'Outdoor event max of 350, indoor event max of 150' = "350",
+                                                          "From 150 to 999" = "150",
+                                                          '0; 5; 50' = "",
+                                                          "Max 100 people per room, not more than 1000 in total (both excluding active participants)" = "100",
+                                                          'more than 1000' = "1000",
+                                                          'less than 250' = "250",
+                                                          "nN" = "2")) %>%
   mutate(
     type_mass_gathering = recode(type_mass_gathering,
                                  "1,000 max" = "1000")
@@ -259,34 +438,83 @@ sub_data = sub_data %>% mutate(type_mass_gathering  = recode( type_mass_gatherin
   mutate_cond(
     policy_id %in% c(3639091),
     type_mass_gathering = '50'
+  ) %>% mutate_cond(
+    policy_id %in% 6155066,
+    type_mass_gathering = ""
+  ) %>% mutate_cond(
+    record_id == 'R_3F2jJtrxhgZ4LciAg',
+    type_mass_gathering = "200",
+  )%>% mutate_cond(
+    record_id == 'R_2ceFzxz80PWbXfZAh',
+    type_mass_gathering = ""
+  )%>% mutate_cond(
+    record_id == 'R_TcMRS1GeErWQPgBCj',
+    type_mass_gathering = "2"
+  ) %>% mutate_cond(
+    policy_id == 9554383,
+    type_mass_gathering = "2"
   )
 
-
-
-## clean 'missing' types
-
-# germany missing type, should be schools
-sub_data = sub_data %>% mutate_cond(policy_id == 1640670 & type == 'MISSING',
-                                    type = "Closure and Regulation of Schools",
-                                    type_sub_cat = "Preschool or childcare facilities (generally for children ages 5 and below),Primary Schools (generally for children ages 10 and below),Secondary Schools (generally for children ages 10 to 18)",
-                                    date_start = as.Date("2020-03-16", "%Y-%m-%d"),
-                                    date_announced = as.Date("2020-03-13", "%Y-%m-%d"))
-sub_data = sub_data %>% separate_rows(type_sub_cat, sep = ',')
-
-
-# italy missing type, should be health resources
-sub_data = sub_data %>% mutate_cond(policy_id == 6091782 & type == 'MISSING',
-                                    type = "Other Policy Not Listed Above",
-                                    type_sub_cat = "Preschool or childcare facilities (generally for children ages 5 and below),Primary Schools (generally for children ages 10 and below),Secondary Schools (generally for children ages 10 to 18)",
-                                    date_start = as.Date("2020-03-16", "%Y-%m-%d"),
-                                    date_announced = as.Date("2020-03-13", "%Y-%m-%d"))
-
-# germany missing type, should be social distancing/masks
-sub_data = sub_data %>% mutate_cond(policy_id == 8491763 & type == 'MISSING',
-                                    type = "Social Distancing",
-                                    type_sub_cat = "Wearing Masks inside public or commercial building,Other Mask Wearing Policy",
-                                    date_start = as.Date("2020-04-27", "%Y-%m-%d"),
-                                    date_announced = as.Date("2020-04-27", "%Y-%m-%d"))
  
 
+# ---------------
+
+# Germany, Schlwesig-Holstien 'other' miscoded, should be social distancing
+sub_data = sub_data %>% mutate_cond(policy_id == 11030 ,
+                                    type = 'Social Distancing',
+                                    type_sub_cat = "Restrictions on  private vehicles in public circulation")
+
+
+# Germany 'other' miscoded, should be health resources
+sub_data = sub_data %>% mutate_cond(policy_id == 8816665 ,
+                                    type = 'Health Resources',
+                                    type_sub_cat = 'Vaccines')
+
+
+# Germany Lower Saxony 'other' miscoded, should be 'internal border restrictions'
+sub_data = sub_data %>% mutate_cond(policy_id == 9020379 ,
+                                    type = 'Internal Border Restrictions')
+
+# France 'other' miscoded, should be 'social distancing'
+sub_data = sub_data %>% mutate_cond(policy_id == 9228473 ,
+                                    type = 'Social Distancing',
+                                    type_sub_cat = "Restrictions on  private vehicles in public circulation")
+
+# France 'other' miscoded, should be external border restrictions
+sub_data = sub_data %>% mutate_cond(policy_id == 9239915 ,
+                                    type = 'External Border Restrictions')
+
+
+# Switzerland, 'other' miscoded, should be social distancing
+sub_data = sub_data %>% mutate_cond(policy_id == 8797046 ,
+                                    type = 'Social Distancing',
+                                    type_sub_cat = "Restrictions on ridership of subways and trams")
+
+# Switzerland, Thurgau 'other' miscoded should be declaration of emergecny
+sub_data = sub_data %>% mutate_cond(policy_id == 5284665 ,
+                                    type = 'Declaration of Emergency')
+
+# Switzerland, Glaurus 'other' miscoded, should be social distancing
+sub_data = sub_data %>% mutate_cond(policy_id == 5801330 ,
+                                    type = 'Social Distancing',
+                                    type_sub_cat = "Restrictions on ridership of subways and trams")
+# 
+# # italy other miscoded, should be business restrictions  
+# sub_data = sub_data %>% mutate_cond(policy_id == 2173638,
+#                                     type = "Restriction and Regulation of Businesses")
+
+
+
+# italy other miscoded, should be government services
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(5034034, 2769956),
+                                    type = "Restriction and Regulation of Government Services" )
+
+# italy other miscoded, should be quarantine
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(6084808),
+                                    type = "Quarantine" )
+
+
+# italy type miscoded, should be quarantine, not lockdown
+sub_data = sub_data %>% mutate_cond(policy_id == '3591526',
+                                    type = 'Quarantine')
 

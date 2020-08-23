@@ -21,7 +21,7 @@ combined_cases$cases[combined_cases$country=="France" & combined_cases$date>="20
 #combined_cases$cases[combined_cases$country=="France" & combined_cases$date=="2020-03-26"]<-NA
 #combined_cases$cases[combined_cases$country=="France" & combined_cases$date=="2020-03-08"]<-NA
 
-
+ 
 combined_cases <- combined_cases %>% 
   group_by(country, region) %>% 
   mutate(cases = ceiling(na.approx(cases, maxgap = Inf, rule = 2,na.rm=FALSE)))
