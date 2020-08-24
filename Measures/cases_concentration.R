@@ -111,8 +111,8 @@ cases <- cases %>%
   mutate(past_average_new_cases = rollapply(new_cases, 7, mean, align="right", fill=NA)) %>%
   mutate(past_average_new_cases_national = rollapply(new_cases_national, 7, mean, align="right", fill=NA)) 
 
-cases$measure_H1_H2<- cases$past_average_new_cases_national/cases$sum_pop
-cases$measure_H3<- (cases$past_average_new_cases/cases$eurostat_total_population_2019) - (cases$measure_H1_H2)
+cases$measure_H1_H2<- (cases$past_average_new_cases_national/cases$sum_pop)*100
+cases$measure_H3<- ((cases$past_average_new_cases/cases$eurostat_total_population_2019)*100) - (cases$measure_H1_H2)
 
 
 cases<-cases[!is.na(cases$region),]

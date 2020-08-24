@@ -31,8 +31,6 @@ sub_data = sub_data %>% filter(policy_id %!in% c(5328165,
                                                  5380034,
                                                  2123620))
 
-
-
 # italy, remove duplicate entry
 sub_data = sub_data %>% filter(policy_id %!in% c(9846529))
 
@@ -170,12 +168,56 @@ sub_data = sub_data %>% mutate_cond(
   record_id %in% c('R_1HjmbY7oxNCMKBKNA'),
   type_sub_cat = 'Other mass gatherings not specified above restricted'
 )%>% mutate_cond(
-  policy_id %in% c('1186194', # Italy type_who_gen miscoded, should be everyone in the municipality not 'other population not specified above'
-                    '1445515',
-                   '741217',
-                   '4730905'),
+  policy_id %in% c(1186194, # Italy type_who_gen miscoded, should be everyone in the municipality not 'other population not specified above'
+                    1445515,
+                   741217,
+                   4730905,
+                   4578339, 
+                   6107102, 
+                   7394364, 
+                   6848445, 
+                   2631265, 
+                   5195126, 
+                   5793020, 
+                   3145490, 
+                   7641508, 
+                   7816864, 
+                   9667684,
+                   3268249,
+                   6936559,
+                   8806284, 
+                   8052058, 
+                   5979520, 
+                   647125, 
+                   4188041,
+                   1859975, 
+                   5226788, 
+                   1179383, 
+                   2167133, 
+                   6855278, 
+                   7560600, 
+                   731714, 
+                   1794942, 
+                   2386845, 
+                   2886370, 
+                   4377294, 
+                   7367924, 
+                   8209036, 
+                   8496475,
+                   4231455,
+                   5762826),
                     type_who_gen = "No special population targeted")
- 
+
+
+
+# clean target country
+sub_data = sub_data %>% mutate_cond(
+                      policy_id %in% c(8434835),
+                      target_country = 'France') %>%
+                    mutate_cond(
+                      policy_id %in% c(4324965, 9239737, 411172, 9952814, 1640670, 5122018, 8491763),
+                      target_country = 'Germany'
+                    )
 
 ## clean wrong dates
 sub_data = sub_data %>% 
@@ -213,9 +255,15 @@ sub_data = sub_data %>%
 # change compliance measures
 sub_data = sub_data%>%
   mutate_cond(record_id %in% c("R_3KPknxzcxN1vSyxNA"),
-              compliance = "Voluntary/Recommended but No Penalties")
+              compliance = "Voluntary/Recommended but No Penalties") %>%
+  mutate_cond(record_id %in% c(
+     c("R_elAEbJyf0gujRbHCi", "R_2CHdP2cD0joISWAEs", "R_2CHdP2cD0joISWACi", 
+       "R_1cV3JVqRdmGDsujEr", "R_1cV3JVqRdmGDsujEs", "R_1Pe1wlpB8X8KR9KEs", 
+       "R_1ml1q75EQ1fAXAJEs", "R_1ml1q75EQ1fAXAJCi"),
+     compliance = 'Mandatory (Unspecified/Implied)'
+  ), )
 
- 
+ unique(sub_data$compliance)
 
 # adjust mass restrictions category
 
