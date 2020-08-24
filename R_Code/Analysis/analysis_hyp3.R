@@ -53,7 +53,7 @@ df_cases = mutate(df_cases,
 
 
 # merge data
-df = merge(sub_data_agg, df_cases, by = c("province","date"), all.x = TRUE)
+df = merge(sub_data_agg %>% filter(date > "2019-12-31"), df_cases, by = c("province","date"), all.x = TRUE)
 
 # make time variable
 df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 1, 0)
@@ -63,7 +63,7 @@ df  = df %>% group_by(province) %>% mutate(time = 1:n(),
   ungroup()
 
 # make France the reference country
-df$country = factor(df$country)
+df$country = factor(df$country, levels(factor(df$country))[c(1, 3, 2, 4)])
 df = within(df, country <- relevel(country, ref = 'France'))
  
 # make  Restrictions of Mass Gathering the reference
@@ -71,59 +71,79 @@ df$type = factor(df$type)
 df = within(df, type <- relevel(type, ref = 'Restrictions of Mass Gatherings'))
 
 # 
-# df = df %>% mutate(lpolicy_count = ifelse(policy_count == 0, 0, log(policy_count)))
+df = df %>% mutate(lpolicy_count = ifelse(policy_count == 0, 0, log(policy_count)))
 
 
 
 # --------------
 # eda
 # --------------
+hist(df$lpolicy_count)
 hist(df$policy_count)
+hist(log(df$policy_count+1))
+hist(df$policy_dum)
 hist(log(df$measure_H3 - min(df$measure_H3, na.rm = TRUE)+1))
+hist(df$measure_H3)
+ 
 
 # --------------
 # analyze data
 # --------------
 
 # logit of policy dummy
-model3a = glm(policy_dum ~ country*type*measure_H3 + time + time2 +time3, data = df, family = 'binomial')
+model3a = glm(policy_dum ~ country*type*measure_H3 + time + time2, data = df, family = 'binomial')
 
-
+model3a = glm(policy_dum ~ country*type*measure_H3 + time + time2+ province, data = df, family = 'binomial')
+summary(model3a)
 # poisson of policy count
-model3b = glm(policy_count ~ country*type*measure_H3 + time + time2 +time3, data = df, family = 'poisson')
+model3b = glm(policy_count ~ country*type*measure_H3 + time + time2 +time3+ province, data = df, family = 'poisson')
 
 
 
 # ols of policy count
-model3c = lm(policy_count ~ country*type*measure_H3 + time + time2 +time3, data = df)
-
+model3c = lm(lpolicy_count ~ country*type*measure_H3 + time + time2 +time3+ province, data = df)
+ 
 # ---------------------
 # substantive effect plots
 # --------------------
-p3a<- plot_model(model3a, type = 'pred', terms = c( 'measure_H3', 'country', 'type'), transform = 'exp')+
+
+p3a<- plot_model(model3a, type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 6.192858e-07]', 'country', 'type'), transform = 'exp')+
   labs(y = 'Policy Dummy',
      x = 'Cases Measure',
-     title = 'Predicted Values of Policy Incidence (dummy variable), \n Logit Model')+
+     title = 'Predicted Values of Policy Incidence (dummy variable), \n Logit Model',
+     colors = c('red', 'blue', 'green', 'purple'))+
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
- 
+
+p3a<- plot_model(model3a, type = 'pred', terms = c( 'measure_H3', 'country', 'type'), transform = 'exp')+
+  labs(y = 'Policy Dummy',
+       x = 'Cases Measure',
+       title = 'Predicted Values of Policy Incidence (dummy variable), \n Logit Model',
+       colors = c('red', 'blue', 'green', 'purple'))+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+p3a 
 ggsave("WEP_analysis/Results/predicted_effects_h3_logit.pdf", p3a)
 
 
-p3b<-plot_model(model3b,  type = 'pred', terms = c( 'measure_H3', 'country', 'type'))+
-  labs(y = 'Policy Dummy',
-       x = 'Cases Measure',,
-       title = 'Predicted Values of Policy Incidence (count variable), \n Poisson Model')+
+p3b<-plot_model(model3b,  type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 6.192858e-07]', 'country', 'type'))+
+  labs(y = 'Policy Count',
+       x = 'Cases Measure',
+       title = 'Predicted Values of Policy Incidence (count variable), \n Poisson Model',
+       colors = c('red', 'blue', 'green', 'purple'))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
+
+p3b
 ggsave("WEP_analysis/Results/predicted_effects_h3_poisson.pdf", p3b)
 
-p3c<-plot_model(model3c,  type = 'pred', terms = c( 'measure_H3', 'country', 'type'))+
-  labs(y = 'Policy Dummy',
-       x = 'Cases Measure',,
-       title = 'Predicted Values of Policy Incidence (count variable), \n OLS Model')+
+p3c<-plot_model(model3c,  type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 6.192858e-07]', 'country', 'type'))+
+  labs(y = 'Policy Count',
+       x = 'Cases Measure',
+       title = 'Predicted Values of Policy Incidence (count variable), \n OLS Model',
+       colors = c('red', 'blue', 'green', 'purple'))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-
+ p3c
 ggsave("WEP_analysis/Results/predicted_effects_h3_ols.pdf", p3c)
 
 
@@ -134,13 +154,16 @@ ggsave("WEP_analysis/Results/predicted_effects_h3_ols.pdf", p3c)
 
 coefMap = list(
   "typeRestrictions of Mass Gatherings" = 'Restrictions of Mass Gatherings Dum',
+  'typeLockdown' = "Lockdown Dum",
   "countrySwitzerland" = "Switzerland",
   "countryGermany" = "Germany",
   "countryItaly" = "Italy",
-   "measure_H3" = 'Cases Measure',
   'typeRestrictions of Mass Gatherings:countrySwitzerland' = 'Restrictions of Mass Gatherings Dum * Switzerland',
   'typeRestrictions of Mass Gatherings:countryGermany' = 'Restrictions of Mass Gatherings Dum * Germany',
   'typeRestrictions of Mass Gatherings:countryItaly' = 'Restrictions of Mass Gatherings Dum * Italy',
+  'typeLockdown:countrySwitzerland' = 'Lockdown Dum * Switzerland',
+  'typeLockdown:countryGermany' = 'Lockdown Dum * Germany',
+  'typeLockdown:countryItaly' = 'Lockdown Dum * Italy',
   
   'countryGermany:measure_H3' = 'Cases Measure * Germany',
   'countryItaly:measure_H3' = 'Cases Measure * Italy',
@@ -151,6 +174,12 @@ coefMap = list(
   'countryItaly:typeRestrictions of Mass Gatherings:measure_H3' = 'Cases Measure * Restrictions of Mass Gatherings Dum * Italy',
   'countrySwitzerland:typeRestrictions of Mass Gatherings:measure_H3' = 'Cases Measure * Restrictions of Mass Gatherings Dum * Switzerland',
 
+  'typeLockdown:measure_H3' = 'Cases Measure * Lockdown Dum',
+  'countryGermany:typeLockdown:measure_H3' = 'Cases Measure * Lockdown Dum * Germany',
+  'countryItaly:typeLockdown:measure_H3' = 'Cases Measure * Lockdown Dum * Italy',
+  'countrySwitzerland:typeLockdown:measure_H3' = 'Cases Measure * Lockdown Dum * Switzerland',
+  
+  
   'time' = 'time',
   'time2' = 'time2',
   'time3' = 'time3',
@@ -161,7 +190,7 @@ texreg(list(model3a, model3b, model3c),
        custom.coef.map = coefMap,
        custom.model.names = c( 'Logit', 'Poisson', "OLS"))
 
+names(df)
 
-
-
-
+df_fed <- read_csv("WEP_analysis/Measures/fed.csv", guess_max = 10000)
+head(df_fed)

@@ -49,19 +49,17 @@ policies = c('Lockdown', 'Closure and Regulation of Schools', 'Restrictions of M
 # -------------------
 # clean  CoronaNet data
 # -------------------
-
+ 
 # Filter policies to WEP countries
-sub_data = qualtrics %>% dplyr:::filter(country %in% countries) 
-
-
+sub_data = qualtrics %>% dplyr:::filter(country %in% countries & country_overwrite == 0) 
 
 # retrieve and add 'missing' policies
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona_missing.R')
 sub_data = rbind(sub_data %>% mutate(missingDum = 0), missing)
 
+ 
 # check and recode 'other' policy data
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona.R')
-
 
 
 # # fill in target country with country if not an external border restriction  
@@ -108,16 +106,14 @@ sub_data = sub_data %>%
 sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
                                  is.na(type_who_gen))
 
-
-
 # select gatherings that restrict gatherings of 500 or more people
 sub_data = sub_data %>%
   mutate(type_mass_gathering = as.numeric(str_trim(type_mass_gathering)))
 
+
 sub_data = sub_data %>% filter( type %in% c("Lockdown", "Closure and Regulation of Schools", "Social Distancing")|
                                   type_mass_gathering >= 500|
                             is.na(type_mass_gathering) & type == 'Restrictions of Mass Gatherings')
-
 
 # remove policies that are voluntary
 sub_data = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Penalties")
@@ -129,9 +125,6 @@ sub_data = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Pe
 sub_data = sub_data %>% mutate(orphanDum = ifelse(policy_id %in% orphans, 1, 0))
 
 
- 
-
-
 # replace end date with max last end date for now if end date is missing
 # and remove observations that come after that end date
 # end_date = max(sub_data$date_end, na.rm = TRUE)
@@ -140,8 +133,9 @@ sub_data = sub_data %>%
    dplyr:::mutate(date_end = if_else(is.na(date_end), as.Date(end_date, "%Y-%m-%d"), date_end)) %>%
    filter(date_start<=as.Date(end_date, "%Y-%m-%d"))
 
+
  
-# add swiss lockdown policy
+# add swiss lockdown policy -- from anke
 swiss_lockdown = data.frame(record_id = 'manual_add_1',
                             policy_id = 'manual_add_1',
                             entry_type = 'new_entry',
@@ -189,7 +183,54 @@ swiss_lockdown = data.frame(record_id = 'manual_add_1',
                             missingDum = 0,
                             orphanDum  = 0)
 
-
+# add swiss mass gathering policy -- from anke
+swiss_mass_gathering = data.frame(record_id = 'manual_add_4',
+                            policy_id = 'manual_add_4',
+                            entry_type = 'new_entry',
+                            correct_type = 'original',
+                            update_type = NA,
+                            update_level = NA,
+                            description = "June 22 limit 1000, but subdivision into sectors of max limit 300 pers, to ensure contact tracing; scheduled till September 30: limit 1000; okotber 1: back to cantonal responsability",
+                            date_announced = as.Date("2020-06-22", "%Y-%m-%d"),
+                            date_start = as.Date("2020-06-22", "%Y-%m-%d"),
+                            date_end = as.Date("2020-09-30", "%Y-%m-%d"),
+                            country = "Switzerland",
+                            ISO_A3 = "CHE",
+                            ISO_A2 = "CH",
+                            init_country_level = 'National',
+                            domestic_policy = 1,
+                            province = NA,
+                            city = NA,
+                            type = 'Restrictions of Mass Gatherings',
+                            type_sub_cat = "All/Unspecified mass gatherings",
+                            type_text = NA,
+                            type_quarantine_days = NA,
+                            type_mass_gathering = 1000,
+                            type_who_gen = "No special population targeted",
+                            source_corr_type = NA,
+                            school_status = NA,
+                            target_country = 'Switzerland',
+                            target_geog_level = NA,
+                            target_region = NA,
+                            target_province = NA,
+                            target_city = NA,
+                            target_other = NA,
+                            target_who_what = "All Residents (Citizen Residents +Foreign Residents)",
+                            target_direction = NA,
+                            travel_mechanism = NA,
+                            compliance = "Mandatory (Unspecified/Implied)",
+                            enforcer = 'National Government',
+                            index_high_est = NA,
+                            index_med_est = NA,
+                            index_low_est = NA,
+                            index_country_rank = NA,
+                            link = NA,
+                            date_updated = NA,
+                            recorded_date = NA,
+                            country_overwrite = 0,
+                            missingDum = 0,
+                            orphanDum  = 0)
+# info from emily westropp
 france_mass_gathering = data.frame(record_id = 'manual_add_2',
                             policy_id = 'manual_add_2',
                             entry_type = 'new_entry',
@@ -237,9 +278,63 @@ france_mass_gathering = data.frame(record_id = 'manual_add_2',
                             missingDum = 0,
                             orphanDum  = 0)
 
+
+ # italy mass gathering
+# info from https://www.ictp.it/ictp_covidresponse/italian-government-actions.aspx
+italy_mass_gathering = data.frame(record_id = 'manual_add_3',
+                                   policy_id = 'manual_add_3',
+                                   entry_type = 'new_entry',
+                                   correct_type = 'original',
+                                   update_type = NA,
+                                   update_level = NA,
+                                   description = "On July 14 Italy extends previous June 11 provisions such that events which involve gatherings remain suspended if social distancing rules cannot be respected or if more than 1000 people are present",
+                                   date_announced = as.Date("2020-06-11", "%Y-%m-%d"),
+                                   date_start = as.Date("2020-06-14", "%Y-%m-%d"),
+                                   date_end = as.Date("2020-07-31", "%Y-%m-%d"),
+                                   country = "Italy",
+                                   ISO_A3 = "ITA",
+                                   ISO_A2 = "IT",
+                                   init_country_level = 'National',
+                                   domestic_policy = 1,
+                                   province = NA,
+                                   city = NA,
+                                   type = 'Restrictions of Mass Gatherings',
+                                   type_sub_cat = "All/Unspecified mass gatherings",
+                                   type_text = NA,
+                                   type_quarantine_days = NA,
+                                   type_mass_gathering = "1000",
+                                   type_who_gen = "No special population targeted",
+                                   source_corr_type = NA,
+                                   school_status = NA,
+                                   target_country = 'Italy',
+                                   target_geog_level = NA,
+                                   target_region = NA,
+                                   target_province = NA,
+                                   target_city = NA,
+                                   target_other = NA,
+                                   target_who_what = "All Residents (Citizen Residents +Foreign Residents)",
+                                   target_direction = NA,
+                                   travel_mechanism = NA,
+                                   compliance = "Mandatory (Unspecified/Implied)",
+                                   enforcer = 'National Government',
+                                   index_high_est = NA,
+                                   index_med_est = NA,
+                                   index_low_est = NA,
+                                   index_country_rank = NA,
+                                   link = "https://www.ictp.it/ictp_covidresponse/italian-government-actions.aspx",
+                                   date_updated = NA,
+                                   recorded_date = NA,
+                                   country_overwrite = 0,
+                                   missingDum = 0,
+                                   orphanDum  = 0)
  
 sub_data = rbind(sub_data, swiss_lockdown)
 sub_data = rbind(sub_data, france_mass_gathering)
+sub_data = rbind(sub_data, italy_mass_gathering)
+sub_data = rbind(sub_data, swiss_mass_gathering)
+
+
+
 
 
 # fill in appropriate province names
@@ -300,24 +395,6 @@ saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS"
 
 
 
-sub_data %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>%
-  arrange(date_start) %>%
-   dplyr:::select( date_start, date_end) %>%
-  distinct %>%
-  #dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end) %>%
-  data.frame()
-
-sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
-  arrange(init_country_level, province, date_start, entry_type)%>%
-  data.frame()
-
-policyCentralization %>% filter(country == 'Germany' & type == 'Lockdown') %>% 
-  dplyr:::select(date, centDegStd)
-
-policyCentralization %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings') %>%
-  dplyr:::select(centDegRaw, centDegTheory, centDegStd, date) %>%
-  data.frame()
-
 
 # -------------------
 # reshape CoronaNet data from raw data to long format 
@@ -364,7 +441,6 @@ sub_data= sub_data %>% group_by(gov, target_province, type, date) %>%
   distinct(gov, target_province, type, date, .keep_all = TRUE ) %>%
   ungroup()
 
-
 # reshape such that each sub type gets its own column
 # test = sub_data %>% 
 #   spread(type_sub_cat, policy_count) %>% 
@@ -381,7 +457,8 @@ sub_data= sub_data %>% group_by(gov, target_province, type, date) %>%
 
 ### make data frame for full long format by date-gov-target_province-type
 dframe = expand_grid(date = seq(as.Date("2019-12-31", "%Y-%m-%d"), as.Date(end_date, "%Y-%m-%d"), by = "day"), regions, type = c('Restrictions of Mass Gatherings', "Lockdown"))
- 
+
+
 # merge data
 data_long = merge(dframe, sub_data, by = c( "date",  'country', "gov", "target_province", "type"), all.x = TRUE)
  

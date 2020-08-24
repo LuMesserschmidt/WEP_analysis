@@ -87,47 +87,4 @@ policyCentralization = do.call(rbind, lapply(countries, function(c){
 
 saveRDS(policyCentralization, file = "~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds") 
 
-# cor(policyCentralization %>% select(centDegStd, hubStd, hubWt, subGraphStd), use = 'complete.obs')
-sub_data %>% filter(record_id %in% c("R_3KAZQ38rjTAOXJrCt",
-                                     "R_3KAZQ38rjTAOXJrCu",
-                                     "R_3KAZQ38rjTAOXJrDp",
-                                     "R_217H9o9cRt6HRNnCt",
-                                     "R_217H9o9cRt6HRNnCu",
-                                     "R_217H9o9cRt6HRNnDp",
-                                     "R_1H7gEKH44DEZOxJCt",
-                                     "R_1H7gEKH44DEZOxJCu",
-                                     "R_1H7gEKH44DEZOxJDp",
-                                     "R_2xWAwvGSZ6opF08Ct",
-                                     "R_2xWAwvGSZ6opF08Cu",
-                                     "R_2xWAwvGSZ6opF08Dp",
-                                     "R_QhSkmhJwtpfaRodCt",
-                                     "R_QhSkmhJwtpfaRodCu",
-                                     "R_QhSkmhJwtpfaRodDp",
-                                     "R_2anxbcpERZkuqaVCt",
-                                     "R_2anxbcpERZkuqaVCu",
-                                     "R_2anxbcpERZkuqaVDp"))
 
-
-# create a measure of how many updates a particular policy has so that you don't double count them later
-sub_data = sub_data %>% group_by(record_id, date, target_province) %>%
-  mutate(update_count = length(which(entry_type =='update'))) %>%
-  ungroup()
-# aggregate sub_data by gov, target_province, type and date
-# need to do this so that you don't get duplicates when you merge with dframe
-# the variable policy_count counts how many policies there were for a particular gov, target_provice, type and date, subtracting policy updates
-test= sub_data %>% group_by(gov, target_province, type, date) %>%
-  mutate(policy_count = length(unique(policy_id)) - update_count,
-         policy_dum = 1,
-         policy_id = paste(unique(policy_id), collapse = ','),
-         record_id = paste(unique(record_id), collapse = ',')
-  ) %>% 
-  distinct(gov, target_province, type, date, .keep_all = TRUE ) %>%
-  ungroup()
-
-
-
-# aggregate by type
-# sub_data = sub_data %>% group_by(gov, type, date) %>%
-#   mutate(type_sub_cat = paste(unique(type_sub_cat), collapse = '; ')) %>% 
-#   distinct(gov, type, date, .keep_all = TRUE ) %>%
-#   ungroup()

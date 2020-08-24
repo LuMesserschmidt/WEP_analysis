@@ -138,11 +138,14 @@ missing = missing %>% filter(record_id %!in% c(
     6138780, 
     3152920, 
     4280948,
-    5340498))
+    5340498,
+    8597221,
+    7610225,
+    7510305,
+    8597221,
+    4085738))
 
- 
 
- 
 # recode types
 type_strings = c('school', 'School', 'day care', 'Day care', 'university', 'University',
                  'lockdown', 'Lockdown', 'quarantine', 'Quarantine',
@@ -183,7 +186,7 @@ missing = missing %>% mutate(
                    policy_id %in% c(4042835, 9894310)~ 'Health Testing',
                    policy_id %in% c(3711078, 5340498) ~'Restriction and Regulation of Businesses',
                    policy_id %in% c(124646, 4160415, 9387553) ~ 'Health Resources',
-                   policy_id %in% c(178354, 2387161, 3976628, 1178354) ~ 'Public Awareness Campaigns',
+                   policy_id %in% c(178354, 2387161, 3976628, 1178354) ~ 'Public Awareness Measures',
                    policy_id %in% c(1968290, 2070522, 5387340, 570913, 7785775, 9599172) ~ 'External Border Restrictions',
                    policy_id %in% c(2703818, 4617207) ~ 'Declaration of Emergency',
                    policy_id %in% c(5825151) ~ 'Quarantine',
@@ -191,6 +194,10 @@ missing = missing %>% mutate(
                    TRUE ~ type))
 
  
+
+missing = missing %>% mutate_cond(policy_id == 1864080,
+                        type = 'Restrictions of Mass Gatherings',
+                        type_mass_gathering = '2')
 
 # recode countries
 german_regions = paste0(paste(gsub("\\-", "\\|", regions %>% filter(Country == 'Germany') %>% dplyr:::select(region) %>% pull), collapse = '|'), '|German|germ')
@@ -255,9 +262,11 @@ missing = missing %>% mutate(province = ifelse(is.na(province), str_match(descri
                              target_province = ifelse(is.na(target_province), str_match(description, paste(prov_names, collapse = '|')) , target_province),
                              province = case_when(policy_id %in% c(3976628) ~ 'Neuachtel',
                                                   policy_id %in% c(1308500) ~ 'Saint Gallen',
+                                                  policy_id %in% c(2881751) ~ 'Saxony',
                                                   TRUE~province),
                              target_province = case_when(policy_id %in% c(3976628) ~ 'Neuachtel',
                                                          policy_id %in% c(1308500) ~ 'Saint Gallen',
+                                                         policy_id %in% c(2881751) ~ 'Saxony',
                                                          TRUE~target_province),
 )
 
@@ -331,8 +340,6 @@ missing = missing %>% mutate(date_start =
                      record_id == "R_248ZzY1Ri6mfNrINA" ~ as.Date("2020-03-30", "%Y-%m-%d"),
                      TRUE~ date_announced
                    )
-                            )
- 
-
+                            ) 
 # dummy variable for if this entry was originally 'missing' or not
 missing = missing %>% mutate(missingDum = 1)

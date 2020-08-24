@@ -61,7 +61,7 @@ edges$link1_wt = ifelse(edges$link1 == 1, sample(seq(.1, 1, length = 10), length
 
 edges
 # https://rdrr.io/cran/CINNA/src/R/CINNA.R
-
+edges
 network1 = graph_from_data_frame(edges[which(edges$link1 ==1),], nodes, directed = TRUE)      
 network2 = graph_from_data_frame(edges[which(edges$link2 ==1),], nodes, directed = TRUE)     
 network3 = graph_from_data_frame(edges[which(edges$link3 ==1),], nodes, directed = TRUE)     
@@ -70,7 +70,7 @@ network5 = graph_from_data_frame(edges[which(edges$link5 ==1),], nodes, directed
 
 network6 = graph_from_data_frame(edges[which(edges$link6 ==1),], nodes, directed = TRUE)     
  
-plot(network2)
+network1
 
 hub_score(network1)
 hub_score(network3)
@@ -246,7 +246,9 @@ plot(network6)
   # centr_degree(network5, mode = 'all')$centralization/centr_degree(network1, mode = 'all')$centralization ; this would be relatively 'decentralized' state of policymaking
 
 centr_degree(network1, mode = 'all')
-network1
+
+centr_degree(network1)
+plot(network1)
 centr_degree(network1, mode = 'all')
 
 centr_degree(network2, mode = 'all')

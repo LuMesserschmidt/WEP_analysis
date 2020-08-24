@@ -5,23 +5,41 @@ library(dplyr)
 library(magrittr)
 library(sjPlot)
 library(texreg)
+library(ggplot2)
 
 # ----------------------------
 # load and format data
 # ----------------------------
 policyCentralization = readRDS( "~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds") 
 
-df_main <- read_csv("WEP_analysis/data/merged_final.csv", guess_max = 10000)
-df_hhi <- read_csv("WEP_analysis/Measures/hhi.csv", guess_max = 10000)
 
 # get cases data
 df_cases <- read_csv("WEP_analysis/data/Cases/cases.csv", guess_max = 10000)
 df_cases_nat = df_cases  %>% group_by(country, date) %>% summarize( measure_H1_H2 = mean(measure_H1_H2))  
 
+# get RAI data
+df_fed <- read_csv("WEP_analysis/Measures/fed.csv", guess_max = 10000)
+names(df_fed)[which(names(df_fed) == 'Jurisdiction Name')] = 'country'
+df_fed = df_fed %>% filter(country %in% c('France', 'Germany', 'Switzerland', 'Italy'))
+
+
+# get covariates
+# df_main <- read_csv("WEP_analysis/data/merged_final_backup.csv", guess_max = 10000) --- this is yearly data; can't use
+df_hhi <- read_csv("WEP_analysis/Measures/hhi.csv", guess_max = 10000)
+
+
+# ----------------------------
 # merge data
+# ----------------------------
 df = merge(policyCentralization , df_cases_nat, by = c("country","date"), all.x = TRUE)
 df = merge(df , df_hhi[, c('country', 'date', 'hhi_cumulative', 'hhi_new')], by = c("country","date"), all.x = TRUE)
-df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 1, 0)
+
+# ----------------------------
+# create variables
+# ----------------------------
+
+# make 'differentiating' variable
+df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 1, 0) %>% factor()
 
 # make time count variable
 df  = df %>% group_by(country) %>% mutate(time = 1:n(),
@@ -31,8 +49,10 @@ df  = df %>% group_by(country) %>% mutate(time = 1:n(),
  
 # make a version of the DV that rounds to 0 or 1
 df = df %>% mutate(centDegR = round(centDegStd))
+df = df %>% mutate(centDegD = ifelse(centDegStd>0, 1, 0))
 
 # make France the reference country
+df$country = factor(df$country, levels(factor(df$country))[c( 3, 4, 2 , 1)])
 df = within(df, country <- relevel(country, ref = 'France'))
 
 # make  Restrictions of Mass Gathering the reference
@@ -53,9 +73,10 @@ summary(model1)
 
 # note that the distribution of the DV is highly bimodal; see what happens when you run a logit
   # note that when you include time3 -- 0 or 1 is perfectly predicted
-model2 = glm(centDegR ~ type*country + hhi_new + time + time2 , data = df, family = 'binomial' )
-summary(model2)
+model2 = glm(centDegR ~ type*country + hhi_new + time  , data = df, family = 'binomial' )
 
+summary(model2)
+ 
 # -----------------
 # Substantive effect plots
 # ----------------
@@ -63,7 +84,10 @@ summary(model2)
 p1 = plot_model(model1, type = 'int')+
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model')
+       title = 'Predicted Values of Policy Centralization, \n OLS Model',
+       colors = c('red', 'blue', 'green', 'purple'))
+
+ p1
 
 ggsave("WEP_analysis/Results/predicted_effects_h1_ols.pdf", p1)
 
@@ -72,9 +96,8 @@ p2 = plot_model(model2, type = 'int', transform = "exp",
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
        title = 'Predicted Values of Policy Centralization, \n Logit Model')
-
+ p2
 ggsave("WEP_analysis/Results/predicted_effects_h1_logit.pdf", p2)
-summary(model1)
 # ---------------
 # format tables
 # ----------------
@@ -103,5 +126,40 @@ coefMap = list(
         custom.model.names = c('OLS', 'Logit'))
 
 
+ 
+ 
+ sub_data %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>%
+   arrange(date_start) %>%
+   #dplyr:::select( date_start, date_end) %>%
+   #distinct %>%
+   dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end) %>%
+   #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
+   #slice (c(6, 8, 9)) %>%
+   data.frame()
+ sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
+   arrange(init_country_level, province, date_start, entry_type)%>%
+   data.frame()
 
+ policyCentralization %>% filter(country == 'Germany' & type == 'Lockdown') %>% 
+   dplyr:::select(date, centDegStd)
+  
+ policyCentralization %>% filter(country == 'Switzerland' & type == 'Lockdown') %>% 
+   dplyr:::select(date, centDegStd)
+ 
+ policyCentralization %>% filter(country == 'Italy' & type == 'Lockdown') %>% 
+   dplyr:::select(date, centDegStd)
+ 
+ policyCentralization %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings') %>%
+   dplyr:::select(centDegRaw, centDegTheory, centDegStd, date) %>%
+   data.frame()
+ 
+ test %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>% 
+   arrange(init_country_level,  date_start, entry_type ) %>%
+   select(description, date_start, date_end, type_mass_gathering, type_sub_cat, type_who_gen, policy_id, record_id)%>%
+   data.frame
+ 
+ sub_data %>% filter(country == 'Germany' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>% 
+   arrange(init_country_level,  date_start, entry_type ) %>%
+   select(description, date_start, date_end, type_mass_gathering, type_sub_cat, type_who_gen, policy_id, record_id, compliance)%>%
+   data.frame
  

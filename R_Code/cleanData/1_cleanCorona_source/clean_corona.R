@@ -24,11 +24,12 @@ sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA",  # Febru
                                                  'R_1mJaJpu5i50Y5myNA', # In Italy Ligury region suspends check-in and guest entrance to university dormitories from March 1 till the midnight of March 8
                                                  'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
                                                  'R_1LSBNoVwpZakIfZNA')) # Sonja already recoded, can be deleted
-
+                                                  
 # remove 'lockdown' policies for FranceCorsica --- they are not lockdown policies, should be removed from the dataset
 sub_data = sub_data %>% filter(policy_id %!in% c(5328165,
                                                  4995594,
-                                                 5380034))
+                                                 5380034,
+                                                 2123620))
 
 
 
@@ -37,7 +38,7 @@ sub_data = sub_data %>% filter(policy_id %!in% c(9846529))
 
 # italy, remove nuisance entry for lockdown, this will need to be corrected at some point, but easier to just remove
 sub_data = sub_data %>% filter(policy_id %!in% c(4850883))
-
+sub_data = sub_data %>% filter(record_id %!in% c('R_10GFpwOB1ehsCd3Du'))
 
 # switzerland, remove duplicate national restrictions of mas gathering entry
 sub_data = sub_data %>% filter(policy_id %!in% c(3333413))
@@ -105,6 +106,17 @@ sub_data = sub_data %>% mutate_cond(policy_id == 5260883,
                                     init_country_level = 'Provincial') 
 
 
+# italy lockdown miscoded, should be social distancing
+sub_data = sub_data %>% mutate_cond(record_id == 'R_3kbq7bFJPPTtS2gNA',
+                                    type = 'Social Distancing') 
+
+# france lockdown miscoded, should be restrictions of businesses
+sub_data = sub_data %>% mutate_cond(policy_id == 2123620,
+                                    type = "Restriction and Regulation of Businesses" )
+
+
+
+
 ## clean 'missing' types
 
 # germany missing type, should be schools
@@ -155,12 +167,16 @@ sub_data = sub_data %>% mutate_cond(
   policy_id %in% c('9292517'),
                   type_who_gen = 'Other population not specifed above',
 )%>% mutate_cond(
+  record_id %in% c('R_1HjmbY7oxNCMKBKNA'),
+  type_sub_cat = 'Other mass gatherings not specified above restricted'
+)%>% mutate_cond(
   policy_id %in% c('1186194', # Italy type_who_gen miscoded, should be everyone in the municipality not 'other population not specified above'
                     '1445515',
                    '741217',
                    '4730905'),
                     type_who_gen = "No special population targeted")
  
+
 ## clean wrong dates
 sub_data = sub_data %>% 
   # mutate_cond(record_id == 'R_1rwDJbQOLkzV69MAj',
@@ -173,10 +189,26 @@ sub_data = sub_data %>%
               date_end = as.Date("2020-04-30", "%Y-%m-%d"))%>%
   # mutate_cond(record_id %in% c('R_10GFpwOB1ehsCd3Du'),
   #             date_end = as.Date("2020-06-03", "%Y-%m-%d")) %>%
-  mutate_cond(policy_id %in% c(9590203),
-             date_end = as.Date("2020-08-31", "%Y-%m-%d")) %>% # https://www.admin.ch/gov/en/start/documentation/media-releases/media-releases-federal-council.msg-id-79268.html
+  #mutate_cond(policy_id %in% c(9590203),
+  #           date_end = as.Date("2020-06-06", "%Y-%m-%d")) %>% # https://www.admin.ch/gov/en/start/documentation/media-releases/media-releases-federal-council.msg-id-79268.html
   mutate_cond(record_id %in% c('R_3hcPvfIHbqLvynNNA'),
-              date_start =as.Date("2020-02-24", "%Y-%m-%d") ) 
+              date_start =as.Date("2020-02-24", "%Y-%m-%d") ) %>%
+  mutate_cond(record_id %in% c('R_PA0Psuk3mF6TvLbAn', 'R_PA0Psuk3mF6TvLbCs'), # coder accidently put 5/17 instead of 3/17
+              date_start =as.Date("2020-03-17", "%Y-%m-%d") )%>%
+  mutate_cond(record_id %in% c('R_1qe6CqFYOHk6RBANA','R_3nr5vkzUFgjXhjkNA'), # end date should be 3/13 not 6/20
+              date_end =as.Date("2020-03-13", "%Y-%m-%d") )%>%
+  mutate_cond(record_id %in% c('R_3328OauaKxuc7SvNA','R_9pHSE7nIOuRAKjLNA'), # end date should be 3/16 not 6/20
+              date_end =as.Date("2020-03-16", "%Y-%m-%d"),
+              type_mass_gathering = '100')%>%
+  mutate_cond(record_id %in% c('R_1o72xRdGBzv9Z51Ah'), # start date should be 3/16 not 3/17; end date should be 6/6 not 4/19
+              date_start =as.Date("2020-03-16", "%Y-%m-%d"),
+              date_end =as.Date("2020-06-06", "%Y-%m-%d"))%>%
+  mutate_cond(record_id %in% c('R_3e4vvQd0GyoWTXxCj'), # end date should be june 22, not blank
+              date_end =as.Date("2020-06-22", "%Y-%m-%d"))
+         
+
+
+
 
 # change compliance measures
 sub_data = sub_data%>%
@@ -186,22 +218,6 @@ sub_data = sub_data%>%
  
 
 # adjust mass restrictions category
-rid = c('R_ah2w0ZOyeSvMEj7NA',
-        'R_qOUYa35iAW11h5LNA',
-        'R_1HepS3Sb89rj1UPNA',
-        'R_3rHuIhkSsPzEOrYNA',
-        'R_28YRziizw7ZZOfjNA',
-        'R_2P8c6lkNycftS7tNA',
-        'R_1jCEucwkge7z3oTCj',
-        'R_1qe6CqFYOHk6RBANA',
-        'R_1HjmbY7oxNCMKBKNA',
-        'R_3rPojgRhfH9fjfMNA',
-        'R_1gegqGyoUUZdrcNNA',
-        'R_2pX2smox9mkUJ8ANA',
-        'R_3R2cCsYmeuhlnNnNA',
-        'R_1JK05QmhgbvBXgwNA')
-
- sub_data %>% filter(policy_id == 9590203)
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '1774357',
@@ -288,7 +304,8 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '8218737',
                                                      '9086049',
                                                      '6547663',
-                                                     '8972618'
+                                                     '8972618',
+                                                     '8908778'
                                                      )|
                                             record_id %in% c('R_ah2w0ZOyeSvMEj7NA',
                                                              'R_qOUYa35iAW11h5LNA',
@@ -298,7 +315,7 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                              'R_2P8c6lkNycftS7tNA',
                                                              'R_1jCEucwkge7z3oTCj',
                                                              'R_1qe6CqFYOHk6RBANA',
-                                                             'R_1HjmbY7oxNCMKBKNA',
+                                                             #'R_1HjmbY7oxNCMKBKNA',
                                                              'R_3rPojgRhfH9fjfMNA',
                                                              'R_1gegqGyoUUZdrcNNA',
                                                              'R_2pX2smox9mkUJ8ANA',
@@ -316,9 +333,11 @@ sub_data = sub_data %>% mutate_cond(record_id == "R_ah2w0ZOyeSvMEj7NA",
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('4304926'),
                                     type_sub_cat = "Postponement of a recreational or commercial event") 
 
-sub_data = sub_data %>% mutate_cond(policy_id %in% c('8908778', '9664505', '2000573', '8140826', '7343179'),
+sub_data = sub_data %>% mutate_cond(policy_id %in% c( '9664505', '2000573', '8140826', '7343179'),
                                     type_sub_cat = "All/Unspecified mass gatherings",
                                     type_mass_gathering = '1000') 
+
+
 
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('8066334'),
@@ -347,13 +366,15 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049'),
                                     type_sub_cat = "All/Unspecified mass gatherings",
                                     type_mass_gathering = '500') 
 
-sub_data = sub_data %>% mutate_cond(policy_id %in% c('3728913', '4415069'),
+sub_data = sub_data %>% mutate_cond(policy_id %in% c('3728913', '4415069')|
+                                      record_id %in% c('R_3HwvvANQMC4hR9ENA'),
                                     type_sub_cat = "Attendance at religious services restricted (e.g. mosque/church closings)") 
 
 sub_data = sub_data %>% mutate_cond(record_id %in% c('R_1mJaJpu5i50Y5myNA'),
                                     type = 'Other Policy Not Listed Above')
 
-sub_data = sub_data %>% mutate_cond(policy_id %in% c(8248035),
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(8248035)|
+                                      record_id %in% c('R_2COe9Uwo1Q6CHDgNA', 'R_2eOObK67RpRGaorNA'),
                                     type_sub_cat = 'Other mass gatherings not specified above restricted')
 
 
@@ -377,12 +398,15 @@ sub_data = sub_data %>% mutate(type_mass_gathering  = recode( type_mass_gatherin
                                                           "inside: 50, outside: 100" = "100",
                                                           "gatherings in public: max 30 people" = "30",
                                                           'Outdoor event max of 350, indoor event max of 150' = "350",
-                                                          "From 150 to 999" = "150",
+                                                          "From 150 to 999" = "1000",
                                                           '0; 5; 50' = "",
-                                                          "Max 100 people per room, not more than 1000 in total (both excluding active participants)" = "100",
+                                                          "Max 100 people per room, not more than 1000 in total (both excluding active participants)" = "1000",
                                                           'more than 1000' = "1000",
                                                           'less than 250' = "250",
-                                                          "nN" = "2")) %>%
+                                                          '150-1000' = "1000",
+                                                          "nN" = "2",
+                                                          'inside: 100, outside: 200' = '100',
+                                                          '30 for gatherings and 300 for manifestations' = '300')) %>%
   mutate(
     type_mass_gathering = recode(type_mass_gathering,
                                  "1,000 max" = "1000")
@@ -454,8 +478,6 @@ sub_data = sub_data %>% mutate(type_mass_gathering  = recode( type_mass_gatherin
     policy_id == 9554383,
     type_mass_gathering = "2"
   )
-
- 
 
 # ---------------
 
