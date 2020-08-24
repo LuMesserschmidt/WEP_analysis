@@ -68,7 +68,7 @@ FRA,France,Europe & Central Asia,High income: OECD,0,20,0.0122598,20.01226,1.111
 PYF,French Polynesia,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
 GAB,Gabon,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
 GEO,Georgia,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-DEU,Germany,Europe & Central Asia,High income: OECD,1,NA,NA,NA,NA,NA,NA
+GER,Germany,Europe & Central Asia,High income: OECD,1,24.98985,12,36.98985,1.388325,1,1.2329949999999998
 GHA,Ghana,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
 GRC,Greece,Europe & Central Asia,High income: OECD,0,11.0009,3.587e-4,11.00125,0.611161111111111,2.9891666666666667e-5,0.36670833333333336
 GRL,Greenland,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
@@ -179,7 +179,7 @@ SDN,Sudan,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
 SUR,Suriname,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0,0
 SWZ,Swaziland (since Apr. 2018: Eswatin),Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
 SWE,Sweden,Europe & Central Asia,High income: OECD,0,12,0,12,0.6666666666666666,0,0.4
-CHE,Switzerland,Europe & Central Asia,High income: OECD,1,NA,NA,NA,NA,NA,NA
+SWI,Switzerland,Europe & Central Asia,High income: OECD,1,18,8.5,26.5,1,0.7083333333333334,0.8833333333333333
 SYR,Syrian Arab Republic,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
 NA,Taiwan,NA,NA,0,NA,NA,NA,NA,NA,NA
 TJK,Tajikistan,Europe & Central Asia,Low income,0,NA,NA,NA,NA,NA,NA

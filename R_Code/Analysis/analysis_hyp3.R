@@ -14,15 +14,21 @@ library(ggplot2)
 sub_data = readRDS("WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean_long.RDS")
 
 # collapse by date, province and policy type
-sub_data_agg = sub_data %>% group_by(date, target_province, type) %>%
+sub_data_agg = sub_data %>% group_by(date, target_province, type_sub_cat) %>%
                           summarise(policy_count = sum(policy_count),
-                                    policy_dum = sum(policy_dum)) %>%
-                ungroup()%>%
+                                    policy_dum = sum(policy_dum),
+                                    type = unique(type)) %>%
+                              ungroup()%>%
+                    group_by(date, target_province, type) %>%
+                        summarise(policy_count = mean(policy_count),
+                         policy_dum = mean(policy_dum)) %>%
+                          ungroup()%>%
                   mutate(policy_dum = if_else(policy_dum==0, 0, 1),
                          province = target_province) %>%
-                dplyr:::select(-target_province)
+                dplyr:::select(-target_province) %>%
+              mutate(type = ifelse(type == 'Social Distancing', 'Mask Wearing', type))
 
- 
+
 # get cases data
 df_cases <- read_csv("WEP_analysis/data/Cases/cases.csv", guess_max = 10000)
 
@@ -66,11 +72,17 @@ df  = df %>% group_by(province) %>% mutate(time = 1:n(),
 df$country = factor(df$country, levels(factor(df$country))[c(1, 3, 2, 4)])
 df = within(df, country <- relevel(country, ref = 'France'))
  
+
+# make differentiating dummy
+df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Unitary') %>% factor()
+df = within(df, differentiating <- relevel(differentiating, ref =  'Differentiated'))
+
+
 # make  Restrictions of Mass Gathering the reference
-df$type = factor(df$type)
+df$type = factor(df$type, levels(factor(df$type))[c(4, 3, 2, 1)])
 df = within(df, type <- relevel(type, ref = 'Restrictions of Mass Gatherings'))
 
-# 
+
 df = df %>% mutate(lpolicy_count = ifelse(policy_count == 0, 0, log(policy_count)))
 
 
@@ -94,25 +106,26 @@ hist(df$measure_H3)
 model3a = glm(policy_dum ~ country*type*measure_H3 + time + time2, data = df, family = 'binomial')
 
 model3a = glm(policy_dum ~ country*type*measure_H3 + time + time2+ province, data = df, family = 'binomial')
-summary(model3a)
+
 # poisson of policy count
-model3b = glm(policy_count ~ country*type*measure_H3 + time + time2 +time3+ province, data = df, family = 'poisson')
+#model3b = glm(policy_count ~ country*type*measure_H3 + time + time2 +time3+ province, data = df, family = 'poisson')
 
 
 
 # ols of policy count
 model3c = lm(lpolicy_count ~ country*type*measure_H3 + time + time2 +time3+ province, data = df)
- 
+summary(model3c)
 # ---------------------
 # substantive effect plots
 # --------------------
-
-p3a<- plot_model(model3a, type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 6.192858e-07]', 'country', 'type'), transform = 'exp')+
+summary(df$measure_H3)
+p3a<- plot_model(model3a, type = 'pred', terms = c( 'measure_H3 [-0.0006, 0.0001]', 'country', 'type'), transform = 'exp')+
   labs(y = 'Policy Dummy',
      x = 'Cases Measure',
      title = 'Predicted Values of Policy Incidence (dummy variable), \n Logit Model',
      colors = c('red', 'blue', 'green', 'purple'))+
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
 
 p3a<- plot_model(model3a, type = 'pred', terms = c( 'measure_H3', 'country', 'type'), transform = 'exp')+
   labs(y = 'Policy Dummy',
@@ -125,16 +138,16 @@ p3a
 ggsave("WEP_analysis/Results/predicted_effects_h3_logit.pdf", p3a)
 
 
-p3b<-plot_model(model3b,  type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 6.192858e-07]', 'country', 'type'))+
-  labs(y = 'Policy Count',
-       x = 'Cases Measure',
-       title = 'Predicted Values of Policy Incidence (count variable), \n Poisson Model',
-       colors = c('red', 'blue', 'green', 'purple'))+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
-
-p3b
-ggsave("WEP_analysis/Results/predicted_effects_h3_poisson.pdf", p3b)
+# p3b<-plot_model(model3b,  type = 'pred', terms = c( 'measure_H3  [-0.0006, 0.0001]', 'country', 'type'))+
+#   labs(y = 'Policy Count',
+#        x = 'Cases Measure',
+#        title = 'Predicted Values of Policy Incidence (count variable), \n Poisson Model',
+#        colors = c('red', 'blue', 'green', 'purple'))+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+# 
+# 
+# p3b
+# ggsave("WEP_analysis/Results/predicted_effects_h3_poisson.pdf", p3b)
 
 p3c<-plot_model(model3c,  type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 6.192858e-07]', 'country', 'type'))+
   labs(y = 'Policy Count',
@@ -142,8 +155,8 @@ p3c<-plot_model(model3c,  type = 'pred', terms = c( 'measure_H3 [-6.161898e-06, 
        title = 'Predicted Values of Policy Incidence (count variable), \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
- p3c
+p3c
+ 
 ggsave("WEP_analysis/Results/predicted_effects_h3_ols.pdf", p3c)
 
 

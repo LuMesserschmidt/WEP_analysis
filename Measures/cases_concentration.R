@@ -7,7 +7,7 @@ library(tidyverse)
 library(scales)
 library(zoo)
 
-combined_cases <- read_csv("data/Cases/combined_cases.csv") 
+combined_cases <- read_csv("data/Cases/combined_cases.csv", guess_max = 10000) 
 
 
 combined_cases <- combined_cases[!duplicated(combined_cases),]
@@ -112,7 +112,7 @@ cases <- cases %>%
   mutate(past_average_new_cases_national = rollapply(new_cases_national, 7, mean, align="right", fill=NA)) 
 
 cases$measure_H1_H2<- (cases$past_average_new_cases_national/cases$sum_pop)*100
-cases$measure_H3<- ((cases$past_average_new_cases/cases$eurostat_total_population_2019)*100) - (cases$measure_H1_H2)
+cases$measure_H3<- ((cases$past_average_new_cases/cases$eurostat_total_population_2019)*100) / (cases$measure_H1_H2)
 
 
 cases<-cases[!is.na(cases$region),]
