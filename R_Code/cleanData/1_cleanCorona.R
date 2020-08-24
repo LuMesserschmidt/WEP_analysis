@@ -108,15 +108,7 @@ sub_data = sub_data %>%
   filter(init_country_level %in% c("National", "Provincial")) %>%
   filter(target_country %in% countries) 
 
-table(sub_data$target_country) %>% sum
-unique(sub_data$target_country)
 
-sub_data %>% filter(is.na(target_country)) %>% select(policy_id, description)
-table(test$type, test$country)
-table(sub_data$type, sub_data$country)
-
-sub_data %>% filter(target_country == 'Saxony') %>% data.frame()
-table(sub_data$type_who_gen)
 
 # remove policies that are targeted toward particular populations
 sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
@@ -134,7 +126,7 @@ sub_data = sub_data %>% filter( type %in% c("Lockdown", "Closure and Regulation 
 
 
 # remove policies that are voluntary
-test = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Penalties")
+sub_data = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Penalties")
 
 # keep orphaned records for now --- investigate later
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
@@ -351,6 +343,10 @@ sub_data = rbind(sub_data, france_mass_gathering)
 sub_data = rbind(sub_data, italy_mass_gathering)
 sub_data = rbind(sub_data, swiss_mass_gathering)
 
+ 
+# save raw data 
+#saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS")
+
 
 # fill in appropriate province names
 regions = read_csv("WEP_analysis/data/CoronaNet/country_region_clean.csv")
@@ -398,10 +394,8 @@ sub_data = sub_data %>%
 # sub_data = sub_data %>% filter(update_type %!in% 'End of Policy')
 
 
-# remove entires that have empty type_sub_cat for now; fix later; this is because these were added from the 'missing' data; so far though they are about schools
-sub_data = sub_data %>% filter(!is.na(type_sub_cat))
-
- 
+# check type sub cat
+sub_data %>% filter(is.na(type_sub_cat))
 
 
 
@@ -409,7 +403,7 @@ sub_data = sub_data %>% filter(!is.na(type_sub_cat))
 saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
 
 
-
+table(sub_data$type, sub_data$country)
 
 # -------------------
 # reshape CoronaNet data from raw data to long format 
@@ -417,17 +411,13 @@ saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS"
 
 # load data
 sub_data = readRDS("WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
-
+ 
 ## reshape coronanet data to long format by  date-gov-target_province-type
 
 # make new variable called gov which is the same as 'province' but takes on the name of country if it is a national level policy
 sub_data = sub_data %>% mutate(gov = ifelse(init_country_level == "National" & is.na(province), country, province)) %>% 
   dplyr:::select(-province)
 
-
-# select only lockdown and restrictions of mass gatherings
-sub_data = sub_data %>% filter(type %in% c('Lockdown', 'Restrictions of Mass Gatherings'))
- 
 
 
 # collapse over policy_id so that you don't double count updates
@@ -437,7 +427,7 @@ sub_data = sub_data %>% group_by(policy_id) %>%
          date_end = max(date_end, na.rm = TRUE),
          # type_sub_cat = paste(unique(type_sub_cat), collapse = '; '), # # aggregate sub_data by type such that you collapse over type_sub_cat
          ) %>%
-  distinct(gov, init_country_level, target_province, type, .keep_all = TRUE) %>%
+  distinct(gov, init_country_level, target_province, type_sub_cat, .keep_all = TRUE) %>%
   ungroup()
 
 # reshape data from wide to long format for dates
@@ -453,7 +443,7 @@ sub_data= sub_data %>% group_by(gov, target_province, type, date) %>%
          record_id = paste(unique(record_id), collapse = ';'),
 
   ) %>% 
-  distinct(gov, target_province, type, date, .keep_all = TRUE ) %>%
+  distinct(gov, target_province, type_sub_cat, date, .keep_all = TRUE ) %>%
   ungroup()
 
 # reshape such that each sub type gets its own column
@@ -469,19 +459,28 @@ sub_data= sub_data %>% group_by(gov, target_province, type, date) %>%
 #   ungroup()
 
 
-
+ 
 ### make data frame for full long format by date-gov-target_province-type
-dframe = expand_grid(date = seq(as.Date("2019-12-31", "%Y-%m-%d"), as.Date(end_date, "%Y-%m-%d"), by = "day"), regions, type = c('Restrictions of Mass Gatherings', "Lockdown"))
+dframe = expand_grid(date = seq(as.Date("2019-12-31", "%Y-%m-%d"), as.Date(end_date, "%Y-%m-%d"), by = "day"), 
+                     regions, 
+                     type_sub_cat = c("Primary Schools (generally for children ages 10 and below)", 
+                               "Lockdown", 
+                               "All/Unspecified mass gatherings", 
+                               "Wearing Masks in all public spaces/everywhere", 
+                               "Wearing Masks inside public or commercial building",
+                               "Other Mask Wearing Policy" 
+                               
+))
 
 
 # merge data
-data_long = merge(dframe, sub_data, by = c( "date",  'country', "gov", "target_province", "type"), all.x = TRUE)
+data_long = merge(dframe, sub_data, by = c( "date",  'country', "gov", "target_province", "type_sub_cat"), all.x = TRUE)
  
 # fill in  for record_id, policy_id 
 # https://stackoverflow.com/questions/35362575/equivalent-to-cumsum-for-string-in-r
 data_long = data_long %>% 
-  group_by(country, gov, target_province, type) %>%
-  arrange(country, gov, target_province, type, date) %>%
+  group_by(country, gov, target_province, type_sub_cat) %>%
+  arrange(country, gov, target_province, type_sub_cat, date) %>%
   mutate(record_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(record_id), "", record_id)), accumulate = TRUE)))),
          policy_id =  gsub("\\s", ";", rm_white_multiple(str_trim(Reduce(paste, as.character(ifelse(is.na(policy_id), "", policy_id)), accumulate = TRUE))))) %>%
   ungroup()
@@ -493,13 +492,13 @@ data_long = data_long %>% group_by(country, gov, target_province, type) %>%
 
 # fill in type and type_sub_cat and init_country_level
 data_long = data_long %>% 
-  group_by(country, gov, target_province, type) %>%
-  fill( type,  init_country_level, entry_type, target_country, target_geog_level, .direction = 'down')%>%
+  group_by(country, gov, target_province, type_sub_cat) %>%
+  fill( type, type_sub_cat, init_country_level, entry_type, target_country, target_geog_level, .direction = 'down')%>%
   ungroup()
 
 # create measure of policy incidence (policy_count) and binary variable of whether a policy exists (policy_dum) by gov, target_province, date and type
 data_long = data_long %>% 
-  group_by(gov, target_province, type ) %>%
+  group_by(gov, target_province, type_sub_cat ) %>%
   dplyr:::mutate(policy_dum = case_when(is.na(date_type)~0,
                                         date_type == 'date_start' ~ as.numeric(policy_count),
                                         date_type == 'date_end'  ~  -1*as.numeric(policy_count) ,
@@ -508,7 +507,13 @@ data_long = data_long %>%
   mutate(policy_dum = ifelse(policy_count>0, 1, 0)) %>%
   ungroup()  
 
- 
+
+# try to fix error, later but so far should be these policies that have negative number for policy_count
+# 4231455;5762826;6739782
+# 2421846;6947301
+ # 4176590;9227362
+
+data_long = data_long %>% mutate(policy_count = ifelse(policy_count == -1, 0, policy_count))
 
 # save reshaped data 
 saveRDS(data_long, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean_long.RDS")

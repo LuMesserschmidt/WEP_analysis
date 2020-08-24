@@ -39,8 +39,9 @@ df = merge(df , df_hhi[, c('country', 'date', 'hhi_cumulative', 'hhi_new')], by 
 # ----------------------------
 
 # make 'differentiating' variable
-df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 1, 0) %>% factor()
-
+df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Unitary') %>% factor()
+df = within(df, differentiating <- relevel(differentiating, ref =  'Differentiated'))
+ 
 # make time count variable
 df  = df %>% group_by(country) %>% mutate(time = 1:n(),
                                     time2 = time^2,
@@ -56,9 +57,10 @@ df$country = factor(df$country, levels(factor(df$country))[c( 3, 4, 2 , 1)])
 df = within(df, country <- relevel(country, ref = 'France'))
 
 # make  Restrictions of Mass Gathering the reference
+df$type = factor(df$type, levels(factor(df$type))[c(4, 3, 2, 1)])
 df = within(df, type <- relevel(type, ref = 'Restrictions of Mass Gatherings'))
 
-
+ 
 # -----------------
 # EDA
 # ----------------
@@ -68,36 +70,57 @@ hist(df$centDegStd)
 # Run models
 # ----------------
 
-model1 = lm(centDegStd ~ type*country + hhi_new + time + time2+time3, data = df )
+model1T = lm(centDegStd ~ type*country + hhi_new + time + time2+time3, data = df )
 summary(model1)
+
+
+model1D = lm(centDegStd ~ differentiating*country + hhi_new + time + time2+time3, data = df )
+summary(model1D)
 
 # note that the distribution of the DV is highly bimodal; see what happens when you run a logit
   # note that when you include time3 -- 0 or 1 is perfectly predicted
-model2 = glm(centDegR ~ type*country + hhi_new + time  , data = df, family = 'binomial' )
+model2T = glm(centDegR ~ type*country + hhi_new + time , data = df, family = 'binomial' )
 
-summary(model2)
- 
+model2D = glm(centDegR ~ differentiating*country + hhi_new + time , data = df, family = 'binomial' )
+summary(model2D) 
 # -----------------
 # Substantive effect plots
 # ----------------
  
-p1 = plot_model(model1, type = 'int')+
+p1T = plot_model(model1T, type = 'int')+
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
+ggsave("WEP_analysis/Results/predicted_effects_h1_ols.pdf", p1T)
 
- p1
 
-ggsave("WEP_analysis/Results/predicted_effects_h1_ols.pdf", p1)
 
-p2 = plot_model(model2, type = 'int', transform = "exp",
+p1D = plot_model(model1D, type = 'int')+
+  labs(y = 'Policy Centralization',
+       x = 'Differentiating Policy Dummy',
+       title = 'Predicted Values of Policy Centralization, \n OLS Model',
+       colors = c('red', 'blue', 'green', 'purple'))
+
+ggsave("WEP_analysis/Results/predicted_effects_h1_ols_diffDum.pdf", p1D)
+
+
+p2T = plot_model(model2T, type = 'int', transform = "exp",
            axis.labels = c('Policy Centralization', 'Policy Type'))+
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
        title = 'Predicted Values of Policy Centralization, \n Logit Model')
- p2
-ggsave("WEP_analysis/Results/predicted_effects_h1_logit.pdf", p2)
+
+ggsave("WEP_analysis/Results/predicted_effects_h1_logit.pdf", p2T)
+
+p2D = plot_model(model2D, type = 'int', transform = "exp",
+                  axis.labels = c('Policy Centralization', 'Policy Type'))+
+   labs(y = 'Policy Centralization',
+        x = 'Policy Type',
+        title = 'Predicted Values of Policy Centralization, \n Logit Model')
+
+ggsave("WEP_analysis/Results/predicted_effects_h1_logit_diffDum.pdf", p2D)
+
 # ---------------
 # format tables
 # ----------------
@@ -128,18 +151,39 @@ coefMap = list(
 
  
  
- sub_data %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>%
-   arrange(date_start) %>%
+ sub_data %>% filter(country == 'Germany' & type == 'Closure and Regulation of Schools'   & compliance == "Voluntary/Recommended but No Penalties")  %>%  #  select(record_id) %>% pull %>% unique %>% dput
+  
+   sub_data %>% filter(is.na(type_sub_cat) )%>%
+    arrange(date_start) %>%
    #dplyr:::select( date_start, date_end) %>%
    #distinct %>%
-   dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end) %>%
+   dplyr:::select(update_type, record_id, policy_id, country, province, description, type, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end) %>%
    #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
    #slice (c(6, 8, 9)) %>%
    data.frame()
+   
+   
  sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
    arrange(init_country_level, province, date_start, entry_type)%>%
    data.frame()
 
+ 
+ sub_data %>% filter(country == 'Germany' & type == 'Restrictions of Mass Gatherings' & province == 'Bavaria' ) %>% 
+   arrange(date_start) %>%
+   #dplyr:::select( date_start, date_end) %>%
+   #distinct %>%
+   dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end, init_country_level, target_country) %>%
+   #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
+   #slice (c(6, 8, 9)) %>%
+   data.frame()
+ 
+   select(policy_id) %>% pull %>% unique %>% dput
+ 
+ 
+ sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
+   arrange(init_country_level, province, date_start, entry_type)%>%
+   data.frame()
+ 
  policyCentralization %>% filter(country == 'Germany' & type == 'Lockdown') %>% 
    dplyr:::select(date, centDegStd)
   
@@ -157,9 +201,5 @@ coefMap = list(
    arrange(init_country_level,  date_start, entry_type ) %>%
    select(description, date_start, date_end, type_mass_gathering, type_sub_cat, type_who_gen, policy_id, record_id)%>%
    data.frame
- 
- sub_data %>% filter(country == 'Germany' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>% 
-   arrange(init_country_level,  date_start, entry_type ) %>%
-   select(description, date_start, date_end, type_mass_gathering, type_sub_cat, type_who_gen, policy_id, record_id, compliance)%>%
-   data.frame
+
  

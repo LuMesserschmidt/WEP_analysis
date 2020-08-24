@@ -37,44 +37,55 @@ library(knitr)
 
 df_cases <- read_csv("data/Cases/cases.csv", guess_max = 10000)
 df_main <- read_csv("data/merged_final.csv", guess_max = 10000)
+df_policy <- read_csv("data/CoronaNet/coronanet_internal.csv", guess_max = 10000)
+df_heterogeneity <- read_csv("data/heterogeneity_analyses.csv")
+df_centrality <- readRDS("~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds")
 df_hhi <- read_csv("Measures/hhi.csv", guess_max = 10000)
 df_PAX <- readRDS("~/Documents/github/corona_private/data/get_est.rds")
 df_fed <- read_csv("Measures/fed.csv", guess_max = 10000)
 df_selected<-df_main %>%
   filter(type%in%c("Closure and Regulation of Schools","Lockdown","Restrictions of Mass Gatherings","Social Distancing")
   )
+table(df_selected$type)
 
 # Descriptive----
 # - Cases Plot----
 
-gg1.1<- ggplot(df_cases, aes(x=date, y=cases_national, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") +ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()
-gg1.2<- ggplot(df_cases, aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()
 
-gg1.2
+gg1.1<- ggplot(df_cases, aes(x=date, y=cases_national, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()+
+          ggsave(filename = "results/Descriptives/gg1_1.jpg",
+         height = 7)
+gg1.2<- ggplot(df_cases, aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()+
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggsave(filename = "results/Descriptives/gg1_2.jpg",
+         height = 7)
+
+
 #Combine 
-gg3<- ggplot(df_cases %>% filter(region == "National") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date,color=country))+ geom_line(aes(y =cases_national))
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40),linetype="dashed")+scale_color_manual(values=c('red','blue',"green","orange"))
-gg1.3 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+theme_bw()
-
-gg1.3
+gg3<- ggplot(df_cases, aes(x=date,color=country))+ geom_line(aes(y =cases_national))+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))
+gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40),linetype="dashed")+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+gg1.3 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+theme_bw()+  
+  ggsave(filename = "results/Descriptives/gg1_3.jpg",height = 7)
 
 # For each country individual
 
-gg3<- ggplot(df_cases %>% filter(region == "National", country=="Switzerland") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
-gg1.4 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Switzerland")+theme_bw()
+gg3<- ggplot(df_cases %>% filter(country=="Switzerland"), aes(x=date))+ geom_line(aes(y = cases_national),color="#006699")+ labs(y="Cumulative National Cases")
+gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed", color="#006699")
+gg1.4 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Switzerland")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_4.jpg",height = 7)
 
-gg3<- ggplot(df_cases %>% filter(region == "National", country=="France") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
-gg1.5 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases France")+theme_bw()
+gg3<- ggplot(df_cases%>% filter(country=="France"), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")+scale_color_manual(values=c('#00CC33'))
+gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") +scale_color_manual(values=c('#00CC33'))
+gg1.5 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases France")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_5.jpg",height = 7)
 
-gg3<- ggplot(df_cases %>% filter(region == "National", country=="Italy") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
-gg1.6 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Italy")+theme_bw()
+gg3<- ggplot(df_cases%>% filter(country=="Italy"), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")+scale_color_manual(values=c('#CC0000'))
+gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") +scale_color_manual(values=c('#CC0000'))
+gg1.6 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Italy")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_6.jpg",height = 7)
 
-gg3<- ggplot(df_cases %>% filter(region == "National", country=="Germany") %>% select(date, country, region, cases, cases_national, past_average_new_cases_national) %>% unique(), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") 
-gg1.7 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Germany")+theme_bw()
+gg3<- ggplot(df_cases%>% filter(country=="Germany"), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")+scale_color_manual(values=c('#E69F00'))
+gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") +scale_color_manual(values=c('#E69F00'))
+gg1.7 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Germany")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_7.jpg",height = 7)
 
 
 # - Concentration ----
@@ -88,7 +99,9 @@ gg2.1<- df_hhi %>%ggplot( aes(x=date, y=hhi_cumulative, color=country)) +
   theme(panel.grid = element_blank(),
         strip.background = element_blank()) +
   ylab("Relative Herfindahl Concentration (cumulative cases)") +
-  xlab("")
+  xlab("")+
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggsave(filename = "results/Descriptives/gg2_1.jpg",height = 7)
 
 gg2.2<- df_hhi %>%ggplot(aes(x=date, y=hhi_new, color=country)) +
   geom_line(size=0.15)+
@@ -98,7 +111,8 @@ gg2.2<- df_hhi %>%ggplot(aes(x=date, y=hhi_new, color=country)) +
         strip.background = element_blank()) +
   ylim(0,1)+
   ylab("Relative Herfindahl Concentration (new cases)") +
-  xlab("")
+  xlab("")+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggsave(filename = "results/Descriptives/gg2_2.jpg",height = 7)
 
 
 # - Map of Cases----
@@ -119,9 +133,10 @@ nuts2 <- it_shape$NUTS_ID %>% .[str_detect(.,"IT")]
 nuts3 <- ch_shape$NUTS_ID %>% .[str_detect(.,"CH")]
 
 corona <- df_cases
+corona$code<-corona$geo
 
 df <- corona %>%
-  select("date","cases","new_cases","ratio_cum","ratio_new","code", "cases_pop_sub") %>% 
+  select("date","cases","new_cases","ratio_cum","ratio_new","code", "cases_pop_sub","past_average_new_cases","past_average") %>% 
   mutate(country = str_sub(code,1,2))%>%
   filter(date=="2020-03-15" |
            date=="2020-04-15" |
@@ -138,38 +153,56 @@ merged_shape <-
 
 library(viridis)
 
+merged_shape<- merged_shape%>%mutate(country=recode(country,
+                                                    "CH"="Switzerland",
+                                                    "DE"="Germany",
+                                                    "FR"="France",
+                                                    "IT"="Italy"))
 gg3.1 <- 
   ggplot(merged_shape %>% 
            filter(!is.na(ratio_cum))) + 
   geom_sf(aes(alpha = ratio_cum,
               fill = country),size = 0.1) + 
-  scale_fill_manual(values = c("green","red","blue","orange"))+
+  scale_fill_manual(values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
   scale_alpha_continuous(range=c(0,1.5)) + 
   facet_wrap(~date,ncol=2) + 
   theme_minimal() + 
   theme(axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         legend.position = "right")+
-  ggtitle("Relative Cumulative Cases by Region")
+  ggtitle("Relative Cumulative Cases by Region")+
+  ggsave(filename = "results/Descriptives/gg3_1.jpg",height = 7)
 
-gg3.1
 gg3.2 <- 
   ggplot(merged_shape %>% 
            filter(!is.na(cases_pop_sub))) + 
   geom_sf(aes(alpha = cases_pop_sub,
               fill = country),size = 0.1) + 
-  scale_fill_manual(values = c("green","red","blue","orange"))+
+  scale_fill_manual(values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
   scale_alpha_continuous(range=c(0,1.5)) + 
   facet_wrap(~date,ncol=2) + 
   theme_minimal() + 
   theme(axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         legend.position = "right")+
-  ggtitle("Relative Cumulative Cases by Region (relative by sub-national population)")
+  ggtitle("Relative Cumulative Cases by Region (relative by sub-national population)")+
+  ggsave(filename = "results/Descriptives/gg3_2.jpg",height = 7)
 
 
 # - Centrality Index----
-gg4
+gg4.1<- ggplot(df_centrality, aes(x=date, y=centDegStd, color=country)) + geom_smooth() +
+  ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggsave(filename = "results/Descriptives/gg4_1.jpg",
+         height = 7)
+
+gg4.2<- ggplot(df_centrality, aes(x=date, y=centDegStd, color=country)) + geom_line() +
+  ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggsave(filename = "results/Descriptives/gg4_2.jpg",
+         height = 7)
 
 # - Heterogeneity Index----
 gg5
@@ -193,7 +226,7 @@ get_est_sum <- get_est %>%
 gg7.1<- get_est_sum %>% 
   ggplot(aes(y=med_est,x=date_announced)) +
   geom_line(data=df, aes(group=country), color="lightgrey", size=0.25,show.legend=FALSE) +
-  geom_line(data=df[df$country%in% c("Germany","France","Italy","Switzerland"),], aes(color=country),size=0.7,show.legend=T)+
+  geom_line(data=df[df$country%in% c("France","Germany","Italy","Switzerland"),], aes(color=country),size=0.7,show.legend=T)+
   scale_color_manual(name="Country",values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   theme_bw() +
   xlab("") +
