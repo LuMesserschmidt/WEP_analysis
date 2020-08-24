@@ -46,8 +46,6 @@ df_fed <- read_csv("Measures/fed.csv", guess_max = 10000)
 df_selected<-df_main %>%
   filter(type%in%c("Closure and Regulation of Schools","Lockdown","Restrictions of Mass Gatherings","Social Distancing")
   )
-table(df_selected$type)
-
 # Descriptive----
 # - Cases Plot----
 
@@ -205,13 +203,25 @@ gg4.2<- ggplot(df_centrality, aes(x=date, y=centDegStd, color=country)) + geom_l
          height = 7)
 
 # - Heterogeneity Index----
-gg5
-# - Heterogeneity Index----
-gg6
+gg5.1<- ggplot(df_heterogeneity, aes(x=date, y=hetero, color=country)) + geom_smooth() +
+  ylim(0, 1) +
+  labs(x = "Date", y = "Cases", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggsave(filename = "results/Descriptives/gg5_1.jpg",
+         height = 7)
+
+gg5.2<- ggplot(df_heterogeneity, aes(x=date, y=hetero, color=country)) + geom_line() +
+  ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggsave(filename = "results/Descriptives/gg5_2.jpg",
+         height = 7)
+
 # - PAX----
 
 
-get_est_sum <- get_est %>%
+get_est_sum <- df_PAX %>%
   ungroup %>%
   mutate(estimate=(estimate-min(estimate))/(max(estimate)-min(estimate))*100,
          date_announced=ymd(as.character(date_announced))) %>%
@@ -222,19 +232,19 @@ get_est_sum <- get_est %>%
   group_by(date_announced) %>%
   mutate(`Country Rank`=rank(med_est))
 
+df_PAX <- get_est_sum
 
-gg7.1<- get_est_sum %>% 
-  ggplot(aes(y=med_est,x=date_announced)) +
-  geom_line(data=df, aes(group=country), color="lightgrey", size=0.25,show.legend=FALSE) +
+
+gg7.1<- ggplot(df,aes(y=med_est,x=date_announced)) +
   geom_line(data=df[df$country%in% c("France","Germany","Italy","Switzerland"),], aes(color=country),size=0.7,show.legend=T)+
   scale_color_manual(name="Country",values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   theme_bw() +
   xlab("") +
   ylab("Policy Activity Index")+
-  ggtitle("Policy Activity Index")
+  ggtitle("Policy Activity Index")+
+  ggsave(filename = "results/Descriptives/gg7_1.jpg",
+         height = 7)
 
-
-gg7.1
 
 # - Table of Policies----
 
@@ -265,8 +275,10 @@ gg9.1<- df_selected %>%
   arrange(type,date) %>% 
   mutate(Policies=cumsum(Policies)) %>% 
   ungroup %>% 
-  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + facet_wrap(~country)+ theme_bw()+ggtitle("Selected Policies")
-  
+  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + facet_wrap(~country)+ theme_bw()+ggtitle("Selected Policies")+
+  ggsave(filename = "results/Descriptives/gg9_1.jpg",
+         height = 7)
+
 
 gg9.2<- df_main %>% 
   filter(!is.na(type)) %>% 
@@ -275,7 +287,9 @@ gg9.2<- df_main %>%
   arrange(type,date) %>% 
   mutate(Policies=cumsum(Policies)) %>% 
   ungroup %>% 
-  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + facet_wrap(~country)+ theme_bw()+ggtitle("All Policies")
+  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + facet_wrap(~country)+ theme_bw()+ggtitle("All Policies")+
+  ggsave(filename = "results/Descriptives/gg9_2.jpg",
+         height = 7)
 
 
 
@@ -283,18 +297,44 @@ gg9.2<- df_main %>%
 ## Statistics Summary of Model
 
 
-df_main_summary <- na.omit(df_main[,cbind("Centrality","Heterogeneity","PAX","Authority","Federalism","hhi","measure_H1_H2","measure_H3")]) 
+df_fed<-df_fed%>% rename(country="Jurisdiction Name")%>%select(2,5,9:11)%>% filter(country%in%c("France","Germany","Italy","Switzerland"))
+df_hhi<-df_hhi%>% select(-"X1")
+df_heterogeneity<-df_heterogeneity%>% select(1:3,"hetero")
+df_heterogeneity<-spread(df_heterogeneity, type, hetero)%>%rename("Het_Lockdown"=3,
+                                                                  "Het_Mask"=4,
+                                                                 "Het_Mass"=5,
+                                                                  "Het_School"=6)
+
+df_centrality<-df_centrality%>% select(1:3,6)
+df_centrality<-spread(df_centrality, type, centDegStd)%>%rename("Cent_School"=3,
+                                                                    "Cent_Lockdown"=4,
+                                                                    "Cent_Mask"=5,
+                                                                    "Cent_Mass"=6)
+
+df_PAX<-df_PAX%>%filter(country%in%c("France","Germany","Italy","Switzerland"))%>%rename("date"=2,"PAX"=3)%>% select(1:3)
 
 
-stargazer(df_main_summary, type="latex", float=F,covariate.labels = c("Centrality",
+df_merge<- left_join(df_cases,df_fed,by=c("country"))
+df_merge<- left_join(df_merge,df_centrality,by=c("country","date"))
+df_merge<- left_join(df_merge,df_heterogeneity,by=c("country","date"))
+df_merge<- left_join(df_merge,df_PAX,by=c("country","date"))
+df_merge<- left_join(df_merge,df_hhi,by=c("country","date"))
+df_merge<- left_join(df_merge,df_fed,by=c("country","date"))
+
+names(df_main_summary)
+
+#Adjust Variables
+df_main_summary <- df_merge%>%select(1,3,7,8,9:13)
+
+library(stargazer)
+stargazer(df_main_summary, type="html", float=F,covariate.labels = c("Centrality",
                                                                       "Heterogeneity",
                                                                       "PAX",
                                                                       "Authority",
                                                                       "Federalism",
                                                                       "hhi",
-                                                                      "measure_H1_H2",
-                                                                      "measure_H3"),
-          title = "Summary Statistics", style = "commadefault",decimal.mark=".",out="Results/summary_statistics_model.tex")
+                                                                      "measure_H1_H2"),
+          title = "Summary Statistics", style = "commadefault",decimal.mark=".",out="Results/summary_statistics_model.html")
 
 # Distribution H measures
 

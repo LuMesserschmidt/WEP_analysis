@@ -12,7 +12,7 @@ library(ggplot2)
 # ----------------------------
 policyCentralization = readRDS( "~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds") 
 
-
+ 
 # get cases data
 df_cases <- read_csv("WEP_analysis/data/Cases/cases.csv", guess_max = 10000)
 df_cases_nat = df_cases  %>% group_by(country, date) %>% summarize( measure_H1_H2 = mean(measure_H1_H2))  
@@ -22,7 +22,7 @@ df_fed <- read_csv("WEP_analysis/Measures/fed.csv", guess_max = 10000)
 names(df_fed)[which(names(df_fed) == 'Jurisdiction Name')] = 'country'
 df_fed = df_fed %>% filter(country %in% c('France', 'Germany', 'Switzerland', 'Italy'))
 
-
+ 
 # get covariates
 # df_main <- read_csv("WEP_analysis/data/merged_final_backup.csv", guess_max = 10000) --- this is yearly data; can't use
 df_hhi <- read_csv("WEP_analysis/Measures/hhi.csv", guess_max = 10000)
@@ -33,13 +33,14 @@ df_hhi <- read_csv("WEP_analysis/Measures/hhi.csv", guess_max = 10000)
 # ----------------------------
 df = merge(policyCentralization , df_cases_nat, by = c("country","date"), all.x = TRUE)
 df = merge(df , df_hhi[, c('country', 'date', 'hhi_cumulative', 'hhi_new')], by = c("country","date"), all.x = TRUE)
-
+df = merge(df , df_fed[, c('country', 'HueglinFennaFederalPolity', 'n_selfrule' , 'n_sharedrule', 'n_RAI', 'Self', 'Shared', 'RAI')], by = c("country"), all.x = TRUE)
+ 
 # ----------------------------
 # create variables
 # ----------------------------
 
 # make 'differentiating' variable
-df$differentiating = ifelse(type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Unitary') %>% factor()
+df$differentiating = ifelse(df$type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Unitary') %>% factor()
 df = within(df, differentiating <- relevel(differentiating, ref =  'Differentiated'))
  
 # make time count variable
@@ -60,7 +61,7 @@ df = within(df, country <- relevel(country, ref = 'France'))
 df$type = factor(df$type, levels(factor(df$type))[c(4, 3, 2, 1)])
 df = within(df, type <- relevel(type, ref = 'Restrictions of Mass Gatherings'))
 
- 
+
 # -----------------
 # EDA
 # ----------------
@@ -70,39 +71,60 @@ hist(df$centDegStd)
 # Run models
 # ----------------
 
-model1T = lm(centDegStd ~ type*country + hhi_new + time + time2+time3, data = df )
-summary(model1)
+lmA = lm(centDegStd ~ type*country + +measure_H1_H2 +hhi_new + time + time2+time3, data = df )
+ 
+lmB = lm(centDegStd ~ type*RAI +measure_H1_H2 + hhi_new + time + time2+time3, data = df )
 
 
-model1D = lm(centDegStd ~ differentiating*country + hhi_new + time + time2+time3, data = df )
-summary(model1D)
+lmC = lm(centDegStd ~ type*Self +measure_H1_H2 + hhi_new + time + time2+time3, data = df )
+
+lmD = lm(centDegStd ~ differentiating*country  +measure_H1_H2 + hhi_new + time + time2+time3, data = df )
 
 # note that the distribution of the DV is highly bimodal; see what happens when you run a logit
   # note that when you include time3 -- 0 or 1 is perfectly predicted
-model2T = glm(centDegR ~ type*country + hhi_new + time , data = df, family = 'binomial' )
-
-model2D = glm(centDegR ~ differentiating*country + hhi_new + time , data = df, family = 'binomial' )
-summary(model2D) 
-# -----------------
+# logitA = glm(centDegR ~ type*country+measure_H1_H2 + hhi_new + time , data = df, family = 'binomial' )
+# 
+# logitB = glm(centDegR ~ type*RAI +measure_H1_H2+ hhi_new + time , data = df, family = 'binomial' )
+# 
+# 
+# logitC = glm(centDegR ~ type*country +measure_H1_H2+ hhi_new + time , data = df, family = 'binomial' )
+# 
+# # -----------------
 # Substantive effect plots
 # ----------------
  
-p1T = plot_model(model1T, type = 'int')+
+plmA = plot_model(lmA, type = 'int')+
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
-ggsave("WEP_analysis/Results/predicted_effects_h1_ols.pdf", p1T)
+
+ 
+ggsave("WEP_analysis/Results/predicted_effects_h1_ols_countrydum.pdf", plmA)
+
+plmB = plot_model(lmB, type = 'pred', terms = c('RAI', 'type'))+
+  labs(y = 'Policy Centralization',
+       x = 'Regional Authority Index',
+       title = 'Predicted Values of Policy Centralization, \n OLS Model')
+
+ggsave("WEP_analysis/Results/predicted_effects_h1_ols_rai.pdf", plmB)
 
 
+plmC = plot_model(lmC, type = 'pred', terms = c('Self', 'type'))+
+  labs(y = 'Policy Centralization',
+       x = 'Self Index',
+       title = 'Predicted Values of Policy Centralization, \n OLS Model',
+       colors = c('red', 'blue', 'green', 'purple'))
+ggsave("WEP_analysis/Results/predicted_effects_h1_ols_self.pdf", plmC)
 
-p1D = plot_model(model1D, type = 'int')+
+
+plmD = plot_model(lmD, type = 'int')+
   labs(y = 'Policy Centralization',
        x = 'Differentiating Policy Dummy',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
-
-ggsave("WEP_analysis/Results/predicted_effects_h1_ols_diffDum.pdf", p1D)
+ 
+ggsave("WEP_analysis/Results/predicted_effects_h1_ols_diffDum.pdf", plmD)
 
 
 p2T = plot_model(model2T, type = 'int', transform = "exp",
@@ -147,13 +169,16 @@ coefMap = list(
  texreg(list(model1, model2),
         custom.coef.map = coefMap,
         custom.model.names = c('OLS', 'Logit'))
+unique(qualtrics$type)
+foo = qualtrics %>% filter(type =="Restriction and Regulation of Businesses" &
+                       country %in% countries &
+                       grepl('mask|Mask', description))
 
 
+foo %>% select(description) %>% data.frame()
+ unique(sub_data$type)
  
- 
- sub_data %>% filter(country == 'Germany' & type == 'Closure and Regulation of Schools'   & compliance == "Voluntary/Recommended but No Penalties")  %>%  #  select(record_id) %>% pull %>% unique %>% dput
-  
-   sub_data %>% filter(is.na(type_sub_cat) )%>%
+ sub_data %>% filter(country == 'France' & type ==  "Closure and Regulation of Schools"    & init_country_level == 'Provincial' )  %>%  #  select(record_id) %>% pull %>% unique %>% dput
     arrange(date_start) %>%
    #dplyr:::select( date_start, date_end) %>%
    #distinct %>%
@@ -161,7 +186,8 @@ coefMap = list(
    #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
    #slice (c(6, 8, 9)) %>%
    data.frame()
-   
+  
+ 
    
  sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
    arrange(init_country_level, province, date_start, entry_type)%>%
