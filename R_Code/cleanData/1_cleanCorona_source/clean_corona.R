@@ -37,10 +37,16 @@ sub_data = sub_data %>% filter(policy_id %!in% c(9846529))
 
 # italy, remove nuisance entry for lockdown, this will need to be corrected at some point, but easier to just remove
 sub_data = sub_data %>% filter(policy_id %!in% c(4850883))
-sub_data = sub_data %>% filter(record_id %!in% c('R_10GFpwOB1ehsCd3Du'))
+sub_data = sub_data %>% filter(record_id %!in% c('R_10GFpwOB1ehsCd3Du',
+                                                 'R_AvNXZv6236xb32NCi',
+                                                 'R_2EuBFrJBaUvlzL1Ci',
+                                                 'R_AvNXZv6236xb32NEs'))
 
 # switzerland, remove duplicate national restrictions of mas gathering entry
 sub_data = sub_data %>% filter(policy_id %!in% c(3333413))
+
+# swiss duplicated mask wearing policy
+sub_data = sub_data %>% filter(record_id %!in% c('R_28SXNJc4jezOo39Es', 'R_2EuBFrJBaUvlzL1Ci'))
 
 # germany, sarrland remove duplicate lockdown entry
 sub_data = sub_data %>% filter(policy_id %!in% c(9495684))
@@ -100,9 +106,6 @@ sub_data = sub_data %>% mutate_cond(policy_id == 2295515,
 
 
 
-# france init_country_level miscoded, should be provincial
-sub_data = sub_data %>% mutate_cond(policy_id == 5260883,
-                                    init_country_level = 'Provincial') 
 
 
 # italy lockdown miscoded, should be social distancing
@@ -123,6 +126,16 @@ sub_data = sub_data %>% mutate_cond(policy_id == 8100308,
                                     type = "Restriction and Regulation of Businesses" )
 
 
+
+# france miscoded type_sub_cat for mask wearing
+sub_data = sub_data %>% mutate_cond(policy_id == 8434835,
+                                    type_sub_cat = "Other Mask Wearing Policy" )
+
+
+
+# clean init_country_level
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(5260883, 4575542), # france/swiss init_country_level miscoded, should be provincial
+                                    init_country_level = 'Provincial')  
 
 ## clean 'missing' types
 
@@ -172,7 +185,8 @@ sub_data = sub_data %>% mutate_cond(
                    '1352319'),
                     type_who_gen = 'People in nursing homes/long term care facilities'
 ) %>% mutate_cond(
-  policy_id %in% c('9292517'),
+  policy_id %in% c('9292517')|
+    record_id %in% c('R_12LJiueWnt7uFjUCi'),
                   type_who_gen = 'Other population not specifed above',
 )%>% mutate_cond(
   record_id %in% c('R_1HjmbY7oxNCMKBKNA'),
@@ -256,7 +270,12 @@ sub_data = sub_data %>%
               date_start =as.Date("2020-03-16", "%Y-%m-%d"),
               date_end =as.Date("2020-06-06", "%Y-%m-%d"))%>%
   mutate_cond(record_id %in% c('R_3e4vvQd0GyoWTXxCj'), # end date should be june 22, not blank
-              date_end =as.Date("2020-06-22", "%Y-%m-%d"))
+              date_end =as.Date("2020-06-22", "%Y-%m-%d"))%>%
+  mutate_cond(record_id %in% c('R_24ei5TTHd0Md9jWCi'), # end date should be open not 7/6
+              date_end =NA)%>%
+  mutate_cond(policy_id %in% c(1661998), # end date should be 5/11 not 6/8
+              date_end =as.Date("2020-05-11", "%Y-%m-%d"))
+
          
 
 
@@ -277,7 +296,7 @@ sub_data = sub_data %>%
        "R_1ml1q75EQ1fAXAJCi",
        'R_24ei5TTHd0Md9jWCi', 
        'R_e4mnXh4FEiywibvCi', 
-       'R_27iXuNAigP77HXvCi',
+     #  'R_27iXuNAigP77HXvCi',
        'R_OBc0ZZH8ZddVsGJNA',
        "R_1gjXKjAgizlMciCCv", 
        "R_3EuSJwRBYTg2cgUCv",

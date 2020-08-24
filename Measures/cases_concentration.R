@@ -119,6 +119,7 @@ cases<-cases[!is.na(cases$region),]
 
 write_csv(cases,"data/Cases/cases.csv")
 
+
 hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum2,na.rm=T),
                                                     hhi_new=sum(ratio_new2,na.rm=T)
                                                     )
