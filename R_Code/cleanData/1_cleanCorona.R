@@ -57,7 +57,7 @@ sub_data = qualtrics %>% dplyr:::filter(country %in% countries & country_overwri
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona_missing.R')
 sub_data = rbind(sub_data %>% mutate(missingDum = 0), missing)
 
- 
+
 # check and recode 'other' policy data
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona.R')
 
@@ -79,7 +79,7 @@ sub_data = sub_data %>% filter(type %in% c("Lockdown", "Closure and Regulation o
                                  grepl('Wearing Mask|Mask Wearing', type_sub_cat))
 
 
-# remove smaller restrictions on mass gatherings and higher education
+# remove smaller restrictions on mass gatherings  
 sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event allowed to occur with certain conditions',
                                                      'Attendance at religious services restricted (e.g. mosque/church closings)',
                                                      'Cancellation of a recreational or commercial event',
@@ -88,11 +88,17 @@ sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event a
                                                      'Postponement of a recreational or commercial event',
                                                      'Postponement of an annually recurring event',
                                                      'Prison population reduced (e.g. early release of prisoners)',
-                                                     'Other mass gatherings not specified above restricted',
-                                                     'Higher education institutions (i.e. degree granting institutions)'))
+                                                     'Other mass gatherings not specified above restricted'))
 
 
+
+# select only primary school data
+sub_data = sub_data %>% filter( type %in% c("Lockdown",  'Restrictions of Mass Gatherings',  "Social Distancing")|
+                                  type_sub_cat%in% 'Primary Schools (generally for children ages 10 and below)')
+
+ 
 # change sub type for lockdowns
+sub_data = sub_data %>%  filter(type_sub_cat %!in% c('People in nursing homes/long term care facilities'))
 sub_data = sub_data %>% mutate(type_sub_cat = ifelse(type == 'Lockdown',  'Lockdown', type_sub_cat))
 
 
@@ -101,6 +107,16 @@ sub_data = sub_data %>% mutate(type_sub_cat = ifelse(type == 'Lockdown',  'Lockd
 sub_data = sub_data %>%
   filter(init_country_level %in% c("National", "Provincial")) %>%
   filter(target_country %in% countries) 
+
+table(sub_data$target_country) %>% sum
+unique(sub_data$target_country)
+
+sub_data %>% filter(is.na(target_country)) %>% select(policy_id, description)
+table(test$type, test$country)
+table(sub_data$type, sub_data$country)
+
+sub_data %>% filter(target_country == 'Saxony') %>% data.frame()
+table(sub_data$type_who_gen)
 
 # remove policies that are targeted toward particular populations
 sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_gen)|
@@ -115,8 +131,10 @@ sub_data = sub_data %>% filter( type %in% c("Lockdown", "Closure and Regulation 
                                   type_mass_gathering >= 500|
                             is.na(type_mass_gathering) & type == 'Restrictions of Mass Gatherings')
 
+
+
 # remove policies that are voluntary
-sub_data = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Penalties")
+test = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Penalties")
 
 # keep orphaned records for now --- investigate later
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
@@ -332,9 +350,6 @@ sub_data = rbind(sub_data, swiss_lockdown)
 sub_data = rbind(sub_data, france_mass_gathering)
 sub_data = rbind(sub_data, italy_mass_gathering)
 sub_data = rbind(sub_data, swiss_mass_gathering)
-
-
-
 
 
 # fill in appropriate province names

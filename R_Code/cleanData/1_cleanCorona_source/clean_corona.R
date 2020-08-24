@@ -18,6 +18,7 @@ sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA",  # Febru
                                                  'R_1MX0RRHcaCgiTXaNA',# From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced an obligation for sports events to take place behind closed doors.
                                                  'R_blUCYuaQoqSHAl3NA',  # Switzerland, Geneva--"The cantonal police, with the support of the Civil Protection (PCi), proceeded this morning, Saturday March 28, to a cordon of the lakeside surroundings in order to prohibit the parking of private vehicles.
                                                  'R_1JUu6XJWWJSvPJ3NA', # From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced the closing of public baths except for closed-door competitions.
+                                                 'R_1kUebz9zyXeMQhUNA', # As of March 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic. On March 28, this policy was extended until April 15. UPDATE: The original beach and coastal pathway ban was set to end on March 31. On March 28, this was extended until April 15.
                                                  'R_3G8uMNTTO2IBD7SNA', # In the German state of Rheinland-Pfalz, different households will now be allowed to take residence with each other in public spaces as of May 13
                                                  'R_vBNxXQwwxlUCukNNA', # The Canton of Zug allows ice hockey games in the Bossard Arena to continue without spectators on February 28th 2020
                                                  'R_xlQQ2Wj92uVqOjfNA', # The Italian government is banning all sporting matches and public events until next month in several regions of Northern Italy (restrictions of mass gatherings).\n\nThe new measures, approved last night, extends the urgent steps the government is taking for the containment of the coronavirus outbreak outside the exclusion zone. \n\nThe decree bans all events and sport matches in public and private locations from Febuary 26 until March 1.
@@ -112,6 +113,14 @@ sub_data = sub_data %>% mutate_cond(record_id == 'R_3kbq7bFJPPTtS2gNA',
 sub_data = sub_data %>% mutate_cond(policy_id == 2123620,
                                     type = "Restriction and Regulation of Businesses" )
 
+# italy --- should be two policies, but keeping just the one on mandatory use of masks in public transport
+sub_data = sub_data %>% mutate_cond(record_id == 'R_1Nlw2c9SIZiQGHIEr' ,
+                                    type_sub_cat = "Other Mask Wearing Policy",
+                                    compliance =  "Mandatory (Unspecified/Implied)")
+
+# germany, mass gathering miscoded should be restrictions of businesses
+sub_data = sub_data %>% mutate_cond(policy_id == 8100308,
+                                    type = "Restriction and Regulation of Businesses" )
 
 
 
@@ -151,7 +160,8 @@ sub_data = sub_data %>% mutate_cond(policy_id == 9165956  & type == 'MISSING',
                                     type =  'Closure and Regulation of Schools',
                                     type_sub_cat = "Primary Schools (generally for children ages 10 and below)",
                                     date_start = as.Date("2020-04-30", "%Y-%m-%d"))
-policies = c('Lockdown', 'Closure and Regulation of Schools', 'Restrictions of Mass Gatherings')
+
+
 
 
 # clean type_who_gen
@@ -253,15 +263,29 @@ sub_data = sub_data %>%
 
 
 # change compliance measures
-sub_data = sub_data%>%
+sub_data = sub_data %>%
   mutate_cond(record_id %in% c("R_3KPknxzcxN1vSyxNA"),
-              compliance = "Voluntary/Recommended but No Penalties") %>%
-  mutate_cond(record_id %in% c(
-     c("R_elAEbJyf0gujRbHCi", "R_2CHdP2cD0joISWAEs", "R_2CHdP2cD0joISWACi", 
-       "R_1cV3JVqRdmGDsujEr", "R_1cV3JVqRdmGDsujEs", "R_1Pe1wlpB8X8KR9KEs", 
-       "R_1ml1q75EQ1fAXAJEs", "R_1ml1q75EQ1fAXAJCi"),
-     compliance = 'Mandatory (Unspecified/Implied)'
-  ), )
+            compliance = "Voluntary/Recommended but No Penalties") %>%
+  mutate_cond(record_id %in% 
+     c("R_elAEbJyf0gujRbHCi", 
+       "R_2CHdP2cD0joISWAEs", 
+       "R_2CHdP2cD0joISWACi", 
+       "R_1cV3JVqRdmGDsujEr",
+       "R_1cV3JVqRdmGDsujEs", 
+       "R_1Pe1wlpB8X8KR9KEs", 
+       "R_1ml1q75EQ1fAXAJEs", 
+       "R_1ml1q75EQ1fAXAJCi",
+       'R_24ei5TTHd0Md9jWCi', 
+       'R_e4mnXh4FEiywibvCi', 
+       'R_27iXuNAigP77HXvCi',
+       'R_OBc0ZZH8ZddVsGJNA',
+       "R_1gjXKjAgizlMciCCv", 
+       "R_3EuSJwRBYTg2cgUCv",
+       "R_1f1VSvPEJnvmqmlCv", 
+       "R_1jU4fge97Jy4FdnCv", 
+       "R_1MWXRrl0x3hqkNHCv",
+       'R_7WLyowJS9OwbKxjCv'),
+     compliance = 'Mandatory (Unspecified/Implied)' )
 
  unique(sub_data$compliance)
 
@@ -353,7 +377,11 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '9086049',
                                                      '6547663',
                                                      '8972618',
-                                                     '8908778'
+                                                     '8908778',
+                                                     '6681622',
+                                                     '9590203',
+                                                     '4363753',
+                                                     '9921723'
                                                      )|
                                             record_id %in% c('R_ah2w0ZOyeSvMEj7NA',
                                                              'R_qOUYa35iAW11h5LNA',
