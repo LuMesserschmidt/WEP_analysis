@@ -85,10 +85,7 @@ corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Sc
 #corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with conditions"),]
 #corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with no conditions"),]
 
-corona_sel <- corona_sel[-which(corona_sel$type == "Restrictions of Mass Gatherings" & is.na(corona_sel$type_mass_gathering)),]
-
 detach("package:plyr", unload = TRUE)
-
 
 corona_sel = corona_sel %>%
   mutate(gov = ifelse(init_country_level == "National" & is.na(target_province)
@@ -490,11 +487,11 @@ hetero_all$hhi_cumulative <- as.numeric(hetero_all$hhi_cumulative)
 hetero_all$hhi_new <- as.numeric(hetero_all$hhi_new)
 
 summary(all.a <- lm(hetero_mean ~ as.factor(country) + differentiating + poly(as.Date(date), 3), data = hetero_all))
-summary(all.b <- lm(hetero_mean ~ as.factor(country) + differentiating + as.numeric(hhi_cumulative) + I(past_average_national_new_cases/sum_pop) + poly(as.Date(date), 3),
+summary(all.b <- lm(hetero_mean ~ as.factor(country) + differentiating + as.numeric(measure_H1_H2_cases) + poly(as.Date(date), 3),
                    data = hetero_all))
 
 summary(all.c <- lm(hetero_mean ~ as.factor(country)*differentiating + poly(as.Date(date), 3), data = hetero_all))
-summary(all.d <- lm(hetero_mean ~ as.factor(country)*differentiating + as.numeric(hhi_cumulative) + I(past_average_national_new_cases/sum_pop) + poly(as.Date(date), 3),
+summary(all.d <- lm(hetero_mean ~ as.factor(country)*differentiating + as.numeric(measure_H1_H2_cases) + poly(as.Date(date), 3),
                     data = hetero_all))
 
 stargazer(all.a, all.b, all.c, all.d, digits = 2)

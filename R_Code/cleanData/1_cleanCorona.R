@@ -57,11 +57,11 @@ sub_data = qualtrics %>% dplyr:::filter(country %in% countries & country_overwri
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona_missing.R')
 sub_data = rbind(sub_data %>% mutate(missingDum = 0), missing)
 
-
+ 
 # check and recode 'other' policy data
 source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona.R')
 
-
+  
 # # fill in target country with country if not an external border restriction  
 # sub_data = sub_data %>% mutate(target_country = ifelse(is.na(target_country) &
 #                                                          type !='External Border Restrictions', country, target_country))
@@ -90,18 +90,19 @@ sub_data = sub_data %>% filter(type_sub_cat %!in%  c('Annually recurring event a
                                                      'Prison population reduced (e.g. early release of prisoners)',
                                                      'Other mass gatherings not specified above restricted'))
 
-
-
 # select only primary school data
 sub_data = sub_data %>% filter( type %in% c("Lockdown",  'Restrictions of Mass Gatherings',  "Social Distancing")|
                                   type_sub_cat%in% 'Primary Schools (generally for children ages 10 and below)')
 
+# only choose school closure policies
+sub_data = sub_data %>% filter(school_status %!in% c('Primary Schools allowed to open with conditions',
+                                                      'Primary Schools allowed to open with no conditions'))
  
 # change sub type for lockdowns
 sub_data = sub_data %>%  filter(type_sub_cat %!in% c('People in nursing homes/long term care facilities'))
 sub_data = sub_data %>% mutate(type_sub_cat = ifelse(type == 'Lockdown',  'Lockdown', type_sub_cat))
 
-
+ 
 
 # Filter policies to only national or provincial level policies
 sub_data = sub_data %>%
@@ -115,7 +116,7 @@ sub_data = sub_data %>% filter(grepl("No special population targeted", type_who_
                                  is.na(type_who_gen))
 
 # select gatherings that restrict gatherings of 500 or more people
-sub_data = sub_data %>%
+sub_data= sub_data %>%
   mutate(type_mass_gathering = as.numeric(str_trim(type_mass_gathering)))
 
 
@@ -124,17 +125,24 @@ sub_data = sub_data %>% filter( type %in% c("Lockdown", "Closure and Regulation 
                             is.na(type_mass_gathering) & type == 'Restrictions of Mass Gatherings')
 
 
-
+ 
 # remove policies that are voluntary
 sub_data = sub_data %>% filter(compliance %!in% "Voluntary/Recommended but No Penalties")
 
+
+# add rows for other mask wearing policies and mask in public/commercial spaces if there is a policy for masks everwhere
+sub_data = sub_data %>% mutate_cond(type_sub_cat == 'Wearing Masks in all public spaces/everywhere',
+                         type_sub_cat = 'Wearing Masks in all public spaces/everywhere,Wearing Masks inside public or commercial building,Other Mask Wearing Policy')
+ 
+sub_data = sub_data %>% separate_rows(type_sub_cat, sep = ',')
+ 
 # keep orphaned records for now --- investigate later
 (orphans = names(which(unlist(lapply(split(sub_data$entry_type, sub_data$policy_id), function(x){
   all(unique(x) == 'update')}))) == TRUE) %>% unique()) 
  
 sub_data = sub_data %>% mutate(orphanDum = ifelse(policy_id %in% orphans, 1, 0))
 
-
+ 
 # replace end date with max last end date for now if end date is missing
 # and remove observations that come after that end date
 # end_date = max(sub_data$date_end, na.rm = TRUE)
@@ -146,7 +154,7 @@ sub_data = sub_data %>%
 
 # add some policies manually
 
-source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_manual.R') 
+source('WEP_analysis/R_Code/cleanData/1_cleanCorona_source/clean_corona_manual.R') 
 
 sub_data = rbind(sub_data, swiss_lockdown)
 sub_data = rbind(sub_data, swiss_mass_gathering)
@@ -155,9 +163,14 @@ sub_data = rbind(sub_data, france_school_1)
 sub_data = rbind(sub_data, france_school_2)
 sub_data = rbind(sub_data, italy_mass_gathering)
 
- 
+
+
+# check type sub cat
+sub_data %>% filter(is.na(type_sub_cat))
+
 # save raw data 
-#saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS")
+
+saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS")
 
 
 # fill in appropriate province names
@@ -206,16 +219,13 @@ sub_data = sub_data %>%
 # sub_data = sub_data %>% filter(update_type %!in% 'End of Policy')
 
 
-# check type sub cat
-sub_data %>% filter(is.na(type_sub_cat))
-
 
 
 # save raw data 
 saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean.RDS")
 
 
-table(sub_data$type, sub_data$country)
+ 
 
 # -------------------
 # reshape CoronaNet data from raw data to long format 
@@ -320,6 +330,8 @@ data_long = data_long %>%
   ungroup()  
 
 
+
+table(data_long$policy_count)
 # try to fix error, later but so far should be these policies that have negative number for policy_count
 # 4231455;5762826;6739782
 # 2421846;6947301

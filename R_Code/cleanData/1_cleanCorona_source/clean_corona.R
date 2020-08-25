@@ -107,16 +107,18 @@ sub_data = sub_data %>% filter(policy_id %!in% c(9846529))
 
 # italy, remove nuisance entry for lockdown, this will need to be corrected at some point, but easier to just remove
 sub_data = sub_data %>% filter(policy_id %!in% c(4850883))
-sub_data = sub_data %>% filter(record_id %!in% c('R_10GFpwOB1ehsCd3Du',
-                                                 'R_AvNXZv6236xb32NCi',
-                                                 'R_2EuBFrJBaUvlzL1Ci',
-                                                 'R_AvNXZv6236xb32NEs'))
+ital_lock = c('R_10GFpwOB1ehsCd3Du',
+              'R_AvNXZv6236xb32NCi',
+              'R_2EuBFrJBaUvlzL1Ci',
+              'R_AvNXZv6236xb32NEs')
+sub_data =  sub_data %>% filter(!grepl(paste(substr(ital_lock, 1,17), collapse = '|'), record_id))
 
 # switzerland, remove duplicate national restrictions of mas gathering entry
 sub_data = sub_data %>% filter(policy_id %!in% c(3333413))
 
 # swiss duplicated mask wearing policy
-sub_data = sub_data %>% filter(record_id %!in% c('R_28SXNJc4jezOo39Es', 'R_2EuBFrJBaUvlzL1Ci'))
+swiss_mask = c('R_28SXNJc4jezOo39Es', 'R_2EuBFrJBaUvlzL1Ci')
+sub_data =  sub_data %>% filter(!grepl(paste(substr(swiss_mask, 1,17), collapse = '|'), record_id))
 
 # germany, sarrland remove duplicate lockdown entry
 sub_data = sub_data %>% filter(policy_id %!in% c(9495684))
@@ -170,16 +172,14 @@ sub_data = sub_data %>% mutate_cond(policy_id == 2154117,
                                     type = 'Lockdown',
                                     type_sub_cat = 'People in nursing homes/long term care facilities')
 
-# swiss ticino miscoded as restrictions of mass gatherings, should be restrictions of businesses/gov
-sub_data = sub_data %>% mutate_cond(policy_id == 2295515,
+# swiss miscoded as restrictions of mass gatherings, should be restrictions of businesses/gov
+sub_data = sub_data %>% mutate_cond(policy_id %in% c( 5376164, 2295515) ,
                                     type = "Restriction and Regulation of Businesses" )
 
 
 
-
-
 # italy lockdown miscoded, should be social distancing
-sub_data = sub_data %>% mutate_cond(record_id == 'R_3kbq7bFJPPTtS2gNA',
+sub_data = sub_data %>% mutate_cond(grepl(paste(substr('R_3kbq7bFJPPTtS2gNA', 1,17), collapse = '|'), record_id),
                                     type = 'Social Distancing') 
 
 # france lockdown miscoded, should be restrictions of businesses
@@ -192,7 +192,7 @@ sub_data = sub_data %>% mutate_cond(policy_id == 790424,
 
 
 # italy --- should be two policies, but keeping just the one on mandatory use of masks in public transport
-sub_data = sub_data %>% mutate_cond(record_id == 'R_1Nlw2c9SIZiQGHIEr' ,
+sub_data = sub_data %>% mutate_cond(grepl(paste(substr('R_1Nlw2c9SIZiQGHIEr', 1,17), collapse = '|'), record_id),
                                     type_sub_cat = "Other Mask Wearing Policy",
                                     compliance =  "Mandatory (Unspecified/Implied)")
 
@@ -253,7 +253,7 @@ sub_data = sub_data %>% mutate_cond(policy_id == 9165956  & type == 'MISSING',
 
 
 
- 
+
 # clean type_who_gen
 sub_data = sub_data %>% mutate_cond(
   policy_id %in% c('2154117',
@@ -269,7 +269,7 @@ sub_data = sub_data %>% mutate_cond(
                    '860229',
                    '2145363',
                    '860229')|
-    record_id %in% c('R_12LJiueWnt7uFjUCi'),
+    grepl(paste(substr('R_12LJiueWnt7uFjUCi', 1,17), collapse = '|'), record_id),
                   type_who_gen = 'Other population not specifed above')%>% 
   mutate_cond(policy_id %in% c(4578467),
               type_who_gen = "Asylum/refugee seekers") %>%
@@ -400,37 +400,57 @@ mutate_cond(grepl(substr('R_2WAtdL6js2kb18aCw', 1, 17), record_id),# end dae sho
   mutate_cond(grepl(substr('R_2f22wH5mTd3fcgKNA',1, 17), record_id),  # end date miscoded, 
               date_end = NA)%>% 
   mutate_cond(grepl(substr('R_3RlNoeF0ovvWj46Cw',1, 17), record_id),  # end date miscoded, this is guess, but likely right
-              date_end = as.Date("2020-05-011", "%Y-%m-%d"))
+              date_end = as.Date("2020-05-011", "%Y-%m-%d")) %>%
+ mutate_cond(grepl(substr('R_2cvBZn5zRVBbL7oNA',1, 17), record_id),  # end date miscoded, this is guess, but likely right
+              date_end = NA)
 
 
+
+ 
 # change compliance measures
+
+compliance_change = c("R_elAEbJyf0gujRbHCi", 
+  "R_2CHdP2cD0joISWAEs", 
+  "R_2CHdP2cD0joISWACi", 
+  "R_1cV3JVqRdmGDsujEr",
+  "R_1cV3JVqRdmGDsujEs", 
+  "R_1Pe1wlpB8X8KR9KEs", 
+  "R_1ml1q75EQ1fAXAJEs", 
+  "R_1ml1q75EQ1fAXAJCi",
+  'R_24ei5TTHd0Md9jWCi', 
+  'R_e4mnXh4FEiywibvCi', 
+  #  'R_27iXuNAigP77HXvCi',
+  'R_OBc0ZZH8ZddVsGJNA',
+  "R_1gjXKjAgizlMciCCv", 
+  "R_3EuSJwRBYTg2cgUCv",
+  "R_1f1VSvPEJnvmqmlCv", 
+  "R_1jU4fge97Jy4FdnCv", 
+  "R_1MWXRrl0x3hqkNHCv",
+  'R_7WLyowJS9OwbKxjCv')
+
 sub_data = sub_data %>%
   mutate_cond(record_id %in% c("R_3KPknxzcxN1vSyxNA"),
             compliance = "Voluntary/Recommended but No Penalties") %>%
-  mutate_cond(record_id %in% 
-     c("R_elAEbJyf0gujRbHCi", 
-       "R_2CHdP2cD0joISWAEs", 
-       "R_2CHdP2cD0joISWACi", 
-       "R_1cV3JVqRdmGDsujEr",
-       "R_1cV3JVqRdmGDsujEs", 
-       "R_1Pe1wlpB8X8KR9KEs", 
-       "R_1ml1q75EQ1fAXAJEs", 
-       "R_1ml1q75EQ1fAXAJCi",
-       'R_24ei5TTHd0Md9jWCi', 
-       'R_e4mnXh4FEiywibvCi', 
-     #  'R_27iXuNAigP77HXvCi',
-       'R_OBc0ZZH8ZddVsGJNA',
-       "R_1gjXKjAgizlMciCCv", 
-       "R_3EuSJwRBYTg2cgUCv",
-       "R_1f1VSvPEJnvmqmlCv", 
-       "R_1jU4fge97Jy4FdnCv", 
-       "R_1MWXRrl0x3hqkNHCv",
-       'R_7WLyowJS9OwbKxjCv'),
+  mutate_cond(grepl(paste(substr(compliance_change, 1,17), collapse = '|'), record_id),
      compliance = 'Mandatory (Unspecified/Implied)' )
 
- unique(sub_data$compliance)
 
 # adjust mass restrictions category
+mass_change = c('R_ah2w0ZOyeSvMEj7NA',
+                'R_qOUYa35iAW11h5LNA',
+                'R_1HepS3Sb89rj1UPNA',
+                'R_3rHuIhkSsPzEOrYNA',
+                'R_28YRziizw7ZZOfjNA',
+                'R_2P8c6lkNycftS7tNA',
+                'R_1jCEucwkge7z3oTCj',
+                'R_1qe6CqFYOHk6RBANA',
+                #'R_1HjmbY7oxNCMKBKNA',
+                'R_3rPojgRhfH9fjfMNA',
+                'R_1gegqGyoUUZdrcNNA',
+                'R_2pX2smox9mkUJ8ANA',
+                'R_3R2cCsYmeuhlnNnNA',
+                'R_1JK05QmhgbvBXgwNA')
+
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '1774357',
@@ -532,21 +552,9 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      7945662, 9208601, 1401008, 8832913, 8832913, 8832913, 4737398, 
                                                      4737398, 6053550, 1864080
                                                      )|
-                                            record_id %in% c('R_ah2w0ZOyeSvMEj7NA',
-                                                             'R_qOUYa35iAW11h5LNA',
-                                                             'R_1HepS3Sb89rj1UPNA',
-                                                             'R_3rHuIhkSsPzEOrYNA',
-                                                             'R_28YRziizw7ZZOfjNA',
-                                                             'R_2P8c6lkNycftS7tNA',
-                                                             'R_1jCEucwkge7z3oTCj',
-                                                             'R_1qe6CqFYOHk6RBANA',
-                                                             #'R_1HjmbY7oxNCMKBKNA',
-                                                             'R_3rPojgRhfH9fjfMNA',
-                                                             'R_1gegqGyoUUZdrcNNA',
-                                                             'R_2pX2smox9mkUJ8ANA',
-                                                             'R_3R2cCsYmeuhlnNnNA',
-                                                             'R_1JK05QmhgbvBXgwNA'),
+                                      grepl(paste(substr(mass_change, 1,17), collapse = '|'), record_id),
                                     type_sub_cat = "All/Unspecified mass gatherings") 
+
 
 
 # clean type_sub_cat for restrictions of mass gathering
@@ -554,12 +562,14 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
 sub_data = sub_data %>% mutate_cond(
   policy_id %in% c(9469556,
                    2145363)|
-  record_id %in% c('R_1HjmbY7oxNCMKBKNA'),
+    grepl(paste(substr('R_1HjmbY7oxNCMKBKNA', 1,17), collapse = '|'), record_id),
   type_sub_cat = 'Other mass gatherings not specified above restricted'
 ) 
 
+
+
 # change date for hamburg restriction of mass gathering
-sub_data = sub_data %>% mutate_cond(record_id == "R_ah2w0ZOyeSvMEj7NA",
+sub_data = sub_data %>% mutate_cond(grepl(paste(substr('R_ah2w0ZOyeSvMEj7NA', 1,17), collapse = '|'), record_id),
                          date_start = as.Date("2020-03-14", "%Y-%m-%d"),
                          date_end = as.Date("2020-03-14", "%Y-%m-%d"),
                          )
@@ -583,7 +593,7 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('757552'),
                                     type_mass_gathering = '100') 
 
 
-sub_data = sub_data %>% mutate_cond(record_id %in% c('R_3POjmt0Ax7ShYryAg'),
+sub_data = sub_data %>% mutate_cond(grepl(paste(substr('R_3POjmt0Ax7ShYryAg', 1,17), collapse = '|'), record_id),
                                     type_sub_cat = "All/Unspecified mass gatherings",
                                     type_mass_gathering = '1000',
                                     type_who_gen = 'No special population targeted') 
@@ -601,24 +611,24 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049'),
                                     type_mass_gathering = '500') 
 
 sub_data = sub_data %>% mutate_cond(policy_id %in% c('3728913', '4415069')|
-                                      record_id %in% c('R_3HwvvANQMC4hR9ENA'),
+                                      grepl(paste(substr('R_3HwvvANQMC4hR9ENA', 1,17), collapse = '|'), record_id),
                                     type_sub_cat = "Attendance at religious services restricted (e.g. mosque/church closings)") 
 
 sub_data = sub_data %>% mutate_cond(record_id %in% c('R_1mJaJpu5i50Y5myNA'),
                                     type = 'Other Policy Not Listed Above')
 
-sub_data = sub_data %>% mutate_cond(policy_id %in% c(8248035)|
-                                      record_id %in% c('R_2COe9Uwo1Q6CHDgNA', 'R_2eOObK67RpRGaorNA'),
+
+other_mass = c('R_1q9AXImZ4raUmOCNA',
+              'R_1MX0RRHcaCgiTXaNA',
+              'R_2COe9Uwo1Q6CHDgNA',
+              'R_2eOObK67RpRGaorNA')
+
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(8248035)|grepl(paste(substr(other_mass, 1,17), collapse = '|'), record_id),
                                     type_sub_cat = 'Other mass gatherings not specified above restricted')
 
-
-sub_data = sub_data %>% mutate_cond(record_id %in% c('R_reT4y2kUxvffllLNA',
-                                                     'R_1q9AXImZ4raUmOCNA',
-                                                     'R_1MX0RRHcaCgiTXaNA'),
-                                    type_sub_cat = 'Other mass gatherings not specified above restricted')
-
-sub_data = sub_data %>% mutate_cond(record_id %in% c( 'R_3lDo64IEsUEi7ihNA',
-                                                     'R_xlQQ2Wj92uVqOjfNA'),
+cancel_mass = c( 'R_3lDo64IEsUEi7ihNA',
+                 'R_xlQQ2Wj92uVqOjfNA')
+sub_data = sub_data %>% mutate_cond(grepl(paste(substr(cancel_mass, 1,17), collapse = '|'), record_id),
                                     type_sub_cat= 'Cancellation of a recreational or commercial event')
 
 sub_data = sub_data %>% mutate(type_mass_gathering  = recode( type_mass_gathering,
