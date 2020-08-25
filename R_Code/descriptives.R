@@ -35,12 +35,15 @@ library(kableExtra)
 library(knitr)
 
 
+df_deaths <- read_csv("data/Cases/deaths.csv", guess_max = 10000)
 df_cases <- read_csv("data/Cases/cases.csv", guess_max = 10000)
+df_ECDC <- read_csv("data/Cases/final_cases.csv", guess_max = 10000)
 df_main <- read_csv("data/merged_final.csv", guess_max = 10000)
 df_policy <- read_csv("data/CoronaNet/coronanet_internal.csv", guess_max = 10000)
 df_heterogeneity <- read_csv("data/heterogeneity_analyses.csv")
 df_centrality <- readRDS("~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds")
 df_hhi <- read_csv("Measures/hhi.csv", guess_max = 10000)
+df_hhi_deaths <- read_csv("Measures/hhi_deaths.csv", guess_max = 10000)
 df_PAX <- readRDS("~/Documents/github/corona_private/data/get_est.rds")
 df_fed <- read_csv("Measures/fed.csv", guess_max = 10000)
 df_selected<-df_main %>%
@@ -50,40 +53,57 @@ df_selected<-df_main %>%
 # - Cases Plot----
 
 
-gg1.1<- ggplot(df_cases, aes(x=date, y=cases_national, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") +
+gg1.1<- ggplot(df_ECDC, aes(x=date, y=cases_national_ECDC, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()+
           ggsave(filename = "results/Descriptives/gg1_1.jpg",
          height = 7)
-gg1.2<- ggplot(df_cases, aes(x=date, y=past_average_new_cases_national, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()+
+
+gg1.2<- ggplot(df_ECDC, aes(x=date, y=past_average_new_cases_national_ECDC, color=country)) + geom_line() + labs(x = "Date", y = "New Cases (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Cases per Country") +theme_bw()+
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   ggsave(filename = "results/Descriptives/gg1_2.jpg",
          height = 7)
 
+gg1.3<- ggplot(df_deaths, aes(x=date, y=deaths_national, color=country)) + geom_line() + labs(x = "Date", y = "Deaths", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Cumulative COVID-19 Deaths per Country") +theme_bw()+
+  ggsave(filename = "results/Descriptives/gg1_3.jpg",
+         height = 7)
+gg1.4<- ggplot(df_deaths, aes(x=date, y=past_average_new_deaths_national, color=country)) + geom_line() + labs(x = "Date", y = "New Deaths (7 days avg)", color="Country") + ggtitle("Past 7 Days Average of New COVID-19 Deaths per Country") +theme_bw()+
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggsave(filename = "results/Descriptives/gg1_4.jpg",
+         height = 7)
+
+
+
 
 #Combine 
-gg3<- ggplot(df_cases, aes(x=date,color=country))+ geom_line(aes(y =cases_national))+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40),linetype="dashed")+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
-gg1.3 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+theme_bw()+  
-  ggsave(filename = "results/Descriptives/gg1_3.jpg",height = 7)
+gg3<- ggplot(df_ECDC, aes(x=date,color=country))+ geom_line(aes(y =past_average_new_cases_national_ECDC),size=0.5, alpha=0.4)+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+ylab("7 Days Average of New Cases")
+gg3<- gg3+ geom_line(aes(y = past_average_new_deaths_national),linetype="dashed")
+gg1.5 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "7 Days Average of New Deaths (dashed)"))+theme_bw()+  
+  ggsave(filename = "results/Descriptives/gg1_5.jpg",height = 7)
 
 # For each country individual
 
-gg3<- ggplot(df_cases %>% filter(country=="Switzerland"), aes(x=date))+ geom_line(aes(y = cases_national),color="#006699")+ labs(y="Cumulative National Cases")
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed", color="#006699")
-gg1.4 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Switzerland")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_4.jpg",height = 7)
+gg3<- ggplot(df_ECDC%>% filter(country=="Switzerland"), aes(x=date))+ geom_line(aes(y =past_average_new_cases_national_ECDC),size=0.5, alpha=0.4,color="#006699")+ ggtitle("COVID-19 Cases Switzerland")+ylab("7 Days Average of New Cases")
+gg3<- gg3+ geom_line(aes(y = past_average_new_deaths_national),linetype="dashed",color="#006699")
+gg1.6 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "7 Days Average of New Deaths (dashed)"))+theme_bw()+  
+  ggsave(filename = "results/Descriptives/gg1_6.jpg",height = 7)
 
-gg3<- ggplot(df_cases%>% filter(country=="France"), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")+scale_color_manual(values=c('#00CC33'))
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") +scale_color_manual(values=c('#00CC33'))
-gg1.5 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases France")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_5.jpg",height = 7)
+gg3<- ggplot(df_ECDC%>% filter(country=="France"), aes(x=date))+ geom_line(aes(y =past_average_new_cases_national_ECDC),size=0.5, alpha=0.4,color="#00CC33")+ ggtitle("COVID-19 Cases France")+ylab("7 Days Average of New Cases")
+gg3<- gg3+ geom_line(aes(y = past_average_new_deaths_national),linetype="dashed",color="#00CC33")
+gg1.7 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "7 Days Average of New Deaths (dashed)"))+theme_bw()+  
+  ggsave(filename = "results/Descriptives/gg1_7.jpg",height = 7)
 
-gg3<- ggplot(df_cases%>% filter(country=="Italy"), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")+scale_color_manual(values=c('#CC0000'))
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") +scale_color_manual(values=c('#CC0000'))
-gg1.6 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Italy")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_6.jpg",height = 7)
+gg3<- ggplot(df_ECDC%>% filter(country=="Germany"), aes(x=date))+ geom_line(aes(y =past_average_new_cases_national_ECDC),size=0.5, alpha=0.4,color="#CC0000")+ ggtitle("COVID-19 Cases Germany")+ylab("7 Days Average of New Cases")
+gg3<- gg3+ geom_line(aes(y = past_average_new_deaths_national),linetype="dashed",color="#CC0000")
+gg1.8 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "7 Days Average of New Deaths (dashed)"))+theme_bw()+  
+  ggsave(filename = "results/Descriptives/gg1_8.jpg",height = 7)
 
-gg3<- ggplot(df_cases%>% filter(country=="Germany"), aes(x=date))+ geom_line(aes(y = cases_national))+ labs(y="Cumulative National Cases")+scale_color_manual(values=c('#E69F00'))
-gg3<- gg3+ geom_line(aes(y = past_average_new_cases_national*40), linetype="dashed") +scale_color_manual(values=c('#E69F00'))
-gg1.7 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~./40, name = "7 Days Average of New Cases (dashed)"))+ ggtitle("COVID-19 Cases Germany")+theme_bw()+ggsave(filename = "results/Descriptives/gg1_7.jpg",height = 7)
+gg3<- ggplot(df_ECDC%>% filter(country=="Italy"), aes(x=date))+ geom_line(aes(y =past_average_new_cases_national_ECDC),size=0.5, alpha=0.4,color="#E69F00")+ ggtitle("COVID-19 Cases Italy")+ylab("7 Days Average of New Cases")
+gg3<- gg3+ geom_line(aes(y = past_average_new_deaths_national),linetype="dashed",color="#E69F00")
+gg1.9 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "7 Days Average of New Deaths (dashed)"))+theme_bw()+  
+  ggsave(filename = "results/Descriptives/gg1_9.jpg",height = 7)
 
 
 # - Concentration ----
@@ -112,6 +132,29 @@ gg2.2<- df_hhi %>%ggplot(aes(x=date, y=hhi_new, color=country)) +
   xlab("")+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   ggsave(filename = "results/Descriptives/gg2_2.jpg",height = 7)
 
+gg2.3<- df_hhi_deaths %>%ggplot( aes(x=date, y=hhi_cumulative_deaths, color=country)) +
+  geom_line(size=0.15)+
+  geom_point(size=0.2) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  ylab("Relative Herfindahl Concentration (cumulative deaths)") +
+  xlab("")+
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggsave(filename = "results/Descriptives/gg2_3.jpg",height = 7)
+
+gg2.4<- df_hhi_deaths %>%ggplot(aes(x=date, y=hhi_new_deaths, color=country)) +
+  geom_line(size=0.15)+
+  geom_point(size=0.2) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  ylim(0,1)+
+  ylab("Relative Herfindahl Concentration (new deaths)") +
+  xlab("")+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggsave(filename = "results/Descriptives/gg2_4.jpg",height = 7)
+
+
 
 # - Map of Cases----
 
@@ -137,9 +180,8 @@ df <- corona %>%
   select("date","cases","new_cases","ratio_cum","ratio_new","code", "cases_pop_sub","past_average_new_cases","past_average") %>% 
   mutate(country = str_sub(code,1,2))%>%
   filter(date=="2020-03-15" |
-           date=="2020-04-15" |
-           date=="2020-05-15" |
-           date=="2020-06-01"       
+           date=="2020-03-15" |
+           date=="2020-04-01"    
   )%>%
   filter(!code%in% c("FRY1","FRY2","FRY3","FRY4","FRY5"))
 
@@ -150,6 +192,7 @@ merged_shape <-
             by = c("NUTS_ID" = "code"))
 
 library(viridis)
+library(ggpubr)
 
 merged_shape<- merged_shape%>%mutate(country=recode(country,
                                                     "CH"="Switzerland",
@@ -161,8 +204,8 @@ gg3.1 <-
            filter(!is.na(ratio_cum))) + 
   geom_sf(aes(alpha = ratio_cum,
               fill = country),size = 0.1) + 
-  scale_fill_manual(values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
-  scale_alpha_continuous(range=c(0,1.5)) + 
+  scale_fill_manual(name="Country",values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  scale_alpha_continuous(name="Relative Cases per Capita",range=c(0,1.5)) + 
   facet_wrap(~date,ncol=2) + 
   theme_minimal() + 
   theme(axis.text.x = element_blank(),
@@ -176,15 +219,83 @@ gg3.2 <-
            filter(!is.na(cases_pop_sub))) + 
   geom_sf(aes(alpha = cases_pop_sub,
               fill = country),size = 0.1) + 
-  scale_fill_manual(values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
-  scale_alpha_continuous(range=c(0,1.5)) + 
+  scale_fill_manual(name="Country",values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  scale_alpha_continuous(name="Relative Cases per Capita",range=c(0,1.5)) + 
   facet_wrap(~date,ncol=2) + 
   theme_minimal() + 
   theme(axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         legend.position = "right")+
-  ggtitle("Relative Cumulative Cases by Region (relative by sub-national population)")+
+  ggtitle("Relative Cumulative Cases by Region (per Capita)")+
   ggsave(filename = "results/Descriptives/gg3_2.jpg",height = 7)
+
+figure <- ggarrange(gg3.1, gg3.2,
+                    nrow = 2)+
+  ggsave(filename = "results/Descriptives/gg3_3.jpg",height = 7)
+
+
+# Map of Deaths
+
+names(df_deaths)
+corona <- df_deaths
+corona$code<-corona$geo
+
+df <- corona %>%
+  select("date","deaths","new_deaths","ratio_cum","ratio_new","code", "deaths_pop_sub","past_average_new_deaths","past_average") %>% 
+  mutate(country = str_sub(code,1,2))%>%
+  filter( date=="2020-03-20" |
+           date=="2020-04-05"    
+  )%>%
+  filter(!code%in% c("FRY1","FRY2","FRY3","FRY4","FRY5"))
+
+
+merged_shape <- 
+  left_join(bind_rows(shape,ch_shape,it_shape),
+            df,
+            by = c("NUTS_ID" = "code"))
+
+library(viridis)
+library(ggpubr)
+
+merged_shape<- merged_shape%>%mutate(country=recode(country,
+                                                    "CH"="Switzerland",
+                                                    "DE"="Germany",
+                                                    "FR"="France",
+                                                    "IT"="Italy"))
+gg3.4 <- 
+  ggplot(merged_shape %>% 
+           filter(!is.na(ratio_cum))) + 
+  geom_sf(aes(alpha = ratio_cum,
+              fill = country),size = 0.1) + 
+  scale_fill_manual(name="Country",values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  scale_alpha_continuous(name="Relative Deaths per Capita",range=c(0,1.5)) + 
+  facet_wrap(~date,ncol=2) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.position = "right")+
+  ggtitle("Relative Cumulative Deaths by Region")+
+  ggsave(filename = "results/Descriptives/gg3_4.jpg",height = 7)
+
+gg3.5 <- 
+  ggplot(merged_shape %>% 
+           filter(!is.na(deaths_pop_sub))) + 
+  geom_sf(aes(alpha = deaths_pop_sub,
+              fill = country),size = 0.1) + 
+  scale_fill_manual(name="Country",values = c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  scale_alpha_continuous(name="Relative Deaths per Capita",range=c(0,1.5)) + 
+  facet_wrap(~date,ncol=2) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.position = "right")+
+  ggtitle("Relative Cumulative Deaths by Region (per Capita)")+
+  ggsave(filename = "results/Descriptives/gg3_5.jpg",height = 7)
+
+figure <- ggarrange(gg3.4, gg3.5,
+                    nrow = 2)+
+  ggsave(filename = "results/Descriptives/gg3_6.jpg",height = 7)
+
 
 
 # - Centrality Index----
@@ -232,8 +343,8 @@ get_est_sum <- df_PAX %>%
   group_by(date_announced) %>%
   mutate(`Country Rank`=rank(med_est))
 
+df <- get_est_sum
 df_PAX <- get_est_sum
-
 
 gg7.1<- ggplot(df,aes(y=med_est,x=date_announced)) +
   geom_line(data=df[df$country%in% c("France","Germany","Italy","Switzerland"),], aes(color=country),size=0.7,show.legend=T)+
@@ -275,20 +386,11 @@ gg9.1<- df_selected %>%
   arrange(type,date) %>% 
   mutate(Policies=cumsum(Policies)) %>% 
   ungroup %>% 
-  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + facet_wrap(~country)+ theme_bw()+ggtitle("Selected Policies")+
+  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + 
+  geom_histogram(aes(y=..density..), alpha=0.5, 
+                 position="identity")+
+  facet_wrap(~country)+ theme_bw()+ggtitle("Selected Policies")+
   ggsave(filename = "results/Descriptives/gg9_1.jpg",
-         height = 7)
-
-
-gg9.2<- df_main %>% 
-  filter(!is.na(type)) %>% 
-  group_by(type,date,init_country_level,country) %>% 
-  summarize(Policies=length(unique(policy_id))) %>% 
-  arrange(type,date) %>% 
-  mutate(Policies=cumsum(Policies)) %>% 
-  ungroup %>% 
-  ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + facet_wrap(~country)+ theme_bw()+ggtitle("All Policies")+
-  ggsave(filename = "results/Descriptives/gg9_2.jpg",
          height = 7)
 
 
@@ -298,7 +400,7 @@ gg9.2<- df_main %>%
 
 
 df_fed<-df_fed%>% rename(country="Jurisdiction Name")%>%select(2,5,9:11)%>% filter(country%in%c("France","Germany","Italy","Switzerland"))
-df_hhi<-df_hhi%>% select(-"X1")
+df_hhi_deaths<-df_hhi_deaths%>% select(-"X1")
 df_heterogeneity<-df_heterogeneity%>% select(1:3,"hetero")
 df_heterogeneity<-spread(df_heterogeneity, type, hetero)%>%rename("Het_Lockdown"=3,
                                                                   "Het_Mask"=4,
@@ -314,18 +416,32 @@ df_centrality<-spread(df_centrality, type, centDegStd)%>%rename("Cent_School"=3,
 df_PAX<-df_PAX%>%filter(country%in%c("France","Germany","Italy","Switzerland"))%>%rename("date"=2,"PAX"=3)%>% select(1:3)
 
 
-df_merge<- left_join(df_cases,df_fed,by=c("country"))
+df_merge<- left_join(df_ECDC,df_fed,by=c("country"))
 df_merge<- left_join(df_merge,df_centrality,by=c("country","date"))
 df_merge<- left_join(df_merge,df_heterogeneity,by=c("country","date"))
-df_merge<- left_join(df_merge,df_PAX,by=c("country","date"))
-df_merge<- left_join(df_merge,df_hhi,by=c("country","date"))
-df_merge<- left_join(df_merge,df_fed,by=c("country","date"))
+df_merge<- left_join(df_merge,df_PAX,by=c("country","date"="date"))
+df_merge<- left_join(df_merge,df_hhi_deaths,by=c("country","date"))
 
-names(df_main_summary)
+
+
 
 #Adjust Variables
-df_main_summary <- df_merge%>%select(1,3,7,8,9:13)
-
+df_main_summary <- df_merge%>%select("date",
+                                     "country",
+                                     "Self",                                
+                                     "RAI",                                 
+                                     "Cent_School",
+                                     "Cent_Lockdown",                      
+                                     "Cent_Mask",
+                                     "Cent_Mass",                           
+                                     "Het_Lockdown",
+                                     "Het_Mask" ,                           
+                                     "Het_Mass",
+                                     "Het_School" ,                         
+                                     "PAX",
+                                     "hhi_cumulative_deaths",
+                                     "measure_H1_H2_deaths",
+                                     "measure_H3_deaths_a")
 library(stargazer)
 stargazer(df_main_summary, type="html", float=F,covariate.labels = c("Centrality",
                                                                       "Heterogeneity",
@@ -338,63 +454,87 @@ stargazer(df_main_summary, type="html", float=F,covariate.labels = c("Centrality
 
 # Distribution H measures
 
-gg11_1<- df_cases %>%ggplot( aes(x=date, y=measure_H1_H2, color=country)) +
+names(df_ECDC)
+gg11_1<- df_ECDC %>%ggplot( aes(x=date, y=measure_H1_H2_cases_ECDC, color=country)) +
   geom_line(size=0.15)+
   geom_point(size=0.2) +
   theme_minimal() +
   theme(panel.grid = element_blank(),
         strip.background = element_blank()) +
-  ylab("Measure H1 H2") +
+  ylab("Measure H1 H2 Cases ECDC") +
   xlab("")+
   ggsave(filename = "results/Descriptives/gg11_1.jpg",
          height = 7)
 
-
-gg11_2<- df_cases %>%ggplot( aes(x=date, y=measure_H3, color=country)) +
+gg11_2<- df_ECDC %>%ggplot( aes(x=date, y=measure_H1_H2_deaths, color=country)) +
   geom_line(size=0.15)+
   geom_point(size=0.2) +
   theme_minimal() +
   theme(panel.grid = element_blank(),
         strip.background = element_blank()) +
-  ylab("Measure H3") +
+  ylab("Measure H1 H2 Deaths") +
   xlab("")+
   ggsave(filename = "results/Descriptives/gg11_2.jpg",
          height = 7)
 
+gg11_3<- df_ECDC %>%ggplot(aes(x=date, y=measure_H3_deaths_a, color=country)) +
+  geom_line(size=0.15)+
+  geom_point(size=0.2) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  ylab("Measure H3 Deaths (Version a)") +
+  xlab("")+
+  ggsave(filename = "results/Descriptives/gg11_3.jpg",
+         height = 7)
 
-# Bivariate----
-# - Cases vs Federal/Unitary Scores----
-
-cases_national <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
-
-cases_national <- cases_national %>%
-  filter(is.na(`Province/State`)) %>%
-  select(-`Province/State`, -Lat, -Long) %>%
-  data.table::melt(id.vars=c("Country/Region")) %>%
-  rename(country = `Country/Region`, date = variable, cases = value) %>%
-  mutate(date = as.Date(as.character(date), format = "%m/%d/%y"))%>%
-  filter(date=="2020-07-15")%>%
-  filter(!is.na(cases))
-cases_national$region <- "National"
-
-dat<- left_join(cases_national,df_fed,by=c("country"="country"))
-dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
-
-gg12.1<- dat%>% filter(!is.na(fed)) %>% ggplot(aes(x=fed, y=log(cases), color=fed)) +
-  geom_boxplot()+
-  ggsave(filename = "results/Descriptives/gg12_1.jpg",
+gg11_4<- df_ECDC %>%ggplot( aes(x=date, y=measure_H3_deaths_b, color=country)) +
+  geom_line(size=0.15)+
+  geom_point(size=0.2) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  ylab("Measure H3 Deaths (Version b)") +
+  xlab("")+
+  ggsave(filename = "results/Descriptives/gg11_4.jpg",
          height = 7)
 
 
 
-a<-ggplot(dat, aes(x = log(cases)))+
-  geom_smooth(aes(y = RAI, colour = "Regional Authority Index"))+
-  geom_smooth(aes(y = Self, colour = "Self-Rule"))+
+
+# Bivariate----
+# - Cases vs Federal/Unitary Scores----
+data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
+data$dateRep <- format(as.Date(data$dateRep, format="%d/%m/%Y"),"%Y-%m-%d")%>% as.character()
+data$dateRep <- as.Date(data$dateRep)
+case<- data %>%
+  select(1,5,7,10)%>%
+  rename(country = `countriesAndTerritories`, date = dateRep, new_cases_national_ECDC = cases,pop=popData2019)%>%
+  arrange(date,country)
+
+cased<- case%>%
+  group_by(country)%>%
+  mutate(cases_national_ECDC=cumsum(new_cases_national_ECDC),
+         cases_relative=cases_national_ECDC/pop*100)
+cases_national<-cased[!is.na(cased$cases_relative),]
+
+names(df_fed)
+dat<- left_join(cases_national,df_fed,by=c("country"="Jurisdiction Name"))
+dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
+
+gg12.1<- dat%>% filter(!is.na(fed),date=="2020-08-24") %>% ggplot(aes(x=fed, y=(cases_relative))) +
+  geom_boxplot()+ theme_bw()+ggtitle("Boxplot of Relative Cases by Federalism")+
+  ggsave(filename = "results/Descriptives/gg12_1.jpg",
+         height = 7)
+
+
+gg12.2<-ggplot(dat, aes(y = log(cases_relative)))+
+  geom_smooth(aes(x = RAI, colour = "Regional Authority Index"))+
+  geom_smooth(aes(x = Self, colour = "Self-Rule"))+
   ggtitle("Regional Authority Indices")+
-  ylab("Score")+
-  xlab("Cases (log)")+
-  theme_bw()
-gg11.2<- a+labs(color='Indices')+
+  ylab("Cases (log)")+
+  xlab("Index Score (log)")+
+  theme_bw()+
   ggsave(filename = "results/Descriptives/gg12_2.jpg",
          height = 7)
 
@@ -402,15 +542,8 @@ gg11.2<- a+labs(color='Indices')+
 # - Correlation Matrix (by date): Centrality, PAX, Heterogeneity, Adoption, Authority Index, Federalism ----
 library(corrplot)
 ##Subset 
-y<- c("Centrality",
-      "Heterogeneity",
-      "PAX",
-      "Authority",
-      "Federalism",
-      "hhi",
-      "measure_H1_H2",
-      "measure_H3") 
-df_main_cor <- df_main[,cbind(y)]
+
+df_main_cor <- df_main_summary[,-c(1:2)]
 
 ## Rename
 df_main_cor$"Concentration"<-df_main_cor$hhi
@@ -468,4 +601,6 @@ xtable(A)
 
 M <- cor(df_main_cor,use="pairwise.complete.obs")
 
-C<-head(round(M,2))
+library(tableHTML)
+
+write_tableHTML(tableHTML(A), file = 'Results/Correlation_Matrix.html')
