@@ -338,25 +338,30 @@ stargazer(df_main_summary, type="html", float=F,covariate.labels = c("Centrality
 
 # Distribution H measures
 
-plot_h12<- cases %>%ggplot( aes(x=date, y=measure_H1_H2, color=country)) +
+gg11_1<- df_cases %>%ggplot( aes(x=date, y=measure_H1_H2, color=country)) +
   geom_line(size=0.15)+
   geom_point(size=0.2) +
   theme_minimal() +
   theme(panel.grid = element_blank(),
         strip.background = element_blank()) +
   ylab("Measure H1 H2") +
-  xlab("")
+  xlab("")+
+  ggsave(filename = "results/Descriptives/gg11_1.jpg",
+         height = 7)
 
-plot_h3<- cases %>%ggplot( aes(x=date, y=measure_H3, color=country)) +
+
+gg11_2<- df_cases %>%ggplot( aes(x=date, y=measure_H3, color=country)) +
   geom_line(size=0.15)+
   geom_point(size=0.2) +
   theme_minimal() +
   theme(panel.grid = element_blank(),
         strip.background = element_blank()) +
   ylab("Measure H3") +
-  xlab("")
+  xlab("")+
+  ggsave(filename = "results/Descriptives/gg11_2.jpg",
+         height = 7)
 
-plot_h3
+
 # Bivariate----
 # - Cases vs Federal/Unitary Scores----
 
@@ -372,11 +377,13 @@ cases_national <- cases_national %>%
   filter(!is.na(cases))
 cases_national$region <- "National"
 
-dat<- left_join(cases_national,df_fed,by=c("country"="Jurisdiction Name"))
+dat<- left_join(cases_national,df_fed,by=c("country"="country"))
 dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
 
-gg11.1<- dat%>% filter(!is.na(fed)) %>% ggplot(aes(x=fed, y=log(cases), color=fed)) +
-  geom_boxplot()
+gg12.1<- dat%>% filter(!is.na(fed)) %>% ggplot(aes(x=fed, y=log(cases), color=fed)) +
+  geom_boxplot()+
+  ggsave(filename = "results/Descriptives/gg12_1.jpg",
+         height = 7)
 
 
 
@@ -387,7 +394,9 @@ a<-ggplot(dat, aes(x = log(cases)))+
   ylab("Score")+
   xlab("Cases (log)")+
   theme_bw()
-gg11.2<- a+labs(color='Indices')
+gg11.2<- a+labs(color='Indices')+
+  ggsave(filename = "results/Descriptives/gg12_2.jpg",
+         height = 7)
 
 
 # - Correlation Matrix (by date): Centrality, PAX, Heterogeneity, Adoption, Authority Index, Federalism ----

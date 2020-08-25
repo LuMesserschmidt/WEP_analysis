@@ -111,61 +111,40 @@ cases <- cases %>%
   mutate(past_average_new_cases = rollapply(new_cases, 7, mean, align="right", fill=NA)) %>%
   mutate(past_average_new_cases_national = rollapply(new_cases_national, 7, mean, align="right", fill=NA)) 
 
-cases$measure_H1_H2<- (cases$past_average_new_cases_national/cases$sum_pop)*100
-cases$measure_H3<- ((cases$past_average_new_cases/cases$eurostat_total_population_2019)*100) / (cases$measure_H1_H2)
+cases$measure_H1_H2_cases<- (cases$past_average_new_cases_national/cases$sum_pop)*100
+cases$measure_H3_cases<- ((cases$past_average_new_cases/cases$eurostat_total_population_2019)*100) / (cases$measure_H1_H2_cases)
 
 
 cases<-cases[!is.na(cases$region),]
+library(data.table)
 
-write_csv(cases,"data/Cases/cases.csv")
+data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
+data$dateRep <- format(as.Date(data$dateRep, format="%d/%m/%Y"),"%Y-%m-%d")%>% as.character()
+data$dateRep <- as.Date(data$dateRep)
+case<- data %>% filter(`countriesAndTerritories` %in% c("Germany", "France", "Italy", "Switzerland"))%>%
+  select(1,5,7)%>%
+  rename(country = `countriesAndTerritories`, date = dateRep, new_cases_national_ECDC = cases)%>%
+  arrange(date,country)
+
+cased<- case%>%
+  group_by(country)%>%
+  mutate(cases_national_ECDC=cumsum(new_cases_national_ECDC))
+
+case <- cased %>%
+  unique() %>%
+  group_by(country) %>%
+  mutate(past_average_new_cases_national_ECDC = rollapply(new_cases_national_ECDC, 7, mean, align="right", fill=NA)) 
+
+case<-left_join(cases,case,by=c("country","date")) %>% mutate(cases_national_ECDC)
+
+case$measure_H1_H2_cases_ECDC<- (case$past_average_new_cases_national_ECDC/case$sum_pop)*100
+
+
+write_csv(case,"data/Cases/cases.csv")
 
 
 hhi<- cases %>% group_by(country,date)%>% summarise(hhi_cumulative=sum(ratio_cum2,na.rm=T),
                                                     hhi_new=sum(ratio_new2,na.rm=T)
                                                     )
 write.csv(hhi,"Measures/hhi.csv")
-
-# Vizualization
-
-plot_hhi_cum<- hhi %>%ggplot( aes(x=date, y=hhi_cumulative, color=country)) +
-  geom_line(size=0.15)+
-  geom_point(size=0.2) +
-  theme_minimal() +
-  theme(panel.grid = element_blank(),
-        strip.background = element_blank()) +
-  ylab("Relative Herfindahl Concentration (cumulative cases)") +
-  xlab("")
-
-plot_hhi_new<- hhi %>%ggplot( aes(x=date, y=hhi_new, color=country)) +
-  geom_line(size=0.15)+
-  geom_point(size=0.2) +
-  theme_minimal() +
-  theme(panel.grid = element_blank(),
-        strip.background = element_blank()) +
-  ylim(0,1)+
-  ylab("Relative Herfindahl Concentration (new cases)") +
-  xlab("")
-
-
-
-ggsave(filename="Results/plot_hhi_cum.jpeg",
-       plot=plot_hhi_cum,
-       pointsize = 24, 
-       width = 18 ,
-       height = 10,
-       scale = 0.5,
-       dpi = 800)
-
-
-
-ggsave(filename="Results/plot_hhi_new.jpeg",
-       plot=plot_hhi_new,
-       pointsize = 24, 
-       width = 18 ,
-       height = 10,
-       scale = 0.5,
-       dpi = 800)
-
-
-
 
