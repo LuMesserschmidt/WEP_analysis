@@ -3,29 +3,99 @@
 ## Remove irrelevant entries
 
 # remove irrelevant mass gathering policies policies
-sub_data = sub_data %>% filter(record_id %!in% c("R_3kzcET6o5pQyvP0NA",  # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
-                                                 "R_1lxIGQvx9vZZYM8NA", # In Switzerland based on Art. 6 und 7c CO-VID-19-Verordnung 2 (mass gathering at events and gatherings in public) from the 2nd of April on the new COVID law allows the police of Aargau to monitor public spaces in Aargau through cameras and use imaging devices of third parties without the permission of the federal commissioner for data protection and public issues.
-                                                 'R_1eCZx9LHWfawhbdNA',# currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
-                                                 'R_qLC2DxYYk0CEQ25NA', # currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
-                                                 'R_3ku0aYbVr9CHtEVNA',# currently miscoded  The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
-                                                 'R_2tM6ncrVSTXJyJUNA',# curently micoded, should be a city level policy 
-                                                 'R_1CHDPKjV4cVUREBNA',# miscoded, shouldn't be restrictions of mass gatherings
-                                                 'R_sHdwM3uydrZkLvzNA',# The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
-                                                 'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
-                                                 # 'R_pLy55nCKN6rp7gdNA',# On February 25, the Swiss canton of St. Gallen announced that there are no restrictions on mass gatherings and no events will be canceled. Organizers should provide the canton with lists of participants and contact details; especially international participants
-                                                 'R_1q9AXImZ4raUmOCNA',# On 3rd of March the canton of Zurich in Switzerland recommends to cancel events that include people from Italy, China, South Korea and Iran.
-                                                 'R_3mlDLgfh7yZRBlaNA', # On the 28th of May, the Berlin Senate announced that from the 30th of May onwards, public demonstrations in the open would be allowed again, without any limitation to the number of participants, provided that the minimum distance of 1.5 meters and other hygiene rules are observed.
-                                                 'R_1MX0RRHcaCgiTXaNA',# From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced an obligation for sports events to take place behind closed doors.
-                                                 'R_blUCYuaQoqSHAl3NA',  # Switzerland, Geneva--"The cantonal police, with the support of the Civil Protection (PCi), proceeded this morning, Saturday March 28, to a cordon of the lakeside surroundings in order to prohibit the parking of private vehicles.
-                                                 'R_1JUu6XJWWJSvPJ3NA', # From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced the closing of public baths except for closed-door competitions.
-                                                 'R_1kUebz9zyXeMQhUNA', # As of March 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic. On March 28, this policy was extended until April 15. UPDATE: The original beach and coastal pathway ban was set to end on March 31. On March 28, this was extended until April 15.
-                                                 'R_3G8uMNTTO2IBD7SNA', # In the German state of Rheinland-Pfalz, different households will now be allowed to take residence with each other in public spaces as of May 13
-                                                 'R_vBNxXQwwxlUCukNNA', # The Canton of Zug allows ice hockey games in the Bossard Arena to continue without spectators on February 28th 2020
-                                                 'R_xlQQ2Wj92uVqOjfNA', # The Italian government is banning all sporting matches and public events until next month in several regions of Northern Italy (restrictions of mass gatherings).\n\nThe new measures, approved last night, extends the urgent steps the government is taking for the containment of the coronavirus outbreak outside the exclusion zone. \n\nThe decree bans all events and sport matches in public and private locations from Febuary 26 until March 1.
-                                                 'R_1mJaJpu5i50Y5myNA', # In Italy Ligury region suspends check-in and guest entrance to university dormitories from March 1 till the midnight of March 8
-                                                 'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
-                                                 'R_1LSBNoVwpZakIfZNA')) # Sonja already recoded, can be deleted
-                                                  
+irrelevant_policies = c("R_3kzcET6o5pQyvP0NA",  # February 28,2020 Switzerland Council of Basel is cancelling the carnival of Basel ( target date 02-03-20 till 04-03-20)
+                        "R_1lxIGQvx9vZZYM8NA", # In Switzerland based on Art. 6 und 7c CO-VID-19-Verordnung 2 (mass gathering at events and gatherings in public) from the 2nd of April on the new COVID law allows the police of Aargau to monitor public spaces in Aargau through cameras and use imaging devices of third parties without the permission of the federal commissioner for data protection and public issues.
+                        'R_1eCZx9LHWfawhbdNA',# currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
+                        'R_qLC2DxYYk0CEQ25NA', # currently miscoded As of May 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic.
+                        'R_3ku0aYbVr9CHtEVNA',# currently miscoded  The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
+                        'R_2tM6ncrVSTXJyJUNA',# curently micoded, should be a city level policy 
+                        'R_1CHDPKjV4cVUREBNA',# miscoded, shouldn't be restrictions of mass gatherings
+                        'R_sHdwM3uydrZkLvzNA',# The Canton Zurich (Switzerland) recommends not to hold any event with participants from Italy, China, South Korea or Iran, with close bodily contact in closed facilities (eg clubs) or events with external visitors in care facilities and nursing homes.
+                        'R_reT4y2kUxvffllLNA',# In Italy Ligury region says Sampdoria-Verona match to be played "behind closed doors" on March 2
+                        # 'R_pLy55nCKN6rp7gdNA',# On February 25, the Swiss canton of St. Gallen announced that there are no restrictions on mass gatherings and no events will be canceled. Organizers should provide the canton with lists of participants and contact details; especially international participants
+                        'R_1q9AXImZ4raUmOCNA',# On 3rd of March the canton of Zurich in Switzerland recommends to cancel events that include people from Italy, China, South Korea and Iran.
+                        'R_3mlDLgfh7yZRBlaNA', # On the 28th of May, the Berlin Senate announced that from the 30th of May onwards, public demonstrations in the open would be allowed again, without any limitation to the number of participants, provided that the minimum distance of 1.5 meters and other hygiene rules are observed.
+                        'R_1MX0RRHcaCgiTXaNA',# From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced an obligation for sports events to take place behind closed doors.
+                        'R_blUCYuaQoqSHAl3NA',  # Switzerland, Geneva--"The cantonal police, with the support of the Civil Protection (PCi), proceeded this morning, Saturday March 28, to a cordon of the lakeside surroundings in order to prohibit the parking of private vehicles.
+                        'R_1JUu6XJWWJSvPJ3NA', # From March 9, 2020, the prefects of Corsica and Corse-du-Sud in France announced the closing of public baths except for closed-door competitions.
+                        'R_1kUebz9zyXeMQhUNA', # As of March 19, the préfet of Haute-Corse closed all beaches, coasts, and coastal pathways in the department until March 31, prohibiting access to pedestrians, cyclists, and non-motorized vehicle traffic. On March 28, this policy was extended until April 15. UPDATE: The original beach and coastal pathway ban was set to end on March 31. On March 28, this was extended until April 15.
+                        'R_3G8uMNTTO2IBD7SNA', # In the German state of Rheinland-Pfalz, different households will now be allowed to take residence with each other in public spaces as of May 13
+                        'R_vBNxXQwwxlUCukNNA', # The Canton of Zug allows ice hockey games in the Bossard Arena to continue without spectators on February 28th 2020
+                        'R_xlQQ2Wj92uVqOjfNA', # The Italian government is banning all sporting matches and public events until next month in several regions of Northern Italy (restrictions of mass gatherings).\n\nThe new measures, approved last night, extends the urgent steps the government is taking for the containment of the coronavirus outbreak outside the exclusion zone. \n\nThe decree bans all events and sport matches in public and private locations from Febuary 26 until March 1.
+                        'R_1mJaJpu5i50Y5myNA', # In Italy Ligury region suspends check-in and guest entrance to university dormitories from March 1 till the midnight of March 8
+                        'R_1LSBNoVwpZakIfZNA')
+
+sub_data = sub_data %>% filter(!grepl(paste(substr(irrelevant_policies, 1,17), collapse = '|'), record_id))
+
+ 
+# remove school closures switzerland provincial duplications
+swiss_school_prov_ids = c("R_2pKpWOVdESmYIFfCu",
+     "R_2pKpWOVdESmYIFfDp",
+     "R_AEU7g8WIxBFD1a9Ct",
+     "R_AEU7g8WIxBFD1a9Cu",
+     "R_AEU7g8WIxBFD1a9Dp",
+     "R_AEU7g8WIxBFD1a9Bf",
+     "R_25uoyrehWvh2MZdCt",
+     "R_25uoyrehWvh2MZdCu",
+     "R_25uoyrehWvh2MZdDp",
+     "R_25uoyrehWvh2MZdBf",
+     "R_3EnJGemMgdpPaPjCu",
+     "R_3syOdDCs8mhYAokCu",
+     "R_3syOdDCs8mhYAokDp",
+     "R_3syOdDCs8mhYAokBf",
+     "R_1Cl4tHi1LDP867WBf",
+     "R_1Cl4tHi1LDP867WDp",
+     "R_1Cl4tHi1LDP867WCu",
+     "R_1Cl4tHi1LDP867WCt",
+     "R_1mldsLiMMGr5QfPBf",
+     "R_1mldsLiMMGr5QfPDp",
+     "R_1mldsLiMMGr5QfPCu",
+     "R_1mldsLiMMGr5QfPCt",
+     "R_XEZ404cXWfmC7BfDp",
+     "R_XEZ404cXWfmC7BfCu",
+     "R_XEZ404cXWfmC7BfCt",
+     "R_2uImEBGVrCdCfEiBf",
+     "R_2uImEBGVrCdCfEiDp",
+     "R_2uImEBGVrCdCfEiCu",
+     "R_2uImEBGVrCdCfEiCt",
+     "R_vkKJViBB9hMdyQpBf",
+     "R_vkKJViBB9hMdyQpDp",
+     "R_vkKJViBB9hMdyQpCu",
+     "R_vkKJViBB9hMdyQpCt",
+     'R_3qpW8HamawYUrdcCw',
+     'R_2EGDH5EsSlvyqBWCw',
+     'R_3J9tQYZPmD93rAgCw',
+     'R_3J9tQYZPmD93rAgCw',
+     'R_2B52LlQhJB6rrspCw',
+     'R_1Gw3X5yECiYcWcyCw',
+     'R_2SrF5zwUuHmN2b1Cw',
+     'R_1MWXRrl0x3hqkNHCw',
+     'R_2qxaruzt5CXYZTWCw',
+     'R_273Vi8gqkrdEJZSCw',
+     'R_Uox9YKV67GdYdZ7Cw',
+     'R_26nUXZLTyDfnNi9Cw',
+     'R_31mzpIrZAhOfZnBCw',
+     'R_1MQXatW35hKiM62Cw',
+     'R_3fjxDk13BwGYVoRCw',
+     'R_0qDIWrMoTyaUgjTCw',
+     'R_1gMXhqVEVPuGfwCCw',
+     'R_3svmfGRJ0C1uumUCw',
+     'R_3NHSWzWWUlqp2NhCw',
+     'R_T5DBS677oLHbK7fCw',
+     'R_Y9vzS5jNx5haAgxCw',
+     'R_1r9CqgxJiBgq3GBCw',
+     'R_2aIXQCrRqvYXDtpCw',
+     'R_Zk6NhZQti9McfQtCw',
+     'R_AA7K0ABHPcelDodCw',
+     'R_1JRPH6bUZuqdw9fCw',
+     'R_0Nw4Lz0VvN2V2NjCw',
+     'R_3dGksIAI8pSwcLiCw',
+     'R_2rSFvzCuRt7KHoICw'
+)
+
+sub_data = sub_data %>% filter(!grepl(paste(substr(swiss_school_prov_ids, 1,17), collapse = '|'), record_id))
+ 
+
 # remove 'lockdown' policies for FranceCorsica --- they are not lockdown policies, should be removed from the dataset
 sub_data = sub_data %>% filter(policy_id %!in% c(5328165,
                                                  4995594,
@@ -113,8 +183,13 @@ sub_data = sub_data %>% mutate_cond(record_id == 'R_3kbq7bFJPPTtS2gNA',
                                     type = 'Social Distancing') 
 
 # france lockdown miscoded, should be restrictions of businesses
-sub_data = sub_data %>% mutate_cond(policy_id == 2123620,
+sub_data = sub_data %>% mutate_cond(policy_id %in% c(2123620, 5077477),
                                     type = "Restriction and Regulation of Businesses" )
+
+# german rest of mass gathering miscoded, should be restrictions of businesses
+sub_data = sub_data %>% mutate_cond(policy_id == 790424,
+                                    type = "Restriction and Regulation of Businesses" )
+
 
 # italy --- should be two policies, but keeping just the one on mandatory use of masks in public transport
 sub_data = sub_data %>% mutate_cond(record_id == 'R_1Nlw2c9SIZiQGHIEr' ,
@@ -130,6 +205,8 @@ sub_data = sub_data %>% mutate_cond(policy_id == 8100308,
 # france miscoded type_sub_cat for mask wearing
 sub_data = sub_data %>% mutate_cond(policy_id == 8434835,
                                     type_sub_cat = "Other Mask Wearing Policy" )
+
+
 
 
 
@@ -176,22 +253,27 @@ sub_data = sub_data %>% mutate_cond(policy_id == 9165956  & type == 'MISSING',
 
 
 
-
+ 
 # clean type_who_gen
 sub_data = sub_data %>% mutate_cond(
   policy_id %in% c('2154117',
                    '7818804',
                    '9903168',
-                   '1352319'),
+                   '1352319',
+                   '8868387',
+                   '6150088',
+                   '537640'),
                     type_who_gen = 'People in nursing homes/long term care facilities'
 ) %>% mutate_cond(
-  policy_id %in% c('9292517')|
+  policy_id %in% c('9292517',
+                   '860229',
+                   '2145363',
+                   '860229')|
     record_id %in% c('R_12LJiueWnt7uFjUCi'),
-                  type_who_gen = 'Other population not specifed above',
-)%>% mutate_cond(
-  record_id %in% c('R_1HjmbY7oxNCMKBKNA'),
-  type_sub_cat = 'Other mass gatherings not specified above restricted'
-)%>% mutate_cond(
+                  type_who_gen = 'Other population not specifed above')%>% 
+  mutate_cond(policy_id %in% c(4578467),
+              type_who_gen = "Asylum/refugee seekers") %>%
+  mutate_cond(
   policy_id %in% c(1186194, # Italy type_who_gen miscoded, should be everyone in the municipality not 'other population not specified above'
                     1445515,
                    741217,
@@ -274,11 +356,51 @@ sub_data = sub_data %>%
   mutate_cond(record_id %in% c('R_24ei5TTHd0Md9jWCi'), # end date should be open not 7/6
               date_end =NA)%>%
   mutate_cond(policy_id %in% c(1661998), # end date should be 5/11 not 6/8
-              date_end =as.Date("2020-05-11", "%Y-%m-%d"))
-
-         
-
-
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>%
+  mutate_cond(grepl(substr('R_3EuSJwRBYTg2cgUCw', 1, 17), record_id),# end dae should be 5/11 not 4/20 --- note this policy needs to be updated by someone
+              date_end =as.Date("2020-05-11", "%Y-%m-%d"))%>% 
+  mutate_cond(grepl(substr('R_2BhOZWGvK0wOx21Cw', 1, 17), record_id),  # end dae should be 5/11 not 4/20 --- note this policy needs to be updated by someone
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>%  
+mutate_cond(grepl(substr('R_2WAtdL6js2kb18aCw', 1, 17), record_id),# end dae should be 5/11 not 4/20 --- note this policy needs to be updated by someone
+            date_end =as.Date("2020-05-11", "%Y-%m-%d"))%>%
+  mutate_cond(grepl(substr('R_22zaUdTZaJlJMbGCw', 1, 17), record_id),  # end dae should be 5/11 not 4/20 --- note this policy needs to be updated by someone
+              date_end =as.Date("2020-05-11", "%Y-%m-%d"))%>%
+  mutate_cond(grepl(substr('R_22zaUdTZaJlJMbGCw', 1, 17), record_id),  # end dae should be 5/11 not 4/20 --- note this policy needs to be updated by someone
+              date_start = as.Date("2020-03-22", "%Y-%m-%d"),
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_1CDbBZtEniWFyN1Cw', 1, 17), record_id),  # end dae should be 5/11 not 4/20 --- note this policy needs to be updated by someone
+              date_start = as.Date("2020-03-22", "%Y-%m-%d"),
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_Pv6tlwu0TUB76DfCw', 1, 17), record_id),  # end date miscoded
+              date_start = as.Date("2020-04-30", "%Y-%m-%d"),
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr( 'R_1GWj786ESt7OUZICw',1, 17), record_id),  # end date miscoded
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_29n5D4bonL8W6J4Cw',1, 17), record_id),  # end date miscoded
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_1dsrJ8FUVXWbV4iCw',1, 17), record_id),  # end date miscoded
+              date_end =as.Date("2020-05-11", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_3IcR7BmBxoejj4kCw',1, 17), record_id),  # end date miscoded
+              date_start = as.Date("2020-03-12", "%Y-%m-%d"),
+              date_end =as.Date("2020-03-16", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_3kbq7bFJPPTtS2gNA',1, 17), record_id),  # end date miscoded
+              date_start = as.Date("2020-03-08", "%Y-%m-%d")) %>% 
+  mutate_cond(grepl(substr('R_23a6tphvcBl8p1NNA',1, 17), record_id),  # end date miscoded
+              date_start = as.Date("2020-03-08", "%Y-%m-%d"))%>% 
+  mutate_cond(grepl(substr('R_2DTz5njidQd1KcfCw',1, 17), record_id),  # end date miscoded, this is guess, but likely right
+              date_end = as.Date("2020-05-011", "%Y-%m-%d"))%>% 
+  mutate_cond(grepl(substr('R_12MbJlCU97RVplUCw',1, 17), record_id),  # end date miscoded, this is guess, but likely right
+              date_end = as.Date("2020-05-011", "%Y-%m-%d"))%>% 
+  mutate_cond(grepl(substr('R_10GFpwOB1ehsCd3Dv',1, 17), record_id),  # end date miscoded,  
+              date_end = NA)%>% 
+  mutate_cond(grepl(substr('R_b9LsMOdG3cqQhklCw',1, 17), record_id),  # end date miscoded,  
+              date_end = NA)%>% 
+  mutate_cond(grepl(substr('R_1gcm38X8adjqZJlCw',1, 17), record_id),  # end date miscoded, 
+              date_end = NA)%>% 
+  mutate_cond(grepl(substr('R_2f22wH5mTd3fcgKNA',1, 17), record_id),  # end date miscoded, 
+              date_end = NA)%>% 
+  mutate_cond(grepl(substr('R_3RlNoeF0ovvWj46Cw',1, 17), record_id),  # end date miscoded, this is guess, but likely right
+              date_end = as.Date("2020-05-011", "%Y-%m-%d"))
 
 
 # change compliance measures
@@ -400,7 +522,15 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                      '6681622',
                                                      '9590203',
                                                      '4363753',
-                                                     '9921723'
+                                                     '9921723',
+                                                     1430971, 9887956, 9964435, 1430971, 
+                                                       1982735, 3408173, 6969070, 9062373, 9062373, 6885876, 1982735, 
+                                                       1982735, 2706833, 2706833, 2706833, 3639091, 3639091, 3639091, 
+                                                       4562378, 6885876, 6885876, 6885876, 6901876, 4374070, 3602206, 
+                                                       5707766, 6901876, 9466768,
+                                                     9062373, 9062373, 1608429, 2167199, 
+                                                     7945662, 9208601, 1401008, 8832913, 8832913, 8832913, 4737398, 
+                                                     4737398, 6053550, 1864080
                                                      )|
                                             record_id %in% c('R_ah2w0ZOyeSvMEj7NA',
                                                              'R_qOUYa35iAW11h5LNA',
@@ -418,6 +548,15 @@ sub_data = sub_data %>% mutate_cond(policy_id %in% c('474049',
                                                              'R_1JK05QmhgbvBXgwNA'),
                                     type_sub_cat = "All/Unspecified mass gatherings") 
 
+
+# clean type_sub_cat for restrictions of mass gathering
+
+sub_data = sub_data %>% mutate_cond(
+  policy_id %in% c(9469556,
+                   2145363)|
+  record_id %in% c('R_1HjmbY7oxNCMKBKNA'),
+  type_sub_cat = 'Other mass gatherings not specified above restricted'
+) 
 
 # change date for hamburg restriction of mass gathering
 sub_data = sub_data %>% mutate_cond(record_id == "R_ah2w0ZOyeSvMEj7NA",
