@@ -13,11 +13,6 @@ setwd(dirname(current_path))
 
 subnational_data <- read.csv2('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/Cases/cases.csv', sep=",")
 
-corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_internal_sub_clean_Aug15.RDS')
-corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS')
-
-#corona$date_end <- as.Date(corona$date_end, "1970-01-01")
-
 ##Province names to match CoronaNET: unique(corona[which(corona$country == "Switzerland"),]$province)
 
 subnational_data = mutate(subnational_data, 
@@ -56,34 +51,13 @@ base <- expand.grid(province = province,
 base$country <- c(rep("France", 18), rep("Germany", 16), rep("Italy", 20), rep("Switzerland", 26))
 base <- base[, c('country', 'province', 'date', 'type')]
 
-corona_sel <- corona[which(corona$target_country == "Germany" |
-                             corona$target_country == "Switzerland" |
-                             corona$target_country == "Italy" |
-                             corona$target_country == "France"),]
+corona <- readRDS('~/Dropbox/Joan Barcelo/Present/NYUAD Assistant Professor/Research/Papers/Work in Progress/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS')
 
-
-corona_sel[which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-03-09"),]$date_start <- 
-  corona_sel[which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-03-09"),]$date_start - 1 
-
-corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-06-22"),]
-corona_sel <- corona_sel[-which(corona_sel$target_country == 'Italy' & corona_sel$type == 'Lockdown' & corona_sel$date_start == "2020-02-23"),]
-
-corona_sel <- corona_sel[-which(corona_sel$target_country == 'Switzerland' & corona_sel$type == 'Lockdown' & is.na(corona_sel$province)),]
-
-corona_sel <- corona_sel[-which(corona_sel$country == 'Germany' & corona_sel$type == 'Lockdown' &
-                   corona_sel$init_country_level == "Provincial" & corona_sel$date_start == "2020-06-23"&
-                   corona_sel$target_province == "North Rhine-Westphalia"),]
-
-corona_sel <- corona_sel[-which(corona_sel$date_start > corona_sel$date_end),]
-
-corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Primary Schools allowed to open with no conditions"),]
-corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Primary Schools allowed to open with conditions"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Secondary Schools allowed to open with conditions"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Secondary Schools allowed to open with no conditions"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with no conditions"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Higher education institutions allowed to open with conditions"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with conditions"),]
-#corona_sel <- corona_sel[-which(corona_sel$type == 'Closure and Regulation of Schools' & corona_sel$school_status == "Preschool or childcare facilities allowed to open with no conditions"),]
+corona_sel = corona  %>% 
+  filter(!record_id %in% 'manual_add_1')  %>%         # remove swiss national lockdown
+  filter(!policy_id %in% c(1186194, 1445515))  %>%    # remove campania and calabria lockdowns
+  filter(!policy_id %in% c(5764479)) %>%               # remove north westphalia lockdoown
+  filter(!policy_id %in% c(5139191))                  # rmeove italian municipal lockdown
 
 detach("package:plyr", unload = TRUE)
 

@@ -4,7 +4,9 @@ library(readxl)
 
 # Load RAI data 
 
-rai <- read_excel("data/Federalims/RAI.xlsx") %>% filter(year==2010) %>% select(5,17:19) %>% mutate(Self=n_selfrule/18, Shared=n_sharedrule/12, RAI=n_RAI/30)
+rai <- read_excel("data/Federalims/RAI.xlsx") %>% filter(year==2010) %>% select(5,17:19) %>% mutate(Self=(n_selfrule-min(n_selfrule))/(max(n_selfrule)-min(n_selfrule)), 
+                                                                                                    RAI=(n_RAI-min(n_RAI))/(max(n_RAI)-min(n_RAI)))
+
 
 # Load fed data
 

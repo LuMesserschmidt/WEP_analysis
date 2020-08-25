@@ -1,214 +1,214 @@
-Country Code,Jurisdiction Name,Region,WB Income Group as of ?,HueglinFennaFederalPolity,n_selfrule,n_sharedrule,n_RAI,Self,Shared,RAI
-AFG,Afghanistan,South Asia,Low income,0,NA,NA,NA,NA,NA,NA
-ALB,Albania,Europe & Central Asia,Upper middle income,0,2,0,2,0.1111111111111111,0,0.06666666666666667
-DZA,Algeria,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-ASM,American Samoa,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-ADO,Andorra,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-AGO,Angola,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-ATG,Antigua and Barbuda,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-ARG,Argentina,Latin America & Caribbean,Upper middle income,1,14.000000000000002,9.500000000000002,23.5,0.7777777777777779,0.7916666666666669,0.7833333333333333
-ARM,Armenia,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-ABW,Aruba,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-AUS,Australia,East Asia & Pacific,High income: OECD,1,14.94707,10.5,25.44707,0.8303927777777778,0.875,0.8482356666666667
-AUT,Austria,Europe & Central Asia,High income: OECD,1,14,9,23,0.7777777777777778,0.75,0.7666666666666667
-AZE,Azerbaijan,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA,NA
-BHR,Bahrain,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-BGD,Bangladesh,South Asia,Low income,0,NA,NA,NA,NA,NA,NA
-BRB,Barbados,Latin America & Caribbean,High income: nonOECD,0,0,0,0,0,0,0
-BLR,Belarus,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA,NA
-BEL,Belgium,Europe & Central Asia,High income: OECD,1,23.072096111543413,10.021058302632726,33.09315441417614,1.2817831173079675,0.8350881918860605,1.1031051471392046
-BLZ,Belize,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0,0
-BEN,Benin,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-BMU,Bermuda,North America,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-BTN,Bhutan,South Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-BOL,Bolivia,Latin America & Caribbean,Lower middle income,0,9.985942297407947,3.5541342647285425,13.54007656213649,0.5547745720782192,0.29617785539404523,0.45133588540454966
-BIH,Bosnia and Herzegovina,Europe & Central Asia,Upper middle income,1,23.05339,4,27.05339,1.280743888888889,0.3333333333333333,0.9017796666666666
-BWA,Botswana,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-BRA,Brazil,Latin America & Caribbean,Upper middle income,1,13.98652480628203,5.5134751937179685,19.5,0.7770291559045572,0.45945626614316404,0.65
-BRN,Brunei,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-BGR,Bulgaria,Europe & Central Asia,Upper middle income,0,2,0,2,0.1111111111111111,0,0.06666666666666667
-BFA,Burkina Faso,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-BDI,Burundi,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-CPV,Cabo Verde,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-KHM,Cambodia,East Asia & Pacific,Low income,0,NA,NA,NA,NA,NA,NA
-CMR,Cameroon,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-CAN,Canada,North America,High income: OECD,1,19.91523,6.114666,26.02989,1.1064016666666667,0.5095554999999999,0.8676630000000001
-CYM,Cayman Islands,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-CAF,Central African Republic,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-TCD,Chad,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-CHL,Chile,Latin America & Caribbean,High income: OECD,0,3,0,3,0.16666666666666666,0,0.1
-CHN,China,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-COL,Colombia,Latin America & Caribbean,Upper middle income,0,11.234973323291307,1.0562959000283203,12.291269223319627,0.6241651846272949,0.08802465833569335,0.40970897411065427
-COM,Comoros,Sub-Saharan Africa,Low income,1,NA,NA,NA,NA,NA,NA
-COG,Congo (Brazzaville),Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-CRI,Costa Rica,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0,0
-CIV,Côte d'Ivoire,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-HRV,Croatia,Europe & Central Asia,High income: nonOECD,0,9,0,9,0.5,0,0.3
-CUB,Cuba,Latin America & Caribbean,Upper middle income,0,4.969234874132027,0,4.969234874132027,0.27606860411844597,0,0.16564116247106758
-CUW,Curaçao,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-CYP,Cyprus,Europe & Central Asia,High income: nonOECD,0,0,0,0,0,0,0
-CZE,Czech Republic,Europe & Central Asia,High income: OECD,0,9,0,9,0.5,0,0.3
-PRK,Dem. People's Rep. Korea,East Asia & Pacific,Low income,0,NA,NA,NA,NA,NA,NA
-ZAR,Dem. Rep. Congo,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-DNK,Denmark,Europe & Central Asia,High income: OECD,0,7.190292,0.1522333,7.342525,0.3994606666666667,0.012686108333333333,0.24475083333333333
-DJI,Djibouti,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-DMA,Dominica,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA,NA
-DOM,Dominican Republic,Latin America & Caribbean,Upper middle income,0,2.17359321257552,1.5,3.6735932125755197,0.12075517847641778,0.125,0.12245310708585065
-ECU,Ecuador,Latin America & Caribbean,Upper middle income,0,7.996914933937548,0,7.996914933937548,0.4442730518854193,0,0.2665638311312516
-EGY,Egypt,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SLV,El Salvador,Latin America & Caribbean,Lower middle income,0,1,0,1,0.05555555555555555,0,0.03333333333333333
-GNQ,Equatorial Guinea,Sub-Saharan Africa,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-ERI,Eritrea,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-EST,Estonia,Europe & Central Asia,High income: OECD,0,0,0,0,0,0,0
-ETH,Ethiopia,Sub-Saharan Africa,Low income,1,NA,NA,NA,NA,NA,NA
-FRO,Faroer Islands,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-FJI,Fiji,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-FIN,Finland,Europe & Central Asia,High income: OECD,0,7.067161,0.0412383,7.108399,0.3926200555555555,0.0034365249999999997,0.23694663333333335
-FRA,France,Europe & Central Asia,High income: OECD,0,20,0.0122598,20.01226,1.1111111111111112,0.00102165,0.6670753333333334
-PYF,French Polynesia,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-GAB,Gabon,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-GEO,Georgia,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-GER,Germany,Europe & Central Asia,High income: OECD,1,24.98985,12,36.98985,1.388325,1,1.2329949999999998
-GHA,Ghana,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-GRC,Greece,Europe & Central Asia,High income: OECD,0,11.0009,3.587e-4,11.00125,0.611161111111111,2.9891666666666667e-5,0.36670833333333336
-GRL,Greenland,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-GRD,Grenada,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA,NA
-GTM,Guatemala,Latin America & Caribbean,Lower middle income,0,1,0,1,0.05555555555555555,0,0.03333333333333333
-GIN,Guinea,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-GNB,Guinea-Bissau,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-GUY,Guyana,Latin America & Caribbean,Lower middle income,0,0,0,0,0,0,0
-HTI,Haiti,Latin America & Caribbean,Low income,0,1,4.5,5.5,0.05555555555555555,0.375,0.18333333333333332
-HND,Honduras,Latin America & Caribbean,Lower middle income,0,1,0,1,0.05555555555555555,0,0.03333333333333333
-HKG,"Hong Kong SAR, China",East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-HUN,Hungary,Europe & Central Asia,Upper middle income,0,10.86539,0,10.86539,0.6036327777777778,0,0.3621796666666667
-ISL,Iceland,Europe & Central Asia,High income: OECD,0,0,0,0,0,0,0
-IND,India,South Asia,Lower middle income,1,NA,NA,NA,NA,NA,NA
-IDN,Indonesia,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-IRN,Iran,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-IRQ,Iraq,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-IRL,Ireland,Europe & Central Asia,High income: OECD,0,3,0,3,0.16666666666666666,0,0.1
-IMY,Isle of Man,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-ISR,Israel,Middle East & North Africa,High income: OECD,0,2,0,2,0.1111111111111111,0,0.06666666666666667
-ITA,Italy,Europe & Central Asia,High income: OECD,0,24.06929,3.22101,27.2903,1.3371827777777776,0.26841750000000003,0.9096766666666666
-JAM,Jamaica,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0,0
-JPN,Japan,East Asia & Pacific,High income: OECD,0,NA,NA,NA,NA,NA,NA
-JOR,Jordan,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-KAZ,Kazakhstan,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA,NA
-KEN,Kenya,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-KIR,Kiribati,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-KOR,Korea South,East Asia & Pacific,High income: OECD,0,11,2.0276765825,13.0276765825,0.6111111111111112,0.16897304854166664,0.4342558860833333
-KSV,Kosovo,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-KWT,Kuwait,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-KGZ,Kyrgyz Republic,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-LAO,Lao PDR,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-LVA,Latvia,Europe & Central Asia,High income: nonOECD,0,3,0,3,0.16666666666666666,0,0.1
-LBN,Lebanon,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-LSO,Lesotho,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-LBR,Liberia,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-LBY,Libya,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-LIE,Liechtenstein,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-LTU,Lithuania,Europe & Central Asia,High income: nonOECD,0,3,0,3,0.16666666666666666,0,0.1
-LUX,Luxembourg,Europe & Central Asia,High income: OECD,0,0,0,0,0,0,0
-MAC,"Macao SAR, China",East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-MKD,Macedonia,Europe & Central Asia,Upper middle income,0,2,0,2,0.1111111111111111,0,0.06666666666666667
-MDG,Madagascar,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-MWI,Malawi,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-MYS,Malaysia,East Asia & Pacific,Upper middle income,1,NA,NA,NA,NA,NA,NA
-MDV,Maldives,South Asia,Upper middle income,0,NA,NA,NA,NA,NA,NA
-MLI,Mali,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-MLT,Malta,Middle East & North Africa,High income: nonOECD,0,0,0,0,0,0,0
-MHL,Marshall Islands,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-MRT,Mauritania,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-MUS,Mauritius,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-MEX,Mexico,Latin America & Caribbean,Upper middle income,1,14.842418501449636,5.184837002899271,20.027255504348908,0.8245788056360909,0.43206975024160593,0.6675751834782969
-FSM,Micronesia,East Asia & Pacific,Lower middle income,1,NA,NA,NA,NA,NA,NA
-MDA,Moldova,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-MCO,Monaco,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-MNG,Mongolia,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-MNE,Montenegro,Europe & Central Asia,Upper middle income,0,0,0,0,0,0,0
-MAR,Morocco,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-MOZ,Mozambique,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-MMR,Myanmar (Burma),East Asia & Pacific,Low income,0,NA,NA,NA,NA,NA,NA
-NAM,Namibia,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-NA,Nauru,NA,NA,0,NA,NA,NA,NA,NA,NA
-NPL,Nepal,South Asia,Low income,0,NA,NA,NA,NA,NA,NA
-NLD,Netherlands,Europe & Central Asia,High income: OECD,0,10,7.5,17.5,0.5555555555555556,0.625,0.5833333333333334
-NCL,New Caledonia,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-NZL,New Zealand,East Asia & Pacific,High income: OECD,0,11,0,11,0.6111111111111112,0,0.36666666666666664
-NIC,Nicaragua,Latin America & Caribbean,Lower middle income,0,3.665509681067922,0.8448847143714492,4.510394395439372,0.20363942672599566,0.0704070595309541,0.15034647984797905
-NER,Niger,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-NGA,Nigeria,Sub-Saharan Africa,Lower middle income,1,NA,NA,NA,NA,NA,NA
-NOR,Norway,Europe & Central Asia,High income: OECD,0,11.99397,0,11.99397,0.6663316666666667,0,0.39979899999999996
-OMN,Oman,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-PAK,Pakistan,South Asia,Lower middle income,1,NA,NA,NA,NA,NA,NA
-PLW,Palau,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-PAN,Panama,Latin America & Caribbean,Upper middle income,0,5.056207133264323,0.3279337639041173,5.3841408971684395,0.2809003962924624,0.027327813658676443,0.179471363238948
-PNG,Papua New Guinea,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-PRY,Paraguay,Latin America & Caribbean,Lower middle income,0,8.19837007993883,0,8.19837007993883,0.4554650044410461,0,0.2732790026646276
-PER,Peru,Latin America & Caribbean,Upper middle income,0,18.062612584628056,0,18.062612584628056,1.0034784769237808,0,0.6020870861542685
-PHL,Philippines,East Asia & Pacific,Lower middle income,0,11.387896443,0.105789939,11.493686382,0.6326609135000001,0.00881582825,0.3831228794
-POL,Poland,Europe & Central Asia,High income: OECD,0,8,0,8,0.4444444444444444,0,0.26666666666666666
-PRT,Portugal,Europe & Central Asia,High income: OECD,0,3.584603,0.21922629999999999,3.8038290999999997,0.19914461111111112,0.018268858333333332,0.12679430333333333
-QAT,Qatar,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-ROM,Romania,Europe & Central Asia,Upper middle income,0,10,0,10,0.5555555555555556,0,0.3333333333333333
-RUS,Russia,Europe & Central Asia,High income: nonOECD,1,12.07952,8,20.07952,0.6710844444444445,0.6666666666666666,0.6693173333333333
-RWA,Rwanda,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-WSM,Samoa,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SMR,San Marino,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-STP,São Tomé and Principe,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SAU,Saudi Arabia,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-SEN,Senegal,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SRB,Serbia,Europe & Central Asia,Upper middle income,0,5.150378,1.209588,6.359966,0.2861321111111111,0.10079900000000001,0.21199886666666667
-SYC,Seychelles,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-SLE,Sierra Leone,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-SGP,Singapore,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-SXM,Sint Maarten (Dutch part),Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-SVK,Slovak Republic,Europe & Central Asia,High income: OECD,0,8,0,8,0.4444444444444444,0,0.26666666666666666
-SVN,Slovenia,Europe & Central Asia,High income: OECD,0,1,0,1,0.05555555555555555,0,0.03333333333333333
-SLB,Solomon Islands,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SOM,Somalia,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-ZAF,South Africa,Sub-Saharan Africa,Upper middle income,1,NA,NA,NA,NA,NA,NA
-SSD,South Sudan,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-ESP,Spain,Europe & Central Asia,High income: OECD,1,20.926948732563513,12.62957,33.55652172863605,1.1626082629201953,1.0524641666666665,1.1185507242878683
-LKA,Sri Lanka,South Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-KNA,St. Kitts and Nevis,Latin America & Caribbean,High income: nonOECD,1,NA,NA,NA,NA,NA,NA
-LCA,St. Lucia,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA,NA
-MAF,St. Martin (French part),Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-VCT,St. Vincent and the Grenadines,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA,NA
-SDN,Sudan,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SUR,Suriname,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0,0
-SWZ,Swaziland (since Apr. 2018: Eswatin),Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-SWE,Sweden,Europe & Central Asia,High income: OECD,0,12,0,12,0.6666666666666666,0,0.4
-SWI,Switzerland,Europe & Central Asia,High income: OECD,1,18,8.5,26.5,1,0.7083333333333334,0.8833333333333333
-SYR,Syrian Arab Republic,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-NA,Taiwan,NA,NA,0,NA,NA,NA,NA,NA,NA
-TJK,Tajikistan,Europe & Central Asia,Low income,0,NA,NA,NA,NA,NA,NA
-TZA,Tanzania,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-THA,Thailand,East Asia & Pacific,Upper middle income,0,9.1471226215,1.14561344,10.2927360615,0.5081734789722222,0.09546778666666667,0.34309120205
-BHS,The Bahamas,Latin America & Caribbean,High income: nonOECD,0,0,0,0,0,0,0
-GMB,The Gambia,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-TMP,Timor-Leste,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-TGO,Togo,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-TON,Tonga,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-TTO,Trinidad and Tobago,Latin America & Caribbean,High income: nonOECD,0,0.43596358717298245,0.04844039857477583,0.4844039857477583,0.024220199287387913,0.004036699881231319,0.016146799524925277
-TUN,Tunisia,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA,NA
-TUR,Turkey,Europe & Central Asia,Upper middle income,0,8,0,8,0.4444444444444444,0,0.26666666666666666
-TKM,Turkmenistan,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA,NA
-TCA,Turks and Caicos Islands,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-TUV,Tuvalu,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA,NA
-UGA,Uganda,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-UKR,Ukraine,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-ARE,United Arab Emirates,Middle East & North Africa,High income: nonOECD,1,NA,NA,NA,NA,NA,NA
-GBR,United Kingdom,Europe & Central Asia,High income: OECD,0,10.14318,1.103488992408872,11.246677992408872,0.56351,0.09195741603407266,0.3748892664136291
-USA,United States,North America,High income: OECD,1,22.11663,7.437344,29.55397,1.2287016666666668,0.6197786666666667,0.9851323333333333
-URY,Uruguay,Latin America & Caribbean,High income: nonOECD,0,10,2,12,0.5555555555555556,0.16666666666666666,0.4
-UZB,Uzbekistan,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA,NA
-VUT,Vanuatu,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-VEN,Venezuela,Latin America & Caribbean,Upper middle income,1,6.521665587326566,0.49996419309098,7.021629780417546,0.36231475485147585,0.041663682757581665,0.23405432601391818
-VNM,Vietnam,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA,NA
-VIR,Virgin Islands,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA,NA
-WBG,West Bank and Gaza,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-YEM,Yemen,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-ZMB,Zambia,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA,NA
-ZWE,Zimbabwe,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA,NA
-NA,NA,NA,NA,24,NA,NA,NA,NA,NA,NA
+Country Code,Jurisdiction Name,Region,WB Income Group as of ?,HueglinFennaFederalPolity,n_selfrule,n_sharedrule,n_RAI,Self,RAI
+AFG,Afghanistan,South Asia,Low income,0,NA,NA,NA,NA,NA
+ALB,Albania,Europe & Central Asia,Upper middle income,0,2,0,2,0.08003249319223604,0.054068886464800486
+DZA,Algeria,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+ASM,American Samoa,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+ADO,Andorra,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+AGO,Angola,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA
+ATG,Antigua and Barbuda,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+ARG,Argentina,Latin America & Caribbean,Upper middle income,1,14.000000000000002,9.500000000000002,23.5,0.5602274523456524,0.6353094159614057
+ARM,Armenia,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+ABW,Aruba,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+AUS,Australia,East Asia & Pacific,High income: OECD,1,14.94707,10.5,25.44707,0.5981256390094378,0.6879473693459153
+AUT,Austria,Europe & Central Asia,High income: OECD,1,14,9,23,0.5602274523456523,0.6217921943452056
+AZE,Azerbaijan,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA
+BHR,Bahrain,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA
+BGD,Bangladesh,South Asia,Low income,0,NA,NA,NA,NA,NA
+BRB,Barbados,Latin America & Caribbean,High income: nonOECD,0,0,0,0,0,0
+BLR,Belarus,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA
+BEL,Belgium,Europe & Central Asia,High income: OECD,1,23.072096111543413,10.021058302632726,33.09315441417614,0.923258687488857,0.8946550043911004
+BLZ,Belize,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0
+BEN,Benin,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+BMU,Bermuda,North America,High income: nonOECD,0,NA,NA,NA,NA,NA
+BTN,Bhutan,South Asia,Lower middle income,0,NA,NA,NA,NA,NA
+BOL,Bolivia,Latin America & Caribbean,Lower middle income,0,9.985942297407947,3.5541342647285425,13.54007656213649,0.39959992946768175,0.36604843118143193
+BIH,Bosnia and Herzegovina,Europe & Central Asia,Upper middle income,1,23.05339,4,27.05339,0.9225101391164813,0.7313733361989844
+BWA,Botswana,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA
+BRA,Brazil,Latin America & Caribbean,Upper middle income,1,13.98652480628203,5.5134751937179685,19.5,0.5596882256709036,0.5271716430318047
+BRN,Brunei,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA
+BGR,Bulgaria,Europe & Central Asia,Upper middle income,0,2,0,2,0.08003249319223604,0.054068886464800486
+BFA,Burkina Faso,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+BDI,Burundi,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+CPV,Cabo Verde,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+KHM,Cambodia,East Asia & Pacific,Low income,0,NA,NA,NA,NA,NA
+CMR,Cameroon,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+CAN,Canada,North America,High income: OECD,1,19.91523,6.114666,26.02989,0.7969327546984076,0.7037035835506228
+CYM,Cayman Islands,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+CAF,Central African Republic,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+TCD,Chad,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+CHL,Chile,Latin America & Caribbean,High income: OECD,0,3,0,3,0.12004873978835406,0.08110332969720073
+CHN,China,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+COL,Colombia,Latin America & Caribbean,Upper middle income,0,11.234973323291307,1.0562959000283203,12.291269223319627,0.44958146300563256,0.3322876200719827
+COM,Comoros,Sub-Saharan Africa,Low income,1,NA,NA,NA,NA,NA
+COG,Congo (Brazzaville),Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+CRI,Costa Rica,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0
+CIV,Côte d'Ivoire,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+HRV,Croatia,Europe & Central Asia,High income: nonOECD,0,9,0,9,0.3601462193650622,0.24330998909160217
+CUB,Cuba,Latin America & Caribbean,Upper middle income,0,4.969234874132027,0,4.969234874132027,0.19885012811729672,0.13434049811318585
+CUW,Curaçao,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+CYP,Cyprus,Europe & Central Asia,High income: nonOECD,0,0,0,0,0,0
+CZE,Czech Republic,Europe & Central Asia,High income: OECD,0,9,0,9,0.3601462193650622,0.24330998909160217
+PRK,Dem. People's Rep. Korea,East Asia & Pacific,Low income,0,NA,NA,NA,NA,NA
+ZAR,Dem. Rep. Congo,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+DNK,Denmark,Europe & Central Asia,High income: OECD,0,7.190292,0.1522333,7.342525,0.2877284977700947,0.1985010752949796
+DJI,Djibouti,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA
+DMA,Dominica,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA
+DOM,Dominican Republic,Latin America & Caribbean,Upper middle income,0,2.17359321257552,1.5,3.6735932125755197,0.0869790419940704,0.09931354716430373
+ECU,Ecuador,Latin America & Caribbean,Upper middle income,0,7.996914933937548,0,7.996914933937548,0.3200065200046238,0.21619214281586838
+EGY,Egypt,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA
+SLV,El Salvador,Latin America & Caribbean,Lower middle income,0,1,0,1,0.04001624659611802,0.027034443232400243
+GNQ,Equatorial Guinea,Sub-Saharan Africa,High income: nonOECD,0,NA,NA,NA,NA,NA
+ERI,Eritrea,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+EST,Estonia,Europe & Central Asia,High income: OECD,0,0,0,0,0,0
+ETH,Ethiopia,Sub-Saharan Africa,Low income,1,NA,NA,NA,NA,NA
+FRO,Faroer Islands,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+FJI,Fiji,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+FIN,Finland,Europe & Central Asia,High income: OECD,0,7.067161,0.0412383,7.108399,0.282801257310468,0.19217160923875065
+FRA,France,Europe & Central Asia,High income: OECD,0,20,0.0122598,20.01226,0.8003249319223604,0.5410203069220341
+PYF,French Polynesia,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA
+GAB,Gabon,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA
+GEO,Georgia,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+GER,Germany,Europe & Central Asia,High income: OECD,1,24.98985,12,36.98985,1,1
+GHA,Ghana,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+GRC,Greece,Europe & Central Asia,High income: OECD,0,11.0009,3.587e-4,11.00125,0.44021472717923477,0.2974126686104432
+GRL,Greenland,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+GRD,Grenada,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA
+GTM,Guatemala,Latin America & Caribbean,Lower middle income,0,1,0,1,0.04001624659611802,0.027034443232400243
+GIN,Guinea,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+GNB,Guinea-Bissau,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+GUY,Guyana,Latin America & Caribbean,Lower middle income,0,0,0,0,0,0
+HTI,Haiti,Latin America & Caribbean,Low income,0,1,4.5,5.5,0.04001624659611802,0.14868943777820132
+HND,Honduras,Latin America & Caribbean,Lower middle income,0,1,0,1,0.04001624659611802,0.027034443232400243
+HKG,"Hong Kong SAR, China",East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA
+HUN,Hungary,Europe & Central Asia,Upper middle income,0,10.86539,0,10.86539,0.4347921256029948,0.29373976915288924
+ISL,Iceland,Europe & Central Asia,High income: OECD,0,0,0,0,0,0
+IND,India,South Asia,Lower middle income,1,NA,NA,NA,NA,NA
+IDN,Indonesia,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+IRN,Iran,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+IRQ,Iraq,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+IRL,Ireland,Europe & Central Asia,High income: OECD,0,3,0,3,0.12004873978835406,0.08110332969720073
+IMY,Isle of Man,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+ISR,Israel,Middle East & North Africa,High income: OECD,0,2,0,2,0.08003249319223604,0.054068886464800486
+ITA,Italy,Europe & Central Asia,High income: OECD,0,24.06929,3.22101,27.2903,0.9631626440334775,0.7377780661451723
+JAM,Jamaica,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0
+JPN,Japan,East Asia & Pacific,High income: OECD,0,NA,NA,NA,NA,NA
+JOR,Jordan,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+KAZ,Kazakhstan,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA
+KEN,Kenya,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+KIR,Kiribati,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+KOR,Korea South,East Asia & Pacific,High income: OECD,0,11,2.0276765825,13.0276765825,0.44017871255729824,0.3521959830196662
+KSV,Kosovo,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+KWT,Kuwait,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA
+KGZ,Kyrgyz Republic,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+LAO,Lao PDR,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+LVA,Latvia,Europe & Central Asia,High income: nonOECD,0,3,0,3,0.12004873978835406,0.08110332969720073
+LBN,Lebanon,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+LSO,Lesotho,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+LBR,Liberia,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+LBY,Libya,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+LIE,Liechtenstein,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+LTU,Lithuania,Europe & Central Asia,High income: nonOECD,0,3,0,3,0.12004873978835406,0.08110332969720073
+LUX,Luxembourg,Europe & Central Asia,High income: OECD,0,0,0,0,0,0
+MAC,"Macao SAR, China",East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA
+MKD,Macedonia,Europe & Central Asia,Upper middle income,0,2,0,2,0.08003249319223604,0.054068886464800486
+MDG,Madagascar,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+MWI,Malawi,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+MYS,Malaysia,East Asia & Pacific,Upper middle income,1,NA,NA,NA,NA,NA
+MDV,Maldives,South Asia,Upper middle income,0,NA,NA,NA,NA,NA
+MLI,Mali,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+MLT,Malta,Middle East & North Africa,High income: nonOECD,0,0,0,0,0,0
+MHL,Marshall Islands,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+MRT,Mauritania,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+MUS,Mauritius,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA
+MEX,Mexico,Latin America & Caribbean,Upper middle income,1,14.842418501449636,5.184837002899271,20.027255504348908,0.5939378788367932,0.5414257020330958
+FSM,Micronesia,East Asia & Pacific,Lower middle income,1,NA,NA,NA,NA,NA
+MDA,Moldova,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+MCO,Monaco,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+MNG,Mongolia,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+MNE,Montenegro,Europe & Central Asia,Upper middle income,0,0,0,0,0,0
+MAR,Morocco,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA
+MOZ,Mozambique,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+MMR,Myanmar (Burma),East Asia & Pacific,Low income,0,NA,NA,NA,NA,NA
+NAM,Namibia,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA
+NA,Nauru,NA,NA,0,NA,NA,NA,NA,NA
+NPL,Nepal,South Asia,Low income,0,NA,NA,NA,NA,NA
+NLD,Netherlands,Europe & Central Asia,High income: OECD,0,10,7.5,17.5,0.4001624659611802,0.47310275656700423
+NCL,New Caledonia,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA
+NZL,New Zealand,East Asia & Pacific,High income: OECD,0,11,0,11,0.44017871255729824,0.29737887555640263
+NIC,Nicaragua,Latin America & Caribbean,Lower middle income,0,3.665509681067922,0.8448847143714492,4.510394395439372,0.1466799392980719,0.1219360012392419
+NER,Niger,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+NGA,Nigeria,Sub-Saharan Africa,Lower middle income,1,NA,NA,NA,NA,NA
+NOR,Norway,Europe & Central Asia,High income: OECD,0,11.99397,0,11.99397,0.47995366118644167,0.3242503010961115
+OMN,Oman,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA
+PAK,Pakistan,South Asia,Lower middle income,1,NA,NA,NA,NA,NA
+PLW,Palau,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+PAN,Panama,Latin America & Caribbean,Upper middle income,0,5.056207133264323,0.3279337639041173,5.3841408971684395,0.20233043148575613,0.14555725143974468
+PNG,Papua New Guinea,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+PRY,Paraguay,Latin America & Caribbean,Lower middle income,0,8.19837007993883,0,8.19837007993883,0.32806799880506804,0.22163837052431493
+PER,Peru,Latin America & Caribbean,Upper middle income,0,18.062612584628056,0,18.062612584628056,0.7227979593566211,0.4883126745479654
+PHL,Philippines,East Asia & Pacific,Lower middle income,0,11.387896443,0.105789939,11.493686382,0.4557008722741433,0.3107254120251907
+POL,Poland,Europe & Central Asia,High income: OECD,0,8,0,8,0.32012997276894417,0.21627554585920195
+PRT,Portugal,Europe & Central Asia,High income: OECD,0,3.584603,0.21922629999999999,3.8038290999999997,0.14344235759718446,0.1028344018697021
+QAT,Qatar,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA
+ROM,Romania,Europe & Central Asia,Upper middle income,0,10,0,10,0.4001624659611802,0.2703444323240024
+RUS,Russia,Europe & Central Asia,High income: nonOECD,1,12.07952,8,20.07952,0.4833770510827396,0.5428386435738453
+RWA,Rwanda,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+WSM,Samoa,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+SMR,San Marino,Europe & Central Asia,High income: nonOECD,0,NA,NA,NA,NA,NA
+STP,São Tomé and Principe,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+SAU,Saudi Arabia,Middle East & North Africa,High income: nonOECD,0,NA,NA,NA,NA,NA
+SEN,Senegal,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+SRB,Serbia,Europe & Central Asia,Upper middle income,0,5.150378,1.209588,6.359966,0.20609879611122114,0.17193813978699563
+SYC,Seychelles,Sub-Saharan Africa,Upper middle income,0,NA,NA,NA,NA,NA
+SLE,Sierra Leone,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+SGP,Singapore,East Asia & Pacific,High income: nonOECD,0,NA,NA,NA,NA,NA
+SXM,Sint Maarten (Dutch part),Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+SVK,Slovak Republic,Europe & Central Asia,High income: OECD,0,8,0,8,0.32012997276894417,0.21627554585920195
+SVN,Slovenia,Europe & Central Asia,High income: OECD,0,1,0,1,0.04001624659611802,0.027034443232400243
+SLB,Solomon Islands,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+SOM,Somalia,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+ZAF,South Africa,Sub-Saharan Africa,Upper middle income,1,NA,NA,NA,NA,NA
+SSD,South Sudan,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+ESP,Spain,Europe & Central Asia,High income: OECD,1,20.926948732563513,12.62957,33.55652172863605,0.8374179409865811,0.9071818817496166
+LKA,Sri Lanka,South Asia,Lower middle income,0,NA,NA,NA,NA,NA
+KNA,St. Kitts and Nevis,Latin America & Caribbean,High income: nonOECD,1,NA,NA,NA,NA,NA
+LCA,St. Lucia,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA
+MAF,St. Martin (French part),Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+VCT,St. Vincent and the Grenadines,Latin America & Caribbean,Upper middle income,0,NA,NA,NA,NA,NA
+SDN,Sudan,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+SUR,Suriname,Latin America & Caribbean,Upper middle income,0,0,0,0,0,0
+SWZ,Swaziland (since Apr. 2018: Eswatin),Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+SWE,Sweden,Europe & Central Asia,High income: OECD,0,12,0,12,0.48019495915341626,0.3244133187888029
+SWI,Switzerland,Europe & Central Asia,High income: OECD,1,18,8.5,26.5,0.7202924387301244,0.7164127456586064
+SYR,Syrian Arab Republic,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA
+NA,Taiwan,NA,NA,0,NA,NA,NA,NA,NA
+TJK,Tajikistan,Europe & Central Asia,Low income,0,NA,NA,NA,NA,NA
+TZA,Tanzania,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+THA,Thailand,East Asia & Pacific,Upper middle income,0,9.1471226215,1.14561344,10.2927360615,0.36603351446687354,0.2782583887607006
+BHS,The Bahamas,Latin America & Caribbean,High income: nonOECD,0,0,0,0,0,0
+GMB,The Gambia,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+TMP,Timor-Leste,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+TGO,Togo,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+TON,Tonga,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+TTO,Trinidad and Tobago,Latin America & Caribbean,High income: nonOECD,0,0.43596358717298245,0.04844039857477583,0.4844039857477583,0.01744562641124226,0.013095592054246187
+TUN,Tunisia,Middle East & North Africa,Upper middle income,0,NA,NA,NA,NA,NA
+TUR,Turkey,Europe & Central Asia,Upper middle income,0,8,0,8,0.32012997276894417,0.21627554585920195
+TKM,Turkmenistan,Europe & Central Asia,Upper middle income,0,NA,NA,NA,NA,NA
+TCA,Turks and Caicos Islands,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+TUV,Tuvalu,East Asia & Pacific,Upper middle income,0,NA,NA,NA,NA,NA
+UGA,Uganda,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+UKR,Ukraine,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+ARE,United Arab Emirates,Middle East & North Africa,High income: nonOECD,1,NA,NA,NA,NA,NA
+GBR,United Kingdom,Europe & Central Asia,High income: OECD,0,10.14318,1.103488992408872,11.246677992408872,0.4058919921488124,0.30404767773886276
+USA,United States,North America,High income: OECD,1,22.11663,7.437344,29.55397,0.8850245199551018,0.7989751242570597
+URY,Uruguay,Latin America & Caribbean,High income: nonOECD,0,10,2,12,0.4001624659611802,0.3244133187888029
+UZB,Uzbekistan,Europe & Central Asia,Lower middle income,0,NA,NA,NA,NA,NA
+VUT,Vanuatu,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+VEN,Venezuela,Latin America & Caribbean,Upper middle income,1,6.521665587326566,0.49996419309098,7.021629780417546,0.26097257835987675,0.1898258516976291
+VNM,Vietnam,East Asia & Pacific,Lower middle income,0,NA,NA,NA,NA,NA
+VIR,Virgin Islands,Latin America & Caribbean,High income: nonOECD,0,NA,NA,NA,NA,NA
+WBG,West Bank and Gaza,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA
+YEM,Yemen,Middle East & North Africa,Lower middle income,0,NA,NA,NA,NA,NA
+ZMB,Zambia,Sub-Saharan Africa,Lower middle income,0,NA,NA,NA,NA,NA
+ZWE,Zimbabwe,Sub-Saharan Africa,Low income,0,NA,NA,NA,NA,NA
+NA,NA,NA,NA,24,NA,NA,NA,NA,NA

@@ -101,11 +101,11 @@ policyCentralization = policyCentralization %>% mutate(
 
 
 # average by type (needed for mask wearing)
-policyCentralization = policyCentralization %>% select(-type_sub_cat) %>%
+policyCentralization = policyCentralization %>% dplyr:::select(-type_sub_cat) %>%
   group_by(country, type, date) %>%
   summarise_all(mean, na.rm = TRUE)
 
-
+summary(policyCentralization)
 saveRDS(policyCentralization, file = "~/Dropbox/West European Politics Corona Article/WEP_analysis/data/CoronaNet/coronanet_network_measures.rds") 
 
 

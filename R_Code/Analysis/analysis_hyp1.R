@@ -7,6 +7,7 @@ library(sjPlot)
 library(texreg)
 library(ggplot2)
 library(glmnet)
+library(stargazer)
 # ----------------------------
 # load and format data
 # ----------------------------
@@ -69,119 +70,111 @@ hist(df$lcentDegStd)
 # -----------------
 # Run models
 # ----------------
-
-lmA1 = lm(centDegStd ~ type*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
- 
-lmB1 = lm(centDegStd ~ type*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
-
-lmC1 = lm(centDegStd ~ type*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
-
- 
-lmA1_diff = lm(centDegStd ~ differentiating*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
-
-lmB1_diff = lm(centDegStd ~ differentiating*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
-
-lmC1_diff = lm(centDegStd ~ differentiating*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
-
 # note that the distribution of the DV is highly bimodal; see what happens when you run a logit
-  # note that when you include time3 -- 0 or 1 is perfectly predicted
+# note that when you include time3 -- 0 or 1 is perfectly predicted
 # logitA = glm(centDegR ~ type*country +measure_H1_H2_cases_ECDC+hhi_new_deaths + time  , data = df, family = 'binomial' )
-
 # logitB = glm(centDegR ~ type*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time , data = df, family = 'binomial' )
-
 # logitC = glm(centDegR ~ type*Self+measure_H1_H2_cases_ECDC +hhi_new_deaths+ time , data = df, family = 'binomial' )
-
-
- 
 #https://stats.stackexchange.com/questions/336424/issue-with-complete-separation-in-logistic-regression-in-r
+
+
+# type as interaction
+hyp1_country_type = lm(centDegStd ~ type*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
+ 
+hyp1_rai_type = lm(centDegStd ~ type*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
+
+hyp1_self_type = lm(centDegStd ~ type*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
+
+
+# diff dum as interaction
+hyp1_country_diff = lm(centDegStd ~ differentiating*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
+
+hyp1_rai_diff = lm(centDegStd ~ differentiating*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
+
+hyp1_self_diff = lm(centDegStd ~ differentiating*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
+
 
 # # -----------------
 # Substantive effect plots
 # ----------------
  
-plmA1 = plot_model(lmA1, type = 'int')+
+p_hyp1_country_type  = plot_model(hyp1_country_type , type = 'int')+
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
+p_hyp1_country_type 
+ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_countrydum.pdf", p_hyp1_country_type )
 
-plmA1 
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_countrydum.pdf", plmA1)
-
-plmB1 = plot_model(lmB1, type = 'pred', terms = c('RAI', 'type'))+
+p_hyp1_rai_type  = plot_model(hyp1_rai_type , type = 'pred', terms = c('RAI', 'type'))+
   labs(y = 'Policy Centralization',
        x = 'Regional Authority Index',
        title = 'Predicted Values of Policy Centralization, \n OLS Model')
-plmB1
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_rai.pdf", plmB1)
+p_hyp1_rai_type
+ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_rai.pdf", p_hyp1_rai_type)
 
 
-plmC1 = plot_model(lmC1, type = 'pred', terms = c('Self', 'type'))+
+p_hyp1_self_type = plot_model(hyp1_self_type, type = 'pred', terms = c('Self', 'type'))+
   labs(y = 'Policy Centralization',
        x = 'Self Index',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
-plmC1
-
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_self.pdf", plmC1)
 
 
+ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_self.pdf", p_hyp1_self_type)
 
 # differentating
 
-plmA1_diff = plot_model(lmA1_diff, type = 'int')+
+p_hyp1_country_diff = plot_model(hyp1_country_diff, type = 'int')+
   labs(y = 'Policy Centralization',
        x = 'Policy Type',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
 
-plmA1_diff
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_countrydum_diff.pdf", plmA1)
+p_hyp1_country_diff
+ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_countrydum_diff.pdf", p_hyp1_country_diff)
 
-plmB1_diff = plot_model(lmB1_diff, type = 'pred', terms = c('RAI', 'differentiating'))+
+p_hyp1_rai_diff = plot_model(hyp1_rai_diff, type = 'pred', terms = c('RAI', 'differentiating'))+
   labs(y = 'Policy Centralization',
        x = 'Regional Authority Index',
        title = 'Predicted Values of Policy Centralization, \n OLS Model')
-plmB1_diff
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_rai_diff.pdf", plmB1_diff)
+p_hyp1_rai_diff
+ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_rai_diff.pdf", p_hyp1_rai_diff)
 
 
-plmC1_diff = plot_model(lmC1_diff, type = 'pred', terms = c('Self', 'differentiating'))+
+p_hyp1_self_diff = plot_model(hyp1_self_diff, type = 'pred', terms = c('Self', 'differentiating'))+
   labs(y = 'Policy Centralization',
        x = 'Self Index',
        title = 'Predicted Values of Policy Centralization, \n OLS Model',
        colors = c('red', 'blue', 'green', 'purple'))
-plmC1_diff
+p_hyp1_self_diff
 
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_self_diff.pdf", plmC1_diff)
-
-
+ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_self_diff.pdf", p_hyp1_self_diff)
 
 
- 
-plogisA = plot_model(logitA , type = 'int')+
-  labs(y = 'Policy Centralization',
-       x = 'Policy Type',
-       title = 'Predicted Values of Policy Centralization, \n Logit Model',
-       colors = c('red', 'blue', 'green', 'purple'))
-plogisA 
-ggsave("WEP_analysis/Results/predicted_effects_h1_logit_country.pdf", plogisA)
-
-plogisB = plot_model(logitB , type = 'pred', terms = c('RAI', 'type'), transform = "exp",
-           axis.labels = c('Policy Centralization', 'Policy Type'))+
-  labs(y = 'Policy Centralization',
-       x = 'RAI',
-       title = 'Predicted Values of Policy Centralization, \n Logit Model')
-plogisB
-ggsave("WEP_analysis/Results/predicted_effects_h1_logit_rai.pdf", plogisB)
-
-plogisC = plot_model(logitC, , type = 'pred', terms = c('Self', 'type'), transform = "exp",
-                  axis.labels = c('Policy Centralization', 'Policy Type'))+
-   labs(y = 'Policy Centralization',
-        x = 'Self Index',
-        title = 'Predicted Values of Policy Centralization, \n Logit Model')
-plogisC
-ggsave("WEP_analysis/Results/predicted_effects_h1_logit_self.pdf", plogisC)
+# plogisA = plot_model(logitA , type = 'int')+
+#   labs(y = 'Policy Centralization',
+#        x = 'Policy Type',
+#        title = 'Predicted Values of Policy Centralization, \n Logit Model',
+#        colors = c('red', 'blue', 'green', 'purple'))
+# plogisA 
+# ggsave("WEP_analysis/Results/predicted_effects_h1_logit_country.pdf", plogisA)
+# 
+# plogisB = plot_model(logitB , type = 'pred', terms = c('RAI', 'type'), transform = "exp",
+#            axis.labels = c('Policy Centralization', 'Policy Type'))+
+#   labs(y = 'Policy Centralization',
+#        x = 'RAI',
+#        title = 'Predicted Values of Policy Centralization, \n Logit Model')
+# plogisB
+# ggsave("WEP_analysis/Results/predicted_effects_h1_logit_rai.pdf", plogisB)
+# 
+# plogisC = plot_model(logitC, , type = 'pred', terms = c('Self', 'type'), transform = "exp",
+#                   axis.labels = c('Policy Centralization', 'Policy Type'))+
+#    labs(y = 'Policy Centralization',
+#         x = 'Self Rule Index',
+#         title = 'Predicted Values of Policy Centralization, \n Logit Model')
+# plogisC
+# ggsave("WEP_analysis/Results/predicted_effects_h1_logit_self.pdf", plogisC)
 
 # ---------------
 # format tables
@@ -193,9 +186,6 @@ coefMap = list(
   'typeMask Wearing' = 'Mask Wearing Dum',
   'typeClosure and Regulation of Schools' = 'Schools Dum',
   
-  'RAI' = 'RAI',
-  'Self' = 'Self',
-
   "countrySwitzerland" = "Switzerland",
   "countryGermany" = "Germany",
   "countryItaly" = "Italy",
@@ -212,14 +202,28 @@ coefMap = list(
   'typeMask Wearing:countryGermany' = 'Mask Wearing Dum * Germany',
   'typeMask Wearing:countryItaly' = 'Mask Wearing Dum * Italy',
   
-  'Self:typeMask Wearing' = 'Mask Wearing Dum * Self',
-  'Self:typeLockdown' = 'Lockdown Dum * Self',
-  'Self:typeClosure and Regulation of Schools' = 'SchoolsDum * Self',
-  'Self:measure_H3_deaths_b' =   'Std. Death Rate * Self',
+  'Self:typeMask Wearing' = 'Mask Wearing Dum * Self Rule Index',
+  'Self:typeLockdown' = 'Lockdown Dum * Self Rule Index',
+  'Self:typeClosure and Regulation of Schools' = 'SchoolsDum * Self Rule Index',
+  'Self:measure_H3_deaths_b' =   'Std. Death Rate * Self Rule Index',
+  
+  'typeMask Wearing:Self' = 'Mask Wearing Dum * Self Rule Index',
+  'typeLockdown:Self' = 'Lockdown Dum * Self Rule Index',
+  'typeClosure and Regulation of Schools:Self' = 'SchoolsDum * Self Rule Index',
+  'measure_H3_deaths_b:Self' =   'Std. Death Rate * Self Rule Index',
+  
+  
+  'RAI' = 'RAI',
+  'Self' = 'Self',
   
   'RAI:typeMask Wearing' = 'Mask Wearing Dum * RAI',
   'RAI:typeLockdown' = 'Lockdown Dum * RAI',
   'RAI:typeClosure and Regulation of Schools' = 'SchoolsDum * RAI',
+  
+  
+  'typeMask Wearing:RAI' = 'Mask Wearing Dum * RAI',
+  'typeLockdown:RAI' = 'Lockdown Dum * RAI',
+  'typeClosure and Regulation of Schools:RAI' = 'SchoolsDum * RAI',
   
   "hhi_new_deaths" = "HHI (new deaths)",
   'measure_H1_H2_cases_JHU' = 'National Cases Count',
@@ -230,79 +234,18 @@ coefMap = list(
   '(Intercept)' = "Intercept"
   )
 
- texreg(list(model1, model2),
+
+screenreg(list(lmA1, lmB1),
         custom.coef.map = coefMap,
-        custom.model.names = c('OLS', 'Logit'))
-unique(qualtrics$type)
-foo = qualtrics %>% filter(type =="Restriction and Regulation of Businesses" &
-                       country %in% countries &
-                       grepl('mask|Mask', description))
-
-
-foo %>% select(description) %>% data.frame()
- unique(sub_data$type)
- 
- unique(test$type)
-test2 = test %>% filter(country == 'Switzerland' & type ==  "Closure and Regulation of Schools"    & init_country_level == 'Provincial' & type_sub_cat == 'Primary Schools (generally for children ages 10 and below)' )  %>%  #  select(record_id) %>% pull %>% unique %>% dput
-    arrange(date_start) %>%
-   #dplyr:::select( date_start, date_end) %>%
-   #distinct %>%
-   dplyr:::select(update_type, record_id, policy_id, country, province, description, type, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end) %>%
-   #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
-   #slice (c(6, 8, 9)) %>%
-   data.frame()
-
-
-split(test2, test2$province)[[1]]
+        # custom.model.names = c('OLS', 'Logit'),
   
-
-   
-qualtrics%>% filter(policy_id == 7500010  )%>% 
-  arrange(policy_id, date_start) %>%
-  #dplyr:::select( date_start, date_end) %>%
-  #distinct %>%
-  dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end, init_country_level, target_country) %>%
-  #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
-  #slice (c(6, 8, 9)) %>%
-  data.frame()
-
- sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
-   arrange(init_country_level, province, date_start, entry_type)%>%
-   data.frame()
-
- 
- sub_data %>% filter(country == 'Germany' & type == 'Restrictions of Mass Gatherings' & province == 'Bavaria' ) %>% 
-   arrange(date_start) %>%
-   #dplyr:::select( date_start, date_end) %>%
-   #distinct %>%
-   dplyr:::select(update_type, record_id, policy_id, country, province, description, type_mass_gathering, type_sub_cat, type_who_gen, compliance, date_start, date_end, init_country_level, target_country) %>%
-   #slice (c(1, 2, 3, 4, 5, 7, 10)) %>%
-   #slice (c(6, 8, 9)) %>%
-   data.frame()
- 
-   select(policy_id) %>% pull %>% unique %>% dput
- 
- 
- sub_data %>% filter(country == 'Germany' & type == 'Lockdown') %>%
-   arrange(init_country_level, province, date_start, entry_type)%>%
-   data.frame()
- 
- policyCentralization %>% filter(country == 'Germany' & type == 'Lockdown') %>% 
-   dplyr:::select(date, centDegStd)
-  
- policyCentralization %>% filter(country == 'Switzerland' & type == 'Lockdown') %>% 
-   dplyr:::select(date, centDegStd)
- 
- policyCentralization %>% filter(country == 'Italy' & type == 'Lockdown') %>% 
-   dplyr:::select(date, centDegStd)
- 
- policyCentralization %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings') %>%
-   dplyr:::select(centDegRaw, centDegTheory, centDegStd, date) %>%
-   data.frame()
- 
- test %>% filter(country == 'Switzerland' & type == 'Restrictions of Mass Gatherings' & init_country_level == 'National') %>% 
-   arrange(init_country_level,  date_start, entry_type ) %>%
-   select(description, date_start, date_end, type_mass_gathering, type_sub_cat, type_who_gen, policy_id, record_id)%>%
-   data.frame
-
+)
+htmlreg(list(lmA1, lmB1),
+       custom.coef.map = coefMap,
+      # custom.model.names = c('OLS', 'Logit'),
+      file = '~/Downloads/testhtml.doc', 
+      inline.css = FALSE, doctype = TRUE, html.tag = TRUE, 
+      head.tag = TRUE, body.tag = TRUE
+      )
+       
  
