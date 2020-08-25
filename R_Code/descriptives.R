@@ -302,14 +302,14 @@ figure <- ggarrange(gg3.4, gg3.5,
 gg4.1<- ggplot(df_centrality, aes(x=date, y=centDegStd, color=country)) + geom_smooth() +
   ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
-  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggtitle("Centrality Index (smoothed)") +theme_bw() + facet_wrap(~type)+
   ggsave(filename = "results/Descriptives/gg4_1.jpg",
          height = 7)
 
 gg4.2<- ggplot(df_centrality, aes(x=date, y=centDegStd, color=country)) + geom_line() +
   ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
-  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggtitle("Centrality Index") +theme_bw() + facet_wrap(~type)+
   ggsave(filename = "results/Descriptives/gg4_2.jpg",
          height = 7)
 
@@ -318,14 +318,14 @@ gg5.1<- ggplot(df_heterogeneity, aes(x=date, y=hetero, color=country)) + geom_sm
   ylim(0, 1) +
   labs(x = "Date", y = "Cases", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
-  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggtitle("Heterogeneity Index (smoothed)") +theme_bw() + facet_wrap(~type)+
   ggsave(filename = "results/Descriptives/gg5_1.jpg",
          height = 7)
 
 gg5.2<- ggplot(df_heterogeneity, aes(x=date, y=hetero, color=country)) + geom_line() +
   ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
-  ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw() + facet_wrap(~type)+
+  ggtitle("Heterogeneity Index") +theme_bw() + facet_wrap(~type)+
   ggsave(filename = "results/Descriptives/gg5_2.jpg",
          height = 7)
 
@@ -382,7 +382,7 @@ df_selected %>%
 gg9.1<- df_selected %>% 
   filter(!is.na(type)) %>% 
   group_by(type,date,init_country_level,country) %>% 
-  summarize(Policies=length(unique(policy_id))) %>% 
+  dplyr::summarize(Policies=length(unique(policy_id))) %>% 
   arrange(type,date) %>% 
   mutate(Policies=cumsum(Policies)) %>% 
   ungroup %>% 
@@ -399,7 +399,7 @@ gg9.1<- df_selected %>%
 ## Statistics Summary of Model
 
 
-df_fed<-df_fed%>% rename(country="Jurisdiction Name")%>%select(2,5,9:11)%>% filter(country%in%c("France","Germany","Italy","Switzerland"))
+df_fed<-df_fed%>% rename(country="Jurisdiction Name")%>%select(2,5,9:10)%>% filter(country%in%c("France","Germany","Italy","Switzerland"))
 df_hhi_deaths<-df_hhi_deaths%>% select(-"X1")
 df_heterogeneity<-df_heterogeneity%>% select(1:3,"hetero")
 df_heterogeneity<-spread(df_heterogeneity, type, hetero)%>%rename("Het_Lockdown"=3,
@@ -416,7 +416,7 @@ df_centrality<-spread(df_centrality, type, centDegStd)%>%rename("Cent_School"=3,
 df_PAX<-df_PAX%>%filter(country%in%c("France","Germany","Italy","Switzerland"))%>%rename("date"=2,"PAX"=3)%>% select(1:3)
 
 
-df_merge<- left_join(df_ECDC,df_fed,by=c("country"))
+df_merge<- left_join(df_ECDC,df_fed,by=c("country"="Jurisdiction Name"))
 df_merge<- left_join(df_merge,df_centrality,by=c("country","date"))
 df_merge<- left_join(df_merge,df_heterogeneity,by=c("country","date"))
 df_merge<- left_join(df_merge,df_PAX,by=c("country","date"="date"))
@@ -518,8 +518,8 @@ cased<- case%>%
          cases_relative=cases_national_ECDC/pop*100)
 cases_national<-cased[!is.na(cased$cases_relative),]
 
-names(df_fed)
-dat<- left_join(cases_national,df_fed,by=c("country"="Jurisdiction Name"))
+
+dat<- left_join(cases_national,df_fed,by=c("country"="country"))
 dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
 
 gg12.1<- dat%>% filter(!is.na(fed),date=="2020-08-24") %>% ggplot(aes(x=fed, y=(cases_relative))) +
@@ -528,7 +528,7 @@ gg12.1<- dat%>% filter(!is.na(fed),date=="2020-08-24") %>% ggplot(aes(x=fed, y=(
          height = 7)
 
 
-gg12.2<-ggplot(dat, aes(y = log(cases_relative)))+
+gg12.2<-ggplot(dat%>% filter(!is.na(fed),date=="2020-08-24"), aes(y = log(cases_relative)))+
   geom_smooth(aes(x = RAI, colour = "Regional Authority Index"))+
   geom_smooth(aes(x = Self, colour = "Self-Rule"))+
   ggtitle("Regional Authority Indices")+
