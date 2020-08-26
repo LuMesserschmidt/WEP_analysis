@@ -53,6 +53,7 @@ df_selected<-df_main %>%
 # - Cases Plot----
 
 
+
 gg1.1<- ggplot(df_ECDC, aes(x=date, y=cases_national_ECDC, color=country)) + geom_line() + labs(x = "Date", y = "Cases", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   ggtitle("Cumulative COVID-19 Cases per Country") +theme_bw()+
@@ -82,6 +83,12 @@ gg3<- ggplot(df_ECDC, aes(x=date,color=country))+ geom_line(aes(y =past_average_
 gg3<- gg3+ geom_line(aes(y = past_average_new_deaths_national),linetype="dashed")
 gg1.5 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "7 Days Average of New Deaths (dashed)"))+theme_bw()+  
   ggsave(filename = "results/Descriptives/gg1_5.jpg",height = 7)
+
+names(df_ECDC)
+gg3<- ggplot(df_ECDC, aes(x=date,color=country))+ geom_line(aes(y =cases_national_ECDC),size=0.5, alpha=0.4)+scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+ylab("Cumulative Cases")
+gg3<- gg3+ geom_line(aes(y = deaths_national),linetype="dashed")
+gg1.0 <- gg3 + scale_y_continuous(sec.axis = sec_axis(~., name = "Cumulated Deaths (dashed)"))+theme_bw()+ggtitle("Cumulative Development of Cases and Deaths by COVID-19")+
+  ggsave(filename = "results/Descriptives/gg1_0.jpg",height = 7)
 
 # For each country individual
 
@@ -192,7 +199,7 @@ merged_shape <-
             by = c("NUTS_ID" = "code"))
 
 library(viridis)
-library(ggpubr)
+
 
 merged_shape<- merged_shape%>%mutate(country=recode(country,
                                                     "CH"="Switzerland",
@@ -229,7 +236,7 @@ gg3.2 <-
   ggtitle("Relative Cumulative Cases by Region (per Capita)")+
   ggsave(filename = "results/Descriptives/gg3_2.jpg",height = 7)
 
-figure <- ggarrange(gg3.1, gg3.2,
+figure <- ggpubr::ggarrange(gg3.1, gg3.2,
                     nrow = 2)+
   ggsave(filename = "results/Descriptives/gg3_3.jpg",height = 7)
 
@@ -255,7 +262,7 @@ merged_shape <-
             by = c("NUTS_ID" = "code"))
 
 library(viridis)
-library(ggpubr)
+
 
 merged_shape<- merged_shape%>%mutate(country=recode(country,
                                                     "CH"="Switzerland",
@@ -292,7 +299,7 @@ gg3.5 <-
   ggtitle("Relative Cumulative Deaths by Region (per Capita)")+
   ggsave(filename = "results/Descriptives/gg3_5.jpg",height = 7)
 
-figure <- ggarrange(gg3.4, gg3.5,
+figure <- ggpubr::ggarrange(gg3.4, gg3.5,
                     nrow = 2)+
   ggsave(filename = "results/Descriptives/gg3_6.jpg",height = 7)
 
@@ -329,6 +336,17 @@ gg5.2<- ggplot(df_heterogeneity, aes(x=date, y=hetero, color=country)) + geom_li
   ggsave(filename = "results/Descriptives/gg5_2.jpg",
          height = 7)
 
+gg5.3<- ggplot(df_heterogeneity, aes(x=date, y=hetero_mean, color=country)) + geom_smooth() +
+  ylim(0, 1) +labs(x = "Date", y = "Cases", color="Country") +
+  scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
+  ggtitle("Heterogeneity Index (average)") +theme_bw()+
+  ggsave(filename = "results/Descriptives/gg5_3.jpg",
+         height = 7)
+
+figure <- ggpubr::ggarrange(gg4.2, gg5.3,
+                            nrow = 1,common.legend = T,legend="bottom")+
+  ggsave(filename = "results/Descriptives/gg5_5.jpg",height = 7)
+
 # - PAX----
 
 
@@ -336,8 +354,8 @@ get_est_sum <- df_PAX %>%
   ungroup %>%
   mutate(estimate=(estimate-min(estimate))/(max(estimate)-min(estimate))*100,
          date_announced=ymd(as.character(date_announced))) %>%
-  group_by(country,date_announced) %>%
-  summarize(med_est=median(estimate),
+  dplyr::group_by(country,date_announced) %>%
+  dplyr::summarize(med_est=median(estimate),
             high_est=quantile(estimate,.95),
             low_est=quantile(estimate,.05)) %>%
   group_by(date_announced) %>%
@@ -360,8 +378,8 @@ gg7.1<- ggplot(df,aes(y=med_est,x=date_announced)) +
 # - Table of Policies----
 
 df_selected %>% 
-  group_by(type,init_country_level,country) %>% 
-  summarize(`Total Number of Policies`=n()) %>% 
+  dplyr::group_by(type,init_country_level,country) %>% 
+  dplyr::summarize(`Total Number of Policies`=n()) %>% 
   dplyr::select(Type="type",Level="init_country_level",everything()) %>% 
   filter(!is.na(Type)) %>% 
   arrange(country)  %>% 
@@ -394,18 +412,18 @@ gg9.1<- df_selected %>%
          height = 7)
 
 
-
 # - Summary Stats----
 ## Statistics Summary of Model
 
 
 df_fed<-df_fed%>% rename(country="Jurisdiction Name")%>%select(2,5,9:10)%>% filter(country%in%c("France","Germany","Italy","Switzerland"))
 df_hhi_deaths<-df_hhi_deaths%>% select(-"X1")
-df_heterogeneity<-df_heterogeneity%>% select(1:3,"hetero")
-df_heterogeneity<-spread(df_heterogeneity, type, hetero)%>%rename("Het_Lockdown"=3,
-                                                                  "Het_Mask"=4,
-                                                                 "Het_Mass"=5,
-                                                                  "Het_School"=6)
+df_heterogeneity<-df_heterogeneity%>% select(1:3,"hetero","hetero_mean")
+df_heterogeneity<-spread(df_heterogeneity, type, hetero)%>%rename("Het_Mean"=3,
+                                                                  "Het_Lockdown"=4,
+                                                                  "Het_Mask"=5,
+                                                                  "Het_Mass"=6,
+                                                                  "Het_School"=7)
 
 df_centrality<-df_centrality%>% select(1:3,6)
 df_centrality<-spread(df_centrality, type, centDegStd)%>%rename("Cent_School"=3,
@@ -416,7 +434,7 @@ df_centrality<-spread(df_centrality, type, centDegStd)%>%rename("Cent_School"=3,
 df_PAX<-df_PAX%>%filter(country%in%c("France","Germany","Italy","Switzerland"))%>%rename("date"=2,"PAX"=3)%>% select(1:3)
 
 
-df_merge<- left_join(df_ECDC,df_fed,by=c("country"="Jurisdiction Name"))
+df_merge<- left_join(df_ECDC,df_fed,by=c("country"="country"))
 df_merge<- left_join(df_merge,df_centrality,by=c("country","date"))
 df_merge<- left_join(df_merge,df_heterogeneity,by=c("country","date"))
 df_merge<- left_join(df_merge,df_PAX,by=c("country","date"="date"))
@@ -433,7 +451,8 @@ df_main_summary <- df_merge%>%select("date",
                                      "Cent_School",
                                      "Cent_Lockdown",                      
                                      "Cent_Mask",
-                                     "Cent_Mass",                           
+                                     "Cent_Mass",
+                                     "Het_Mean",
                                      "Het_Lockdown",
                                      "Het_Mask" ,                           
                                      "Het_Mass",
@@ -546,10 +565,10 @@ library(corrplot)
 df_main_cor <- df_main_summary[,-c(1:2)]
 
 ## Rename
-df_main_cor$"Concentration"<-df_main_cor$hhi
-df_main_cor$"Measure_H1_H2"<-df_main_cor$measure_H1_H2
-df_main_cor$"Measure_H3"<-df_main_cor$measure_H3
-df_main_cor<- df_main_cor[,-c(6:8)]
+#df_main_cor$"Concentration"<-df_main_cor$hhi
+#df_main_cor$"Measure_H1_H2"<-df_main_cor$measure_H1_H2
+#df_main_cor$"Measure_H3"<-df_main_cor$measure_H3
+#df_main_cor<- df_main_cor[,-c(6:8)]
 
 ## Correlation Function (calculates p-values). Source: http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 corstars <-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper", "lower"),
@@ -604,3 +623,4 @@ M <- cor(df_main_cor,use="pairwise.complete.obs")
 library(tableHTML)
 
 write_tableHTML(tableHTML(A), file = 'Results/Correlation_Matrix.html')
+

@@ -1,0 +1,346 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Statistical models</title>
+<style type="text/css">
+table {
+border: none;
+}
+th {
+text-align: left;
+border-top: 2px solid black;
+border-bottom: 1px solid black;
+padding-right: 12px;
+}
+.midRule {
+border-top: 1px solid black;
+}
+.bottomRule {
+border-bottom: 2px solid black;
+}
+td {
+padding-right: 12px;
+border: none;
+}
+sup {
+vertical-align: 0px;
+}
+</style>
+</head>
+
+<body>
+<table cellspacing="0" align="center">
+<caption align="bottom" style="margin-top:0.3em;">Statistical models</caption>
+<tr>
+<th><b></b></th>
+<th><b>H1</b></th>
+<th><b>H2</b></th>
+<th><b>H3</b></th>
+</tr>
+<tr>
+<td>Switzerland</td>
+<td>-0.03</td>
+<td>0.03<sup>***</sup></td>
+<td>-2.06<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.03)</td>
+<td>(0.01)</td>
+<td>(0.04)</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>-0.44<sup>***</sup></td>
+<td>0.20<sup>***</sup></td>
+<td>-2.22<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.03)</td>
+<td>(0.01)</td>
+<td>(0.05)</td>
+</tr>
+<tr>
+<td>Italy</td>
+<td>-0.01</td>
+<td>0.00</td>
+<td>-0.25<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.03)</td>
+<td>(0.01)</td>
+<td>(0.04)</td>
+</tr>
+<tr>
+<td>Homogeneous Policy Dum</td>
+<td>-0.04</td>
+<td>-0.00</td>
+<td>0.41<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.03)</td>
+<td>(0.01)</td>
+<td>(0.05)</td>
+</tr>
+<tr>
+<td>Homogeneous Policy Dum * Italy</td>
+<td>-0.03</td>
+<td>0.02</td>
+<td>-0.03</td>
+</tr>
+<tr>
+<td></td>
+<td>(0.04)</td>
+<td>(0.01)</td>
+<td>(0.07)</td>
+</tr>
+<tr>
+<td>Homogeneous Policy Dum * Germany</td>
+<td>0.34<sup>***</sup></td>
+<td>-0.08<sup>***</sup></td>
+<td>1.78<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.04)</td>
+<td>(0.01)</td>
+<td>(0.07)</td>
+</tr>
+<tr>
+<td>Homogeneous Policy Dum * Switzerland</td>
+<td>-0.03</td>
+<td>-0.00</td>
+<td>1.82<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.04)</td>
+<td>(0.01)</td>
+<td>(0.06)</td>
+</tr>
+<tr>
+<td>Std. Death Rate</td>
+<td></td>
+<td></td>
+<td>-0.05<sup>**</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.01)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Germany</td>
+<td></td>
+<td></td>
+<td>-0.00</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.04)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Italy</td>
+<td></td>
+<td></td>
+<td>0.14<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.03)</td>
+</tr>
+<tr>
+<td>Std. Death Rate* Switzerland</td>
+<td></td>
+<td></td>
+<td>0.04<sup>*</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.02)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Homogeneous Policy Dum</td>
+<td></td>
+<td></td>
+<td>0.18<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.04)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Homogeneous Policy Dum * Italy</td>
+<td></td>
+<td></td>
+<td>-0.16<sup>**</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.06)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Homogeneous Policy Dum * Germany</td>
+<td></td>
+<td></td>
+<td>-0.04</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.06)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Homogeneous Policy Dum * Switzerland</td>
+<td></td>
+<td></td>
+<td>-0.17<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(0.04)</td>
+</tr>
+<tr>
+<td>HHI (new deaths)</td>
+<td>0.01</td>
+<td>0.02</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.03)</td>
+<td>(0.01)</td>
+<td></td>
+</tr>
+<tr>
+<td>National Cases Count</td>
+<td>46.94<sup>***</sup></td>
+<td>-0.17</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>(3.07)</td>
+<td>(1.10)</td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>0.00</td>
+<td>-0.00</td>
+<td>-0.00</td>
+</tr>
+<tr>
+<td></td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+</tr>
+<tr>
+<td>time2</td>
+<td>0.00<sup>***</sup></td>
+<td>0.00<sup>***</sup></td>
+<td>0.00<sup>**</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+</tr>
+<tr>
+<td>time3</td>
+<td>-0.00<sup>***</sup></td>
+<td>-0.00<sup>***</sup></td>
+<td>-0.00<sup>**</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+</tr>
+<tr>
+<td>Intercept</td>
+<td>0.04</td>
+<td>-0.06<sup>***</sup></td>
+<td>0.82<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td>(0.04)</td>
+<td>(0.01)</td>
+<td>(0.06)</td>
+</tr>
+<tr>
+<td class="midRule">R<sup>2</sup></td>
+<td class="midRule">0.38</td>
+<td class="midRule">0.26</td>
+<td class="midRule"></td>
+</tr>
+<tr>
+<td>Adj. R<sup>2</sup></td>
+<td>0.37</td>
+<td>0.26</td>
+<td></td>
+</tr>
+<tr>
+<td>Num. obs.</td>
+<td>3184</td>
+<td>3184</td>
+<td>44232</td>
+</tr>
+<tr>
+<td>RMSE</td>
+<td>0.36</td>
+<td>0.13</td>
+<td></td>
+</tr>
+<tr>
+<td>AIC</td>
+<td></td>
+<td></td>
+<td>50774.07</td>
+</tr>
+<tr>
+<td>BIC</td>
+<td></td>
+<td></td>
+<td>50939.32</td>
+</tr>
+<tr>
+<td>Log Likelihood</td>
+<td></td>
+<td></td>
+<td>-25368.03</td>
+</tr>
+<tr>
+<td class="bottomRule">Deviance</td>
+<td class="bottomRule"></td>
+<td class="bottomRule"></td>
+<td class="bottomRule">50736.07</td>
+</tr>
+<tr>
+<td colspan="5"><span style="font-size:0.8em"><sup>***</sup>p &lt; 0.001, <sup>**</sup>p &lt; 0.01, <sup>*</sup>p &lt; 0.05</span></td>
+</tr>
+</table>
+</body>
+</html>

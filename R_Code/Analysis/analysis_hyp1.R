@@ -1,4 +1,5 @@
 ## analysis of H1 and H2
+# by Cindy Cheng
 
 # load packages
 library(dplyr)
@@ -8,6 +9,7 @@ library(texreg)
 library(ggplot2)
 library(glmnet)
 library(stargazer)
+
 # ----------------------------
 # load and format data
 # ----------------------------
@@ -17,7 +19,6 @@ policyCentralization = readRDS( "~/Dropbox/West European Politics Corona Article
 df_cases <- read_csv("WEP_analysis/data/Cases/final_cases.csv", guess_max = 10000)
 df_cases_nat = df_cases  %>% group_by(country, date) %>% summarize( measure_H1_H2_deaths = mean(measure_H1_H2_deaths),
                                                                    measure_H1_H2_cases_ECDC = mean(measure_H1_H2_cases_ECDC))  
-
 # get RAI data
 df_fed <- read_csv("WEP_analysis/Measures/fed.csv", guess_max = 10000)
 names(df_fed)[which(names(df_fed) == 'Jurisdiction Name')] = 'country'
@@ -32,7 +33,7 @@ df_hhi <- read_csv("WEP_analysis/Measures/hhi_deaths.csv", guess_max = 10000)
 # ----------------------------
 df = merge(policyCentralization , df_cases_nat, by = c("country","date"), all.x = TRUE)
 df = merge(df , df_hhi[, c('country', 'date', 'hhi_cumulative_deaths', 'hhi_new_deaths')], by = c("country","date"), all.x = TRUE)
-df = merge(df , df_fed[, c('country', 'HueglinFennaFederalPolity', 'n_selfrule' , 'n_sharedrule', 'n_RAI', 'Self', 'Shared', 'RAI')], by = c("country"), all.x = TRUE)
+df = merge(df , df_fed[, c('country',  'Self',  'RAI')], by = c("country"), all.x = TRUE)
 
 # ----------------------------
 # create variables
@@ -97,84 +98,78 @@ hyp1_self_diff = lm(centDegStd ~ differentiating*Self +measure_H1_H2_cases_ECDC 
 # # -----------------
 # Substantive effect plots
 # ----------------
+# user created function to generate plots quickly
+makeH1plots = function(model){
+  
+  varNames = names(coef(model))
+  
+  unit = ifelse(any(grepl('RAI', varNames)), 'RAI', ifelse(any(grepl('Self', varNames)), 'Self', 'country'))
+  policy = ifelse(any(grepl('differentiating', varNames)), 'differentiating', 'type')
  
-p_hyp1_country_type  = plot_model(hyp1_country_type , type = 'int')+
-  labs(y = 'Policy Centralization',
-       x = 'Policy Type',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model',
-       colors = c('red', 'blue', 'green', 'purple'))
-p_hyp1_country_type 
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_countrydum.pdf", p_hyp1_country_type )
+  xMin = ifelse(any(grepl('deaths_a', varNames)),0 , -1)
+  xMax = ifelse(any(grepl('deaths_a', varNames)),8.5 , 7.6)
+  
+  dvLabel = "Policy Centralization"
+  modelLabel = ifelse(any(grepl('^lm', model$call)), ' OLS Model', ' Logit Model')
+  unitLabel =  ifelse(any(grepl('RAI', varNames)), 'Regional Authourity Index',
+                      ifelse(any(grepl('Self', varNames)), 'Self Rule Index', 
+                                                            'Policy Type'))
+  
+    
+  if (any(grepl('differentiating', varNames))){
+    legendLabels = c('Differentiated', 'Unitary')
+    legendColor = c("#E41A1C", "#377EB8" )
+  } else{
+    legendLabels =  c('France', 'Italy', 'Switzerland', 'Germany')
+    legendColor = c("#E41A1C", "#377EB8", "#984EA3"  ,"#4DAF4A" )
+  }
 
-p_hyp1_rai_type  = plot_model(hyp1_rai_type , type = 'pred', terms = c('RAI', 'type'))+
-  labs(y = 'Policy Centralization',
-       x = 'Regional Authority Index',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model')
-p_hyp1_rai_type
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_rai.pdf", p_hyp1_rai_type)
+  if(any(grepl('RAI|Self', varNames))){
 
-
-p_hyp1_self_type = plot_model(hyp1_self_type, type = 'pred', terms = c('Self', 'type'))+
-  labs(y = 'Policy Centralization',
-       x = 'Self Index',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model',
-       colors = c('red', 'blue', 'green', 'purple'))
-
-
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_self.pdf", p_hyp1_self_type)
-
-# differentating
-
-p_hyp1_country_diff = plot_model(hyp1_country_diff, type = 'int')+
-  labs(y = 'Policy Centralization',
-       x = 'Policy Type',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model',
-       colors = c('red', 'blue', 'green', 'purple'))
-
-p_hyp1_country_diff
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_countrydum_diff.pdf", p_hyp1_country_diff)
-
-p_hyp1_rai_diff = plot_model(hyp1_rai_diff, type = 'pred', terms = c('RAI', 'differentiating'))+
-  labs(y = 'Policy Centralization',
-       x = 'Regional Authority Index',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model')
-p_hyp1_rai_diff
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_rai_diff.pdf", p_hyp1_rai_diff)
-
-
-p_hyp1_self_diff = plot_model(hyp1_self_diff, type = 'pred', terms = c('Self', 'differentiating'))+
-  labs(y = 'Policy Centralization',
-       x = 'Self Index',
-       title = 'Predicted Values of Policy Centralization, \n OLS Model',
-       colors = c('red', 'blue', 'green', 'purple'))
-p_hyp1_self_diff
-
-ggsave("WEP_analysis/Results/predictEffectsH1/predicted_effects_h1_ols_self_diff.pdf", p_hyp1_self_diff)
+    
+    plot = plot_model(model, 
+                      type = 'pred', 
+                      terms = c(unit, policy  ),
+                      legend.title = 'Policy Type') 
+    
+  } else{
+    legendLabels =  c('France', 'Italy', 'Switzerland', 'Germany')
+    legendColor = c("#E41A1C", "#377EB8", "#984EA3"  ,"#4DAF4A" )
+    plot = plot_model(model, 
+                      type = 'pred', 
+                      terms = c(policy, unit ),
+                      legend.title = 'Country'
+    )
+  }
+  
+  plot = plot + 
+        labs(y = dvLabel,
+         x = unitLabel,
+         title = paste0('Predicted Values of ', dvLabel, ',', '\n', modelLabel))+
+    coord_cartesian(clip = "off") +
+    theme(legend.position="bottom") 
 
 
-# plogisA = plot_model(logitA , type = 'int')+
-#   labs(y = 'Policy Centralization',
-#        x = 'Policy Type',
-#        title = 'Predicted Values of Policy Centralization, \n Logit Model',
-#        colors = c('red', 'blue', 'green', 'purple'))
-# plogisA 
-# ggsave("WEP_analysis/Results/predicted_effects_h1_logit_country.pdf", plogisA)
-# 
-# plogisB = plot_model(logitB , type = 'pred', terms = c('RAI', 'type'), transform = "exp",
-#            axis.labels = c('Policy Centralization', 'Policy Type'))+
-#   labs(y = 'Policy Centralization',
-#        x = 'RAI',
-#        title = 'Predicted Values of Policy Centralization, \n Logit Model')
-# plogisB
-# ggsave("WEP_analysis/Results/predicted_effects_h1_logit_rai.pdf", plogisB)
-# 
-# plogisC = plot_model(logitC, , type = 'pred', terms = c('Self', 'type'), transform = "exp",
-#                   axis.labels = c('Policy Centralization', 'Policy Type'))+
-#    labs(y = 'Policy Centralization',
-#         x = 'Self Rule Index',
-#         title = 'Predicted Values of Policy Centralization, \n Logit Model')
-# plogisC
-# ggsave("WEP_analysis/Results/predicted_effects_h1_logit_self.pdf", plogisC)
+  print(plot)
+
+  modelfileName = ifelse(any(grepl('^lm', model$call)), 'ols', ' logit')
+  unitFileName = ifelse(any(grepl('RAI', varNames)), 'rai', ifelse(any(grepl('Self', varNames)), 'self', 'countrydum'))
+  policyFileName = ifelse(any(grepl('differentiating', varNames)), '_diff', '')
+
+
+  fileName = paste0('WEP_analysis/Results/predictEffectsH1/','predicted_effects_h1_', modelfileName, '_', unitFileName, policyFileName, '.pdf')
+  ggsave(fileName, plot)
+
+}
+ 
+makeH1plots(hyp1_country_type)
+makeH1plots(hyp1_rai_type)
+makeH1plots(hyp1_self_type)
+
+ 
+makeH1plots(hyp1_country_diff)
+makeH1plots(hyp1_rai_diff)
+makeH1plots(hyp1_self_diff)
 
 # ---------------
 # format tables
@@ -186,9 +181,16 @@ coefMap = list(
   'typeMask Wearing' = 'Mask Wearing Dum',
   'typeClosure and Regulation of Schools' = 'Schools Dum',
   
+  'differentiatingUnitary' = 'Unitary Policy Dum',
+  
   "countrySwitzerland" = "Switzerland",
   "countryGermany" = "Germany",
   "countryItaly" = "Italy",
+  
+  
+  
+  'RAI' = 'RAI',
+  'Self' = 'Self',
   
   'typeRestrictions of Mass Gatherings:countrySwitzerland' = 'Restrictions of Mass Gatherings Dum * Switzerland',
   'typeRestrictions of Mass Gatherings:countryGermany' = 'Restrictions of Mass Gatherings Dum * Germany',
@@ -212,9 +214,7 @@ coefMap = list(
   'typeClosure and Regulation of Schools:Self' = 'SchoolsDum * Self Rule Index',
   'measure_H3_deaths_b:Self' =   'Std. Death Rate * Self Rule Index',
   
-  
-  'RAI' = 'RAI',
-  'Self' = 'Self',
+
   
   'RAI:typeMask Wearing' = 'Mask Wearing Dum * RAI',
   'RAI:typeLockdown' = 'Lockdown Dum * RAI',
@@ -225,8 +225,17 @@ coefMap = list(
   'typeLockdown:RAI' = 'Lockdown Dum * RAI',
   'typeClosure and Regulation of Schools:RAI' = 'SchoolsDum * RAI',
   
+  
+  'differentiatingUnitary:countryItaly' = 'Unitary Policy Dum * Italy',
+  'differentiatingUnitary:countryGermany' = 'Unitary Policy Dum * Germany',
+  'differentiatingUnitary:countrySwitzerland' = 'Unitary Policy Dum * Switzerland',
+  
+  'differentiatingUnitary:RAI' = 'Unitary Policy Dum * RAI',
+  'differentiatingUnitary:Self' = 'Unitary Policy Dum * Self Rule Index',
+  
   "hhi_new_deaths" = "HHI (new deaths)",
   'measure_H1_H2_cases_JHU' = 'National Cases Count',
+  'measure_H1_H2_cases_ECDC' = 'National Cases Count',
   
   'time' = 'time',
   'time2' = 'time2',
@@ -235,7 +244,8 @@ coefMap = list(
   )
 
 
-screenreg(list(lmA1, lmB1),
+summary(hyp1_self_diff)
+screenreg(list(hyp1_country_diff),
         custom.coef.map = coefMap,
         # custom.model.names = c('OLS', 'Logit'),
   
