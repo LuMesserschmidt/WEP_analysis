@@ -57,9 +57,13 @@ df_cases = mutate(df_cases,
                                     ))
 
 
-df_cases = df_cases %>%mutate(measure_H3_deaths_a = ifelse(measure_H3_deaths_a<0, 0, measure_H3_deaths_a))
+df_cases= df_cases %>%
+                mutate(measure_H3_deaths_a = if_else(measure_H3_deaths_a<0, 0, measure_H3_deaths_a)) %>%
+                mutate(measure_H3_deaths_a = if_else(date <= as.Date("2020-02-23", '%Y-%m-%d') & is.na(measure_H3_deaths_a), 0, measure_H3_deaths_a)) %>%
+                 mutate(measure_H3_deaths_b = if_else(date <= as.Date("2020-02-23", '%Y-%m-%d') & is.na(measure_H3_deaths_b), 0, measure_H3_deaths_b))
 
 
+     
 # get RAI data
 df_fed <- read_csv("WEP_analysis/Measures/fed.csv", guess_max = 10000)
 names(df_fed)[which(names(df_fed) == 'Jurisdiction Name')] = 'country'
@@ -69,6 +73,9 @@ df_fed = df_fed %>% filter(country %in% c('France', 'Germany', 'Switzerland', 'I
 df_3 = merge(sub_data_agg %>% filter(date > "2019-12-31"), df_cases, by = c("province","date"), all.x = TRUE)
 df_3 = merge(df_3 , df_fed[, c('country',   'Self',   'RAI')], by = c("country"), all.x = TRUE)
 
+# subset data to before or on 7/21
+df_3 = df_3 %>% filter(date <= "2020-07-21")
+df_3 = df_3 %>% filter(date >= "2020-02-24")
 
 # make time variable
 df_3 = df_3 %>% group_by(province) %>% mutate(time = 1:n(),
@@ -82,7 +89,7 @@ df_3 = within(df_3, country <- relevel(country, ref = 'France'))
  
 
 # make differentiating dummy
-df_3$differentiating = ifelse(df_3$type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Unitary') %>% factor()
+df_3$differentiating = ifelse(df_3$type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Homogeneous') %>% factor()
 df_3 = within(df_3, differentiating <- relevel(differentiating, ref =  'Differentiated'))
  
 
@@ -91,8 +98,8 @@ df_3 = within(df_3, differentiating <- relevel(differentiating, ref =  'Differen
 df_3$type = factor(df_3$type, levels(factor(df_3$type))[c(4, 3, 2, 1)])
 df_3 = within(df_3, type <- relevel(type, ref = 'Restrictions of Mass Gatherings'))
 df_3 = df_3 %>% mutate(lpolicy_count = ifelse(policy_count == 0, 0, log(policy_count)))
-
-
+summary(df_3)
+df_cases %>% filter(measure_H3_deaths_a >0) %>% select(date) %>% pull %>% table 
 # --------------
 # eda
 # --------------
@@ -110,56 +117,59 @@ hist(df_3$measure_H3_deaths_b)
 # --------------
 
 # logit of policy dummy
-hyp3_country_type_deaths_a_logit = glm(policy_dum ~ country*type*measure_H3_deaths_a  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_rai_type_deaths_a_logit = glm(policy_dum ~ RAI*type*measure_H3_deaths_a  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_self_type_deaths_a_logit = glm(policy_dum ~ Self*type*measure_H3_deaths_a +time + time2 + time3   , data = df_3, family = 'binomial')
+# glm.fit: fitted probabilities numerically 0 or 1 occurred 
+hyp3_country_type_deaths_a_logit = glm(policy_dum ~ type*country*measure_H3_deaths_a +time+time2+time3   , data = df_3, family = 'binomial')
+hyp3_rai_type_deaths_a_logit = glm(policy_dum ~type*RAI*measure_H3_deaths_a +time+time2+time3    , data = df_3, family = 'binomial')
+hyp3_self_type_deaths_a_logit = glm(policy_dum ~ type*Self*measure_H3_deaths_a +time+time2+time3  , data = df_3, family = 'binomial')
 
-hyp3_country_type_deaths_b_logit = glm(policy_dum ~ country*type*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_rai_type_deaths_b_logit = glm(policy_dum ~ RAI*type*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_self_type_deaths_b_logit = glm(policy_dum ~ Self*type*measure_H3_deaths_b +time    , data = df_3, family = 'binomial')
+hyp3_country_type_deaths_b_logit = glm(policy_dum ~ type*country*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
+hyp3_rai_type_deaths_b_logit = glm(policy_dum ~ type*RAI*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
+hyp3_self_type_deaths_b_logit = glm(policy_dum ~ type*Self*measure_H3_deaths_b +time + time2 + time3   , data = df_3, family = 'binomial')
 
 
-hyp3_country_diff_deaths_a_logit = glm(policy_dum ~ country*differentiating*measure_H3_deaths_a  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_rai_diff_deaths_a_logit = glm(policy_dum ~ RAI*differentiating*measure_H3_deaths_a  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_self_diff_deaths_a_logit = glm(policy_dum ~ Self*differentiating*measure_H3_deaths_a +time + time2 + time3   , data = df_3, family = 'binomial')
+hyp3_country_diff_deaths_a_logit = glm(policy_dum ~ differentiating*country*measure_H3_deaths_a +time+time2+time3  , data = df_3, family = 'binomial')
+hyp3_rai_diff_deaths_a_logit = glm(policy_dum ~ differentiating*RAI*measure_H3_deaths_a  +time+time2+time3 , data = df_3, family = 'binomial')
+hyp3_self_diff_deaths_a_logit = glm(policy_dum ~ differentiating*Self*measure_H3_deaths_a +time +time2 +time3, data = df_3, family = 'binomial')
 
-hyp3_country_diff_deaths_b_logit = glm(policy_dum ~ country*differentiating*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_rai_diff_deaths_b_logit = glm(policy_dum ~ RAI*differentiating*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
-hyp3_self_diff_deaths_b_logit = glm(policy_dum ~ Self*differentiating*measure_H3_deaths_b +time    , data = df_3, family = 'binomial')
+hyp3_country_diff_deaths_b_logit = glm(policy_dum ~ differentiating*country*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
+hyp3_rai_diff_deaths_b_logit = glm(policy_dum ~ differentiating*RAI*measure_H3_deaths_b  +time + time2 + time3  , data = df_3, family = 'binomial')
+hyp3_self_diff_deaths_b_logit = glm(policy_dum ~ differentiating*Self*measure_H3_deaths_b +time  +time2 +time3 , data = df_3, family = 'binomial')
 
 
 # ols of policy count
-hyp3_country_type_deaths_a = lm(lpolicy_count ~ country*type*measure_H3_deaths_a  + time + time2 +time3, data = df_3)
-hyp3_rai_type_deaths_a = lm(lpolicy_count ~ RAI*type*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
-hyp3_self_type_deaths_a = lm(lpolicy_count ~ Self*type*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
+hyp3_country_type_deaths_a = lm(lpolicy_count ~ type*country*measure_H3_deaths_a  + time + time2 +time3, data = df_3)
+hyp3_rai_type_deaths_a = lm(lpolicy_count ~ type*RAI*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
+hyp3_self_type_deaths_a = lm(lpolicy_count ~ type*Self*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
 
-hyp3_country_type_deaths_b  = lm(lpolicy_count ~ country*type*measure_H3_deaths_b   + time + time2 +time3, data = df_3)
-hyp3_rai_type_deaths_b  = lm(lpolicy_count ~ RAI*type*measure_H3_deaths_b    + time + time2 +time3, data = df_3)
-hyp3_self_type_deaths_b  = lm(lpolicy_count ~ Self*type*measure_H3_deaths_b + time + time2 +time3, data = df_3)
+hyp3_country_type_deaths_b  = lm(lpolicy_count ~ type*country*measure_H3_deaths_b   + time + time2 +time3, data = df_3)
+hyp3_rai_type_deaths_b  = lm(lpolicy_count ~ type*RAI*measure_H3_deaths_b    + time + time2 +time3, data = df_3)
+hyp3_self_type_deaths_b  = lm(lpolicy_count ~ type*Self*measure_H3_deaths_b + time + time2 +time3, data = df_3)
  
-hyp3_country_diff_deaths_a = lm(lpolicy_count ~ country*differentiating*measure_H3_deaths_a  + time + time2 +time3, data = df_3)
-hyp3_rai_diff_deaths_a= lm(lpolicy_count ~ RAI*differentiating*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
-hyp3_self_diff_deaths_a = lm(lpolicy_count ~ Self*differentiating*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
+hyp3_country_diff_deaths_a = lm(lpolicy_count ~ differentiating*country*measure_H3_deaths_a  + time + time2 +time3, data = df_3)
+hyp3_rai_diff_deaths_a= lm(lpolicy_count ~ differentiating*RAI*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
+hyp3_self_diff_deaths_a = lm(lpolicy_count ~ differentiating*Self*measure_H3_deaths_a   + time + time2 +time3, data = df_3)
 
-hyp3_country_diff_deaths_b  = lm(lpolicy_count ~ country*differentiating*measure_H3_deaths_b   + time + time2 +time3, data = df_3)
-hyp3_rai_diff_deaths_b = lm(lpolicy_count ~ RAI*differentiating*measure_H3_deaths_b    + time + time2 +time3, data = df_3)
-hyp3_self_diff_deaths_b  = lm(lpolicy_count ~ Self*differentiating*measure_H3_deaths_b + time + time2 +time3, data = df_3)
+hyp3_country_diff_deaths_b  = lm(lpolicy_count ~ differentiating*country*measure_H3_deaths_b   + time + time2 +time3, data = df_3)
+hyp3_rai_diff_deaths_b = lm(lpolicy_count ~ differentiating*RAI*measure_H3_deaths_b    + time + time2 +time3, data = df_3)
+hyp3_self_diff_deaths_b  = lm(lpolicy_count ~ differentiating*Self*measure_H3_deaths_b + time + time2 +time3, data = df_3)
  
 
 # ---------------------
 # substantive effect plots
 # --------------------
 # user created function to generate plots quickly
-makeH3plots = function(model){
+
+quantile(df_3$measure_H3_deaths_b, c(.1, .99), na.rm = TRUE)
+makeH3plots = function(model, pubPlot = FALSE){
   
   varNames = names(coef(model))
   
   unit = ifelse(any(grepl('RAI', varNames)), 'RAI', ifelse(any(grepl('Self', varNames)), 'Self', 'country'))
   policy = ifelse(any(grepl('differentiating', varNames)), 'differentiating', 'type')
-  deaths = ifelse(any(grepl('deaths_a', varNames)), 'measure_H3_deaths_a [0, 8.5]', 'measure_H3_deaths_b [-1, 7.6]')
+  deaths = ifelse(any(grepl('deaths_a', varNames)), 'measure_H3_deaths_a [0, 8.5]', 'measure_H3_deaths_b [-1, 7.5]')
   
   xMin = ifelse(any(grepl('deaths_a', varNames)),0 , -1)
-  xMax = ifelse(any(grepl('deaths_a', varNames)),8.5 , 7.6)
+  xMax = ifelse(any(grepl('deaths_a', varNames)),8.5 , 7.5)
   
   dvLabel = ifelse(any(grepl('lpolicy_count', model$call)), 'Policy Count, Logged', 'Policy Dum')
   deathsLabel = ifelse(any(grepl('deaths_a', varNames)), 'Relative Proportional Death Rate',"Relative Standardized Death Rate")
@@ -182,32 +192,49 @@ makeH3plots = function(model){
   plot = plot_model(model, 
                     type = 'pred', 
                     terms = c(deaths, unit, policy)
-                    )+
-    #geom_rug( position = "jitter", sides = 'b')+
-    #geom_rug( position = "jitter", sides = 'b')+
+                    )
+  
+    if (pubPlot == FALSE){
+      plot = plot+ 
+        labs(y = dvLabel,
+                          x = deathsLabel,
+                          title = paste0('Predicted Values of ', dvLabel, ',', '\n', modelLabel),
+                          colors = c('red', 'blue', 'green', 'purple'))}
+  
+  if (pubPlot == TRUE){
+    plot = plot+ 
+      labs(y = dvLabel,
+           x = deathsLabel,
+           title= NULL,
+           colors = c('red', 'blue', 'green', 'purple'))}
+  
+  plot = plot +
     xlim(xMin, xMax)+
-    labs(y = dvLabel,
-         x = deathsLabel,
-         title = paste0('Predicted Values of ', dvLabel, ',', '\n', modelLabel),
-         colors = c('red', 'blue', 'green', 'purple'))+
     scale_color_manual(values  = legendColor,
                        name = legendTitle, 
                        labels = legendLabels)+
     scale_fill_manual(values  = legendColor,
-                       name = legendTitle, 
-                       labels = legendLabels)+
-    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ 
+                      name = legendTitle, 
+                      labels = legendLabels)+
+    theme_bw()+
     theme(legend.position="bottom")
   
+ 
    
   modelfileName = ifelse(any(grepl('^lm', model$call)), 'ols', ' logit')
   unitFileName = ifelse(any(grepl('RAI', varNames)), 'rai', ifelse(any(grepl('Self', varNames)), 'self', 'country'))
   deathsFileName = ifelse(any(grepl('deaths_a', varNames)), 'proportion', 'standardized')
   policyFileName = ifelse(any(grepl('differentiating', varNames)), '_diff', '')
 
-  folderName = ifelse(modelfileName == 'ols', 'OLS/', 'Logit/')
+  folderName = ifelse(modelfileName == 'ols', '/OLS', '/Logit')
 
-  fileName = paste0('WEP_analysis/Results/predictedEffectsH3/', folderName, 'predicted_effects_h3_', modelfileName, '_', unitFileName, '_', deathsFileName, policyFileName, '.pdf')
+  if(pubPlot == FALSE){
+    fileName = paste0('WEP_analysis/Results/predictedEffectsH3', folderName, '/predicted_effects_h3_', modelfileName, '_', unitFileName, '_', deathsFileName, policyFileName, '.pdf')
+
+  } else if  (pubPlot == TRUE){
+    fileName = paste0('WEP_analysis/Results/predictedEffectsH3/', paste0(folderName, '_pub'), '/predicted_effects_h3_', modelfileName, '_', unitFileName, '_', deathsFileName, policyFileName, '.pdf')
+
+  }
   ggsave(fileName, plot)
 
 }
@@ -231,8 +258,8 @@ makeH3plots(hyp3_self_diff_deaths_b )
 
 # make logit plots
 makeH3plots(hyp3_country_type_deaths_a_logit)
-makeH3plots(hyp3_rai_type_deaths_a_logit ) 
-makeH3plots(hyp3_self_type_deaths_a_logit ) 
+makeH3plots(hyp3_rai_type_deaths_a_logit )
+makeH3plots(hyp3_self_type_deaths_a_logit )
 
 makeH3plots(hyp3_country_type_deaths_b_logit ) 
 makeH3plots(hyp3_rai_type_deaths_b_logit ) 
@@ -247,139 +274,37 @@ makeH3plots(hyp3_rai_diff_deaths_b_logit )
 makeH3plots(hyp3_self_diff_deaths_b_logit ) 
  
 
-# ---------------------
-# format nice tables
-# --------------------
+## plots for publication
 
-coefMap = list(
-  'RAI' = 'RAI',
-  'Self' = 'Self',
-  
-  "typeRestrictions of Mass Gatherings" = 'Restrictions of Mass Gatherings Dum',
-  'typeLockdown' = "Lockdown Dum",
-  'typeMask Wearing' = 'Mask Wearing Dum',
-  'typeClosure and Regulation of Schools' = 'Schools Dum',
-  
-  'measure_H3_deaths_a' = 'Prop. Death Rate',
-  'measure_H3_deaths_b' = 'Std. Death Rate',
- 
-  
-  "countrySwitzerland" = "Switzerland",
-  "countryGermany" = "Germany",
-  "countryItaly" = "Italy",
-  
-  'typeRestrictions of Mass Gatherings:countrySwitzerland' = 'Restrictions of Mass Gatherings Dum * Switzerland',
-  'typeRestrictions of Mass Gatherings:countryGermany' = 'Restrictions of Mass Gatherings Dum * Germany',
-  'typeRestrictions of Mass Gatherings:countryItaly' = 'Restrictions of Mass Gatherings Dum * Italy',
-  
-  'typeLockdown:countrySwitzerland' = 'Lockdown Dum * Switzerland',
-  'typeLockdown:countryGermany' = 'Lockdown Dum * Germany',
-  'typeLockdown:countryItaly' = 'Lockdown Dum * Italy',
-  
-  'typeMask Wearing:countrySwitzerland' = 'Mask Wearing Dum * Switzerland',
-  'typeMask Wearing:countryGermany' = 'Mask Wearing Dum * Germany',
-  'typeMask Wearing:countryItaly' = 'Mask Wearing Dum * Italy',
-  
-  'countryItaly:differentiatingUnitary' = 'Unitary Policy Dum * Italy',
-  'countryGermany:differentiatingUnitary' = 'Unitary Policy Dum * Germany',
-  'countrySwitzerland:differentiatingUnitary' = 'Unitary Policy Dum * Switzerland',
-  
-  
-  'RAI:typeMask Wearing' = 'Mask Wearing Dum * RAI',
-  'RAI:typeLockdown' = 'Lockdown Dum * RAI',
-  'RAI:typeClosure and Regulation of Schools' = 'SchoolsDum * RAI',
-  
-  'Self:typeMask Wearing' = 'Mask Wearing Dum * Self',
-  'Self:typeLockdown' = 'Lockdown Dum * Self',
-  'Self:typeClosure and Regulation of Schools' = 'SchoolsDum * Self',
-  'Self:measure_H3_deaths_b' =   'Std. Death Rate * Self',
-  
-  
-  'RAI:differentiatingUnitary' = 'Unitary Policy Dum * RAI',
-  'Self:differentiatingUnitary' = 'Unitary Policy Dum * Self Rule Index',
-  
-  'RAI:measure_H3_deaths_b' = 'Std. Death Rate * RAI',
-  'RAI:measure_H3_deaths_a' = 'Prop Death Rate * RAI',
-    
+makeH3plots(hyp3_country_type_deaths_a,  pubPlot = TRUE)
+makeH3plots(hyp3_rai_type_deaths_a,  pubPlot = TRUE) 
+makeH3plots(hyp3_self_type_deaths_a,  pubPlot = TRUE) 
 
-  'countryGermany:measure_H3_deaths_a' = 'Prop. Death Rate * Germany',
-  'countryItaly:measure_H3_deaths_a' = 'Prop. Death Rate * Italy',
-  'countrySwitzerland:measure_H3_deaths_a' = 'Prop. Death Rate * Switzerland',
-  
-  'countryGermany:measure_H3_deaths_b' = 'Std. Death Rate * Germany',
-  'countryItaly:measure_H3_deaths_b' = 'Std. Death Rate * Italy',
-  'countrySwitzerland:measure_H3_deaths_b' = 'Std. Death Rate* Switzerland',
-  
-  'differentiatingUnitary:measure_H3_deaths_a' = 'Prop. Death Rate * Unitary Policy Dum',
-  'differentiatingUnitary:measure_H3_deaths_b' = 'Std. Death Rate * Unitary Policy Dum',
-  
-  # 'typeRestrictions of Mass Gatherings:measure_H3' = 'Cases Measure * Restrictions of Mass Gatherings Dum',
-  # 'countryGermany:typeRestrictions of Mass Gatherings:measure_H3' = 'Cases Measure * Restrictions of Mass Gatherings Dum * Germany',
-  # 'countryItaly:typeRestrictions of Mass Gatherings:measure_H3' = 'Cases Measure * Restrictions of Mass Gatherings Dum * Italy',
-  # 'countrySwitzerland:typeRestrictions of Mass Gatherings:measure_H3' = 'Cases Measure * Restrictions of Mass Gatherings Dum * Switzerland',
+makeH3plots(hyp3_country_type_deaths_b,  pubPlot = TRUE ) 
+makeH3plots(hyp3_rai_type_deaths_b,  pubPlot = TRUE ) 
+makeH3plots(hyp3_self_type_deaths_b,  pubPlot = TRUE) 
 
-  'typeLockdown:measure_H3_deaths_a' = 'Prop. Death Rate * Lockdown Dum',
-  'typeMask Wearing:measure_H3_deaths_a' = 'Prop. Death Rate * Mask Wearing Dum',
-  'typeClosure and Regulation of Schools:measure_H3_deaths_a' = 'Prop. Death Rate * Schools Dum',
-  
-  'typeLockdown:measure_H3_deaths_b' = 'Std. Death Rate * Lockdown Dum',
-  'typeMask Wearing:measure_H3_deaths_a' = 'Std. Death Rate * Mask Wearing Dum',
-  'typeClosure and Regulation of Schools:measure_H3_deaths_a' = 'Std. Death Rate * Schools Dum',
-  
-  'countryGermany:typeLockdown:measure_H3_deaths_a' = 'Prop. Death Rate * Lockdown Dum * Germany',
-  'countryItaly:typeLockdown:measure_H3_deaths_a' = 'Prop. Death Rate * Lockdown Dum * Italy',
-  'countrySwitzerland:typeLockdown:measure_H3_deaths_a' = 'Prop. Death Rate * Lockdown Dum * Switzerland',
-  
-  'countryGermany:typeLockdown:measure_H3_deaths_b' = 'Std. Death Rate * Lockdown Dum * Germany',
-  'countryItaly:typeLockdown:measure_H3_deaths_b' = 'Std. Death Rate * Lockdown Dum * Italy',
-  'countrySwitzerland:typeLockdown:measure_H3_deaths_b' = 'Std. Death Rate * Lockdown Dum * Switzerland',
-  
-  'RAI:typeLockdown:measure_H3_deaths_a' = 'Prop. Death Rate * Lockdown Dum * RAI',
-  'RAI:typeMask Wearing:measure_H3_deaths_a' = 'Prop. Death Rate * Mask Wearing Dum * RAI',
-  'RAI:Closure and Regulation of Schools:measure_H3_deaths_a' = 'Prop. Death Rate * Schools Dum * RAI',
-  
-  'RAI:typeLockdown:measure_H3_deaths_b' = 'Std. Death Rate * Lockdown Dum * RAI',
-  'RAI:typeMask Wearing:measure_H3_deaths_b' = 'Std. Death Rate * Mask Wearing Dum * RAI',
-  'RAI:typeClosure and Regulation of Schools:measure_H3_deaths_b' = 'Std. Death Rate * Schools * RAI',
-  
-  'Self:typeLockdown:measure_H3_deaths_a' = 'Prop. Death Rate * Lockdown Dum * Self',
-  'Self:typeMask Wearing:measure_H3_deaths_a' = 'Prop. Death Rate * Mask Wearing Dum * Self',
-  'Self:typeClosure and Regulation of Schools:measure_H3_deaths_a' = 'Prop. Death Rate * Schools Dum * Self',
-  
-  'Self:typeLockdown:measure_H3_deaths_b' = 'Std. Death Rate * Lockdown Dum * Self',
-  'Self:typeMask Wearing:measure_H3_deaths_b' = 'Std. Death Rate * Mask Wearing * Self',
-  'Self:typeClosure and Regulation of Schools:measure_H3_deaths_b' = 'Std. Death Rate * Schools Dum * Self',
-  
-  
-  'countryItaly:differentiatingUnitary:measure_H3_deaths_b' = 'Std. Death Rate * Unitary Policy Dum * Italy',
-  'countryGermany:differentiatingUnitary:measure_H3_deaths_b' = 'Std. Death Rate * Unitary Policy Dum * Germany',
-  'countrySwitzerland:differentiatingUnitary:measure_H3_deaths_b' = 'Std. Death Rate * Unitary Policy Dum * Switzerland',
-  
-  'countryItaly:differentiatingUnitary:measure_H3_deaths_b' = 'Prop. Death Rate * Unitary Policy Dum * Italy',
-  'countryGermany:differentiatingUnitary:measure_H3_deaths_b' = 'Prop. Death Rate * Unitary Policy Dum * Germany',
-  'countrySwitzerland:differentiatingUnitary:measure_H3_deaths_b' = 'Prop. Death Rate * Unitary Policy Dum * Switzerland',
-  
-  'RAI:differentiatingUnitary:measure_H3_deaths_a' = 'Prop. Death Rate * Unitary Policy Dum * RAI',
-  'RAI:differentiatingUnitary:measure_H3_deaths_b' = 'Std. Death Rate * Unitary Policy Dum * RAI',
-  
-  'Self:differentiatingUnitary:measure_H3_deaths_a' = 'Prop. Death Rate * Unitary Policy Dum * Self Rule Index',
-  'Self:differentiatingUnitary:measure_H3_deaths_b' = 'Std. Death Rate * Unitary Policy Dum * Self Rule Index',
-  
-  'measure_H1_H2_cases_ECDC' = 'National Cases Count',
-  
-  'time' = 'time',
-  'time2' = 'time2',
-  'time3' = 'time3',
-  '(Intercept)' = "Intercept"
-)
+makeH3plots(hyp3_country_diff_deaths_a,  pubPlot = TRUE ) 
+makeH3plots(hyp3_rai_diff_deaths_a,  pubPlot = TRUE ) 
+makeH3plots(hyp3_self_diff_deaths_a,  pubPlot = TRUE ) 
 
+makeH3plots(hyp3_country_diff_deaths_b,  pubPlot = TRUE ) 
+makeH3plots(hyp3_rai_diff_deaths_b ,  pubPlot = TRUE) 
+makeH3plots(hyp3_self_diff_deaths_b ,  pubPlot = TRUE) 
 
-summary(hyp3_rai_diff_deaths_b)
-htmlreg(list(hyp3_country_diff_deaths_b, hyp3_country_diff_deaths_a),
-       custom.coef.map = coefMap )
- 
-texreg(list(model3a, model3b, model3c),
-       custom.coef.map = coefMap,
-       custom.model.names = c( 'Logit', 'Poisson', "OLS"))
+# make logit plots
+makeH3plots(hyp3_country_type_deaths_a_logit,  pubPlot = TRUE)
+makeH3plots(hyp3_rai_type_deaths_a_logit,  pubPlot = TRUE )
+makeH3plots(hyp3_self_type_deaths_a_logit ,  pubPlot = TRUE)
 
- 
+makeH3plots(hyp3_country_type_deaths_b_logit,  pubPlot = TRUE ) 
+makeH3plots(hyp3_rai_type_deaths_b_logit,  pubPlot = TRUE ) 
+makeH3plots(hyp3_self_type_deaths_b_logit,  pubPlot = TRUE ) 
+
+makeH3plots(hyp3_country_diff_deaths_a_logit,  pubPlot = TRUE ) 
+makeH3plots(hyp3_rai_diff_deaths_a_logit ,  pubPlot = TRUE) 
+makeH3plots(hyp3_self_diff_deaths_a_logit ,  pubPlot = TRUE) 
+
+makeH3plots(hyp3_country_diff_deaths_b_logit ,  pubPlot = TRUE) 
+makeH3plots(hyp3_rai_diff_deaths_b_logit ,  pubPlot = TRUE) 
+makeH3plots(hyp3_self_diff_deaths_b_logit ,  pubPlot = TRUE) 

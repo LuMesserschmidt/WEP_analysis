@@ -31,7 +31,7 @@ vertical-align: 0px;
 
 <body>
 <table cellspacing="0" align="center">
-<caption align="bottom" style="margin-top:0.3em;">Statistical models</caption>
+<caption align="top" style="margin-bottom:0.3em;">Statistical models</caption>
 <tr>
 <th><b></b></th>
 <th><b>H1</b></th>
@@ -42,7 +42,7 @@ vertical-align: 0px;
 <td>Self Rule Index</td>
 <td>-0.99<sup>***</sup></td>
 <td>0.41<sup>***</sup></td>
-<td>1.52<sup>***</sup></td>
+<td>1.62<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -54,7 +54,7 @@ vertical-align: 0px;
 <td>Homogeneous Policy Dum</td>
 <td>-0.72<sup>***</sup></td>
 <td>0.11<sup>**</sup></td>
-<td>3.51<sup>***</sup></td>
+<td>3.55<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -66,7 +66,7 @@ vertical-align: 0px;
 <td>Homogeneous Policy Dum * Self Rule Index</td>
 <td>0.86<sup>***</sup></td>
 <td>-0.15<sup>***</sup></td>
-<td>-2.68<sup>***</sup></td>
+<td>-2.72<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -78,7 +78,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate</td>
 <td></td>
 <td></td>
-<td>0.07</td>
+<td>0.08</td>
 </tr>
 <tr>
 <td></td>
@@ -90,7 +90,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Self Rule Index</td>
 <td></td>
 <td></td>
-<td>-0.12</td>
+<td>-0.14</td>
 </tr>
 <tr>
 <td></td>
@@ -102,7 +102,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Homogeneous Policy Dum</td>
 <td></td>
 <td></td>
-<td>-0.41<sup>***</sup></td>
+<td>-0.42<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -114,7 +114,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Homogeneous Policy Dum * Self Rule Index</td>
 <td></td>
 <td></td>
-<td>0.60<sup>***</sup></td>
+<td>0.62<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -124,7 +124,7 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>HHI (new deaths)</td>
-<td>0.02</td>
+<td>0.01</td>
 <td>0.01</td>
 <td></td>
 </tr>
@@ -136,21 +136,21 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>National Cases Count</td>
-<td>50.48<sup>***</sup></td>
-<td>-2.47<sup>*</sup></td>
+<td>50.66<sup>***</sup></td>
+<td>-2.46<sup>*</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td>(3.14)</td>
-<td>(1.17)</td>
+<td>(1.18)</td>
 <td></td>
 </tr>
 <tr>
 <td>time</td>
 <td>0.00</td>
 <td>0.00</td>
-<td>-0.00<sup>***</sup></td>
+<td>0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -161,8 +161,8 @@ vertical-align: 0px;
 <tr>
 <td>time2</td>
 <td>0.00<sup>***</sup></td>
-<td>0.00<sup>**</sup></td>
-<td>0.00<sup>***</sup></td>
+<td>0.00<sup>*</sup></td>
+<td>-0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -174,7 +174,7 @@ vertical-align: 0px;
 <td>time3</td>
 <td>-0.00<sup>***</sup></td>
 <td>-0.00<sup>***</sup></td>
-<td>-0.00<sup>***</sup></td>
+<td>0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -184,9 +184,9 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Intercept</td>
-<td>0.80<sup>***</sup></td>
+<td>0.79<sup>***</sup></td>
 <td>-0.36<sup>***</sup></td>
-<td>-1.44<sup>***</sup></td>
+<td>-2.09<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -202,15 +202,15 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Adj. R<sup>2</sup></td>
-<td>0.32</td>
+<td>0.33</td>
 <td>0.13</td>
 <td></td>
 </tr>
 <tr>
 <td>Num. obs.</td>
-<td>3184</td>
-<td>3184</td>
-<td>44232</td>
+<td>3168</td>
+<td>3168</td>
+<td>43916</td>
 </tr>
 <tr>
 <td>RMSE</td>
@@ -222,25 +222,25 @@ vertical-align: 0px;
 <td>AIC</td>
 <td></td>
 <td></td>
-<td>55356.12</td>
+<td>54785.58</td>
 </tr>
 <tr>
 <td>BIC</td>
 <td></td>
 <td></td>
-<td>55451.79</td>
+<td>54881.17</td>
 </tr>
 <tr>
 <td>Log Likelihood</td>
 <td></td>
 <td></td>
-<td>-27667.06</td>
+<td>-27381.79</td>
 </tr>
 <tr>
 <td class="bottomRule">Deviance</td>
 <td class="bottomRule"></td>
 <td class="bottomRule"></td>
-<td class="bottomRule">55334.12</td>
+<td class="bottomRule">54763.58</td>
 </tr>
 <tr>
 <td colspan="5"><span style="font-size:0.8em"><sup>***</sup>p &lt; 0.001, <sup>**</sup>p &lt; 0.01, <sup>*</sup>p &lt; 0.05</span></td>

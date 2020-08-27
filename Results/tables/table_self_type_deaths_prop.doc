@@ -31,7 +31,7 @@ vertical-align: 0px;
 
 <body>
 <table cellspacing="0" align="center">
-<caption align="bottom" style="margin-top:0.3em;">Statistical models</caption>
+<caption align="top" style="margin-bottom:0.3em;">Statistical models</caption>
 <tr>
 <th><b></b></th>
 <th><b>H1</b></th>
@@ -42,7 +42,7 @@ vertical-align: 0px;
 <td>Self Rule Index</td>
 <td>-0.03</td>
 <td>-0.10<sup>*</sup></td>
-<td>-0.28</td>
+<td>-0.18</td>
 </tr>
 <tr>
 <td></td>
@@ -52,7 +52,7 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Lockdown Dum</td>
-<td>0.98<sup>***</sup></td>
+<td>0.99<sup>***</sup></td>
 <td>-0.35<sup>***</sup></td>
 <td>-6.85<sup>***</sup></td>
 </tr>
@@ -64,9 +64,9 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Mask Wearing Dum</td>
-<td>-0.39<sup>**</sup></td>
+<td>-0.38<sup>**</sup></td>
 <td>-0.58<sup>***</sup></td>
-<td>-0.80<sup>*</sup></td>
+<td>-0.74<sup>*</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -78,7 +78,7 @@ vertical-align: 0px;
 <td>Schools Dum</td>
 <td>0.08</td>
 <td>-0.46<sup>***</sup></td>
-<td>-2.55<sup>***</sup></td>
+<td>-2.56<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -89,8 +89,8 @@ vertical-align: 0px;
 <tr>
 <td>Mask Wearing Dum * Self Rule Index</td>
 <td>-0.20</td>
-<td>0.72<sup>***</sup></td>
-<td>-1.55<sup>***</sup></td>
+<td>0.73<sup>***</sup></td>
+<td>-1.61<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -100,8 +100,8 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Lockdown Dum * Self Rule Index</td>
-<td>-1.55<sup>***</sup></td>
-<td>0.41<sup>***</sup></td>
+<td>-1.56<sup>***</sup></td>
+<td>0.42<sup>***</sup></td>
 <td>3.66<sup>***</sup></td>
 </tr>
 <tr>
@@ -113,20 +113,20 @@ vertical-align: 0px;
 <tr>
 <td>SchoolsDum * Self Rule Index</td>
 <td>-0.37<sup>**</sup></td>
-<td>0.60<sup>***</sup></td>
-<td>1.18<sup>**</sup></td>
+<td>0.61<sup>***</sup></td>
+<td>1.22<sup>**</sup></td>
 </tr>
 <tr>
 <td></td>
 <td>(0.14)</td>
 <td>(0.06)</td>
-<td>(0.39)</td>
+<td>(0.40)</td>
 </tr>
 <tr>
 <td>Prop. Death Rate</td>
 <td></td>
 <td></td>
-<td>-1.58<sup>***</sup></td>
+<td>-1.57<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -150,7 +150,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Lockdown Dum</td>
 <td></td>
 <td></td>
-<td>1.40<sup>***</sup></td>
+<td>1.41<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -162,7 +162,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Mask Wearing Dum</td>
 <td></td>
 <td></td>
-<td>1.31<sup>***</sup></td>
+<td>1.30<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -174,7 +174,7 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Schools Dum</td>
 <td></td>
 <td></td>
-<td>1.72<sup>***</sup></td>
+<td>1.73<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -186,31 +186,31 @@ vertical-align: 0px;
 <td>Prop. Death Rate * Lockdown Dum * Self Rule Index</td>
 <td></td>
 <td></td>
-<td>-2.06<sup>***</sup></td>
+<td>-2.07<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
 <td></td>
-<td>(0.37)</td>
+<td>(0.38)</td>
 </tr>
 <tr>
 <td>Prop. Death Rate * Mask Wearing Dum * Self Rule Index</td>
 <td></td>
 <td></td>
-<td>-1.81<sup>***</sup></td>
+<td>-1.80<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
 <td></td>
-<td>(0.35)</td>
+<td>(0.36)</td>
 </tr>
 <tr>
 <td>Prop. Death Rate * Schools Dum * Self Rule Index</td>
 <td></td>
 <td></td>
-<td>-2.41<sup>***</sup></td>
+<td>-2.43<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -220,7 +220,7 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>HHI (new deaths)</td>
-<td>0.02</td>
+<td>0.01</td>
 <td>0.01</td>
 <td></td>
 </tr>
@@ -232,21 +232,21 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>National Cases Count</td>
-<td>50.49<sup>***</sup></td>
-<td>-2.47<sup>*</sup></td>
+<td>50.67<sup>***</sup></td>
+<td>-2.46<sup>*</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td>(2.62)</td>
-<td>(1.12)</td>
+<td>(1.13)</td>
 <td></td>
 </tr>
 <tr>
 <td>time</td>
 <td>0.00</td>
 <td>0.00</td>
-<td>-0.00<sup>***</sup></td>
+<td>0.01<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -258,7 +258,7 @@ vertical-align: 0px;
 <td>time2</td>
 <td>0.00<sup>***</sup></td>
 <td>0.00<sup>**</sup></td>
-<td>0.00<sup>***</sup></td>
+<td>-0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -270,7 +270,7 @@ vertical-align: 0px;
 <td>time3</td>
 <td>-0.00<sup>***</sup></td>
 <td>-0.00<sup>***</sup></td>
-<td>-0.00<sup>***</sup></td>
+<td>0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -280,9 +280,9 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Intercept</td>
-<td>0.27<sup>**</sup></td>
+<td>0.26<sup>**</sup></td>
 <td>0.04</td>
-<td>2.67<sup>***</sup></td>
+<td>1.85<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -304,9 +304,9 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Num. obs.</td>
-<td>3184</td>
-<td>3184</td>
-<td>44232</td>
+<td>3168</td>
+<td>3168</td>
+<td>43916</td>
 </tr>
 <tr>
 <td>RMSE</td>
@@ -318,25 +318,25 @@ vertical-align: 0px;
 <td>AIC</td>
 <td></td>
 <td></td>
-<td>45569.52</td>
+<td>45085.99</td>
 </tr>
 <tr>
 <td>BIC</td>
 <td></td>
 <td></td>
-<td>45734.77</td>
+<td>45251.10</td>
 </tr>
 <tr>
 <td>Log Likelihood</td>
 <td></td>
 <td></td>
-<td>-22765.76</td>
+<td>-22523.99</td>
 </tr>
 <tr>
 <td class="bottomRule">Deviance</td>
 <td class="bottomRule"></td>
 <td class="bottomRule"></td>
-<td class="bottomRule">45531.52</td>
+<td class="bottomRule">45047.99</td>
 </tr>
 <tr>
 <td colspan="5"><span style="font-size:0.8em"><sup>***</sup>p &lt; 0.001, <sup>**</sup>p &lt; 0.01, <sup>*</sup>p &lt; 0.05</span></td>

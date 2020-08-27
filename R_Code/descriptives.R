@@ -528,9 +528,9 @@ case<- data %>%
 cased<- case%>%
   group_by(country)%>%
   mutate(cases_national_ECDC=cumsum(new_cases_national_ECDC),
-         cases_relative=cases_national_ECDC/pop*100,
+         cases_relative=cases_national_ECDC/pop*100000,
          deaths_national_ECDC=cumsum(new_deaths_national_ECDC),
-         deaths_relative=deaths_national_ECDC/pop*100)
+         deaths_relative=deaths_national_ECDC/pop*100000)
 cases_national<-cased[!is.na(cased$cases_relative),]
 deaths_national<-cases_national[!is.na(cases_national$deaths_relative),]
 
@@ -538,12 +538,12 @@ dat<- left_join(cases_national,df_fed,by=c("country"="country"))
 dat$fed<-as.character(dat$HueglinFennaFederalPolity) %>% as.factor()
 
 gg12.1<- dat%>% filter(!is.na(fed),date=="2020-07-21") %>% ggplot(aes(x=fed, y=(cases_relative))) +
-  geom_boxplot()+ theme_bw()+ylab("Relative Cases in Percent")+xlab("Federalism")+
+  geom_boxplot()+ theme_bw()+ylab("Cases per 100.000")+xlab("Federalism")+
   ggsave(filename = "results/Descriptives/gg12_1.jpg",
          height = 7)
 
 gg12.2<- dat%>% filter(!is.na(fed),date=="2020-07-21") %>% ggplot(aes(x=fed, y=(deaths_relative))) +
-  geom_boxplot()+ theme_bw()+ylab("Relative Deaths in Percent")+xlab("Federalism")+
+  geom_boxplot()+ theme_bw()+ylab("Deaths per 100.000")+xlab("Federalism")+
   ggsave(filename = "results/Descriptives/gg12_2.jpg",
          height = 7)
 

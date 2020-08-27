@@ -39,13 +39,13 @@ df_hhi <- read_csv("WEP_analysis/Measures/hhi_deaths.csv", guess_max = 10000)
 df_2 = merge(policy_heterog , df_cases_nat, by = c("country","date"), all.x = TRUE)
 df_2 = merge(df_2 , df_hhi[, c('country', 'date', 'hhi_cumulative_deaths', 'hhi_new_deaths')], by = c("country","date"), all.x = TRUE)
 df_2 = merge(df_2 , df_fed[, c('country',  'Self', 'RAI')], by = c("country"), all.x = TRUE)
-
+df_2 = df_2 %>% filter(date <= "2020-07-21")
 # ----------------------------
 # create variables
 # ----------------------------
  
 # make 'differentiating' variable
-df_2$differentiating = ifelse(df_2$type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Unitary') %>% factor()
+df_2$differentiating = ifelse(df_2$type %in% c("Lockdown", "Closure and Regulation of Schools"), 'Differentiated', 'Homogeneous') %>% factor()
 df_2 = within(df_2, differentiating <- relevel(differentiating, ref =  'Differentiated'))
 
 # make time count variable
@@ -64,48 +64,25 @@ df_2 = within(df_2, type <- relevel(type, ref = 'Restrictions of Mass Gatherings
 
  
 # -----------------
-# EDA
-# ----------------
-
-
-
-# -----------------
 # Run models
 # ----------------
-# note that the distribution of the DV is highly bimodal; see what happens when you run a logit
-# note that when you include time3 -- 0 or 1 is perfectly predicted
-# logitA = glm(centDegR ~ type*country +measure_H2_H2_cases_ECDC+hhi_new_deaths + time  , data = df_2, family = 'binomial' )
-# logitB = glm(centDegR ~ type*RAI +measure_H2_H2_cases_ECDC +hhi_new_deaths + time , data = df_2, family = 'binomial' )
-# logitC = glm(centDegR ~ type*Self+measure_H2_H2_cases_ECDC +hhi_new_deaths+ time , data = df_2, family = 'binomial' )
-#https://stats.stackexchange.com/questions/336424/issue-with-complete-separation-in-logistic-regression-in-r
 
- 
 # type as interaction
 hyp2_country_type = lm(hetero_mean ~ type*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
 hyp2_rai_type = lm(hetero_mean ~ type*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
 hyp2_self_type = lm(hetero_mean ~ type*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
+ 
 
 # diff dum as interaction
 hyp2_country_diff = lm(hetero_mean ~ differentiating*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
 hyp2_rai_diff = lm(hetero_mean ~ differentiating*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
 hyp2_self_diff = lm(hetero_mean ~ differentiating*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
 
-
-hyp2_country_type = lm(hetero_mean ~ type*country +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
-hyp2_rai_type = lm(hetero_mean ~ type*RAI +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
-
-hyp2_self_type = lm(hetero_mean ~ type*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df_2 )
 
 # # -----------------
 # Substantive effect plots
 # ----------------
-makeH2plots = function(model){
+makeH2plots = function(model, pubPlot = FALSE){
   
   varNames = names(coef(model))
   
@@ -121,46 +98,42 @@ makeH2plots = function(model){
                       ifelse(any(grepl('Self', varNames)), 'Self Rule Index', 
                              'Policy Type'))
   
-  legendTitle = ifelse(any(grepl('differentiating', varNames)), 'Policy Type', 'Country')
-  
-  if (any(grepl('differentiating', varNames))){
-    legendLabels = c('Differentiated', 'Unitary')
-    legendColor = c("#E41A1C", "#377EB8" )
-  } else{
-    legendLabels =  c('France', 'Italy', 'Switzerland', 'Germany')
-    legendColor = c("#E41A1C", "#377EB8", "#984EA3"  ,"#4DAF4A" )
-  }
-  
   if(any(grepl('RAI|Self', varNames))){
     
-    
     plot = plot_model(model, 
                       type = 'pred', 
-                      terms = c(unit, policy  )) 
+                      terms = c(unit, policy  ),
+                      legend.title = 'Policy Type') 
     
   } else{
-    legendLabels =  c('France', 'Italy', 'Switzerland', 'Germany')
-    legendColor = c("#E41A1C", "#377EB8", "#984EA3"  ,"#4DAF4A" )
     plot = plot_model(model, 
                       type = 'pred', 
-                      terms = c(policy, unit )
+                      terms = c(policy, unit),
+                      legend.title = 'Country'
+                                
     )
   }
   
   
-  plot = plot + 
-    labs(y = dvLabel,
-         x = unitLabel,
-         title = paste0('Predicted Values of ', dvLabel, ',', '\n', modelLabel))+
-    scale_color_manual(values  = legendColor,
-                       name = legendTitle, 
-                       labels = legendLabels)+
-    scale_fill_manual(values  = legendColor,
-                      name = legendTitle, 
-                      labels = legendLabels)+
-    coord_cartesian(clip = "off") +
-    theme(legend.position="bottom")
+  if (pubPlot == FALSE){
+    plot = plot+ 
+      labs(y = dvLabel,
+           x = unitLabel,
+           title= paste0('Predicted Values of ', dvLabel, ',', '\n', modelLabel),
+           colors = c('red', 'blue', 'green', 'purple'))}
   
+  if (pubPlot == TRUE){
+    plot = plot+ 
+      labs(y = dvLabel,
+           x = unitLabel,
+           title= NULL,
+           colors = c('red', 'blue', 'green', 'purple'))}
+  
+  plot = plot +
+    coord_cartesian(clip = "off") +
+    theme_bw()+
+    theme(legend.position="bottom")
+
   
   print(plot)
   
@@ -168,9 +141,16 @@ makeH2plots = function(model){
   unitFileName = ifelse(any(grepl('RAI', varNames)), 'rai', ifelse(any(grepl('Self', varNames)), 'self', 'countrydum'))
   policyFileName = ifelse(any(grepl('differentiating', varNames)), '_diff', '')
 
-
-  fileName = paste0('WEP_analysis/Results/predictedEffectsH2/','predicted_effects_h2_', modelfileName, '_', unitFileName, policyFileName, '.pdf')
-  ggsave(fileName, plot)
+  if(pubPlot == FALSE){
+    fileName = paste0('WEP_analysis/Results/predictedEffectsH2/OLS/','predicted_effects_h2_', modelfileName, '_', unitFileName, policyFileName, '.pdf')
+    
+  }
+  
+  if(pubPlot == TRUE){
+    fileName = paste0('WEP_analysis/Results/predictedEffectsH2/OLS_pub/','predicted_effects_h2_', modelfileName, '_', unitFileName, policyFileName, '.pdf')
+    
+  }
+   ggsave(fileName, plot)
 
 }
 
@@ -184,76 +164,11 @@ makeH2plots(hyp2_rai_diff)
 makeH2plots(hyp2_self_diff)
 
 
-#-------------
-# format nice tables
-#------------
-coefMap = list(
-  
-  "typeRestrictions of Mass Gatherings" = 'Restrictions of Mass Gatherings Dum',
-  'typeLockdown' = "Lockdown Dum",
-  'typeMask Wearing' = 'Mask Wearing Dum',
-  'typeClosure and Regulation of Schools' = 'Schools Dum',
-  
-  "countrySwitzerland" = "Switzerland",
-  "countryGermany" = "Germany",
-  "countryItaly" = "Italy",
-  
-  'typeRestrictions of Mass Gatherings:countrySwitzerland' = 'Restrictions of Mass Gatherings Dum * Switzerland',
-  'typeRestrictions of Mass Gatherings:countryGermany' = 'Restrictions of Mass Gatherings Dum * Germany',
-  'typeRestrictions of Mass Gatherings:countryItaly' = 'Restrictions of Mass Gatherings Dum * Italy',
-  
-  'typeLockdown:countrySwitzerland' = 'Lockdown Dum * Switzerland',
-  'typeLockdown:countryGermany' = 'Lockdown Dum * Germany',
-  'typeLockdown:countryItaly' = 'Lockdown Dum * Italy',
-  
-  'typeMask Wearing:countrySwitzerland' = 'Mask Wearing Dum * Switzerland',
-  'typeMask Wearing:countryGermany' = 'Mask Wearing Dum * Germany',
-  'typeMask Wearing:countryItaly' = 'Mask Wearing Dum * Italy',
-  
-  'Self:typeMask Wearing' = 'Mask Wearing Dum * Self Rule Index',
-  'Self:typeLockdown' = 'Lockdown Dum * Self Rule Index',
-  'Self:typeClosure and Regulation of Schools' = 'SchoolsDum * Self Rule Index',
-  'Self:measure_H3_deaths_b' =   'Std. Death Rate * Self Rule Index',
-  
-  'typeMask Wearing:Self' = 'Mask Wearing Dum * Self Rule Index',
-  'typeLockdown:Self' = 'Lockdown Dum * Self Rule Index',
-  'typeClosure and Regulation of Schools:Self' = 'SchoolsDum * Self Rule Index',
-  'measure_H3_deaths_b:Self' =   'Std. Death Rate * Self Rule Index',
-  
-  
-  'RAI' = 'RAI',
-  'Self' = 'Self',
-  
-  'RAI:typeMask Wearing' = 'Mask Wearing Dum * RAI',
-  'RAI:typeLockdown' = 'Lockdown Dum * RAI',
-  'RAI:typeClosure and Regulation of Schools' = 'SchoolsDum * RAI',
-  
-  
-  'typeMask Wearing:RAI' = 'Mask Wearing Dum * RAI',
-  'typeLockdown:RAI' = 'Lockdown Dum * RAI',
-  'typeClosure and Regulation of Schools:RAI' = 'SchoolsDum * RAI',
-  
-  "hhi_new_deaths" = "HHI (new deaths)",
-  'measure_H1_H2_cases_JHU' = 'National Cases Count',
-  
-  'time' = 'time',
-  'time2' = 'time2',
-  'time3' = 'time3',
-  '(Intercept)' = "Intercept"
-)
+makeH2plots(hyp2_country_type, pubPlot = TRUE)
+makeH2plots(hyp2_rai_type, pubPlot = TRUE)
+makeH2plots(hyp2_self_type, pubPlot = TRUE)
 
 
-screenreg(list(lmA1, lmB1),
-          custom.coef.map = coefMap,
-          # custom.model.names = c('OLS', 'Logit'),
-          
-)
-htmlreg(list(lmA1, lmB1),
-        custom.coef.map = coefMap,
-        # custom.model.names = c('OLS', 'Logit'),
-        file = '~/Downloads/testhtml.doc', 
-        inline.css = FALSE, doctype = TRUE, html.tag = TRUE, 
-        head.tag = TRUE, body.tag = TRUE
-)
-
-
+makeH2plots(hyp2_country_diff, pubPlot = TRUE)
+makeH2plots(hyp2_rai_diff, pubPlot = TRUE)
+makeH2plots(hyp2_self_diff, pubPlot = TRUE)

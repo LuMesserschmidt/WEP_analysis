@@ -31,7 +31,7 @@ vertical-align: 0px;
 
 <body>
 <table cellspacing="0" align="center">
-<caption align="bottom" style="margin-top:0.3em;">Statistical models</caption>
+<caption align="top" style="margin-bottom:0.3em;">Statistical models</caption>
 <tr>
 <th><b></b></th>
 <th><b>H1</b></th>
@@ -54,7 +54,7 @@ vertical-align: 0px;
 <td>Germany</td>
 <td>-0.44<sup>***</sup></td>
 <td>0.20<sup>***</sup></td>
-<td>-2.22<sup>***</sup></td>
+<td>-2.21<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -66,7 +66,7 @@ vertical-align: 0px;
 <td>Italy</td>
 <td>-0.01</td>
 <td>0.00</td>
-<td>-0.25<sup>***</sup></td>
+<td>-0.22<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -78,7 +78,7 @@ vertical-align: 0px;
 <td>Homogeneous Policy Dum</td>
 <td>-0.04</td>
 <td>-0.00</td>
-<td>0.41<sup>***</sup></td>
+<td>0.42<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -88,9 +88,9 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Homogeneous Policy Dum * Italy</td>
-<td>-0.03</td>
+<td>-0.04</td>
 <td>0.02</td>
-<td>-0.03</td>
+<td>-0.06</td>
 </tr>
 <tr>
 <td></td>
@@ -102,7 +102,7 @@ vertical-align: 0px;
 <td>Homogeneous Policy Dum * Germany</td>
 <td>0.34<sup>***</sup></td>
 <td>-0.08<sup>***</sup></td>
-<td>1.78<sup>***</sup></td>
+<td>1.77<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -112,9 +112,9 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Homogeneous Policy Dum * Switzerland</td>
-<td>-0.03</td>
+<td>-0.04</td>
 <td>-0.00</td>
-<td>1.82<sup>***</sup></td>
+<td>1.81<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -150,7 +150,7 @@ vertical-align: 0px;
 <td>Std. Death Rate * Italy</td>
 <td></td>
 <td></td>
-<td>0.14<sup>***</sup></td>
+<td>0.15<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -159,7 +159,7 @@ vertical-align: 0px;
 <td>(0.03)</td>
 </tr>
 <tr>
-<td>Std. Death Rate* Switzerland</td>
+<td>Std. Death Rate * Switzerland</td>
 <td></td>
 <td></td>
 <td>0.04<sup>*</sup></td>
@@ -174,7 +174,7 @@ vertical-align: 0px;
 <td>Std. Death Rate * Homogeneous Policy Dum</td>
 <td></td>
 <td></td>
-<td>0.18<sup>***</sup></td>
+<td>0.21<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -186,7 +186,7 @@ vertical-align: 0px;
 <td>Std. Death Rate * Homogeneous Policy Dum * Italy</td>
 <td></td>
 <td></td>
-<td>-0.16<sup>**</sup></td>
+<td>-0.19<sup>**</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -198,7 +198,7 @@ vertical-align: 0px;
 <td>Std. Death Rate * Homogeneous Policy Dum * Germany</td>
 <td></td>
 <td></td>
-<td>-0.04</td>
+<td>-0.06</td>
 </tr>
 <tr>
 <td></td>
@@ -210,7 +210,7 @@ vertical-align: 0px;
 <td>Std. Death Rate * Homogeneous Policy Dum * Switzerland</td>
 <td></td>
 <td></td>
-<td>-0.17<sup>***</sup></td>
+<td>-0.19<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -232,8 +232,8 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>National Cases Count</td>
-<td>46.94<sup>***</sup></td>
-<td>-0.17</td>
+<td>47.06<sup>***</sup></td>
+<td>-0.13</td>
 <td></td>
 </tr>
 <tr>
@@ -246,7 +246,7 @@ vertical-align: 0px;
 <td>time</td>
 <td>0.00</td>
 <td>-0.00</td>
-<td>-0.00</td>
+<td>0.01<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -257,8 +257,8 @@ vertical-align: 0px;
 <tr>
 <td>time2</td>
 <td>0.00<sup>***</sup></td>
-<td>0.00<sup>***</sup></td>
 <td>0.00<sup>**</sup></td>
+<td>-0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -270,7 +270,7 @@ vertical-align: 0px;
 <td>time3</td>
 <td>-0.00<sup>***</sup></td>
 <td>-0.00<sup>***</sup></td>
-<td>-0.00<sup>**</sup></td>
+<td>0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -282,7 +282,7 @@ vertical-align: 0px;
 <td>Intercept</td>
 <td>0.04</td>
 <td>-0.06<sup>***</sup></td>
-<td>0.82<sup>***</sup></td>
+<td>0.36<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -298,15 +298,15 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Adj. R<sup>2</sup></td>
-<td>0.37</td>
+<td>0.38</td>
 <td>0.26</td>
 <td></td>
 </tr>
 <tr>
 <td>Num. obs.</td>
-<td>3184</td>
-<td>3184</td>
-<td>44232</td>
+<td>3168</td>
+<td>3168</td>
+<td>43916</td>
 </tr>
 <tr>
 <td>RMSE</td>
@@ -318,25 +318,25 @@ vertical-align: 0px;
 <td>AIC</td>
 <td></td>
 <td></td>
-<td>50774.07</td>
+<td>50205.62</td>
 </tr>
 <tr>
 <td>BIC</td>
 <td></td>
 <td></td>
-<td>50939.32</td>
+<td>50370.73</td>
 </tr>
 <tr>
 <td>Log Likelihood</td>
 <td></td>
 <td></td>
-<td>-25368.03</td>
+<td>-25083.81</td>
 </tr>
 <tr>
 <td class="bottomRule">Deviance</td>
 <td class="bottomRule"></td>
 <td class="bottomRule"></td>
-<td class="bottomRule">50736.07</td>
+<td class="bottomRule">50167.62</td>
 </tr>
 <tr>
 <td colspan="5"><span style="font-size:0.8em"><sup>***</sup>p &lt; 0.001, <sup>**</sup>p &lt; 0.01, <sup>*</sup>p &lt; 0.05</span></td>
