@@ -39,52 +39,52 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Switzerland</td>
-<td>-16.58</td>
-<td>-2.06<sup>***</sup></td>
+<td>-0.12<sup>***</sup></td>
+<td>-0.47<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
-<td>(0.04)</td>
+<td>(0.01)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Germany</td>
-<td>-15.65</td>
-<td>-2.21<sup>***</sup></td>
+<td>-0.06<sup>***</sup></td>
+<td>-0.50<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
-<td>(0.05)</td>
+<td>(0.01)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Italy</td>
-<td>-16.09</td>
-<td>-0.22<sup>***</sup></td>
+<td>-0.08<sup>***</sup></td>
+<td>-0.05<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
-<td>(0.04)</td>
+<td>(0.01)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Lockdown Dum</td>
-<td>-18.91</td>
+<td>-0.57<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Mask Wearing Dum</td>
-<td>-18.25</td>
+<td>-0.43<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
@@ -94,207 +94,207 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td></td>
-<td>(193.21)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Lockdown Dum * Switzerland</td>
-<td>-1.67</td>
+<td>-0.31<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(174.02)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Lockdown Dum * Germany</td>
-<td>13.68</td>
+<td>-0.27<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.02)</td>
 <td></td>
 </tr>
 <tr>
 <td>Lockdown Dum * Italy</td>
-<td>15.90</td>
+<td>0.03</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.02)</td>
 <td></td>
 </tr>
 <tr>
 <td>Schools Dum * Switzerland</td>
-<td>-2.06</td>
+<td>-0.39<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(193.21)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Schools Dum * Germany</td>
-<td>-3.60</td>
+<td>-0.60<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(193.21)</td>
+<td>(0.02)</td>
 <td></td>
 </tr>
 <tr>
 <td>Schools Dum * Italy</td>
-<td>0.65</td>
+<td>0.04<sup>*</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(193.21)</td>
+<td>(0.02)</td>
 <td></td>
 </tr>
 <tr>
 <td>Mask Wearing Dum * Switzerland</td>
-<td>16.72</td>
+<td>0.16<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Mask Wearing Dum * Germany</td>
-<td>15.25</td>
+<td>-0.03<sup>*</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.02)</td>
 <td></td>
 </tr>
 <tr>
 <td>Mask Wearing Dum * Italy</td>
-<td>16.02</td>
+<td>0.07<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
+<td>(0.02)</td>
 <td></td>
 </tr>
 <tr>
 <td>Homogeneous Policy Dum</td>
+<td></td>
+<td>0.07<sup>***</sup></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>(0.01)</td>
+</tr>
+<tr>
+<td>Homogeneous Policy Dum * Italy</td>
+<td></td>
+<td>0.00</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>(0.01)</td>
+</tr>
+<tr>
+<td>Homogeneous Policy Dum * Germany</td>
 <td></td>
 <td>0.42<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>(0.05)</td>
-</tr>
-<tr>
-<td>Homogeneous Policy Dum * Italy</td>
-<td></td>
-<td>-0.06</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>(0.07)</td>
-</tr>
-<tr>
-<td>Homogeneous Policy Dum * Germany</td>
-<td></td>
-<td>1.77<sup>***</sup></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>(0.07)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Homogeneous Policy Dum * Switzerland</td>
 <td></td>
-<td>1.81<sup>***</sup></td>
+<td>0.43<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>(0.06)</td>
-</tr>
-<tr>
-<td>Std. Death Rate</td>
-<td>0.01</td>
-<td>-0.05<sup>**</sup></td>
-</tr>
-<tr>
-<td></td>
-<td>(70.24)</td>
 <td>(0.01)</td>
 </tr>
 <tr>
-<td>Std. Death Rate * Germany</td>
-<td>0.63</td>
-<td>-0.00</td>
+<td>Std. Death Rate</td>
+<td>0.00</td>
+<td>-0.01<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
-<td>(0.04)</td>
+<td>(0.00)</td>
+<td>(0.00)</td>
+</tr>
+<tr>
+<td>Std. Death Rate * Germany</td>
+<td>0.01</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td></td>
+<td>(0.01)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Std. Death Rate * Italy</td>
-<td>0.35</td>
-<td>0.15<sup>***</sup></td>
+<td>0.02<sup>**</sup></td>
+<td>0.03<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
-<td>(0.03)</td>
+<td>(0.01)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Std. Death Rate * Switzerland</td>
-<td>0.00</td>
-<td>0.04<sup>*</sup></td>
+<td>-0.00</td>
+<td>0.01<sup>**</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
-<td>(0.02)</td>
+<td>(0.00)</td>
+<td>(0.00)</td>
 </tr>
 <tr>
 <td>Std. Death Rate * Homogeneous Policy Dum</td>
 <td></td>
-<td>0.21<sup>***</sup></td>
+<td>0.02<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>(0.04)</td>
+<td>(0.00)</td>
 </tr>
 <tr>
 <td>Std. Death Rate * Lockdown Dum</td>
-<td>-0.18</td>
+<td>-0.02<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Mask Wearing Dum</td>
-<td>0.19</td>
+<td>0.02<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
@@ -304,133 +304,133 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td></td>
-<td>(99.40)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Lockdown Dum * Germany</td>
-<td>-0.47</td>
+<td>0.01</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Lockdown Dum * Italy</td>
-<td>-0.07</td>
+<td>0.03<sup>*</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Lockdown Dum * Switzerland</td>
-<td>0.17</td>
+<td>0.02<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(73.41)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Schools Dum * Germany</td>
-<td>-0.73</td>
+<td>-0.03<sup>**</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(99.40)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Schools Dum * Italy</td>
-<td>0.13</td>
+<td>-0.01</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(99.40)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Schools Dum * Switzerland</td>
-<td>-0.03</td>
+<td>-0.00</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(99.40)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Mask Wearing Dum * Germany</td>
-<td>-0.77</td>
+<td>-0.02</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Mask Wearing Dum * Italy</td>
-<td>-0.47</td>
+<td>-0.03<sup>*</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Mask Wearing Dum * Switzerland</td>
-<td>-0.21</td>
+<td>-0.03<sup>***</sup></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td>(70.24)</td>
+<td>(0.01)</td>
 <td></td>
 </tr>
 <tr>
 <td>Std. Death Rate * Homogeneous Policy Dum * Italy</td>
 <td></td>
-<td>-0.19<sup>**</sup></td>
+<td>-0.02<sup>*</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>(0.06)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Std. Death Rate * Homogeneous Policy Dum * Germany</td>
 <td></td>
-<td>-0.06</td>
+<td>0.00</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>(0.06)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
 <td>Std. Death Rate * Homogeneous Policy Dum * Switzerland</td>
 <td></td>
-<td>-0.19<sup>***</sup></td>
+<td>-0.02<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td>(0.04)</td>
+<td>(0.00)</td>
 </tr>
 <tr>
 <td>time</td>
-<td>0.01<sup>***</sup></td>
-<td>0.01<sup>***</sup></td>
+<td>0.00<sup>***</sup></td>
+<td>0.00<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
@@ -459,38 +459,33 @@ vertical-align: 0px;
 </tr>
 <tr>
 <td>Intercept</td>
-<td>17.83</td>
-<td>0.36<sup>***</sup></td>
+<td>0.89<sup>***</sup></td>
+<td>0.60<sup>***</sup></td>
 </tr>
 <tr>
 <td></td>
-<td>(136.61)</td>
-<td>(0.06)</td>
+<td>(0.01)</td>
+<td>(0.01)</td>
 </tr>
 <tr>
-<td class="midRule">AIC</td>
-<td class="midRule">37390.01</td>
-<td class="midRule">50205.62</td>
+<td class="midRule">R<sup>2</sup></td>
+<td class="midRule">0.40</td>
+<td class="midRule">0.21</td>
 </tr>
 <tr>
-<td>BIC</td>
-<td>37694.17</td>
-<td>50370.73</td>
+<td>Adj. R<sup>2</sup></td>
+<td>0.40</td>
+<td>0.21</td>
 </tr>
 <tr>
-<td>Log Likelihood</td>
-<td>-18660.01</td>
-<td>-25083.81</td>
+<td>Num. obs.</td>
+<td>43916</td>
+<td>43916</td>
 </tr>
 <tr>
-<td>Deviance</td>
-<td>37320.01</td>
-<td>50167.62</td>
-</tr>
-<tr>
-<td class="bottomRule">Num. obs.</td>
-<td class="bottomRule">43916</td>
-<td class="bottomRule">43916</td>
+<td class="bottomRule">RMSE</td>
+<td class="bottomRule">0.38</td>
+<td class="bottomRule">0.44</td>
 </tr>
 <tr>
 <td colspan="4"><span style="font-size:0.8em"><sup>***</sup>p &lt; 0.001, <sup>**</sup>p &lt; 0.01, <sup>*</sup>p &lt; 0.05</span></td>

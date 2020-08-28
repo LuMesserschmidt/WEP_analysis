@@ -9,21 +9,19 @@ library(texreg)
 
 # create coefficient map
 coefMap = list(
-  'RAI' = 'RAI',
-  'Self' = 'Self Rule Index',
+
   
   
   "countrySwitzerland" = "Switzerland",
   "countryGermany" = "Germany",
   "countryItaly" = "Italy",
   
-  
+
   "typeRestrictions of Mass Gatherings" = 'Restrictions of Mass Gatherings Dum',
   'typeLockdown' = "Lockdown Dum",
   'typeMask Wearing' = 'Mask Wearing Dum',
   'typeClosure and Regulation of Schools' = 'Schools Dum',
-  
-  'differentiatingHomogeneous' = 'Homogeneous Policy Dum',
+
   
   'typeRestrictions of Mass Gatherings:countrySwitzerland' = 'Restrictions of Mass Gatherings Dum * Switzerland',
   'typeRestrictions of Mass Gatherings:countryGermany' = 'Restrictions of Mass Gatherings Dum * Germany',
@@ -41,6 +39,10 @@ coefMap = list(
   'typeMask Wearing:countryGermany' = 'Mask Wearing Dum * Germany',
   'typeMask Wearing:countryItaly' = 'Mask Wearing Dum * Italy',
   
+  
+  
+  'differentiatingHomogeneous' = 'Homogeneous Policy Dum',
+  
   'countryItaly:differentiatingHomogeneous' = 'Homogeneous Policy Dum * Italy',
   'countryGermany:differentiatingHomogeneous' = 'Homogeneous Policy Dum * Germany',
   'countrySwitzerland:differentiatingHomogeneous' = 'Homogeneous Policy Dum * Switzerland',
@@ -49,6 +51,8 @@ coefMap = list(
   'differentiatingHomogeneous:countryGermany' = 'Homogeneous Policy Dum * Germany',
   'differentiatingHomogeneous:countrySwitzerland' = 'Homogeneous Policy Dum * Switzerland',
   
+  'RAI' = 'RAI',
+  'Self' = 'Self Rule Index',
   
   'typeMask Wearing:RAI' = 'Mask Wearing Dum * RAI',
   'typeLockdown:RAI' = 'Lockdown Dum * RAI',
@@ -131,13 +135,13 @@ coefMap = list(
   'typeMask Wearing:Self:measure_H3_deaths_b' = 'Std. Death Rate * Mask Wearing * Self Rule Index',
   'typeClosure and Regulation of Schools:Self:measure_H3_deaths_b' = 'Std. Death Rate * Schools Dum * Self Rule Index',
   
-  'countryItaly:differentiatingHomogeneous:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * Italy',
-  'countryGermany:differentiatingHomogeneous:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * Germany',
-  'countrySwitzerland:differentiatingHomogeneous:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * Switzerland',
+  'differentiatingHomogeneous:countryItaly:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * Italy',
+  'differentiatingHomogeneous:countryGermany:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * Germany',
+  'differentiatingHomogeneous:countrySwitzerland:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * Switzerland',
   
-  'countryItaly:differentiatingHomogeneous:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * Italy',
-  'countryGermany:differentiatingHomogeneous:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * Germany',
-  'countrySwitzerland:differentiatingHomogeneous:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * Switzerland',
+  'differentiatingHomogeneous:countryItaly:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * Italy',
+  'differentiatingHomogeneous:countryGermany:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * Germany',
+  'differentiatingHomogeneous:countrySwitzerland:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * Switzerland',
   
   'differentiatingHomogeneous:RAI:measure_H3_deaths_a' = 'Prop. Death Rate * Homogeneous Policy Dum * RAI',
   'differentiatingHomogeneous:RAI:measure_H3_deaths_b' = 'Std. Death Rate * Homogeneous Policy Dum * RAI',
@@ -181,6 +185,20 @@ htmlreg(list(hyp1_self_diff, hyp2_self_diff, hyp3_self_diff_deaths_b_logit),
        )
 
 
+htmlreg(list(hyp1_country_diff, hyp1_self_diff,hyp2_country_diff,  hyp2_self_diff, hyp3_self_diff_deaths_b_logit),
+        custom.coef.map = coefMap,
+        custom.model.names = c('H1', 'H1', 'H2', 'H2', 'H3'),
+        caption.above = TRUE,
+        file = 'WEP_analysis/Results/tables/table_h1_h2_h3.doc',
+        inline.css = FALSE,
+        doctype = TRUE,
+        html.tag = TRUE,
+        head.tag = TRUE,
+        body.tag = TRUE
+)
+
+
+
 htmlreg(list(hyp1_rai_diff, hyp2_rai_diff, hyp3_rai_diff_deaths_a_logit),
         custom.coef.map = coefMap,
         custom.model.names = c('H1', 'H2', 'H3'),
@@ -197,6 +215,43 @@ htmlreg(list(hyp1_rai_diff, hyp2_rai_diff, hyp3_rai_diff_deaths_b_logit),
         custom.model.names = c('H1', 'H2', 'H3'),
         caption.above = TRUE,
         file = 'WEP_analysis/Results/tables/table_rai_diff_deaths_std.doc', 
+        inline.css = FALSE, 
+        doctype = TRUE, 
+        html.tag = TRUE, 
+        head.tag = TRUE, 
+        body.tag = TRUE)
+
+
+
+screenreg(list(hyp1_country_type, hyp1_country_diff),
+        custom.coef.map = coefMap,
+    
+        caption.above = TRUE,
+      #  file = 'WEP_analysis/Results/tables/table_h1.doc', 
+        inline.css = FALSE, 
+        doctype = TRUE, 
+        html.tag = TRUE, 
+        head.tag = TRUE, 
+        body.tag = TRUE)
+
+
+htmlreg(list(hyp2_country_type, hyp2_country_diff),
+        custom.coef.map = coefMap,
+        # custom.model.names = c('P', 'H2', 'H3'),
+        caption.above = TRUE,
+        file = 'WEP_analysis/Results/tables/table_h2.doc', 
+        inline.css = FALSE, 
+        doctype = TRUE, 
+        html.tag = TRUE, 
+        head.tag = TRUE, 
+        body.tag = TRUE)
+
+
+htmlreg(list(hyp3_country_type_deaths_b_logit, hyp3_country_diff_deaths_b_logit),
+        custom.coef.map = coefMap,
+        # custom.model.names = c('P', 'H2', 'H3'),
+        caption.above = TRUE,
+        file = 'WEP_analysis/Results/tables/table_h3.doc', 
         inline.css = FALSE, 
         doctype = TRUE, 
         html.tag = TRUE, 
@@ -227,6 +282,8 @@ htmlreg(list(hyp1_country_diff, hyp2_country_diff, hyp3_country_diff_deaths_b_lo
         body.tag = TRUE)
 
  
+screenreg(list(hyp3_country_diff_deaths_b_logit),
+          custom.coef.map = coefMap)
 
 htmlreg(list(hyp1_country_type, hyp2_country_type, hyp3_country_type_deaths_a_logit),
           custom.coef.map = coefMap,

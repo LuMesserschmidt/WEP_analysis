@@ -66,9 +66,9 @@ df_cases= df_cases %>%
      
 # get RAI data
 df_fed <- read_csv("WEP_analysis/Measures/fed.csv", guess_max = 10000)
-names(df_fed)[which(names(df_fed) == 'Jurisdiction Name')] = 'country'
-df_fed = df_fed %>% filter(country %in% c('France', 'Germany', 'Switzerland', 'Italy'))
-
+names(df_fed)[which(names(df_fed) == 'Jurisdiction Name')]= 'country'
+df_fed = df_fed %>% dplyr:::filter(country %in% c('France', 'Germany', 'Switzerland', 'Italy'))
+df_fed
 # merge data
 df_3 = merge(sub_data_agg %>% filter(date > "2019-12-31"), df_cases, by = c("province","date"), all.x = TRUE)
 df_3 = merge(df_3 , df_fed[, c('country',   'Self',   'RAI')], by = c("country"), all.x = TRUE)

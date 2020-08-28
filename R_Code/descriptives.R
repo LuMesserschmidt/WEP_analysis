@@ -302,9 +302,9 @@ figure <- ggpubr::ggarrange(gg3.4, gg3.5,
   ggsave(filename = "results/Descriptives/gg3_6.jpg",height = 7)
 
 
-
+df_centrality$country <- factor(df_centrality$country , levels = c("France", "Germany", "Italy","Switzerland"))
 # - Centrality Index----
-gg4.1<- ggplot(df_centrality, aes(x=date, y=centDegStd, color=country)) + geom_smooth() +
+gg4.1<- ggplot(df_centrality%>% arrange(country), aes(x=date, y=centDegStd, color=country)) + geom_smooth() +
   ylim(0, 1) +labs(x = "Date", y = "Centrality Index (smoothed)", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
   theme_bw() + facet_wrap(~type)+
@@ -327,7 +327,7 @@ gg5.1<- ggplot(df_heterogeneity, aes(x=date, y=hetero_mean, color=country)) + ge
   ggsave(filename = "results/Descriptives/gg5_1.jpg",
          height = 7)
 
-
+gg4.1
 gg5.2<- ggplot(df_heterogeneity, aes(x=date, y=hetero_mean, color=country)) + geom_line() +
   ylim(0, 1) +labs(x = "Date", y = "Heterogeneity Score", color="Country") +
   scale_color_manual(values=c('#00CC33','#E69F00','#CC0000',"#006699"))+
@@ -350,7 +350,7 @@ figure <- ggpubr::ggarrange(gg4.1, gg5.1,
 figure <- ggpubr::ggarrange(gg4.1, gg5.1,
                             nrow = 1,common.legend = T,legend="bottom")+
   ggsave(filename = "results/Descriptives/gg5_5.jpg",height = 7)
-
+ 
 # - PAX----
 
 
@@ -410,7 +410,7 @@ gg9.1<- df_selected %>%
   ggplot(aes(x = date, fill = init_country_level)) + geom_density(alpha = 0.5) + 
   geom_histogram(aes(y=..density..), alpha=0.5, 
                  position="identity")+
-  facet_wrap(~country)+ theme_bw()+ggtitle("Selected Policies")+
+  facet_wrap(~country)+ theme_bw()+
   ggsave(filename = "results/Descriptives/gg9_1.jpg",
          height = 7)
 
@@ -427,7 +427,9 @@ df_centrality<-df_centrality%>% select(1:3,6)
 df_centrality<-spread(df_centrality, type, centDegStd)%>%rename("Cent_School"=3,
                                                                     "Cent_Lockdown"=4,
                                                                     "Cent_Mask"=5,
-                                                                    "Cent_Mass"=6)
+                                                                    "Cent_Mass"=6)%>%
+  rowwise() %>% 
+  mutate(Cent_Mean=mean(c(Cent_School,Cent_Lockdown,Cent_Mask,Cent_Mass)))
 
 df_PAX<-df_PAX%>%filter(country%in%c("France","Germany","Italy","Switzerland"))%>%rename("date"=2,"PAX"=3)%>% select(1:3)
 
@@ -443,13 +445,9 @@ df_merge<- left_join(df_merge,df_hhi_deaths,by=c("country","date"))
 
 #Adjust Variables
 df_main_summary <- df_merge%>%select("date",
-                                     "country",
-                                     "Self",                                
+                                     "country",                                
                                      "RAI",                                 
-                                     "Cent_School",
-                                     "Cent_Lockdown",                      
-                                     "Cent_Mask",
-                                     "Cent_Mass",
+                                     "Cent_Mean",
                                      "hetero_mean",                         
                                      "PAX",
                                      "hhi_cumulative_deaths",

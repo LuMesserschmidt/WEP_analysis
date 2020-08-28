@@ -171,9 +171,12 @@ sub_data %>% filter(is.na(type_sub_cat))
 # save raw data 
 
 saveRDS(sub_data, "WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS")
-
 sub_data = readRDS("WEP_analysis/data/CoronaNet/coronanet_internal_sub_raw.RDS")
-# fill in appropriate province names
+
+sub_data %>% filter(type == 'Social Distancing' & init_country_level == 'National') %>% data.frame
+
+
+-.44+.25# fill in appropriate province names
 regions = read_csv("WEP_analysis/data/CoronaNet/country_region_clean.csv")
 regions = regions %>% dplyr::: filter(Country %in% countries) %>% dplyr:::select(-ISO2)
 regions$`0` = regions$Country

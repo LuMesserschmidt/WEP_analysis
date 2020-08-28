@@ -103,8 +103,8 @@ hyp1_rai_diff = lm(centDegStd ~ differentiating*RAI +measure_H1_H2_cases_ECDC +h
 hyp1_self_diff = lm(centDegStd ~ differentiating*Self +measure_H1_H2_cases_ECDC +hhi_new_deaths + time + time2+time3, data = df )
 
 
-
- 
+summary(hyp1_country_type)
+ summary(hyp1_country_diff)
 # # -----------------
 # Substantive effect plots
 # ----------------
@@ -210,3 +210,4 @@ makeH1plots(hyp1_country_diff_logit, pubPlot = TRUE)
 makeH1plots(hyp1_rai_diff_logit, pubPlot = TRUE)
 makeH1plots(hyp1_self_diff_logit, pubPlot = TRUE)
 
+0.44-.25
